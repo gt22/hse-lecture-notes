@@ -194,4 +194,28 @@
         \let\qed\relax
     \end{proof}
     \end{theorem}
+    \begin{tlemma}
+        \[ \forall{a, b \in Z}\setminus \{0\}  .\] 
+        \[ a = \epsilon_a \prod_{i=1}^{k} p_i^{\alpha_i}  .\]
+        \[ b = e_b \prod_{n=1}^{k} p_i^{\beta_i}  .\] 
+        \[ a\divby{b} \equiv \forall{i \in \left[1, k\right]}\quad \alpha_i \ge \beta_i.\] 
+        \begin{proof} Достаточность.
+            \[ c = \epsilon' \prod_{i=1}^{k} p_i^{\alpha_i-\beta_i} \implies bc=a \implies a\divby{b}  .\qedhere\]
+        \end{proof}
+        \begin{proof} Необходимость.
+        \[a\divby{b} \implies a=bc \implies c=\epsilon' \prod_{i=1}^{k} p_i^{\gamma_i} \implies \alpha_i = \beta_i + \gamma_i \implies \alpha_i \ge \beta_i .\qedhere\]
+        \end{proof}
+    \end{tlemma}
+    \begin{tlemma}
+        \[ \forall{a, b \in Z}\setminus \{0\}  .\] 
+        \[ a = \epsilon_a \prod_{i=1}^{k} p_i^{\alpha_i}  .\]
+        \[ b = e_b \prod_{n=1}^{k} p_i^{\beta_i}  .\] 
+        \[ \phi_i = \min\left( \alpha_i, \beta_i \right)  .\]
+        \[ d=\left( a, b \right)=\prod_{i=1}^{k} p_i^{\phi_i}  .\]
+        \begin{proof}
+            \[\forall{i \in \left[1, k\right)}\quad \phi_i \le  \alpha_i, \beta_i \implies a\divby{d}, b\divby{d} .\]
+            \[ \forall{d' \in Z}, a\divby{d'}, b\divby{d'}\quad d' = \prod_{i=1}^{k} p_i^{\gamma_i}  .\] 
+            \[ \forall{i \in [1, k)}\quad \gamma_i \le \alpha_i, \beta_i \implies \gamma_i \le \phi_i \implies d\divby{d'} .\qedhere\] 
+        \end{proof}
+    \end{tlemma}
 \end{document} 
