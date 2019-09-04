@@ -1,0 +1,137 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cAlgebra}
+%\usepackage{cFonts}
+%\usepackage{cTikz}
+\title{Мат. Анализ}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Введение}
+    $x \in A$ - x принадлежит A\\
+    $a \not\in A$ - x не принадлежит A\\
+    $A \subset B \implies \forall{x \in A}\quad x \in B$\\
+    $A = B \equiv A \subseteq B\land B \subseteq A$\\
+    $A \subsetneq B \implies (A\subset B)\land A\neq B$ - A - собственное подможество B\\
+    $\emptyset$ - пустое множество\\
+    $\mathbb{N}$ - натуральные числа\\
+    $\mathbb{Z}$ - целые числа\\
+    $\mathbb{Q}$ - рациональные числа\\
+    $\mathbb{R}$ - вещественные числа\\
+    $2^A$ - множество всех подмножеств A\\
+    $A = \{1, 2\}$\\
+    $2^{A} = \{\{\emptyset\}, \{1\}, \{2\}, \{1, 2\}\}$\\
+    $\forall$ - для всех\\
+    $\exists$ - существует
+    \subsection{Задание множеств}
+    \begin{itemize}
+        \item Перечисление: $\{a, b, c\}$, $\{a_1, a_2, \ldots, a_n\},  \{a_1, a_2, a_3, \ldots\}  $ 
+        \item Описание: множество простых чисел - множество таких чисел, которые делятся только на себя и на единицу
+        \item Функция: $\{x \in X\ssep \Phi\left( x \right) \} $ - множество всех $x$ из множества $X$, для которых  $\Phi\left( x \right) $ - истина. Выбирать $\Phi$ аккуратно.
+    \end{itemize}
+    \subsection{Операции с множествами}
+        \[ A\cup B = \{x\ssep x \in A \lor x \in B\}  .\]
+        \[ A\cap B = \{x\ssep x \in A\land x \in B\}  .\] 
+        \[ A\setminus B = \{x\ssep x \in A\land x \not\in B\}   .\] 
+        \[ A\triangle B = \left( A\setminus B  \right)\cup\left( B\setminus A \right)   .\]
+        \[ \bigcup\limits_{\alpha \in I}A_{\alpha} \equiv \{x \ssep \exists{\alpha \in I}\quad x \in A_{\alpha_i}\} .\]
+        \[ \bigcap\limits_{\alpha \in I}A_{\alpha} \equiv \{x \ssep \forall{\alpha \in I}\quad x \in A_{\alpha}\}  .\] 
+        \[ \bigcup\limits_{a=1}^kA_{\alpha} \equiv \bigcup\limits_{\alpha \in \left[1; k\right]}A_{\alpha} .\]
+    \subsection{Правила Де'Моргана}
+        \[ A\setminus\bigcup\limits_{\alpha \in I}B_{\alpha} = \bigcap\limits_{\alpha \in I}A\setminus B_{\alpha}  .\]
+    \subsection{}
+        \begin{theorem}
+            \[ A\cap\left( \bigcup\limits_{\alpha \in I}B_{\alpha} \right)=\bigcup\limits_{\alpha}\left( A\cap B_{\alpha} \right)   .\] 
+            \[ A\cup\left( \bigcap\limits_{\alpha \in I}B_{\alpha} \right) = \bigcap\limits_{\alpha \in I}\left( A\cup B_{\alpha} \right)   .\] 
+            \begin{proof}
+                \[x \in A\cap\left( \bigcup\limits_{\alpha \in I}B_{\alpha} \right) \implies \exists{\alpha \in I}\quad x \in A\land x \in B_{\alpha} \implies \exists{\alpha \in I}\quad x \in \left( A\cup B \right) \implies x \in \bigcup\limits_{\alpha \in I}\left( A\cup B \right) .\]
+                \[ A\cap\left( \bigcup\limits_{\alpha \in I}B_{\alpha} \right) \subset \bigcup\limits_{\alpha \in I}\left( A\cup B \right) .\] 
+                Доказательство обратного вхождения, а так-же следующего утверждения симметричны. 
+            \end{proof}
+        \end{theorem}
+    \subsection{Упорядоченная пара}
+        \[ \left<x, y\right> = \left<x', y'\right> \equiv x=x'\land y=y' .\]
+        \subsubsection{Кортеж (Упорядоченная $n$-ка}
+        \[ \left<x_1, x_2, \ldots, x_n\right> = \left<x_1', x_2', \ldots, x_n'\right> \equiv \forall{i \in [1, n]}\quad x_i = x_i' .\] 
+    \subsection{Декартово произведение}
+        \[ A\times B = \{\left<x, y\right> \ssep x \in A\land y \in B\}  .\] 
+    \subsection{Бинарное отношение}
+        Б. о. между множествами $A$,  $B$:
+         \[ R \subset A\times B .\]
+         \[ xRy \equiv \left<x, y\right> \in R .\]
+        \subsubsection{Область определения отношения}
+        \[ \delta_R \equiv \text{dom}_R .\]
+        \[ \delta_R \equiv \{x \in A \ssep \exists{y \in B}\quad xRy\}  .\] 
+        \[ \rho_R \equiv \{y \in B \ssep \exists{x \in A}\quad xRy\}  .\] 
+
+        \subsubsection{Обратное отношений}
+            \[ R^{-1} \subset B\times A .\]
+            \[ R^{-1} = \{\left<y, x\right>\ssep xRy\}  .\]
+        \subsubsection{Композиция отношение}
+            \[ R_1 \subset A\times B .\]
+            \[ R_2 \subset B\times C .\]
+            \[ R_1 \circ R_2 = \{\left<x, z\right>\ssep \exists{y \in B}\quad xR_1y\land yR_2z\}  .\] 
+        \subsubsection{Примеры}
+            \begin{enumerate}
+                \item $A = B$ \\
+                    Отношение равенства: $R = \{\left<x, x\right>\ssep x \in A\} $ 
+                \item $A = B=\mathbb{R}$\\
+                    Отношение "$\le$": $R = \{\left<x, y\right>\ssep x \le y\}$ 
+                \item $A = B = \mathbb{N}$
+                    Отношение "$<$":  $R = \{\left<x, y\right>\ssep x < y\} $ \\
+                    $\delta_R = \mathbb{N}$\\
+                    $\rho_R = \mathbb{N}\setminus \{1\} $\\
+                    $(< \circ <) = \{\left<x, z\right>\ssep x < z-1\} $
+                \item Отношение перпендикулярности:\\
+                    $\perp \circ \perp \equiv \parallel$
+                \item $A$ - множество всех живших мужчин\\
+                    $R = \{\left<x, y\right> \ssep x \text{ отец } y\} $ \\
+                    $\delta_R =$ все у кого есть отец\\
+                    $\rho_R =$ все у кого есть сыновья\\
+                    $R \circ R = $ дед по отцовской линии
+            \end{enumerate}
+    \subsection{Функция}
+    $f$ называется функцией и обозначается  $f: A \mapsto B$, если она - отношение между $A$ и  $B$, обладающие следующими свойствами:
+         \[ \delta_f = A .\]
+         \[ \forall{x \in A}\quad\forall{y, z \in B}\quad xfy\land xfz \implies y=z .\]
+         \[ y=f(x) \equiv xfy .\]
+         \subsubsection{Последовательность}
+         Последовательность: $f : \mathbb{N} \to B$ 
+
+    \subsection{Страшные слова}
+        \subsubsection{$A = B$}
+            $R$ - рефлексивное если  $\forall{x \in A}\quad xRx$\\ 
+            $R$ -  иррефлексивное если $\not\exists{x \in A}\quad xRx$\\
+            $R$ - симметричное если  $\forall{x, y \in A}\quad xRy \equiv yRx$\\
+            $R$ - антисимметричное если  $\forall{x, y \in A}\quad xRy \not\equiv yRx$ \\
+            $R$ - транзитивное если $\forall{x, y, z \in A}\quad xRy\land yRz \implies xRz$\\
+            $R$ - отношение эквивалентсности если оно симметрично и транзитивное\\
+        \subsubsection{Функция}
+            $f$ - инъективная, если  $\forall{x, y \in A} f(x) = f(y) \implies x = y$\\ 
+            $f$ - суръективна, если  $\rho_f = B$\\
+            $f$ - биективна, если она инъективна и суръективна
+        \subsubsection{Примеры}
+            \begin{enumerate}
+                \item Равенство, сравнение по модулю, паралелльность, подобие треугольников - отношение эквивалентсноти
+                \item Рефлексивное + антисимметричное + транзитивное - отношение нестрогого частичного порядка\\
+                Например, 
+                \[A=\mathbb{R}, R = \le\]
+                \[A=2^C,  R = \subset\]
+                \item Иррефлексивное + транзитивное: Отношение строгого частичного порядка\\
+                    Например: 
+                    \[A=\mathbb{R}, R = <\]
+                    \[A=2^C, R = \subsetneq\] 
+            \end{enumerate} 
+    \subsection{Задания}
+        \begin{enumerate}
+            \item $R$ - строгий частичный порядок. Тогда  $R\cup \{x \in A\ssep\left<x, x\right>\} $ - нестрогий частичные порядок, и наоборот
+            \item $f: A \to B$, $f: B \mapsto C$, тогда $(f \circ g) A \mapsto C$, и $(f \circ g) = g(f(x))$
+        \end{enumerate}
+         
+\end{document} 
