@@ -85,8 +85,8 @@
         \begin{proof}
             Докажем для $a, b \ge 0$ существование по индукции: Для $a<b$ утверждение тривиально:
             \[ a=b_0+a .\] 
-            Для $a>b$
-            \[ a-b=bq'+r' \implies a=b(q'+1)+r' .\]
+            Из того, что разложение существует для $a$ следует существование для  $a+b$:
+            \[ a=bq+r \implies a+b=b\left( q+1 \right) +r .\] 
             Докажем единственность. Предположим что существуют два разложения:
                 \[ a=bq+r=bq'+r' .\]
             Вычтем одно из другого:
@@ -95,7 +95,7 @@
             \[ 
                 \begin{cases}
                    |b(q-q')|\ge |B|\\
-                   |(r'-r)|\le |B|\\
+                   |(r'-r)|< |B|\\
                 \end{cases} 
             \] 
             Что невозможно. Значит $q=q'$:
@@ -114,18 +114,18 @@
         Пусть $a, b \in \mathbb{Z}$ и $a \neq 0$ или $b \neq 0$. 
         \[ A \equiv \{z \in \mathbb{Z}\ssep \exists{x, y \in \mathbb{Z}}\quad z=ax+by\} .\]
         Тогда,
-        \[ \exists d \in \mathbb{N} A = d\cdot \mathbb{Z} = \{z \in \mathbb{Z}\ssep\exists{x \in \mathbb{Z}\quad z=dx}\} .\]
+        \[ \exists d \in \mathbb{N}\quad A = d\cdot \mathbb{Z} = \{z \in \mathbb{Z}\ssep\exists{x \in \mathbb{Z}\quad z=dx}\} .\]
         \[ d = \left(a, b\right) = \min\limits_{d' \in A \cup \mathbb{N}}d' .\]
         \begin{proof} $d = \min\limits_{d' \in A\cup \mathbb{N}}d'$ и $A \subseteq d\cdot \mathbb{Z}$. Предположим $a, b \neq 0$
             \[ z = ax+by = dq+r\quad q \in \mathbb{Z} \quad r \in \left[0, d\right) .\]
             \[ d = ax'+by' .\]
             \[ r = z-dq = ax+by-aqx'-bqy' = a(x-qx')+b(y-qy') \implies r \in A \implies r \not\in \mathbb{N} \implies r = 0 .\] 
-            \[ r=0 \implies z\divby{d} \implies d = \left(a, b\right) . \qedhere\]
+            \[ r=0 \implies z\divby{d} \implies z \in d\cdot \mathbb{Z} . \qedhere\]
         \end{proof}
         \begin{proof} $A = d\cdot \mathbb{Z}$:
             \[ \forall{z \in d\cdot \mathbb{Z}}\quad \exists{c \in \mathbb{Z}}\quad z=dc .\]
             \[ d = ax+by \implies z = dc = acx+bcy \implies z \in A \implies d \cdot  \mathbb{Z} \subseteq A.\]
-            \[ A \subseteq d \cdot  \mathbb{Z}\wedge d\cdot \mathbb{Z} \subseteq A \implies A = z \cdot \mathbb{D} .\qedhere\] 
+            \[ A \subseteq d \cdot  \mathbb{Z}\wedge d\cdot \mathbb{Z} \subseteq A \implies A = d \cdot \mathbb{Z} .\qedhere\] 
         \end{proof}
         \begin{proof}
             $d$ - общий делитель $a$ и $b$
@@ -137,7 +137,7 @@
             Пусть $d'$ - общий делитель $a$ и $b$.
              \[ d \in A \implies d = ax + by .\]
              \[ a\divby{d'} \implies \left( ax \right)\divby{d'} .\]
-             \[ b\divby{d'} \implies \left( by \right)\divby(d') .\]
+         \[ b\divby{d'} \implies \left( by \right)\divby{d'} .\]
              \[ \left( ax \right) \divby{d'}\wedge\left( by \right)\divby{d'} \implies \left( ax+by \right)\divby{d'} \implies d\divby{d'} \implies d = \left( a, b \right)   .\qedhere\] 
         \end{proof}
     \end{dlemma}
@@ -153,8 +153,7 @@
         \[ d = 1 \implies \exists{x,y \in \mathbb{Z}}\quad 1 = ax+py \implies b = abx+pby .\]
         \[ \left( ab \right)\divby{p} \implies \left( abx \right)\divby{p} .\]
         \[ p\divby{p} \implies \left( pby \right)\divby{p} .\]
-        \[ \left( abx \right)\divby{p}\wedge \left( pby \right)\divby{p} \implies \left( abx+pby \right)\divby{p} \implies b\divby{p}   .\]
-        Остальные утверждения доказываются симметрично.\qedhere
+        \[ \left( abx \right)\divby{p}\wedge \left( pby \right)\divby{p} \implies \left( abx+pby \right)\divby{p} \implies b\divby{p}   .\qedhere\]
 
     \end{proof}
     \begin{proof} Достаточность.\\
