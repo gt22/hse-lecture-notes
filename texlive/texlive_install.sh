@@ -16,10 +16,10 @@ if ! command -v texlua > /dev/null; then
   cd install-tl-20*
 
   # Install a minimal system
-  ./install-tl --profile=../texlive.profile
+  ./install-tl --profile=../texlive/texlive.profile
 
   cd ..
-  ln -s ../packages/preamble /tmp/texlive/texmf-local
+  ln -s ./packages/preamble /tmp/texlive/texmf-local
 fi
 
 # Just including texlua so the cache check above works
