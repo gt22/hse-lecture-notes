@@ -19,7 +19,7 @@ if ! command -v texlua > /dev/null; then
   ./install-tl --profile=../texlive.profile
 
   cd ..
-  ln -s ./packages /tmp/texlive/texmf-local
+  ln -s ../packages/preamble /tmp/texlive/texmf-local
 fi
 
 # Just including texlua so the cache check above works

@@ -1,0 +1,6 @@
+[submodule "Vim-Tex-config"]
+	path = Vim-Tex-config
+	url = https://github.com/gt22/Vim-Tex-config
+[submodule "packages"]
+	path = packages
+	url = https://github.com/gt22/Vim-Tex-config
