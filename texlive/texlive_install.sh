@@ -20,8 +20,8 @@ if ! command -v texlua > /dev/null; then
 
   cd ..
 fi
-
-cp -r ./packages/preamble /tmp/texlive/texmf-local
+mkdir -p /tmp/texlive/texfm-local/tex
+ln -s ./packages/preamble /tmp/texlive/texmf-local/tex/latex
 # Just including texlua so the cache check above works
 # Needed for any use of texlua even if not testing LuaTeX
 tlmgr install luatex
