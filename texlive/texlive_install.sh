@@ -23,7 +23,7 @@ fi
 rm -rf /tmp/texlive/texmf-local
 mkdir -p /tmp/texlive/texmf-local/tex
 ln -s ./packages/preamble /tmp/texlive/texmf-local/tex/latex
-ls -l /tmp/texlive/texmf-local/tex/latex
+ls -l /tmp/texlive/texmf-local/tex/latex/*
 # Just including texlua so the cache check above works
 # Needed for any use of texlua even if not testing LuaTeX
 tlmgr install luatex
