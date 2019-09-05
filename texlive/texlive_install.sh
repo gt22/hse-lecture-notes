@@ -20,7 +20,8 @@ if ! command -v texlua > /dev/null; then
 
   cd ..
 fi
-mkdir -p /tmp/texlive/texfm-local/tex
+rm -rf /tmp/texlive/texmf-local
+mkdir -p /tmp/texlive/texmf-local/tex
 ln -s ./packages/preamble /tmp/texlive/texmf-local/tex/latex
 # Just including texlua so the cache check above works
 # Needed for any use of texlua even if not testing LuaTeX
@@ -28,7 +29,7 @@ tlmgr install luatex
 
 # Other contrib packages: done as a block to avoid multiple calls to tlmgr
 # texlive-latex-base is needed to run pdflatex
-tlmgr install amsfonts listings xcolor amsthm pgfplots amsmath oberdiek
+tlmgr install amsfonts listings xcolor pgfplots amsmath oberdiek
 
 # Keep no backups (not required, simply makes cache bigger)
 tlmgr option -- autobackup 0
