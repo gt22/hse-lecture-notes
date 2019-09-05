@@ -97,19 +97,20 @@
                     $R \circ R = $ дед по отцовской линии
             \end{enumerate}
     \subsection{Функция}
-    $f$ называется функцией и обозначается  $f: A \mapsto B$, если она - отношение между $A$ и  $B$, обладающие следующими свойствами:
-         \[ \delta_f = A .\]
-         \[ \forall{x \in A}\quad\forall{y, z \in B}\quad xfy\land xfz \implies y=z .\]
-         \[ y=f(x) \equiv xfy .\]
-         \subsubsection{Последовательность}
-         Последовательность: $f : \mathbb{N} \to B$ 
+        $f$ называется функцией и обозначается  $f: A \mapsto B$, если :
+        \[ f \subset A \times B .\] 
+        \[ \delta_f = A .\]
+        \[ \forall{x \in A}\quad\forall{y, z \in B}\quad xfy\land xfz \implies y=z .\]
+        \[ y=f(x) \equiv xfy .\]
+        \subsubsection{Последовательность}
+            Последовательность: $f : \mathbb{N} \to B$ 
 
     \subsection{Страшные слова}
         \subsubsection{$A = B$}
             $R$ - рефлексивное если  $\forall{x \in A}\quad xRx$\\ 
             $R$ -  иррефлексивное если $\nexists{x \in A}\quad xRx$\\
             $R$ - симметричное если  $\forall{x, y \in A}\quad xRy \equiv yRx$\\
-            $R$ - антисимметричное если  $\forall{x, y \in A}\quad xRy \not\equiv yRx$ \\
+            $R$ - антисимметричное если  $\forall{x, y \in A}\quad \left(xRy = yRx\right) \implies x=y$ \\
             $R$ - транзитивное если $\forall{x, y, z \in A}\quad xRy\land yRz \implies xRz$\\
             $R$ - отношение эквивалентсности если оно симметрично и транзитивное\\
         \subsubsection{Функция}
