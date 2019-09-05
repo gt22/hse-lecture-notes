@@ -7,4 +7,6 @@ cache:
 script:
 - mkdir _build
 # Prefix command with travis_wait x so it times out after 3 mins
+- ls /tmp/texlive/texmf-local
+- kpsepath tex 
 - travis_wait 3 pdflatex -output-directory _build ./algebra/algebra1.tex
