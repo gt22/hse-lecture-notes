@@ -3,7 +3,7 @@ TEXDIR /tmp/texlive
 TEXMFCONFIG ~/.texlive/texmf-config
 TEXMFHOME ~/texmf
 TEXMFLOCAL /tmp/texlive/texmf-local
-TEXMFSYSCONFIG /tmp/texlive/texmf-config///
+TEXMFSYSCONFIG /tmp/texlive/texmf-config///,/tmp/texlive/texmf-confg//,/tmp/texlive/texmf-config,/tmp/texlive/texmf-config/tex
 TEXMFSYSVAR /tmp/texlive/texmf-var
 TEXMFVAR ~/.texlive/texmf-var
 option_doc 0

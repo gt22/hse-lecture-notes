@@ -5,6 +5,8 @@ cache:
     - /tmp/texlive
     - $HOME/.texlive
 script:
+- kpsepath tex
+- kpsewhich cRussian.sty
 - mkdir _build
 # Prefix command with travis_wait x so it times out after 3 mins
 - travis_wait 3 pdflatex -output-directory _build ./algebra/algebra1.tex
