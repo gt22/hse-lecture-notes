@@ -20,8 +20,8 @@ if ! command -v texlua > /dev/null; then
 
   cd ..
 fi
-cp -r ./packages/preamble ~/.texlive/tex/latex
 cp `find ./packages/preamble -f -name "*.sty"` .
+ls -l
 # Just including texlua so the cache check above works
 # Needed for any use of texlua even if not testing LuaTeX
 tlmgr install luatex
