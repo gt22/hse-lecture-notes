@@ -5,6 +5,7 @@ cache:
     - /tmp/texlive
     - $HOME/.texlive
 script:
+- pyenv global 3.7
 - kpsepath tex
 - kpsewhich cRussian.sty
 - mkdir _build
