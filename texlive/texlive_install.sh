@@ -21,7 +21,7 @@ if ! command -v texlua > /dev/null; then
   cd ..
 fi
 cp `find ./packages/preamble -type f -name "*.sty"` ./
-ls -l
+chmod -R 777 /var/spool/texmf
 # Just including texlua so the cache check above works
 # Needed for any use of texlua even if not testing LuaTeX
 tlmgr install luatex
