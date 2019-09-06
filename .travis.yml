@@ -12,6 +12,7 @@ script:
 - travis_wait 3 pdflatex -output-directory _build ./algebra/algebra1.tex
 deploy:
     provider: pages
+    github_token: $GITHUB_TOKEN
     skip_cleanup: true
     repo: gt22/hse-lecture-notes-pages
     target_branch: master
