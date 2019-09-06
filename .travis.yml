@@ -10,7 +10,7 @@ script:
 - mkdir _build
 # Prefix command with travis_wait x so it times out after 3 mins
 - travis_wait 3 pdflatex -output-directory _build ./algebra/algebra1.tex
-deply:
+deploy:
     provider: pages
     skip_cleanup: true
     repo: gt22/hse-lecture-notes-pages
