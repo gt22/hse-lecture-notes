@@ -9,7 +9,7 @@ script:
 - kpsewhich cRussian.sty
 - mkdir _build
 # Prefix command with travis_wait x so it times out after 3 mins
-- travis_wait 3 pdflatex -output-directory _build ./algebra/algebra1.tex
+- travis_wait 600 python3 ./texlive/build_all.py
 - source ./texlive/cleanup.sh
 deploy:
     provider: pages

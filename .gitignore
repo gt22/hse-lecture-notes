@@ -1,0 +1,7 @@
+*.*
+!*.tex
+!*.sty
+!texlive/*
+!.travis.yml
+!.gitignore
+!.gitmodules
