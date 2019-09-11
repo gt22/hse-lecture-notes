@@ -1,0 +1,318 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+%\usepackage{cFonts}
+%\usepackage{cTikz}
+\title{Мат. Анализ 2}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Вещественные числа}
+\begin{definition}
+    Веществыенные числа - множество, на котором заданы операции $+, \times : \mathbb{R} \times \mathbb{R} \mapsto \mathbb{R}$, удовлетворяющие следующим аксиомам, $a, b, c \in \mathbb{R}$
+    \begin{enumerate}
+        \item $ a+b=b+a$
+        \item $ \left( a+b \right) +c = a+\left( b+c \right)$
+        \item $ \exists 0 \in \mathbb{R}\quad a + 0 = a$
+        \item $\exists -a\quad a+(-a)=0$
+        \item $ a\times b = b\times a$
+        \item $ \left( a\times b \right) \times c = a \times \left( b \times c \right)$
+        \item $ \exists 1\neq 0\quad a\times 1 = a$
+        \item $ \forall{a \neq 0}\exists \frac{1}{a}\quad a\times \frac{1}{a} = 1$
+        \item $(a+b)\times c = a\times c+b\times c$
+    \end{enumerate}
+    А так-же обладают отношением порядка $\le \subset \mathbb{R}^2$, удовлетворяющего следующим аксомам:
+    \begin{enumerate}
+        \item $\le$ - рефлексивное антисимметричное транзитивное отношение.
+        \item $\forall{a, b \in \mathbb{R}}\quad (a\le b)\lor (b\le a)$
+        \item $a\le b \implies a + c \le b + c$
+        \item $0 \le a, 0 \le b \implies 0 \le ab$
+    \end{enumerate}
+    И удовлетворяет аксиоме полноты:
+    \[ A \subset \mathbb{R}, A \neq \emptyset .\]
+    \[ B \subset \mathbb{R}, B \neq \emptyset .\] 
+    \[ \forall{a \in A}\quad \forall{b \in B}\quad a \le b .\]
+    \[ \exists{c \in \mathbb{R}}\quad \forall{a \in A}\quad \forall{b \in B}\quad a \le c \le b .\]
+    (для любых двух чисел можно найти такое число, что оно стоит между ними)
+\end{definition}
+\begin{theorem}[Принцип архимеда]
+    \[ \exists{x \in \mathbb{R}, y > 0} \implies \exists{n \in \mathbb{N}}\quad ny>x .\]
+    \begin{proof}
+        \[ A = \{u \in \mathbb{R}\ssep \exists{n \in \mathbb{N}}\quad ny>u \}  .\]
+        \[ 0 \in A \implies A \neq  \emptyset .\]
+        Докажем от противного, что $A = \mathbb{R}$.
+        Если $A \neq \mathbb{R}$, то $B = \mathbb{R}\setminus A \neq \emptyset$.
+        \[ \forall{a \in A}\quad \forall{b \in B} \quad b\le a \implies b \in A .\] 
+        \[ \forall{a \in A}\quad \forall{b \in B}\quad a\le b .\]
+        По аксиоме полноты:
+        \[ \exists{c \in \mathbb{R}}\quad \forall{a \in A}\quad \forall{b \in B} a \le c \le b .\]
+        Но $A\cup B = \mathbb{R}$, значит $\left( c \in A  \right)\lor\left( c \in B \right)  $\\ 
+        Если $c \in A$, то $\exists{n \in \mathbb{R}} c<ny \implies c+y< (n+1)y \implies c+y \in A$. Но $c+y>c$.\\
+        Если  $c \in B$, то $\forall{c'<c } c' \in A \implies c-y \in A \implies \exists{n \in \mathbb{R}}\quad c-y < ny \implies c<(n+1)y \implies c \in A$. Что невозможно. Значит наше предположение что  $A \neq \mathbb{R}$ неверно.
+    \end{proof}
+    \end{theorem}
+    \begin{tlemma}
+        \[ \forall{\epsilon > 0}\quad \exists{n \in \mathbb{N}}\quad \frac{1}{n}<\epsilon  .\]
+        \begin{proof}
+            Подставим $x=1$,  $y=\epsilon$ в принцип архимеда. Тогда  $\exists{n \in \mathbb{N}} n\epsilon > 1$
+        \end{proof}
+    \end{tlemma}
+    \begin{definition}
+        $A$ ограниченно сверху, если 
+        \[ \exists{b \in \mathbb{R}}\quad \forall{a \in A}\quad a\le b  .\].
+        $b$ называется верхней гранью  $A$.
+    \end{definition}
+    \begin{definition}
+        $A$ ограниченно снизу, если 
+        \[ \exists{b \in \mathbb{R}}\quad \forall{a \in A}\quad b\le a .\]
+        $b$ называется нижней гранью
+    \end{definition}
+    \begin{tlemma}
+        $\mathbb{N}$ неограниченна сверху.\\
+        \begin{proof}
+            Пусть $b$ - верхняя грань  $\mathbb{N}$. Подставим $x=b$,  $y=1$ в принцип Архимеда. Тогда 
+            \[ \exists{n \in \mathbb{N}}\quad b<n .\]
+            Значит $b$ -  не верхняя грань.
+        \end{proof}
+    \end{tlemma}
+    \begin{definition}[Принцип мат. индукции]
+        Пусть  $P_n, n \in \mathbb{N}$ -  набор утверждений.\\
+        Если $P_1$ верно, и  $P_n \implies P_{n+1}$, то $P_n$ верно для всех  $n$.
+    \end{definition}
+    \begin{theorem}
+        В любом непустом конечном множестве $A$ есть наибольший и наименьший элемент.
+        \begin{proof}
+            Индукция по количеству элементов.\\
+            База: Для $n=1$ - единственный элемент является наибольшим и наименьшим.\\
+            Переход: Возьмём $n+1$-элементное множество  $A'$. Возьмём из него подмножество мощньностью  $n$, без элемента $x_{n+1}$. В этом подмножестве есть наименьшеий элемент  $x_k$. Если $x_{n+1}<x_k$ - $x_k$ наименьший элемент  $A'$, если  $x_{n+1}>x_k$ - $x_{n+1}$ - наименьший элемент $A'$. Для наибольшего симметрично.
+        \end{proof}
+    \end{theorem}
+    \begin{tlemma}
+        Если $A \subset \mathbb{Z}$, $A\neq \emptyset$ и $A$ ограниченно сверзу, то в  $A$ есть наибольший элемент.\\
+        Если  $A \subset \mathbb{Z}$, $A \neq  \emptyset$ и $A$ ограниченно снизу, то в  $A$ есть наименьший элемент.
+         \begin{proof}
+            Докажем первое утверждение.
+            \[ \exists{b \in \mathbb{R}}\quad \forall{a \in A}\quad a\le b .\]
+            \[ \exists{c \in A} .\] 
+            \[ B = \{x \in A\ssep x \ge c\}  .\].
+            Докажем что $B$ - конечное множество.
+            \[ n=b-c .\].
+            Тогда, $|B| = n$, так-как в  $B$ нет элементов больше  $b$, и нет элементов меньших  $c$.\\
+            Тогда,  $\exists{d}\quad \forall{x \in B} x\le d \implies c\le d $.
+            \[ \forall{f \in A\setminus B} f<c \implies f<d .\]
+            Значит $d$ - наибольший элемент  $A$.
+        \end{proof}
+    \end{tlemma}
+    \begin{definition}
+        Целая часть числа $x \in \mathbb{R}$ ( $\left\lfloor x \right\rfloor$) - наибольшее $x' \in \mathbb{Z}$, $x' < x$. Такое число существует, как следствие из предыдущей леммы.
+    \end{definition}
+    \begin{dlemma}
+        \[ \left\lfloor x \right\rfloor \le x < \left\lfloor x\right\rfloor + 1 .\]        
+    \end{dlemma}
+    \begin{dlemma}
+        \[ x-1 < \left\lfloor x\right\rfloor \le x.\] 
+    \end{dlemma}
+    \begin{theorem}
+        Если $x, y \in \mathbb{R}$, $x<y$, то  $\exists{c \in \mathbb{Q}}\quad x<c<y$, и $\exists{c \not\in \mathbb{Q}}\quad x<c<y$
+        \begin{proof}
+            \[ y-x>0 \implies \exists{n \in \mathbb{N}}\quad \frac{1}{n}<y-x .\]
+            \[ m = \left\lfloor nx\right\rfloor \implies r=\frac{m+1}{n} .\]
+            $r$ - подходящие число, так-как  $x < \frac{m+1}{n} < y \equiv nx <  \left\lfloor nx\right\rfloor + 1$.
+            \[ ny = nx+n(y-x) > nx .\]
+
+            Докажем второе утверждение: $x-y \implies x-\sqrt{2}<y-\sqrt{2}  $, тогда $\exists{r \in \mathbb{Q}} x-\sqrt{2} < r < y-\sqrt{2}  $. Тогда $x<r+\sqrt{2}<y $. $r$ - рациональное, значит  $r+\sqrt{2} $ -  иррациональное.
+        \end{proof}
+    \end{theorem}
+\section{Супремум и инфинум}
+    \begin{definition}
+        $d=\sup A$ - мнимальная верхняя грань:
+        \[ \forall{a \in A}\quad a\le   d.\] 
+        \[\forall{\epsilon > 0}\quad \exists{a \in A}\quad a\ge  (d-\epsilon) .\] 
+    \end{definition}
+    \begin{definition}
+        $d=\inf A$ - максимальная нижняя грань:
+    \[ \forall{a \in A}\quad a\ge  d.\] 
+    \[\forall{\epsilon > 0}\quad \exists{a \in A}\quad a\le (d+\epsilon) .\] 
+    \end{definition}
+    \begin{theorem}
+        $A \neq \emptyset$ ограниченно сверху, то существует $\sup A$.
+         \begin{proof}
+            $B$ - множество всех верхних граней  $A$.  $B \neq \emptyset$.
+            \[ \forall{b \in B}\quad \forall{a \in A}\quad a\le b .\].
+            По аксиоме полноты:
+            \[ \exists{c \in \mathbb{R}}\quad \forall{a \in A}\quad \forall{b \in B}\quad a\le c\le b .\] 
+            $c$ - верхняя грань, значит  $c \in B$. И $c$ - наименьший элемент  $B$.
+        \end{proof}
+        
+    \end{theorem}
+    \begin{tlemma}
+        Пусть $B \neq \emptyset$, $B \subset A$, $A$ ограниченно сверху. Тогда  $\sup A \ge \sup B$.\\
+        \begin{proof}
+            $\sup A$ - верхняя грань  $A$ и $B$. Тогда, наименьшая верхняя грань  $B$ не больше  $\sup A$.
+        \end{proof}
+    \end{tlemma}
+    Эта теорема и лемма симметрично для инфинума.
+    \begin{definition}
+        Если $A$ неограниченно сверху, то  $\sup A = \infty$.\\
+        Если $A$ неограниченно снизу, то  $\inf A = -\infty$.
+        \[ \forall{r \in \mathbb{R}}\quad -\infty < r < \infty .\].
+        Тогда со всех предыдущих теорем можно снять условия на ограниченность множеств.
+    \end{definition}
+    \begin{theorem}[Теорема о вложенных отрезках]
+        \[ [a_1;b_1] \supset [a_1, b_2] \supset \ldots .\]
+        \[ \bigcup\limits_{i =0}^{\infty}[a_i; b_i] \neq \emptyset  .\] 
+        \begin{proof}
+            \[ a_1 \le a_2 \le \ldots .\]
+            \[ b_1 \ge b_2 \ge \ldots .\]
+            \[ A = \{a_k\ssep k \in N\}  .\]
+            \[ B = \{b_k\ssep k \in N\}  .\]
+            \[\forall{i, j \in \mathbb{N}} a_i \le b_j .\]
+            Тогда, по аксиоме полноты:
+            \[ \exists{c \in \mathbb{R}}\quad \forall{i, j \in \mathbb{N}}\quad a_i \le  c \le b_i .\]
+            \[ \forall{k \in \mathbb{N}}\quad a_k \le c \le b_k .\]
+            Тогда $c \in \bigcup\limits_{i=1}^{\infty}[a_i; b_i] $, а значит оно непустое.
+        \end{proof}
+        Дополнительно:\\
+        В $\mathbb{Q}$ теорема не верна.\\
+        Для полуинтервалов и лучей теорема не верна.
+    \end{theorem}        
+\section{Последовательности вещественных чисел}
+    Последовательность вещественных чисел: $f : \mathbb{N} \mapsto \mathbb{R}$\\
+    Например, $x_n = f(n) = \sqrt{n^2+1} $.
+    \subsection{Предел последовательности}
+        \begin{definition}
+            $x_n$ - ограниченна сверху, если
+            \[ \exists{b \in \mathbb{R}}\quad \forall{n \in \mathbb{N}} x_n \le b  .\] 
+        \end{definition}
+        \begin{definition}[Предел последовательности]
+             $\ell = \lim x_n$, если для любого интервала $(a, b)$ содержащего  $\ell$, вне его лежит лишь конечное число членов последовательности.
+        \end{definition}
+        \begin{tlemma}
+            Можно рассматривать симметричный отностиельно точки $\ell$ интервал.\\
+            \begin{proof}
+                Возьмём интервал  $\left( \ell-x'; \ell+x \right) $, где $x'>x$.\\
+                Если вне интервала  $\left( \ell-x; \ell+x \right)$, то для изначального интервала это тоже верно.
+            \end{proof}
+        \end{tlemma}
+        \begin{definition}[Эквивалентное определение предела последовательности]
+        \[\ell = \lim x_n \equiv  \forall{\epsilon >0}\quad \exists{n_0 \in \mathbb{N}}\quad \forall{n > n_0 \in \mathbb{N}}\quad |x_n-\ell|<\epsilon.\]
+        Примеры:    
+        \begin{enumerate}
+            \item $x_n = c \implies \lim x_n = c$
+            \item $\frac{x^2}{x^2+1} \implies \lim x_n=1 \impliedby |x_n-1|=|\frac{n^2}{n^2+1}-1|=|\frac{1}{n^2+1}|<\epsilon \equiv \frac{1}{\epsilon} < n^2+1$ 
+            \item $x_n=\left( -1 \right)^{n}$ - предела нет.
+        \end{enumerate}
+        \end{definition}
+        \begin{dlemma}
+            Если $n_0$ подходит для некоторого  $\epsilon_0$, то оно подходит для всех $\epsilon > \epsilon_0$
+        \end{dlemma}
+        \begin{dlemma}
+            Если из последовательности выкинуть или добавить конечное число элементов, то её предел не измениться.    
+        \end{dlemma}
+        \begin{definition}
+            $A \subset \mathbb{R}$, $\ell \in \mathbb{R}$. $\ell$ - пределььная точнка  $A$, если в любом интервале содержащем  $\ell$, бесконечно много точек  $A$.
+        \end{definition}
+        \subsection{Свойства последовательностей}
+        \begin{theorem}[Единственность предела]
+            Если предел существует, то он единственнен.
+            \begin{proof}
+                Пусть $\lim x_n =a$, и  $\lim x_n=b$,  $a<b$.
+                Рассмотрим интервалы $\left( c_1; \frac{a+b}{2} \right) $ и $\left( \frac{a+b}{2}; c_2 \right) $. Вне каждого из них лежит конечно число элементов. Но так-как интервалы не пересекаются, все последовательноть лежит вне этих интервалов. Тогда в последовательности было-бы конечное число членов.
+            \end{proof}
+        \end{theorem}
+        \begin{tlemma}
+            Пусть $\lim x_n=a$,  $\lim y_n=b$, и  $\epsilon>0$. Тогда
+            \[ \exists{n_0 \in \mathbb{N}}\quad \forall{n>n_0} 
+                \begin{cases}
+                    |x_n-a|<\epsilon\\
+                    |y_n-b|<\epsilon
+                \end{cases}
+            .\]     
+        \begin{proof}
+            \[ \exists{n_1 \in \mathbb{N}}\quad |x_n-a|<\epsilon.\]
+            \[ \exists{n_2 \in \mathbb{N}}\quad |y_n-b|<\epsilon .\]
+            \[ n_0 = \max\left( n_1, n_2 \right)  .\] 
+        \end{proof}
+        \end{tlemma}
+        \begin{theorem}[Предельный переход в неравенстве]
+            Пусть $\forall{n \in \mathbb{N}}\quad x_n\le y_n$, $\lim x_n = a$,  $\lim y_n = b$, тогда  $a \le  b$.
+             \begin{proof}
+                 Если $a>b$: возьмём  $\epsilon=\frac{a-b}{2}$, тогда 
+                 \[ \begin{cases}
+                     |x_{n_0} - a| < \epsilon \implies x_{n_0} > a-\epsilon\\
+                     |y_{n_0} - b| < \epsilon \implies y_{n_0}<b+\epsilon
+                 \end{cases} .\] 
+                 \[ a-\epsilon \le x_{n_0} \le y_{n_0} \le b+\epsilon \implies a-\frac{a-b}{2}<b-\frac{a-b}{2} .\]
+                 Что невозможно.
+             \end{proof}    
+             Примечание: Строгие неравенства могут не сохраняться.
+        \end{theorem}
+        \begin{theorem}
+            Если последовательность имеет предел, то она ограниченна.
+            \begin{proof}
+                Пусть $\ell=\lim x_n$, рассмотрим интервал $\left( \ell-1; \ell+1 \right) $. Больше $\ell+1$ только конечное число элементов, значит среди них есть наибольший. Симметрично для наименьшего.
+            \end{proof}
+        \end{theorem}
+        \begin{theorem}[Стабилизация знака]
+            Если $\ell=\lim x_n \neq 0$, то начиная с некоторого номера, все члены последовательности имеют тот-же знак что и $\ell$.
+             \begin{proof}
+                 Докажем для $\ell>0$. Тогда, начиная с некоторого номера все элементы лежат в  $\left( 0; 2\ell \right) $. Для $\ell<0$ симметрично.
+            \end{proof}
+        \end{theorem}
+        \begin{theorem}[Теорема о сжатой последовательности (о двух милиционерах)]
+            Пусть $\forall{n \in \mathbb{N}}\quad x_n \le y_n \le z_n$. $\ell = \lim x_n = \lim z_n \implies \lim y_n = \ell$.
+            \begin{proof}
+                Возьмём $\epsilon>0$ и  $n$ из леммы. Тогда
+                 \[ 
+                    \begin{cases}
+                        |x_n-\ell|<\epsilon \implies x_n > \ell-\epsilon\\
+                        |z_n-\ell|<\epsilon \implies z_n < \ell+\epsilon
+                    \end{cases}
+                 \implies \ell - \epsilon < x_n \le y_n \le z_n < \ell + \epsilon \implies \lim y_n = \ell.\qedhere\]    
+            \end{proof}
+        \end{theorem}
+        \begin{tlemma}
+            Если $\lim z_n = 0$,  $\forall{n \in \mathbb{N}}|y_n| < z_n$ 
+            \begin{proof}
+                $-z_n \le y_n \le z_n \implies \lim y_n = 0$
+            \end{proof}
+        \end{tlemma}
+        \begin{definition}
+            Бесконечна малая последоавтельность - последовательно, предел которой равен нулю.
+        \end{definition}
+        \begin{dlemma}
+            Если $x_n$ - бесконечна малая, а  $y_n$ - ограниченна, то  $x_ny_n$ - бесконечно малая.
+             \begin{proof}
+                 \[ |y_n| < M .\]
+                 \[ \exists{\epsilon > 0}\quad \exists{n_0}\quad \forall{n > n_0}\quad |x_n| < \frac{\epsilon}{M} \implies |x_ny_n| < \epsilon .\] 
+            \end{proof}
+        \end{dlemma}
+        \begin{theorem}[Теорема об арифметических действиях с пределами]
+            Пусть $\lim x_n=a$ и  $\lim y_n = b$. Тогда:
+            \[ \lim \left( x_n+y_n \right) =a+b .\]
+            \[ \lim \left( x_ny_n \right) =ab .\]
+            \[ \lim\left( x_n-y_n \right)=a-b  .\]
+            \[ y_n \neq 0\land b\neq 0 \implies \lim\left( \frac{x_n}{y_n} \right) = \frac{a}{b} .\]
+            \begin{proof}
+                Берём $\epsilon > 0$, и по  $\frac{\epsilon}{2}$ берём нормер из леммы.
+                \[ 
+                    \begin{cases}
+                        |x_n-a|<\frac{\epsilon}{2}\\
+                        |y_n-b<\frac{\epsilon}{2}
+                    \end{cases}
+                \implies |x_n+y_n-a-b|\le |x-a|+|y-b|<\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon.\]
+            Рассмотрим разность $x_ny_n-ab = x_ny_n-x_nb+x_nb-ab \implies |x_ny_n-ab|\le |x_n| |y_n-b|+|b| |x_n-a|$.\\
+            $\lim x_n = a \implies \exists{M}\quad \forall{n \in \mathbb{N}} x_n \le  M$.
+            \[ \hat{\epsilon} = \frac{\epsilon}{2\max\left( M, |b| \right) } \implies \exists{n_0 \in \mathbb{N}}\quad \forall{n > n_0}\quad \begin{cases}
+                |x_n-a| < \hat{\epsilon}\\
+                |y_n-b| < \hat{\epsilon}
+            \end{cases}.\] 
+            \end{proof} 
+        \end{theorem}
+\end{document} 
