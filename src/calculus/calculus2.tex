@@ -227,6 +227,7 @@
             \end{proof}
         \end{theorem}
         \begin{tlemma}
+            \label{mixer}
             Пусть $\lim x_n=a$,  $\lim y_n=b$, и  $\epsilon>0$. Тогда
             \[ \exists{n_0 \in \mathbb{N}}\quad \forall{n>n_0} 
                 \begin{cases}
@@ -268,7 +269,7 @@
         \begin{theorem}[Теорема о сжатой последовательности (о двух милиционерах)]
             Пусть $\forall{n \in \mathbb{N}}\quad x_n \le y_n \le z_n$. $\ell = \lim x_n = \lim z_n \implies \lim y_n = \ell$.
             \begin{proof}
-                Возьмём $\epsilon>0$ и  $n$ из леммы. Тогда
+                Возьмём $\epsilon>0$ и  $n$ из леммы \ref{mixer}. Тогда
                  \[ 
                     \begin{cases}
                         |x_n-\ell|<\epsilon \implies x_n > \ell-\epsilon\\
@@ -300,7 +301,7 @@
             \[ \lim\left( x_n-y_n \right)=a-b  .\]
             \[ y_n \neq 0\land b\neq 0 \implies \lim\left( \frac{x_n}{y_n} \right) = \frac{a}{b} .\]
             \begin{proof}
-                Берём $\epsilon > 0$, и по  $\frac{\epsilon}{2}$ берём нормер из леммы.
+                Берём $\epsilon > 0$, и по  $\frac{\epsilon}{2}$ берём нормер из леммы \ref{mixer}.
                 \[ 
                     \begin{cases}
                         |x_n-a|<\frac{\epsilon}{2}\\
