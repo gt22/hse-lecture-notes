@@ -41,17 +41,17 @@
     \[ \exists{c \in \mathbb{R}}\quad \forall{a \in A}\quad \forall{b \in B}\quad a \le c \le b .\]
     (для любых двух чисел можно найти такое число, что оно стоит между ними)
 \end{definition}
-\begin{theorem}[Принцип архимеда]
-    \[ \exists{x \in \mathbb{R}, y > 0} \implies \exists{n \in \mathbb{N}}\quad ny>x .\]
+\begin{theorem}[Принцип Aрхимеда]
+    \[ \forall{x \in \mathbb{R}, y \in \mathbb{R}_+}\quad \exists{n \in \mathbb{N}}\quad ny>x .\]
     \begin{proof}
         \[ A = \{u \in \mathbb{R}\ssep \exists{n \in \mathbb{N}}\quad ny>u \}  .\]
         \[ 0 \in A \implies A \neq  \emptyset .\]
-        Докажем от противного, что $A = \mathbb{R}$.
+        Докажем от противного, что $A = \mathbb{R}$.\\
         Если $A \neq \mathbb{R}$, то $B = \mathbb{R}\setminus A \neq \emptyset$.
         \[ \forall{a \in A}\quad \forall{b \in B} \quad b\le a \implies b \in A .\] 
         \[ \forall{a \in A}\quad \forall{b \in B}\quad a\le b .\]
         По аксиоме полноты:
-        \[ \exists{c \in \mathbb{R}}\quad \forall{a \in A}\quad \forall{b \in B} a \le c \le b .\]
+        \[ \exists{c \in \mathbb{R}}\quad \forall{a \in A}\quad \forall{b \in B}\quad a \le c \le b .\]
         Но $A\cup B = \mathbb{R}$, значит $\left( c \in A  \right)\lor\left( c \in B \right)  $\\ 
         Если $c \in A$, то $\exists{n \in \mathbb{R}} c<ny \implies c+y< (n+1)y \implies c+y \in A$. Но $c+y>c$.\\
         Если  $c \in B$, то $\forall{c'<c } c' \in A \implies c-y \in A \implies \exists{n \in \mathbb{R}}\quad c-y < ny \implies c<(n+1)y \implies c \in A$. Что невозможно. Значит наше предположение что  $A \neq \mathbb{R}$ неверно.
