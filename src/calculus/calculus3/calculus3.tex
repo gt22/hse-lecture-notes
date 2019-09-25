@@ -124,7 +124,7 @@
     \[ \left|t^n\right| < \frac{1}{nx}<\epsilon .\]
     \[ N > \frac{1}{\epsilon x} .\] 
 \end{tlemma}
-Рассмотрим последовательности $x_n = (1+\frac{1}{n})^{n} < y_n = (1+\frac{1}{n})^{n+1}$ 
+Рассмотрим последовательности $x_n = \left(1+\frac{1}{n}\right)^{n} < y_n = (1+\frac{1}{n})^{n+1}$ 
 \begin{theorem}
     $x_n$ строго монотонно возрастает, а  $y_n$ строго монотонно убывает. 
     \begin{proof}
@@ -133,8 +133,8 @@
                 \frac{y_{n-1}}{y_n} &= \frac{(1+\frac{1}{n-1})^{n}}{(1+\frac{1}{n})^{n}}\\
                 &= \frac{\frac{n^{n}}{(n-1)^{n}}}{\frac{(n+1)^{n+1}}{n^{n+1}}}\\
                 &= \frac{n^{2n+1}}{(n-1)^{n}(n+1)^{n+1}}\\ 
-                &= (\frac{n^{2(n+1)}}{(n^2-1)^{n+1}} \cdot \frac{n-1}{n}\\ 
-                &= (1+\frac{1}{n^2-1})^{n+1}\cdot \frac{n-1}{n} > \frac{n-1}{n}\cdot \frac{n}{n-1} = 1 
+                &= \frac{n^{2(n+1)}}{(n^2-1)^{n+1}} \cdot \frac{n-1}{n}\\ 
+                &= \left(1+\frac{1}{n^2-1}\right)^{n+1}\cdot \frac{n-1}{n} > \frac{n-1}{n}\cdot \frac{n}{n-1} = 1 
             \end{split}
         \end{equation*}
     \end{proof} 

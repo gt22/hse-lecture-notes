@@ -1,0 +1,260 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+%\usepackage{cTikz}
+\title{Мат. Анализ 4}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{}
+    \begin{theorem}
+        $x_n >0$ и  $\lim \frac{x_{n+1}}{x_n} < 1$, то $\lim x_n = 0$
+    \end{theorem}    
+    \begin{tlemma}
+        $\lim \frac{n^{k}}{a^{n}}=0$ если $k\in \mathbb{N}$ и $a>1$
+         \begin{proof}
+             \[ x_n = \frac{n^{k}}{a^{n}} .\]
+             \[ \frac{x_{n+1}}{x_n} = \frac{(n+1)^{k}}{n^{k}} \cdot \frac{1}{a} = \left(1+\frac{1}{n}\right)^{k} \cdot \frac{1}{a}.\]
+         \[ \lim \left(1+\frac{1}{n}\right)^{k} \cdot \frac{1}{a} = \frac{1}{a} < 1  .\] 
+        \end{proof}
+    \end{tlemma}
+    \begin{tlemma}
+        \[ \lim \frac{a^{n}}{n!} = 0 .\]
+        \begin{proof}
+            \[ x_n = \frac{a^{n}}{n!} .\] 
+            \[ \lim \frac{x_{n+1}}{x_n} = \lim \frac{a}{n+1} = 0 < 1.\] 
+        \end{proof}
+    \end{tlemma}
+    \begin{tlemma}
+        \[ \lim \frac{n!}{n^{n}} = 0 .\]
+        \begin{proof}
+            \[ x_n = \frac{n!}{n^{n}} .\]
+            \[ \lim \frac{x_{n+1}}{x_n} = \lim \frac{n^{n}}{(n+1)^{n}} = \lim \frac{1}{(1+\frac{1}{n})^{n}} = \frac{1}{e} < 1 .\] 
+        \end{proof}
+    \end{tlemma}
+    \begin{theorem}[Теорма Штольца]
+        $y_n < y_{n+1}$, $\lim y_n = +\infty$. Если $\lim \frac{x_{n+1}-x_n}{y_{n+1}-y} = \ell\in \overline{\mathbb{R}}$, то $\lim \frac{x_n}{y_n} = \ell$ 
+        \begin{proof}
+            Рассмотрим случай $\ell = 0$\\
+            Пусть $\varepsilon_n = \frac{x_{n+1}-x_n}{y_{n+1}-y_n}$ \\
+            Зафиксируем $\varepsilon > 0$, и выберем  $m$, такое, что  $\forall{n\ge m}\quad |\varepsilon_n| < \epsilon$\\
+            \[ x_n = (x_n-x_{n-1})+(x_{n-1}-x_{n-2}) + \ldots + (x_{m+1} - x_m) + x_m .\]
+            \[ x_n = \varepsilon_{n-1}(y_n-y_{n-1})+\ldots+\varepsilon_m(y_{m+1}-y_m)+x_m .\]
+            \[ \left|x_n\right| \le \varepsilon_{n-1}(y_n-y_{n-1} + \ldots + \varepsilon_m(y_{m+1}-y_m)+\left|x_m\right| .\]
+            \[ \left|x_n\right| < \varepsilon\left( y_n - y_m \right) + \left|x_m\right|  .\]
+            \[ \left|\frac{x_n}{y_n}\right| < \frac{\varepsilon(y_n-y_m)}{y_n} + \frac{\left|x_m\right|}{y_n} < \varepsilon + \frac{|x_m|}{y_n} .\]
+            \[ \exists{n > m}\quad \left|\frac{x_n}{y_n}\right| < \varepsilon \implies \lim \frac{x_n}{y_n} = 0 .\]
+            Рассмотрим случай $\ell\in \mathbb{R}$ \\
+            \[ \tilde{x_n} = x_n-\ell y_n .\]
+            \[ \frac{\tilde{x}_{n+1}-\tilde{x}_n}{y_{n+1}-y_n} = \frac{x_{n+1}-x_n}{y_{n+1}-y_n} - \ell .\]
+            \[ \lim \frac{\tilde{x}_{n+1}-\tilde{x}_n}{y_{n+1}-y_n} = 0 \implies \lim \frac{\tilde{x}_n}{y_n} = 0 \implies \lim \frac{x_n}{y_n} = \ell \]
+            Рассмотрим случай $\ell = +\infty$:
+
+            \[ \lim \frac{x_{n+1}-x_n}{y_{n+1}-y_n} = +\infty \implies \lim \frac{y_{n+1}-y_n}{x_{n+1}-x_n} = +0 \implies \lim \frac{y_n}{x_n} = +0 \implies \lim \frac{x_n}{y_n} = +\infty.\]
+            Рассмотрим случай $\ell = -\infty$:
+            Возьмём $\tilde{x}_n = -x_n$\\
+            \[ \lim \frac{\tilde{x}_{n+1}-\tilde{x}_n}{y_{n+1}-y_n} = +\infty \implies \lim \frac{\tilde{x}_n}{y_n} = +\infty \implies \lim \frac{x_n}{y_n} = -\infty .\] 
+        \end{proof}
+        \begin{example}
+            \[ m\in \mathbb{N} .\]
+            \[ \lim \frac{1^{m}+2^{m}+\ldots+n^{m}}{n^{m+1}} .\] 
+            \[ x_n = \sum\limits_{i=1}^{n} i^{m} .\]
+            \[ x_{n+1}-x_{n} = (n+1)^{m} .\]
+            \[ y_{n+1}-y_{n} = (n+1)^{m+1}-n^{m+1} = \sum\limits_{i=1}^{m+1} = \binom{m+1}{i}n^{m-i} .\]
+            \[ \frac{x_n}{y_n} = \frac{\left(1+\frac{1}{n}\right)^{m}}{\binom{m+1}{1} + \ldots} = \frac{1}{m+1} .\]
+            Значит, начальный предел тоже равен $\frac{1}{m+1}$
+               
+        \end{example}
+    \end{theorem}
+    \begin{theorem}[Теорема Штольца (v2)]
+         $0 < y_{n+1} < y_n$, $\lim x_n = \lim y_n = 0$\\
+         Если $\lim \frac{x_{n+1}-x_n}{y_{n+1}-y} = \ell\in \overline{\mathbb{R}}$, то $\lim \frac{x_n}{y_n} = \ell$\\
+         \begin{proof}
+            Рассмотрим случай $\ell = 0$:\\
+            Пусть $\varepsilon_n = \frac{x_{n+1}-x_n}{y_{n+1}-y_n}$ \\
+            Зафиксируем $\varepsilon > 0$, и выберем  $m$, такое, что  $\forall{n\ge m}\quad |\varepsilon_n| < \epsilon$\\
+            \[ x_n - x_m = (x_n-x_{n-1}) + \ldots (x_{m+1}-x_m) .\]
+            \[ x_n - x_m = \varepsilon_{n-1}(y_n-y_{n-1}) + \ldots .\]
+            \[ |x_n - x_m| \le |\varepsilon| |y_n-y_{n-1}| + \ldots  .\]
+            \[ |x_n-x_m| < \varepsilon\left( (y_{n-1}-y_n) + (y_{n-2}-y_{n-1}) + \ldots \right)  .\]
+            \[ |x_n - x_m| < \varepsilon\left( y_m-y_n \right)  .\]
+            \[ \lim |x_n-x_{n-1}| = |x_m| .\]
+            \[ \lim \varepsilon(y_m-y_n) = \varepsilon y_m .\]
+            \[ |x_m| \le \varepsilon y_m \implies \left|\frac{x_m}{y_m}\right| \le \varepsilon < 2\varepsilon .\] 
+         \end{proof}
+    \end{theorem}
+\section{Подпоследовательности}
+    \begin{definition}
+        Пусть $n_k$ - строго возрастающая последовательность индексов\\
+        Тогда $x_{n_1}, x_{n_2}, x_{n_3}, \ldots$ - подпоследовательность\\
+    \end{definition}
+    \begin{dlemma}
+        $n_k \ge k$\\
+        \begin{proof}
+            $n_1 \ge 1$\\
+            $n_{k+1} > n_k \implies n_{k+1} > k \implies n_{k+1} \ge k+1$
+        \end{proof}
+    \end{dlemma}
+    \begin{dlemma}
+        Подпоследовательности последовательности имеющий предел (из $\overline{\mathbb{R}}$), имеет тот-же предел.
+    \end{dlemma}
+    \begin{dlemma}
+        Пусть $x_{n_k}$ и $x_{n_l}$ - подпоследовательности, при этом $x_{n_k} \cup x_{n_l} = x_n$ \\
+        Если $\lim x_{n_k} = \lim x_{n_l} = \ell\in \overline{\mathbb{R}}$, то $\lim x_n = \ell$.
+    \end{dlemma}
+    \begin{theorem}[Теорема о стягивающихся отрезках]
+        \[ \left[a_1, b_1\right] \supset \left[a_2,b_2\right] \supset \ldots.\]
+        \[ \forall{i}\quad \lim (b_i - a_i) = 0 .\] 
+        Тогда существует единственная точка, принадлежащая всем отрезкам. Если это точка $c$, то  $\lim a_n = \lim b_n = c$
+         \begin{proof}
+            Существование следует из теоремы о вложенных отрезках.\\
+            Предположим, существует две точки: $c$ и  $d$.
+             \[ \forall{n}\quad |d-c| \le b_n - a_n .\]
+             \[ \lim |c-d| \le \lim b_n-a_n \iff \lim |c-d| = 0 \implies c-d .\] 
+             Докажем равенство:\\
+             Рассмотрим расстояние $|c-a_n| \le  |b_n-a_n| \to 0$. Симметрично для $b_n$.
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}[Теорема Больцано-Вейерштрасса] \label{bolz-weier}
+        Из любой ограниченной последовательности можно выбрать подпоследовательность, которая имеет конечный предел.\\
+        \[ x_n\in \left[a, b\right] .\]
+        \[ \exists{x_{n_k}}\quad \lim x_{n_k}\in \mathbb{R} .\] 
+        \begin{proof}
+            Разделим отрезок $\left[a,b\right]$ на две части: $\left[a, \frac{a+b}{2}\right]$ и $ \left[\frac{a+b}{2}, b\right]$.\\
+            Как минмум в одной из половин находится бесконечное число $x_n$. Обозначим её как $ \left[a_1, b_1\right]$.\\
+            Повторим разеделение, получим отрезок $ \left[a_2, b_2\right] \subset [a_1, b_1]$\\
+            Повторяя такой процесс можем получить отрезок произвольно малой длинны вокруг некоторой точки $c$.\\
+            Обозначим последовательности границ отрезков как $a_n$, $b_n$. По теореме о вложенных отрезках -  $\lim a_n = \lim b_n = c$\\
+            Возьмём некоторый $x_{n_1}$ принадлежащий отрезку $ \left[a_1,b_1\right]$\\
+            Возьмём такой $x_{n_2}$ принадлежащий отрезку $ \left[a_2, b_2\right]$, так, что $n_2>n_1$\\
+            Повторяем, получаем подпоследовательность, где $x_{n_k}\in \left[a_k, b_k\right]$.\\
+            Значит, $\lim a_k \le \lim x_{n_k} \le \lim b_k \iff c \le \lim x_{n_k} \le c \iff \lim x_{n_K} = c$.
+        \end{proof}
+    \end{theorem}
+    \begin{tlemma}
+        Если последовательность неограниченна сверху(снизу), то из неё можно выбрать подпоследовательность которая стреитмя к $\pm\infty$
+        \begin{proof}
+           Докажем для неограниченной сверху:
+           Тогда $b_1$ не является верхней границей. Тогда $\exists{n_1}\quad x_{n_1} > b_1 $ \\
+           Пусть $b_2 = \max\left( \{2\} \cup x_{\left[1, n_{n_1}\right]}  \right) $.\\
+           Тогда $\exists{n_2 > n_1}\quad x_{n_2} > b_2$.
+           Повторяем. $x_{n_k}$ - возрастающая последовательность неограниченная сверху. Значит, $\lim\limits_k x_{n_k} = +\infty$. 
+        \end{proof}
+    \end{tlemma}
+    \begin{definition}
+        Фундаментальная последовательность (Последовательность Коши, сходящаяся в себе) - 
+        \[ \forall{\varepsilon}\quad \exists{N>0}\quad \forall{m,n\ge N}\quad |x_n-x_m|<\varepsilon .\] 
+    \end{definition}
+    \begin{dlemma}
+        Фундаментальная последовательность ограниченна
+        \begin{proof}
+            Пусть $\varepsilon = 1$, и  $N$ соответствует условию.\\
+            Тогда  $\forall{n>N}\quad |x_n - x_N| < 1 \implies |x_n| \le |x_N| + |x_n-x_N| < |x_N| + 1$.\\
+            Тогда $|x_n| \le \max \{|x_k| \ssep k\in \left[1, n\right)\} \cup \{|x_N| + 1\}  $.
+        \end{proof}
+    \end{dlemma}
+    \begin{dlemma}
+        Если у фундаментальной последовательности есть подпоследовательность имеющая конечный предел, то сама последовательность имеет тот-же предел.\\
+        \begin{proof}
+            Пусть $x_n$ - фундаментальная последовательность. $\lim x_{n_k} = \ell$.
+            \[ \forall{\varepsilon>0}\quad \exists{N>1}\quad \forall{n,m\ge N}\quad |x_n-x_m|<\varepsilon .\]
+            \[ \forall{\varepsilon}\quad \exists{K>1}\quad \forall{k\ge K}\quad |x_{n_k}-\ell| < \epsilon .\]
+            Возьмём $\varepsilon$, $N$ и $K$ удовлетворяющие условиям.\\
+            Возьмём $n\ge N$, $k \ge \max\left( N, K \right) $. Тогда
+            \[ |x_{n_k}-\ell| < \varepsilon .\]
+            \[ |x_n-x_{n_k}| < \varepsilon .\]
+            \[ |x_n-\ell| \le |x_n -x_{n_k}|+|x_{n_k}-\ell| < 2\varepsilon .\] 
+        \end{proof}
+    \end{dlemma}
+    \begin{theorem}[Критерий Коши]
+        Последовательность имеет конечный предел тогда и только тогда, когда она фундаментальная.\\
+        \begin{proof}
+            Необходимоть:
+            Пусть $\lim x_n = \ell$
+             \[ \forall{\varepsilon>0}\quad \exists{N}\quad \forall{n, m\ge N}\quad |x_n-\ell| < \varepsilon > |x_m-\ell| \implies |x_n-x_m| \le |x_n-\ell|+|\ell-x_m| < 2\varepsilon .\]
+            Достаточность:
+            $x_n$ - фундаментальная.\\
+            Значит, она ограниченна.\\
+            Тогда, можно выбрать подпоследовательность, имеющую конечный предел.\\
+            Предел фундаментальной последовательности равен пределу этой подпоследовательности.
+        \end{proof}
+    \end{theorem}
+    \begin{definition}
+        Число $a$ - частичный предел последовательности, если существует подпоследовательность, которая стремится к $a$.\\
+    \end{definition}
+    \begin{theorem}
+        Пусть $a$ - частичный предел. Тогда и только тогда в любом интервале, содержащем $a$ находится бесконечное число пределов последовательности.
+        \begin{proof}
+            Необходимость:
+                $a$ - частичный предел, занчит $\exists{n_k}\quad \lim x_{n_k} = a$\\
+                Вне любого интервала содержащего $a$ лежит конечное число членов подпоследовательности. Значит, внутри находится бесконечное.\\
+            Достаточность:
+            Возьмём интервал $\left( a-1; a+1 \right) $. В этом интервале бесконечное числе членов последовательность. Возьмём один из них, и назовём $x_{n_1}$.\\
+            Рассмотрим интервал $\left( a-0.5; \right) $ найдём такой элемент, что его номер больше чем $n_1$, назовём $x_{n_2}$. Повторяем.\\
+        По аналогии с доказательством \ref{bolz-weier}, $\lim x_{n_k} = a$.
+        \end{proof}
+        \begin{problem}
+            Модифицируйте рассуждение если $a=\pm\infty$:\\
+            Рассмотрим случай для $a=+\infty$
+            Вместо отрезков будем выбирать лучи с началами в $1$,  $2$,  $3$,  $\ldots$.\\
+            Из каждого будем выбирать $x_{n_k}$. Это будет неограниченная возрастающая подпоследовательность. Для $a=-\infty$ аналогично.
+        \end{problem}
+        \begin{problem}
+            Доказать, что 
+            \[\{\text{част. пределы}\}\cap \mathbb{R} = \{\text{предельные точки} x_n\} \cup \{\text{члены последовательности с бесконечной кратностью}\}\]
+        \end{problem}
+    \end{theorem}
+    \begin{tlemma}\label{monolim}
+        Монотонно возрастающая неограниченная сверху последоватльность стремится в $+\infty$.\\
+        Симметрично для убывания.\\
+        \begin{proof}
+            \[ \forall{E}\quad \exists{N}\quad \forall{n>N}\quad x_n>E .\]
+            $E$ - не верхняя граница. Значит, $\exists{N}\quad x_N > E$. Последовательность возрастает, значит $\forall{n > N}\quad x_n > x_N > E$. 
+        \end{proof}
+    \end{tlemma}
+    \begin{definition}
+        Нижний предел - $\underline{\lim} x_n = \lim\limits_{n \to \infty} \inf\limits_{k\ge n} x_k$ \\
+        Верхний предел - $\overline{\lim} x_n = \lim\limits_{n \to \infty} \sup\limits_{k\ge n} x_k $ \\
+        \[ y_n =\inf\limits_{k\ge n}x_k .\]
+        \[ z_n = \sup\limits_{k\ge n}x_k .\]
+    \end{definition}
+    \begin{theorem}
+        $\underline{lim}$ и  $\overline{lim}$ существуют в $\overline{\mathbb{R}}$ и $\underline{lim} \le \overline{lim}$ 
+        \begin{proof}
+            \[ y_n \le y_{n+1} .\]
+            \[ z_{n} \ge z_{n+1} .\]
+            Тогда, по \ref{monolim}, существуют $\underline{\lim}x_n = \lim y_n$,  $\overline{\lim}x_n = \lim z_n$.
+        \end{proof}
+        
+    \end{theorem}
+    \begin{theorem}
+        $\overline{\lim}$ - наибольший из частичных пределов.\\
+        $\underline{\lim}$ - нименьший из частичных пределов.\\
+        $\lim x_n$ существует тогда и только тогда, когда  $\overline{lim} x_n = \underline{\lim x_n}$ \\
+        \begin{proof}
+            Пусть $b = \overline{\lim} x_n = \lim z_n$ \\
+            Возьмём $z_\ell$. Это  $\sup\limits_{k\ge \ell} x_k$. Тогда найдётся такой $x_i$, $i\ge \ell$, такой, что  $x_i \ge z_{\ell} - \frac{1}{\ell}$.\\
+            Назовём $n_{\ell} = i$.\\
+            \[ z_{\ell} \ge x_{n_\ell} > z_{\ell}-\frac{1}{\ell} \implies b \ge \lim x_{n_\ell} >b-\varepsilon \implies \lim x_{n_\ell} = b.\]
+            Построем подпоследовательность, выбирая $\ell_{j+1} = n_{\ell_j} + 1$.\\
+            Пусть $x_{n_k}$ - какая-то подпоследовательность, имеющая предел.\\
+            \[ x_{n_k} \le z_{n_k} \implies \lim x_{n_k} < \lim z_{n_k} \implies \lim x_{n_k} \le  b .\]
+            Если $\forall{n}\quad z_n = +\infty$
+            \[z_1 = +\infty \implies \exists{n_1}\quad   x_{n_1} > 1\]
+            \[ z_{n_1} =  +\infty \implies \exists{n_2 > n_1}\quad x_{n_2} > x_{n_1} .\]
+            И так далее.\\
+            Для нижнего аналогично.\\
+            Докажем существование предела:\\
+            Необходимость:\\
+            Если последовательность имеет предел, то любая её подпоследовательность имеет тот-же предел, значит существует ровно один частичный предел\\
+            Достаточность:\\
+            \[ y_n \le x_n \le z_n \implies \underline{\lim} x_n \le \lim x_n \le \overline{\lim} x_n \implies \lim x_n = \overline{\lim} x_n = \underline{\lim} x_n .\]
+        \end{proof}
+    \end{theorem}
+\end{document} 
