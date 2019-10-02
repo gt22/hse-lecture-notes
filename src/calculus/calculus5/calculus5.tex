@@ -1,0 +1,158 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+\usepackage{accents}
+\DeclareMathOperator{\sign}{sign}
+%\usepackage{cTikz}
+\title{Мат. Анализ 5}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{}
+    \begin{theorem}
+        \begin{equation*}
+            \overline{\lim x_n} = a
+            \iff \forall{\varepsilon > 0}\quad \forall{N}\quad \exists{n \ge N}\quad  a-\varepsilon < x_n < a+\varepsilon        
+        \end{equation*}
+        \begin{equation*}
+            \underline{\lim x_n} = a
+            \iff \forall{\varepsilon > 0}\quad  \forall{N}\quad \exists{n\ge N}\quad a-\varepsilon > x_n > a+\varepsilon
+        \end{equation*}
+        \begin{proof}
+            \[ z_n = \sup \{x_n, x_{n+1}, x_{n+2}, \ldots\}  .\]
+            Достаточность:
+            \[ z_n \le b+\varepsilon .\] 
+            \[ \forall{\varepsilon > 0}\quad \exists{N}\quad \forall{n \ge N}\quad z_n \le a+\varepsilon .\]
+            Необходиомсть:
+            \[ z_n \ge z_{n+1} .\] 
+            \[ \lim z_n = b \implies z_n \ge b > b-\varepsilon .\]
+            \[ \exists{k\ge n}\quad x_k > b-\varepsilon .\]
+            \[ \lim z_n = b \implies \forall{\varepsilon > 0}\quad \exists{N}\quad \forall{n \ge N}\quad z_n < b+\varepsilon \implies x_n < b+\varepsilon .\qedhere\] 
+        \end{proof}
+    \end{theorem}    
+    \begin{theorem}
+        Если $x_n \le \tilde{x}_n$, то $\underline{\lim x_n} \le \underline{\lim}\tilde{x}_n$, $\overline{\lim}x_n \le  \overline{\lim} \tilde{x}_n$
+        \begin{proof}
+            \[ y_n =\inf \{x_n, x_{n+1}, \ldots\}  .\]
+            \[ \tilde{y}_n = \inf \{\tilde{x}_n, \tilde{x_{n+1}}\}  .\]
+            \[ y_n \le \tilde{y_n} \implies \lim y_n \le \lim \tilde{y}_n .\qedhere\] 
+        \end{proof}
+    \end{theorem}
+\section{Пределы и непрерывность функций}
+    \subsection{Пределы функций}
+        \begin{definition}
+            Окрестность точки $a$ - $U_a = \left( a-\varepsilon; a+\varepsilon \right) $, для $\varepsilon > 0$.\\
+            Проколотая окрестность - $\accentset{\circ}{U}_a^ = U_a \setminus \{a\} $ \\
+            Окрестность бесконечности: $U_{+\infty} = \left( E; +\infty \right) $ \\
+            Окрестность минус бесконечности: $U_{-\infty} = \left( -\infty; E \right) $
+        \end{definition}
+        \begin{definition}
+            \[ a\in E \subset \mathbb{R} .\] 
+            $a$ - предельная точка $E$, если
+            \[ \accentset{\circ}{U}_a\cap E \neq \emptyset .\] 
+        \end{definition}
+        \begin{theorem}
+            Следующие условия равносильны:\\
+            \begin{enumerate}
+                \item $a$ - предельная точка $E $
+                \item В любой окрестности $a$ содержится бесконечно много точек из $E$ 
+                \item Существует $x_n\in E$, $x_n \neq a$, такие, что $\lim x_n = a$.
+            \end{enumerate}
+            \begin{proof}
+                Докажем $2 \implies 1$:
+                \[ \accentset{\circ}{U}_a\cap E = U_a\cap E \setminus \{a\}  .\] 
+                Докажем $3 \implies 2$:
+                \[ \forall{\varepsilon>0}\quad \exists{N}\quad \forall{n>N}\quad x_n\in \accentset{\circ}{U}_a .\]
+                Докажем $1 \implies 3$:\\
+                Возьмём $\varepsilon_1 = 1$. Тогда в $\left( a-\varepsilon_1; a+\varepsilon_1 \right)\cap E$ есть точка, отличная от $a$. Назовём её  $x_1$.\\
+                Возьмём $\varepsilon_2 = \min\left( \frac{1}{2}, |x_1-a| \right) $. Аналогично найдём $x_2$.\\
+                Повторяем.
+                \[ |x_k-a| < \varepsilon_k \le |x_{k-1}-a| .\]
+                \[ |x_k-a| < \varepsilon_k \le \frac{1}{k} \to 0 .\qedhere\] 
+            \end{proof}
+        \end{theorem}
+        \begin{definition}
+            $f: E \to \mathbb{R}$, $a$ - предельная точка $E$\\
+            $\lim\limits_{x \to a} f(x) = A$\\
+            \begin{enumerate}
+                \item $\forall{U_A}\quad \exists{\accentset{\circ}{U}_a}\quad f(\accentset{\circ}{U}_a\cap E) \subset U_A$
+                \item (если $A$ конечно) $\forall{\varepsilon > 0}\quad \exists{\delta > 0}\quad \forall{x\in E}\quad 0 < |x-a| < \delta \implies |f(x) - A| < \varepsilon$
+                \item (если $A=+\infty$) $\forall{K}\quad \exists{\delta>0}\quad \forall{x\in E}\quad 0<|x-a|<\delta \implies f(x) > K$
+                \item (если $A=-\infty$) $\forall{K}\quad \exists{\delta>0}\quad \forall{x\in E}\quad 0<|x-a|<\delta \implies f(x) < K$
+                \item (по Гейне) $\forall{((x_n)\in E, x_n \neq a)}\quad \lim x_n = a \implies \lim f(x_n) = A$
+            \end{enumerate}
+        \end{definition}
+        \begin{theorem}
+            Определения равносильны
+            \begin{proof}
+                $2 \implies 5$:\\
+                \[ \forall{\varepsilon>0}\quad \exists{\delta>0}\quad \forall{x\in E}\quad 0<|x-a|<\delta \implies |f(x)-A|<\varepsilon .\] 
+                Берём последовательность $x_n\in E$, $x_n \neq  a$, $\lim x_n = a$.\\
+                \[ \forall{\delta > 0}\quad \exists{N}\quad \forall{n>N}\quad 0 < |x_n-a|<\delta .\]
+                Тогда $f(x_n)-A<\varepsilon$. $\lim f(x_n) = A$
+                 $5 \implies \left<2, 3, 4\right>$:\\
+                Докажем от противного:
+                Пусть существует $\varepsilon>0$, для которого $\delta=\frac{1}{n}$ не подходит.\\
+                Пусть $x_n\in E$, $0<|x_n-a|<\frac{1}{n}$, $|f(x_n)-A|\ge \varepsilon$.\\
+                \[ \lim x_n = a .\]
+                Значит, $\lim f(x_n) = A$. Что приводит к противоречию.
+            \end{proof}
+        \end{theorem}
+        \begin{dlemma}
+            Предел единственнен.
+            \begin{equation*}
+                \begin{cases}
+                    \lim\limits_{x \to a} f(x) = A\\
+                    \lim\limits_{x \to a} f(x) = B
+                \end{cases}
+                \implies A = B
+            \end{equation*}
+            \begin{proof}
+                \[ \exists{(x_n)\in E, x_n \neq a}\quad \lim x_n = a .\] 
+                \[ \lim f(x_n) = A .\]
+                \[ \lim f(x_n) = B .\qedhere\] 
+            \end{proof}
+        \end{dlemma}
+        \begin{dlemma}[Локальная ограниченность] 
+            \[\lim\limits_{x \to a} f(x) = A\in \mathbb{R} \implies  \exists{U_a}\quad \exists{a, b\in R}\quad  \forall{x\in U_a}\quad a \le f(x) \le b  .\]
+            \begin{proof}
+                Возьмём $\varepsilon=1$, выберем подходящую $\delta$.  $U_a = \left( a-\delta; a+\delta \right) $ \\
+                Если $x\in E$ и $x\in \accentset{\circ}{U}_a$, то $|f(x) - A| < 1$\\
+                \[ |f(x) \le |A| + |f(x)-A| < |A|+1.\]
+                \[ |f(x)| \le\max \{|A|+1, |f(a)|\}  .\qedhere\] 
+            \end{proof}
+        \end{dlemma}
+        \begin{dlemma}[Стабилизация знака]
+            Если $\lim\limits_{x \to a} f(x) = A \neq 0$
+            \[ \exists{\accentset{\circ}{U}_a}\quad \forall{x\in \accentset{\circ}{U}_a\cap E}\quad \sign{f(x)}=\sign{A} .\]
+            \begin{proof}
+                Пусть $A>0$. Возьмём $\varepsilon=A$, $U_A = \left( 0; 2A \right) \implies \exists{\accentset{\circ}{U}_a}\quad f(\accentset{\circ}{U}_a\cap E) \subset U_a$.
+                Значит, $f$ в этой окрстности положительная.
+            \end{proof}
+        \end{dlemma}
+        \begin{dlemma}
+            \[ f, g: E \to R .\] 
+            \[ \lim\limits_{x \to a} f(x) = A .\] 
+            \[ \lim\limits_{x \to a} g(x) = B .\] 
+            То
+            \[ \lim\limits_{x \to a} (f(x)\pm g(x)) = A\pm B .\]
+            \[ \lim\limits_{x \to a} f(x)g(x) = AB .\] 
+            \[ \lim\limits_{x \to a} |f(x)| = |A| .\] 
+            \[ B \neq 0 \implies \lim\limits_{x \to a} \frac{f(x)}{g(x)} = \frac{A}{B} .\] 
+            \begin{proof}
+               Найдём по Гейне последовательность $x_n$, такую, что
+               \[ \lim x_n = a .\] 
+               \[ \lim f(x_n) = A .\]
+               \[ \lim g(x_n) = B .\]
+               То
+               \[ \lim f(x_n)+g(x_n) = A + B .\qedhere\]
+
+            \end{proof}
+        \end{dlemma}
+\end{document} 
