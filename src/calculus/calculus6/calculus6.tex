@@ -1,0 +1,288 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+\DeclareMathOperator{\sgn}{sign}
+\DeclareMathOperator{\argmin}{argmax}
+\DeclareMathOperator{\argmax}{argmin}
+\usepackage{cTikz}
+\title{Матан 6}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Арифметика пределов}
+    \begin{theorem}[Предельный переход в неравенстве]
+        \[ f, g: E \mapsto \mathbb{R} .\]
+        \[ \forall{x\in E}\quad f(x) \le g(x)  .\]
+        $a$ - предельная точка $e$, и существуют $\lim\limits_{x \to a} f(x) = A$ и $\lim\limits_{x \to a} g(x) = B$.\\
+        Тогда $\lim\limits_{x \to a} f(x) \le \lim\limits_{x \to a} g(x)$.
+        \begin{proof}
+            Пусть $\{x_n\} \to a$.\\
+            Тогда $\lim f(x_n) = A$, $\lim g\left( x_n \right) $.\\
+            \[ \forall{x_n}\quad f(x_n) \le g(x_n) \implies A\le B .\qedhere\] 
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}[Теорема о двух миллиционерах]
+        \[ f,g,h: E \mapsto \mathbb{R} .\]
+        $a$ - предельная точка $E$.\\
+        \[ \forall{x\in E}\quad f(x) \le g(x) \le h(x)   .\]
+        Если $\lim\limits_{x \to a} f(x) = \lim\limits_{x \to a} h(x) = A$, то $\lim\limits_{x \to a} g(x) = A$.
+        \begin{proof}
+            Пусть $\{x_n\} \to a$.\\
+            \[ \lim f(x_n) = \lim h(x)n) = A .\]
+            \[ A \le \lim g(x_n) \le A \implies \lim g(x_n) = A \implies \lim\limits_{x \to a} g(x) = A .\qedhere\] 
+        \end{proof}
+    \end{theorem}
+    \begin{definition}[Предел слева и справа]
+        \[ f: E \mapsto \mathbb{R} .\] 
+        \[ E_1 = \left( -\infty; a \right)\cap E .\]
+        $a$ - предельная точка $ E_1$.\\
+        \[ g = \left.f\right|_{E_1}\]
+        \[ \lim\limits_{x \to a-} f(x) = \lim\limits_{x \to a-0} f(x) = \lim\limits_{x \to a} g(x)  .\] 
+        \[ E_2 = \left( a, +\infty \right)\cap E .\]
+        $a$ - предельная точка $ E_2$.\\
+        \[ h = \left.f\right|_{E_2} .\]
+            \[ \lim\limits_{x \to a+} f(x) = \lim\limits_{x \to a+0} f(x) = \lim\limits_{x \to a} h(x) .\] 
+    \end{definition}
+    \begin{example}
+        \[ f(x) = \left[x\right] .\]
+        \[ \lim\limits_{x \to n+} \left[x\right] = n.\]
+        \[ \lim\limits_{x \to n-} \left[x\right] = n - 1.\] 
+    \end{example}
+    \begin{dlemma}
+        \begin{equation*}
+            \begin{split}
+                \lim\limits_{x \to a+} f(x) &= A\\
+                &\iff \forall{\varepsilon>0}\quad \exists{\delta > 0}\quad \forall{x\in E}\quad 0<x-a<\delta \implies |f(x) - A| < \varepsilon 
+            \end{split} 
+        \end{equation*}
+        \begin{equation*}
+            \begin{split}
+                \lim\limits_{x \to a-} f(x) &= A\\
+                &\iff \forall{\varepsilon>0}\quad \exists{\delta > 0}\quad \forall{x\in E}\quad 0<a-x<\delta \implies |f(x) - A| < \varepsilon 
+            \end{split} 
+        \end{equation*}
+    \end{dlemma}
+    \begin{dlemma}
+        \[ \lim\limits_{x \to a-} f(x) = \lim\limits_{x \to a+} f(x) = A \iff \lim\limits_{x \to a} f(x) = A .\] 
+    \end{dlemma}
+    \begin{definition}
+        $f: E \mapsto \mathbb{R}$ - монотонно возрастает если
+        \[ \forall{x, y\in E}\quad x<y \implies f(x) \le  f(y) .\]
+        Строго монотонно возрастает если
+        \[ \forall{x,y\in E}\quad x<y \implies f(x) < f(y)  .\]
+        Аналогично для убывания
+    \end{definition}
+    \begin{dlemma}
+        $f: E \mapsto \mathbb{R}$, $E_1 = \left( -\infty, a \right)\cap E$.\\
+        $a$ - предельная точка $ E_1$.\\
+        Если $f$ монотонно возрастает и ограниченна сверху, то 
+        \[ \lim\limits_{x \to a-} f(x) = \sup\limits_{x\in E_1} f(x) .\]
+        Если $f$ монотонно убывает и ограниченна снизу, то
+        \[ \lim\limits_{x \to a-} f(x) = \inf\limits_{x\in E_1} f(x)  .\]
+        \begin{proof}
+            Пусть $\sup\limits_{x\in E_1} f(x) = B < \infty$.\\
+            \[ \forall{\varepsilon>0}\quad \exists{y\in E}\quad f(y)>B-\varepsilon .\]
+            Пусть $\delta = a-y$, возьмём $0<a-x<\delta \iff y<x<a$\\
+            \[ B-\varepsilon < f(y) \le f(x) \le B < B+\varepsilon. \implies \lim\limits_{x \to a-} f(x) = B.\qedhere\]
+        \end{proof}
+    \end{dlemma}
+    \begin{theorem}[Критерий Коши]
+        \[ f: E \mapsto \mathbb{R} .\] 
+        $a$ - предельная точка $E$.\\
+        \[ \lim\limits_{x \to a} f(x) = A < \infty \iff \forall{\varepsilon>0}\quad \exists{\delta>0}\quad \forall{x,y\in E}\quad  \begin{cases} 0<|x-a|<\delta\\ 0<|y-a|<\delta \end{cases} \implies |f(x)-f(y)| < \varepsilon  .\]
+        \begin{proof}
+            Необходимость:
+            \[ \forall{\varepsilon>0}\quad \exists{\delta > 0}\quad \forall{x\in E}\quad 0<|x-a|<\delta \implies |f(x)-A| < \varepsilon   .\] 
+            \[ \forall{\varepsilon>0}\quad \exists{\delta > 0}\quad \forall{y\in E}\quad 0<|y-a|<\delta \implies |f(y)-A| < \varepsilon   .\] 
+            \[ |f(x)-f(y)| \le |f(x)-A|+|A-f(y)| < 2\varepsilon .\]
+            Достаточность:
+            Пусть $\{x_n\} \to a$.\\
+            Возьмём $\delta>0$ по $\varepsilon$.\\
+            По $\delta$ найдётся $N$, такой, что $\forall{n>N}\quad |x_n-a|<\delta $, $\forall{m>N}\quad |x_m-a|<\delta $.\\
+            Тогда
+            \[ \forall{n,m>N}\quad |f(x_n)-f(x_m)|<\varepsilon  .\]
+            Последовательность $f(x_n)$ - фундаментальна, значит у неё есть конечный предел.
+        \end{proof}
+    \end{theorem}
+\section{Непрерывные функции}
+    \begin{definition}
+        $f: E \mapsto \mathbb{R}$, $a\in E$.\\
+        $f$ непрерывна в точке $a$, если выполняется одно из равносильных условий:
+        \begin{enumerate}
+            \item $a$ - не предельная точка $E$ или $a$ - предельная точка и $\lim\limits_{x \to a} f(x) = f(a)$.
+            \item $\forall{U_{f(a)}}\quad \exists{U_a}\quad f(U_a\cap E) \subset U_{f(a)}$
+            \item $\forall{\varepsilon>0}\quad \exists{\delta>0}\quad \forall{x\in E}\quad |x-a|<\delta \implies |f(x)-f(a)| < \varepsilon$
+            \item Для любой последовательности $\{x_n\in E\} \to a $, $\lim f(x_n) = f(a) $
+        \end{enumerate}
+    \end{definition}
+    \begin{theorem}[Арифметические действия с непрерывными функциями]
+        $f, g : E \mapsto \mathbb{R}$, $a\in E$, $f,g$ - непрерывны в точке $a$.\\
+        Тогда:
+        \begin{enumerate}
+            \item $f\pm g$ - непрерывна в $a$
+            \item $f\cdot g$ - непрерывна в $a$
+            \item $|f|$ непрерывна в $a$
+            \item $ \frac{f}{g}$ непрерывна в $a$, если $g(a) \neq 0$
+        \end{enumerate}
+        \begin{proof}
+            Если $a$ - не предельная точка, там непрерынвы все функции.\\
+            Если $a$ - предельная точка, то $\lim\limits_{x \to a} f(x) = f(a)$, $\lim\limits_{x \to a} g(x) = g(a)$.
+            \[ \lim\limits_{x \to a} f(x)+g(x) = \lim\limits_{x \to a} f(x) + \lim\limits_{x \to a} g(x) = f(a) + g(a) .\]
+            Другие пункты аналогично.
+        \end{proof}
+    \end{theorem}
+    \begin{tlemma}
+        Многочлены непрерывным во всех точках.
+        \begin{proof}
+            $C_c(x) = c$ - непрерывна.\\
+            $f(x) = x$ - непрерывна.\\
+            $F_a(x) = x^{a} = \underbrace{x\cdot x\cdot \ldots\cdot x}_{a} $ - непрерывна.\\
+            $P(x) = C_{a_1}(x) + C_{a_1}F_{a}(x) + \ldots C_{a_n}F_n(x)$ - непрервына.
+        \end{proof}
+    \end{tlemma}
+    \begin{tlemma}
+        Рациональные функции непрерывны во всех точках, где знаменатель не обращается в $0$.
+        \begin{proof}
+            $P_1(x)$, $ P_2(x)$ - непрерывны.\\
+            $\frac{P_1(x)}{P_2(x)}$ - непрерывна, если $P_2(a) \neq 0$
+        \end{proof}
+    \end{tlemma}
+    \begin{theorem}[Теорема о стабилизации знака]
+        $f: E \mapsto \mathbb{R}$, $f$ непрерывна в точке $a$, $a\in E$, $f(a) \neq 0$.
+        \[ \exists{U_a}\quad \forall{x\in U_a\cap E}\quad \sgn(f(x)) = \sgn((f(y))   .\]
+        \begin{proof}
+            Если $a$ не предельная точка, то утверждение эквивалентно $\sgn(f(a)) = \sgn(f(a))$.\\
+            Если $a$ предельная точка, то следует из стабилизации знака для передлов.
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}[Теорема о непрервыности композиции]
+        $f: E \mapsto G \subset \mathbb{R}$, $g: G \mapsto \mathbb{R}$. $f$ непрерывна в $a$, $g$ непрерывна в $b=f(a)$.\\
+        $h(x) = g(f(x))$ непрерывна в $a$.
+        \begin{proof}
+            \[ \forall{\varepsilon>0}\quad \exists{\delta>0}\quad \forall{y\in G}\quad |y-b|<\delta \implies |g(y)-g(b)| < \varepsilon    .\]
+            \[ \exists{\gamma > 0}\quad \forall{x\in E}\quad |x-a|<\gamma \implies |f(x) < f(a)| < \delta  .\]
+            \[ y=f(x) .\]
+            \[ |x-a|<\gamma \implies |y-b|<\delta \implies |g(f(x))-g(f(a))|<\varepsilon .\qedhere\] 
+        \end{proof}
+    \end{theorem}
+    \begin{tlemma}
+        $\lim\limits_{x \to a} f(x) = A$, $g$ непрерывна в точке $A$.\\
+        Тогда $\lim\limits_{x \to a} g(f(x)) = g(A)$.\\
+        \begin{proof}
+            Подправим функцию $f$ в точке $a$, так, чтобы $f(a) = A$. Пределы от этого не изменились.\\
+            Теперь $f$ непрерывна в $a$, значит $g(f(x))$ непрерывна в $a$.\\
+            Значит, $\lim\limits_{x \to a} g(f(x)) = g(f(a)) = g(A)$.
+        \end{proof}
+    \end{tlemma}
+    \begin{theorem}
+        \[ \forall{x\in \left( 0; \frac{\pi}{2} \right) }\quad \sin x < x < \tan x .\] 
+        \begin{proof}
+            Рассмотрим рисунок:\\
+           \begin{center}
+               \begin{tikzpicture}[scale=1.5, every node/.style={transform shape}]
+
+                   \def\rad{1};
+                   \coordinate (C) at (0,0);
+                   \coordinate (shift) at (45:\rad);
+                   \draw[thin] (C) circle[radius=\rad];
+                   \draw[thin] (0, 0) node[below left]{$O$} -- (1, 0) node[right]{$A$} -- (shift) node[above left]{$B$} -- (0,0);
+                   \draw[thin] (0, 0) -- (1, 1) node[above]{$C$} -- (1,0);
+                   \draw[thin] let \p1=(shift) in (\x1, \y1) -- (\x1, 0) node[below]{$H$};
+               \end{tikzpicture}
+           \end{center}
+           \[ \sin x = BH .\]
+           \[ \tg x = AC .\]
+           \[ S_{\triangle OBA} < S_{OBA} < S_{\triangle OCA} .\]
+           \[ S_{\triangle OBA} = \frac{1}{2}OA\cdot BH = \frac{\sin x}{2} .\]
+           \[ S_{OAB} = \frac{1}{2}xr^2 = \frac{x}{2} .\]
+           \[ S_{\triangle OCA} = \frac{1}{2} OA\cdot AC = \frac{\tan x}{2} .\]
+           \[\sin x < x < \tan x .\qedhere\] 
+        \end{proof}
+    \end{theorem}
+    \begin{tlemma}
+        $|\sin x| \le |x|$. Равно только при $x=0$
+    \end{tlemma}
+    \begin{tlemma}
+        $|\sin x - \sin y| \le |x-y|$\\
+        $|\cos x - \cos y| \le |x-y|$.
+    \end{tlemma}
+    \begin{tlemma}
+        $\sin x$ и $\cos x$ всюду непрерывны.\\
+        $\tan x$ и $\ctg x$ непрерывны во всех точках определения.
+    \end{tlemma}
+    \begin{theorem}[Теорема Вейерштрасса]
+        $f: \left[a; b\right] \mapsto \mathbb{R}$, непрерывна на всей области определения.\\
+        Тогда:
+        \begin{enumerate}
+            \item $f$ ограничена
+            \item $f$ принимает наибольшее и наименьшее значение.
+        \end{enumerate}
+        \begin{proof}
+           Докажем от противного.\\
+           Пусть $f$ неограничена.\\
+           \[ \forall{n}\quad \exists{x_n}\quad |f(x_n)| > n .\]
+           $x_n$ - ограниченная последовательность, существует $x _{n_k}$, $\lim x_{n_k} = c$.\\
+           \[ a \le x_n \le b \implies a \le c \le b .\]
+           Тогда $f$ непрерывна в точке $c$.\\
+           Значит, $\lim f(x_{n_k}) = f(c) $, значит, $f(x_{n_k})$ ограничена.\\
+           Но $|f(x_{n_k})| \ge n_k \ge k$, значит, $\lim |f(x_{n_k})| = +\infty$. Противореие, значит функция ограничена.\\
+           Пусть $M = \sup f(x) < +\infty$.\\
+           Предположим что $M$ не достигается.\\
+           \[ \forall{x\in \left[a, b\right]}\quad f(x) < M .\]
+           Пусть $g(x) = \frac{1}{M-f(x)} > 0$, $g$ непрерывна на всей области определения.\\
+           Значит, она ограниченна. $g(x) \le M_1$:
+           \[ \frac{1}{M-f(x)} \le M_1 \implies M - f(x) \ge \frac{1}{M_1} \implies f(x) \le M - \frac{1}{M_1} .\]
+           Но $M$ - супремум. Так-что пртиворечие. В другую сторону аналогично.
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}[Теорема Больцмана-Коши]
+        $f: \left[a; b\right] \mapsto \mathbb{R}$, непрерывна на всей области определения.\\
+        Если $C\in \left[f(a), f(b)\right]$, то $\exists{c\in \left[a; b\right]}\quad f(c)=C$.
+        \begin{proof}
+            Пусть, без ограничения общности $C=0$, $f(a)< 0 < f(b)$.\\
+            Пусть $a_0 = a$, $b_0 = b$.\\
+            Рассмотрим функцию в точке $m=\frac{a_0+b_0}{2}$.\\
+            Если $f(m) = 0$, то точка найдена.\\
+            Если $f(m) > 0$, то $a_1=a_0$, $b_1=m$.\\
+            Если $f(m) < 0$, то $a_2=m$, $b_1=b$.\\
+            Повторяя итерацию, сойдёмся до нужной точки, так-как отрезки стягивающие.\\
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}
+        Непрерывный образ отрезка - отрезок.\\
+        Пусть $f: \left[a; b\right] \mapsto \mathbb{R}$, $f$ непрерывна.\\
+        Тогда $f(\left[a;b\right]) = \left[\min f(x); \max f(y)\right]$.
+        \begin{proof}
+            По теореме Вейершатрасса, мнимум и максимум достигаются.\\
+            Пусть $p = \argmin f(x)$, $q = \argmax f(x)$.\\
+            Путь $p\le q$
+            По теореме Боinцмана-Коши:\\
+            \[ \forall{C\in \left[f(p); f(q)\right]}\quad \exists{c\in \left[p; q\right]}\quad f(c) = C   .\] 
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}]
+        Непрерывный образ промежутка - промежуток.\\
+        Пусть $ \left<a; b\right>$ - одно из $\left[a; b\right]$, $(a;b]$, $ \left( a; b \right) $, $[a; b)$.
+        $f: \left<a, b\right> \mapsto \mathbb{R}$, $f$ непрерывна на $\left<a, b\right>$
+        \begin{proof}
+            Пусть $m =\inf f(x)$, $M = \sup f(x)$.\\
+            \[ f(\left<a, b\right>) \subset \left[m; M\right] .\] 
+            Докажем, что:
+            \[ \left( m; M \right) \subset f(\left<a, b\right>) .\]
+            Возьмём $C\in \left( m; M \right) $\\
+            $C$ - не нижняя грань.\\
+            Значит
+            \[ \exists{p\in \left<a, b\right>}\quad f(p) < C  .\]
+            $C$ - не верхняя грань.\\
+            Значит
+            \[ \exists{q\in \left<a, b\right>}\quad f(q) > C  .\]
+            \[ f(p) < C < f(q) \implies C\in \left[f(p); f(q)\right] .\] 
+        \end{proof}
+    \end{theorem}
+\end{document} 
