@@ -1,0 +1,214 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+%\usepackage{cTikz}
+\title{Матан 7}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{}
+    
+\begin{definition}[Обратная функция]
+    \[ f: E \mapsto \tilde{E} .\]
+    Если $f$ - биекция, то
+    \[ \exists{g: \tilde{E} \mapsto E}\quad \forall{x\in \tilde{E}}\quad f(g(x)) = x\quad \text{и}\quad \forall{x\in E}\quad g(f(x)) = x   .\] 
+\end{definition}
+\begin{theorem}[Теорема об обратной функции]
+    \[ f: \left<a, b\right> \mapsto \left<m, M\right> .\]
+    \[ m =\inf_{x\in \left<a, b\right>} f(x) .\]
+    \[ M = \sup_{x\in \left<a, b\right>} f(x) .\]
+    $f$ всюду непрерывна и строго монотонна.\\
+    Тогда:
+    \[ f^{-1}: \left<m, M\right> \mapsto \left<a, b\right> .\]
+    $f^{-1}$, существует, строго монотонна и всюду непрерынва.
+    \begin{proof}
+        Непрерывность гарантирует $f(\left<a,b\right>) = \left<m, M\right>$, значит $f$ сюръективна.\\
+        Строго монотонная функция инъективна, занчит $f$ - биекция.\\
+        Пусть $f$ строго возрастает.\\
+        Возьмём $x<y$, допустим $f^{-1}(x) \ge f^{-1}(y)$.\\
+        Тогда $f(f^{-1}(x)) \ge f(f^{-1}(y)) \iff x \ge y$, что противоречит условию.\\
+        Возьмём произвольную точку $y_9$.\\
+        \[ f(y) < f(y_0) \iff y < y_0 \iff f^{-1}(y) < f^{-1}(y_0).\]
+        \[ A = \sup\limits_{y<y_0} f^{-1}(y) = \lim\limits_{y \to y_0-} f^{-1}(y) \le f^{-1}(y_0) =  .\]
+        \[ \lim\limits_{y \to y_0+} f^{-1}(y) \ge f^{-1}(y_0) = \inf\limits_{y>y_0} f^{-1}(y) = B.\]
+        Если $A=B$ то функция непрерывна в этой точки.\\
+        Пусть $A<B$.\\
+        \[ f^{-1}\left( \left<m, M\right> \right) = f^{-1}\left( \left<m, y_0\right) \right) \cup \{f(y_0)\} \cup f^{-1}\left( \left(y_0, M\right> \right) \subset \left(-\infty; A\right] \cup \{f^{-1}(y_0)\} \cup \left[B; \infty\right)    .\]
+        Что невозможно, так-как облать значений непрерывна.
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Первый замечательный предел]
+    \[ \lim\limits_{x \to 0} \frac{\sin x}{x} = 1 .\]
+    \begin{proof}
+        \[ \sin x < x < \tan x \le x\in \left( 0; \frac{\pi}{2} \right) .\]
+        \[ \cos x < \frac{\sin x}{x} < 1 \le x\in \left(-\frac{\pi}{2};  0\right) \cup \left( 0; \frac{\pi}{2} \right)   .\]
+        \[ \lim\limits_{x \to 0} \cos x < \frac{\sin x}{x} < 1  \iff 1 \le \frac{\sin x}{x} \le 1 \implies \lim\limits_{x \to 0} \frac{\sin x}{x} = 1.\] 
+    \end{proof}
+\end{theorem}
+\section{Элементарные функции}
+    \subsection{Степенная функция}
+    \[ x^{n} = \underbrace{x \cdot x \cdot \ldots \cdot x}_{\text{$n$ раз}} .\]
+    $n\in \mathbb{N}$, непрерывна на $\mathbb{R}$.\\
+    \subsubsection{$n$ нечётно}
+        $x ^{n}: \mathbb{R} \mapsto \mathbb{R}$, строго возрастает, есть обратная.
+    \subsubsection{$n$ чётно}
+    $x^{n}: \left[0;\infty \right) \mapsto \left[0;\infty \right)$, строго возрастает, есть обратная.
+    \subsection{Обратная степенная функция}
+    \[ x^{-n} = \frac{1}{x^{n}} .\]]
+    $x^{-n}: \mathbb{R}\setminus \{0\} \mapsto \mathbb{R}\setminus \{0\}  $, непрерывна.
+    \subsection{Рациональная степень}
+    \[ x^{\frac{p}{q}} = \left(x^{\frac{1}{q}}\right)^{p} .\]
+    \begin{equation*}
+        \begin{cases}
+            \mathbb{R} \mapsto \mathbb{R} & q \text{нечётное, } p>0\\
+            \mathbb{R}\setminus \{0\} \mapsto \mathbb{R} & q \text{нечётное, } p<0\\
+            \left[0; +\infty\right) \mapsto \mathbb{R} & q \text{чётное}, p>0\\
+            \left(0; +\infty\right) \mapsto \mathbb{R} & q \text{чётное}, p<0\\
+        \end{cases}
+    \end{equation*}
+    \subsection{Показательная функция}
+    \[ a > 1 \implies \left( r < s \implies a^{r} < a^{s} \right)  .\]
+    \[ 0 < a < 1 \implies \left( r < s \implies a^{s} < a^{r} \right)  .\]
+    \[ a^{r+s} = a^{r}a^{s} .\]
+    \[ (ab)^{r} = a^{r}b^{r} .\]
+    \[ (a^{r})^{s} = a^{rs} .\]
+    \begin{theorem}
+        \[ a > 0.\]
+        \[ \lim\limits_{n \to \infty} a^{\frac{1}{n}} = 1 .\]
+        \begin{proof}
+            \[ a > 1 .\] 
+            \[ b_n = a^{\frac{1}{n}}-1 > 0 .\]
+            \[ a = (b_1 + 1)^{n} \ge  1 + nb_n > b_n .\]
+            \[ 0 < b_n < \frac{a}{n} \implies \lim b_n = 0 .\]
+            \[ 0 < a < 1 .\]
+            \[ \lim \left( \frac{1}{a} \right)^{\frac{1}{n}} = \frac{1}{\lim a^{\frac{1}{n}}} = 1  .\] 
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}
+        \[ a > 0 .\]
+        \[ x_n\in Q .\]
+        \[ \lim x_n = x .\]
+        Тогда
+        \[ \exists{}\quad \lim a^{x_n} = f(x) .\]
+        \begin{proof}
+            Не умаляя общности, $a>1$.\\
+            $x_n$ ограниченна. $\exists{M}\quad \forall{n}\quad x_n \le M  $
+            \[ 0 < a^{x_n} \le a^{M}.\] 
+            Пусть $x_k > x_m$
+            \[ a^{x_k} - a^{x_m} = a^{x_m}(a^{x_k-x_m}-1) \le a^{M}\left( a^{x_k-x_m} -1 \right) < \varepsilon  .\]
+            \[ \exists{N}\quad \forall{n>N}\quad a^{\frac{1}{n}}-1 < \frac{\varepsilon}{a^{M}} .\]
+            $x_n$ фундаментальная
+            \[ \exists{K}\quad \forall{k,m>K}\quad |x_k-x_m|<\frac{1}{N}   .\]
+            \[ 0 < a^{M}\left( a^{x_k-x_m}-1 \right) \le a^{M}\left(a^{\frac{1}{N}} - 1\right) \le a^{M} \cdot \frac{\varepsilon}{a^{M}} = \varepsilon .\]
+            Значит, $a^{x_n}$ фундаментальна, и предел существует.\\
+            Пусть $\lim x_n = \lim y_n = x$.\\
+            Перемешаем последовательности:
+            \[ z_n = x_1, y_1, x_2, y_2, \ldots .\]
+            \[ \lim z_n = x .\]
+            Тогда существунт $\lim a^{z_n}$.\\
+            Значит $\lim a^{x_n} = \lim a^{y_n}$, как пределы подпоследовательностей.
+        \end{proof}
+    \end{theorem}
+    \begin{definition}
+        \[ a^{x} = \lim a^{x_n} .\]
+        Где $x_n\in \mathbb{Q}$ и $\lim x_n = x$.
+    \end{definition}
+    \begin{dlemma}
+        Все свойства рациональной степени сохраняются.
+        \begin{proof}
+            Пусть $a>1$.\\
+            Возьмём $r,s\in \mathbb{Q}$, $x < r < s < y$.\\
+            Возьмём $x_n, y_n\in Q$, $\lim x_n = x$, $\lim y_n = y$.\\
+            При больших $n$: $x_n < r < s < y_n$.\\
+            Значит 
+            \[ a^{x_n} < a^{r} < a^{s} < a^{y_n} \implies a^{x} \le a^{r} < a^{s} \le a^{y} \implies a^{x} < a^{y}.\] 
+
+            Второе и третье свойство доказываются предельным переходом.
+        \end{proof}
+    \end{dlemma}
+    \begin{dlemma}
+        \[ \lim\limits_{x \to 0} a^{x} = 1 .\]
+        \begin{proof}
+            Возьмём монотонно убывающую $x_n\in \mathbb{Q}$, $\lim x_n = 0$\\
+            Тогда найдём по $\varepsilon$ такое $N$, что $a^{\frac{1}{N}} - 1 < \varepsilon$.\\
+            Найдём $K$, такое, что $\forall{k > K}\quad x_k < \frac{1}{N}$.\\
+            Тогда
+            \[ \forall{k > K}\quad 0 < a^{x_k} - 1 < a^{\frac{1}{N}} - 1 < \varepsilon .\]
+            Возьмём мнотонно возрастающую последовательность $x_n$, тогда $y_n = -x_n$.\\
+            \[ \lim a^{x_n} = \lim a^{-y_n} = \lim \frac{1}{a^{y_n}} = 1.\]
+        \end{proof}
+    \end{dlemma}
+    \begin{theorem}
+        $a^{x}$ всюду непрерывна.\\
+        \begin{proof}
+            Рассмотрим точку $x_0$:
+            \[ \lim\limits_{x xt0 x_0} a^{x}=a^{x_0}  .\]
+            \[ \lim\limits_{x \to x_0} a^{x-x_0}x10.\]
+            Что верно по предыдущеx лемме.
+        \end{proof}
+    \end{theorem}
+    \[ a^{x} : \mathbb{R} \mapsto \left( 0; +\infty \right)  .\]
+    \[ a > 0 .\]
+    \[ a \neq 1 .\]
+    $a^{x}$ - непрерывная строго монотонная функция. Значит, есть обратная.
+    \subsection{Степенная функция для произвольной степени}
+     \[ p\in \mathbb{R} .\] 
+    \[ x^{p} = e^{p\ln x}: \left( 0; +\infty \right) \mapsto \left( 0; +\infty \right)   .\]
+    $x^{p}$ непрерывна и строго монотонна.
+    \begin{theorem}
+        \[ \lim\limits_{x \to \infty} \left( 1 + \frac{1}{x} \right)^{x} = e   .\]
+        \begin{proof}
+            Проверим на мотонном $x_n \to +\infty$.\\
+            Пусть $k_n = \left\lfloor x_n \right\rfloor$ - нестрого монотонная последовательность.\\
+            \[ \left( 1 + \frac{1}{k_n + 1} \right)^{k_n} \le \left( 1+\frac{1}{x^{n}} \right)^{x_n} \le \left( \frac{1}{k_n} \right)^{k_n+1}   .\]
+            \[ \left( 1+\frac{1}{k_n+1}\right)^{k_n} \le \left( 1 + \frac{1}{x_n} \right)^{x_n} \le \left( 1 + \frac{1}{k_n} \right)^{k_n+1}    .\]
+            $k_n$ повторяются только конечное число раз, значит предел не потерялся.\\
+            \[ e \le \lim\limits_{x \to \infty} \left( 1 + \frac{1}{x_n} \right)^{x_n} \le e  .\] 
+        \end{proof}
+    \end{theorem}
+    \begin{tlemma}
+        \[ \lim\limits_{x \to -\infty} \left( 1+\frac{1}{x} \right)^{x}  .\]
+        Возьмём $y_n = -x_n$.\\
+        \[ \left( 1-\frac{1}{y_n} \right)^{-y_n} = \left( 1+\frac{1}{y_n-1}\right)^{y_n} = e   .\] 
+    \end{tlemma}
+    \begin{tlemma}[Второй замечательный предел]
+        \[ \lim\limits_{x \to 9} \left( 1+x \right)^{\frac{1}{x}} = e .\]
+        \begin{proof}
+            Возьмём монотонную по1ледовательность $x_n \to \infty$.\\
+            Возьмём $y_n = \frac{1}{x_n}$.
+            \[ \left( 1+\frac{1}{y_n} \right)^{y_n} = e  .\] 
+        \end{proof}
+    \end{tlemma}
+    \begin{theorem}
+        \[ \lim\limits_{x \to 0} \frac{\ln(1+x)}{x} = 1 .\]
+        \begin{proof}
+            \[ \frac{\ln(1_x)}{x} = \ln \left( 1+x \right)^{\frac{1}{x}}  .\]
+            \[ \lim\limits_{x \to 0} \ln \left( 1+x \right)^{\frac{1}{x}} = \ln e = 1 .\] 
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}
+        \[ \lim\limits_{x \to 0} \frac{a^x-1}{x} = \n a .\]
+        \begin{proof}
+            \[ \lim x_n = 0.\]
+            \[ y_n = a^{x_n} - 1 .\]
+            \[ y_n + 1 = a^{x_n} .\]
+            \[ \ln\left( y_n+1 \right) = x_n\ln a  .\]
+            \[ \lim \frac{a^{x_n}-1}{x_n} = \lim \frac{y_n}{x_n} = \lim \ln a\frac{y_n}{\ln (y_n+1)} .\] 
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}
+        \[ \lim\limits_{x \to 0} \frac{(1+x)^{p}-1}{x} = 1 .\]
+        \begin{proof}
+            \[ \lim x_n = 0 .\]
+            \[ y_n = \left( 1+x_n \right)^{p} - 1 \to 0.\]
+            \[ \ln(1+y_n) = p\ln(1+x_n) .\]
+            \[ \lim \frac{y_n}{x_n} = \lim \frac{y_n}{\ln\left( 1+y_n \right) }\frac{p\ln\left( 1+x_n \right) }{x_n} = p\lim \frac{y_n}{\ln(1+y_n)}\frac{\ln(1+x_n)}{x_n} =p .\] 
+        \end{proof}
+    \end{theorem}
+\end{document} 
