@@ -1,0 +1,137 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cAlgebra}
+%\usepackage{cFonts}
+%\usepackage{cTikz}
+\title{Алгебра 3}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{}
+$X$ - множество, на котором задана бинарная операция  $(\cdot ): X \times X \mapsto X$\\
+$(\cdot )$ - ассоциативна, если $\forall{a,b,c\in X}\quad (a\cdot b)\cdot c = a\cdot (b\cdot c)$\\
+$(\cdot )$ - коммутотивна, если $\forall{a, b\in X}\quad a\cdot b = b\cdot a$\\
+У $(\cdot )$ есть нейтральный элемент, если $\exists{1\in X}\quad \forall{x\in X}\quad 1\cdot X$\\
+$x\in X$ обратим, если $\exists{x^{-1}\in X}\quad x \cdot x^{-1} = x^{-1} \cdot x = 1$. $x^{-1}$ называется обратным к $x$.\\
+$x^{n} = \underbrace{x\cdot x\cdot \ldots \cdot  x}_n$ \\
+Нейтральный элемент единственнен.\\
+\begin{definition}
+    Пара $\left<X, \cdot \right>$ называется моноидом, если:
+    \begin{itemize}
+        \item $\cdot$ - ассоциативна
+        \item Сещуствует нейтральный элемент
+    \end{itemize}
+\end{definition}
+\begin{dlemma}
+    Если $X$ - моноид, а  $x, y\in X$ - обратимые элементы, и $x\cdot y$ - обратимо, то $(x\cdot y)^{-1} = y^{-1} \cdot x^{-1} $.
+    \begin{proof}
+        Рассмотрим произведение
+        \[ (x\cdot y) \cdot y^{-1} \cdot x^{-1} .\]
+        \[ x \cdot y \cdot y^{-1} \cdot x^{-1} = x \cdot 1 \cdot x^{-1} = 1  .\] 
+    \end{proof}
+\end{dlemma}
+\begin{dlemma}
+    Если $X$ - моноид, то обраиный элемент единственнен
+\end{dlemma}
+\begin{dlemma}
+    Если $x$ обратим,  $x^{-1^{-1}} = x$
+\end{dlemma}
+\begin{definition}
+    $\left<G, \cdot\right>$ называется группой, если:\\
+    $\left<G, \cdot \right>$ - мониод\\
+    Любой $g\in G$ обратим\\
+    \begin{itemize}
+        \item $X$ - множество. Рассмотрим  $S_X = \{f: X \mapsto X\ssep f \text{- обратима}\}$. Тогда $\left<S_X, \circ\right>$ - группа
+    \end{itemize}
+\end{definition}
+\begin{definition}
+    $\left<G, \cdot \right>$ - абелева группа, если:\\
+    $\left<G, \cdot \right>$ - группа\\
+    $(\cdot) $ - коммутативна\\
+    Примеры:
+    \begin{itemize}
+        \item $\left<Z_{/n}, \cdot \right>$
+        \item $\left<\mathbb{Z}|\mathbb{Q}|\mathbb{R}, +\right>$
+    \end{itemize}
+\end{definition}
+\begin{definition}
+    Пусть $G$ - группа.\\
+    $H \subset G$.\\
+    $H$ - подгруппа $G$, если:
+     \begin{enumerate}
+        \item $\forall{a, b\in H}\quad a\cdot b\in H$
+        \item $\forall{a\in H}\quad a^{-1}\in H$
+        \item $1\in H$
+    \end{enumerate}
+    Примеры:\\
+    \begin{itemize}
+        \item Плоскость $\mathbb{R}^2$, $S_{\mathbb{R}^2} = \{f: \mathbb{R}^2 \mapsto \mathbb{R}^2\ssep f \text{- биекция}\} $. Подгруппа: $\text{Isom}_{\mathbb{R}^2} = \{f\in S_{\mathbb{R}^2} \ssep \forall{\left<x, y\right>\in \mathbb{R}^2}\quad  \|f(x)-f(y)\| = \|x-y\|\} $.\\
+        \item Рассмотрим подгруппу внутри $\text{Ison}_{\mathbb{R}^2}$. $H = \{f\in \text{Ison}_{\mathbb{R}^2}\ssep f(x_0) = x_0\} $
+    \end{itemize}
+\end{definition}
+\begin{definition}
+    Если $X = \{1, \ldots, n\} $, то $S_X$ называется группой перестановок и обазначатеся $S_n$.\\
+    Если $n\ge 3$, то группа перестановок неабелева.
+\end{definition}
+\begin{definition}
+    Пусть $G_1, G_2$ - группы. Рассмотрим группу  $G_1 \times G_2$. Операция этой группы:\\
+    \[ \left<g_1, g_2\right>\cdot \left<h_1, h_2\right> = \left<g_1h_1, g_2h_2\right> .\]
+    Нейтральный элемент:
+    \[ \left<1_1, 1_2\right> .\]
+    Обратный к $\left<g_1, g_2\right>$:
+    \[ \left<g_1^{-1}, g_2^{-1}\right> .\] 
+\end{definition}
+\begin{definition}
+    Пусть $G$ - группа.  $x\in \mathbb{G}$.\\
+    Определим $x^{n}$, $n\in \mathbb{Z}$ :
+    \begin{equation*}
+        x^{n} = 
+        \begin{cases}
+            x^{n},& n > 0\\
+            1,& n = 0\\
+            \left( x^{-1} \right) ^{|n|},&n < 0
+        \end{cases}
+    \end{equation*}
+    \[ x^{n+m} = x^{n}x^{m} .\]
+    \[ (x^{n})^{m} = x^{nm} .\] 
+\end{definition}
+\begin{definition}
+    Набор $\left<R, +, \cdot \right>$ - кльцо, если:
+    \begin{itemize}
+        \item $<R, +>$ - абелева группа\\
+        \item  $\forall{a,b,c\in R}\quad (a+b)\cdot c = c\cdot (a+b) = a\cdot c+b\cdot c$
+    \end{itemize}
+    Кольцо $R$ - ассцоиативное, если $(\cdot)$ - ассоциативна
+    Кольцо $R$ - коммутативное, если $(\cdot)$ - коммутативно
+    Кольцо $R$ - кольцо с единицей, если у $(\cdot)$ существует нейтральный элемент.
+\end{definition}
+\begin{dlemma}
+    Если $R$ - кольцо, то:
+    \[ a\cdot 0 = 0 \cdot a = 0 .\]
+    \[ a \cdot (-b) = (-a) \cdot b = -(a\cdot b) .\]
+    \[ (-1)\cdot a = a\cdot (-1) = -a\text{, если $R$ - кольцо с единицей} .\]
+    \begin{proof}
+        \[ a\cdot 0 = a\cdot (0+0) = a\cdot 0 + a\cdot 0 \implies a\cdot 0 = 0 .\]
+        \[ a \cdot  \left( b+(-b) \right) = a\cdot 0 =0 .\]
+        \[ a \cdot (b+(-b)) = a\cdot b + a \cdot -b = 0 \implies a\cdot (-b) = -(a\cdot b) .\] 
+    \end{proof}
+\end{dlemma}
+\begin{dlemma}
+    Если $R$ - коммутатвное кольцо и $b\in R$ обратим, то $\frac{a}{b} = a\cdot b^{-1}$.
+\end{dlemma}
+\begin{definition}
+    $R$ - коммутативное ассоциативное кольцо является полем, если:
+    \[ \forall{r\in R\setminus \{0\} }\quad \text{$r$ - обратимо} .\]
+    Примеры:
+    \begin{itemize}
+        \item $\left<\mathbb{Q}|\mathbb{R}, +, \cdot \right>$ 
+        \item $\left<\mathbb{Z}_{/p}, +, \cdot \right>$, если $p\in \mathbb{P}$
+    \end{itemize}
+\end{definition}
+\end{document} 

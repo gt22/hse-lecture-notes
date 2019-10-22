@@ -1,0 +1,109 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+\usepackage{cTable}
+\usepackage{colortbl}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\odr}{ord}
+%\usepackage{cTikz}
+\title{Алгебра 5}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Оценивание}
+    \[ \text{Алг+ДМ} = 0.5\text{Алг} + 0.5\text{ДМ} .\]
+    \begin{enumerate}
+        \item Письменный экзамен за модуль
+        \item Оценка за ДЗ
+        \item $\text{Алг} = 0.3\text{ДЗ} + 0.7\text{Экз}$ 
+        \item $\text{Экз}\ge 4$
+        \item КР - оценка в семестр
+    \end{enumerate}
+\section{Гомоморфизмы}
+    \begin{dlemma}
+        Если $|G| = 2$, то $G$ изоморфна $\mathbb{Z}/2$.\\
+        Единственная группа из двух элементов: 
+        \begin{tabular}{|>{\columncolor[gray]{.8}}L|L|L|}
+            \hline
+            \rowcolor[gray]{.8} \cdot & e & a\\\hline
+            e & e & a\\\hline
+            a & a & e\\\hline
+        \end{tabular}
+    \end{dlemma}
+    \begin{definition}
+        Если $G$ - группа, то $\Aut G = \{f: G \mapsto G\ssep f \text{- изоморфизм}\} $\\
+    \end{definition}
+    \begin{dlemma}
+        $\left<\Aut G, \circ\right>$ - группа\\
+        \begin{proof}
+            Докажем замкнутость относительно $\circ$. Остальные свойства тривиальны.
+            \[ (f\circ g)(a\cdot b) = f(g(a\cdot b)) = f(g(a)\cdot g(b)) = f(g(a)) \cdot f(g(b))\in \Aut G .\]
+        \end{proof}
+    \end{dlemma}
+    \begin{example}
+        Найдём $\Aut \mathbb{Z}$ :\\
+        \[ f(0) = 0 .\]
+        \[ f(1) = a .\]
+        \[ f(2) = f(1+1) = a+a = 2a .\]
+        \[ f(n) = na, n\in \mathbb{Z} .\]
+        Изоморфизм при $a = \pm 1$.\\
+        $\Aut \mathbb{Z} \sim \{\pm 1\} \sim \mathbb{Z}/2$.
+    \end{example}
+    \begin{example}
+        Найдём $\Aut \mathbb{Z}/n$ \\
+        \[ f(0) = 0 .\]
+        \[ f(1) = a .\]
+        \[ f(n) = na .\]\\
+        При $\left( a, n \right) = 1$ - изоморфизм.
+        \[ \Aut \mathbb{Z}/n \sim (\mathbb{Z}/n)^{*} .\] 
+    \end{example}
+\section{Подгруппы порождённые подмножеством}
+    \begin{definition}
+        Если $G$ - группа, $X \subset G$.\\
+        $H = \left<X\right>$ - наименьшая по включению подгруппа $G$, такая, что $X \subset H$. 
+    \end{definition}
+    \begin{dlemma}
+        Если $\forall{\alpha}\quad H_{\alpha} \subset G$, $H_{\alpha}$ - подгруппа $G$, то 
+        \[ H = \bigcap_{\alpha} H_{\alpha}  .\]
+        Тоже подгруппа.
+    \end{dlemma}
+    \begin{dlemma}
+        \[ \left<X\right> = \bigcap_{X \subset H \subset G} H .\]
+        Где $H$ - подгруппа.
+    \end{dlemma}
+    \begin{dlemma}
+        \[ \left<X\right> = \{x_1^{\varepsilon_1} \cdot \ldots \cdot x_n^{\varepsilon_n}\ssep x_i\in X, \varepsilon\in \{\pm 1\} \}  .\]
+    \end{dlemma}
+    \begin{definition}
+        $g\in G$\\
+        $\left<g\right>$ - циклическая подгруппа порождённая $g$.
+    \end{definition}
+    \begin{definition}
+    \[ |\left<g\right>| = \odr g .\] 
+    \end{definition}
+    \begin{dlemma}
+        \[ \forall{g\in G}\quad \exists!{f: \mathbb{Z} \mapsto G \text{, $f$ - гомоморфизм}}\quad f(1) = g .\] 
+    \end{dlemma}
+    \begin{dlemma}
+        Пусть $g\in G$ и $\odr g = n$.\\
+        \begin{equation*}
+            \begin{cases}
+                g^{n} = e\\
+                \forall{n' < n}\quad g^{n'} \neq e
+            \end{cases}
+        \end{equation*}
+    \end{dlemma}
+    \begin{theorem}
+        $g\in G$, то
+        \begin{enumerate}
+            \item $\odr g\in \mathbb{N} \implies \left<g\right> \sim \mathbb{Z}/n$
+            \item $\odr g = \infty \implies \left<g\right> \sim \mathbb{Z}$
+        \end{enumerate}
+    \end{theorem}
+\end{document} 

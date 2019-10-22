@@ -1,0 +1,168 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+\usepackage{cAlgebra}
+\DeclareMathOperator{\odr}{ord}
+%\usepackage{cTikz}
+\title{Алгебра 6}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{}
+    \begin{theorem}
+        \[ \forall{g\in G}\quad \exists!{f: \mathbb{Z} \mapsto  G}\quad f(1) = g  .\] 
+        $f$ - гомомоморфизм
+        \begin{proof}
+            Докажем единственность:
+            \[ f(0) = 0 .\]
+            \[ f(1) = g .\]
+            \[ f(2) = f(1+1) = g^2 .\]
+            \[ f(n-1) = g^{n-1} .\]
+            Существование теперь тривиально 
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}
+        \[ \forall{g\in G}\quad \exists!{f: \mathbb{Z}/\odr g \mapsto \left<g\right>} .\] 
+    \end{theorem}
+    \begin{definition}
+        \[ X \subset G .\]
+        Если $G = \left<X\right>$, то $X$ порождает $G$. $X$ - порождающее множество $G$.\\
+        Если $X$ кончно, то его элементы порождают $G$.\\
+        Если $|X| = 1$, то $G$ - циклическая группа.
+    \end{definition}
+    \begin{dlemma}
+        \[ H \subset \mathbb{Z} .\]
+        $H$ - циклическая.
+        \begin{proof}
+            Если $H = \{0\} $ утверждение тривиально.
+            \[ \exists{n\in \mathbb{Z}}\quad H = n \mathbb{Z}  .\]
+            Подобное утверждение было доказанно ранее.
+        \end{proof}
+    \end{dlemma}
+    \begin{dlemma}
+        \[ g^{n} = e .\]
+        \[ n\divby (\odr g=m) .\]
+        \begin{proof}
+            \begin{equation*}
+                \begin{split} 
+                    &g^{n} = e\\
+                    &\iff g^{mq+r} = e\\
+                    &\iff g^{mq}g^{r} = e\\
+                    &\iff (g^{m})^{q}g^{r} = e\\
+                    &\iff eg^{r} = e\\
+                    &\iff g^{r} = e\\
+                    &\iff r = 0\\
+                    &\iff n\divby m \qedhere  
+                \end{split}
+            \end{equation*}
+        \end{proof}
+    \end{dlemma}
+\section{Смежные классы и Теорема Лагранжа}
+    \begin{definition}
+        Заведём отношение $\sim_H$: $g_1 \sim_H g_2 \iff \exists{h\in H}\quad g_1 = g_2h$.
+    \end{definition}
+    \begin{theorem}
+        $\sim_H$ - отношение эквивалентности
+        \begin{proof}
+            Рефелексивность: $e \in H \implies g_1 = g_1e$\\
+            Симметричность: $h^{-1}\in H \implies g_2 = g_1h^{-1}$
+            Транзитивность:
+            \[ g_1 = g_2h_1\]
+            \[ g_2 = g_3h_2 .\]
+            \[ g_1 = g_2h_2h_1 .\] 
+        \end{proof}
+    \end{theorem}
+    Рассмотрим классы эквивалентности:
+    \begin{definition}
+        \[ gH = \{gh \ssep h\in H\}  .\]
+        $gH$ - левый смежный класс элемента $g$ относительно $H$.
+    \end{definition}
+    \[ G = \bigsqcup_{g \in G} gH  .\]
+    \begin{dlemma}
+        \[ f: H \mapsto gH .\]
+        \[ f(h) = gh .\]
+        $f$ - биекция.
+        \begin{proof}
+            Построим обратное отображение:
+            \[ F(gh) = g^{-1}gh = h .\] 
+        \end{proof}
+    \end{dlemma}
+    \begin{definition}
+        Множество всех левых смежных классов: $G/H$.
+    \end{definition}
+    \begin{definition}
+        $G$ - группа. $|G|$ - порядок $G$, это количество элементов в ней.
+        $|G/H| = \left[G : H\right]$ - индекс $H$ внутри $G$. 
+    \end{definition}
+    \begin{theorem}[Теорема Лагранжа]
+        $H$ - подгруппа $G$.\\
+        $|H|$ конечен\\
+        $\left[G : H\right]$ конечен.\\
+        \[ |G| = \left[G : H\right]|H| .\]
+        \begin{proof}
+            $G$ разбивается на классы смежности, которых $ \left[G : H\right]$.\\
+            Так-как из $H$ в $gH$ есть биекция, $|H| = |gH|$.\\
+        \end{proof}
+    \end{theorem}
+    \begin{tlemma}
+        \[ |G|\divby |H| .\]
+    \end{tlemma}
+    \begin{tlemma}
+        \[ \forall{g\in G}\quad |G| \divby \odr g  .\]
+        \begin{proof}
+            \[ \odr g = |\left<g\right>| .\]
+            $\left<g\right>$ - подгруппа.
+        \end{proof}
+    \end{tlemma}
+    \begin{tlemma}
+        \[ |G| = n \implies g^{n} = e .\]
+        \begin{proof}
+            \[ n\divby \odr g \implies g^{n} = (g^{\odr g})^{\frac{n}{\odr g}} = e .\] 
+        \end{proof}
+    \end{tlemma}
+    \begin{tlemma}[Теорема Эйлера]
+        \[ G = \left( \mathbb{Z}/n \right)^{*}  .\] 
+        \[ a\in \left(G\right)  .\]
+        \[ \varphi(n) = |G| .\]
+        \[ a^{\varphi(n)} = 1 .\]
+    \end{tlemma}
+    \begin{definition}
+        $\varphi(n)$ - функция Эйлера.
+    \end{definition}
+    \begin{dlemma}
+        $p$ - простое.\\
+        $\varphi(p) = p-1$.
+        \begin{proof}
+            Все элементы в $\mathbb{Z}/p$ кроме нуля обратимы.
+        \end{proof}
+    \end{dlemma}
+    \begin{dlemma}
+        $p$ - простое.\\
+        $\varphi(p^{\alpha}) = p^{\alpha} - p^{\alpha-1}$
+    \end{dlemma}
+    \begin{dlemma}
+        Пусть $n = \prod\limits_{i=1}^{\infty} p_i^{\alpha_i}$\\
+        $\varphi(n) = \prod\limits_{i=1}^{\infty} \varphi(p_i^{\alpha_i}) = \prod\limits_{i=1}^{\infty} p_i^{\alpha_i} - p_i^{\alpha_i - 1} = n\prod\limits_{i=1}^{\infty}(1-\frac{1}{p})   $
+    \end{dlemma}
+    \begin{theorem}[Малая теорема Ферма]
+        \[ a^{p-1} \equiv 0\mod p .\] 
+        \begin{proof}
+            Если $a\equiv 0\mod p$ утверждение тривиально.\\
+            $\varphi(p) = p-1$, значит утверждение следует из теоремы Эйлера. 
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}
+        Пусть $|G| = p$.\\
+        Тогда $G$ - циклическая.\\
+        \begin{proof}
+            У $G$ не может быть собственных подгрупп, значит, любой элемент кроме нейтрального порождает всю группу.
+        \end{proof}
+    \end{theorem}
+
+\end{document} 

@@ -1,0 +1,164 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+%\usepackage{cTikz}
+\title{Алгебра 4}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Кольца (продолжение)}
+    \begin{definition}
+        Рассмотрим множество $X$ и кольцо  $R$.\\
+         \[ R^{X} = \{f: X \mapsto R\}  .\] 
+        Введём операции:
+        \[ (f+g)(x) = f(x)+g(x) .\]
+        \[ (f\cdot g)(x) = f(x)\cdot g(x) .\]
+        Принцип: Если свойство верно для $R$, то верно и для  $R^{X}$ \\
+        Значит, $\left<R, +\right>$ и $\left<R, \cdot \right>$ наследуют свойства $R$.
+    \end{definition}
+    \begin{definition}
+        Пусть $R_1$, $R_2$ - кольца.\\
+        \[ \left<a, b\right> + \left<c, d\right> = \left<a+c, b+d\right> .\]
+        \[ \left<a, b\right>\cdot \left<c, d\right> = \left<a\cdot c, b\cdot d\right> .\] 
+        Тогда $\left<R_1 \times R_2, +\right>$ и $\left<R_1 \times R_2, \cdot \right>$ наследуют свойства $R_1$ и $R_2$
+    \end{definition} 
+    \begin{definition}
+        $R$ - кольцо.\\
+        Кольцо верхних треугольных матриц с коэффициэнтами из $R$, размера $2\times 2$:
+        \[ R^{3} = \{\left<a, b, c\right> \ssep a, b, c\in R\}  .\]
+        \[ \left<a, b, c\right> + \left<a', b', c'\right> = \left<a+a', b+b', c+c'\right> .\] 
+        \[ \left<a, b, c\right> \cdot \left<a', b', c'\right> = \left<aa', ab' + bc', cc'\right>.\]
+        Докажем ассоциативность:
+        \[ \left<a, b, c\right> + \left<a', b', c'\right>) \cdot \left<a'', b'', c''\right> .\]\
+        Рассмотрим центральный элемент:
+        \[ \left<a+a', b+b', c+c'\right> \cdot \left<a'', b'', c''\right> = \left<\_, (a+a)'b''+(b+b')c'', \_\right> .\]
+        \[ \left<a, b, c\right>\cdot \left<a'', b'', c''\right> + \left<a', b', c'\right>\cdot \left<a'', b'', c''\right> .\] 
+        \[ \left<\_, ab''+bc'', \_\right> + \left<\_, a'b'' + b'c'', \_\right> = \left<\_, (a+a')b'' + (b+b')c'', \_\right> .\]
+        Докажем отсутствие коммутативности:\\
+        Пусть $1\in R$.\\
+        \[ \left<1, 0, 0\right> \cdot \left<0, 1, 1\right> = \left<0, 1\cdot 1 + 0\cdot 1, 0\right> = \left<0, 1, 0\right> .\] 
+        \[ \left<0, 1, 1\right> \cdot \left<1, 0, 0\right> = \left<0, 0\cdot 0 + 1\cdot 0, 0\right> = \left<0, 0, 0\right>.\]
+    \end{definition}
+    \begin{definition}
+        Пусть $\left<R, +, \cdot\right>$ - кольцо. Тогда $\left<S, +, \cdot\right>$, $S \subset R$ называется подкольцом, если:
+        \begin{enumerate}
+            \item $\left<S, +\right>$ - подгруппа $R$ 
+            \item \[ \forall{a, b\in S}\quad a\cdot b\in S .\]
+            \item Если $1\in R$, то $1\in S$
+        \end{enumerate}
+        Если $\left<S, +, \cdot \right>$ - подкольцо, то:\\
+        \begin{enumerate}
+            \item $\left<S, +, \cdot \right>$ - кольцо
+            \item $\left<S, +, \cdot \right>$ наследует свойства $R$, за исключением обратных элементов.
+        \end{enumerate}
+    \end{definition}
+    \begin{example}
+        Возьмём $\mathbb{Z}[\sqrt{2} ] = \{a+b\sqrt{2} \ssep a,b\in \mathbb{Z} \} \subset \mathbb{R}$.\\
+        \[ (a+b\sqrt{2})+\left( a'+b'\sqrt{2}  \right) = \left( a+a'\right)+\left( b+b' \right)\sqrt{2}     .\]
+        \[ (a+b\sqrt{2})\cdot (a'+b'\sqrt{2}) = \left( aa'+2bb' \right) + \left( ab'+ba' \right)\sqrt{2}   .\] 
+        \[ 1+0\sqrt{2} = 1   .\] 
+    \end{example}
+    \begin{definition}[Кольцо многочленов]
+        Пусть $R$ - кольцо.
+        \[ R[x] = \{a_0 + a_1x + \ldots + a_nx^{n}\ssep a_i\in R\}  .\] 
+        \[ R[[x]] = \{a_0 + a_1x + \ldots + a_nx^{n} + \ldots\ssep a_i\in R\} = \{f: \mathbb{N} \mapsto R\}  .\]
+        \[ R[x] \subset R[[x]] .\]
+        \[ R[x] = \{f: \mathbb{N} \mapsto R\ssep \exists{N>0}\quad \forall{n>N}\quad f(n) = 0\}  .\]
+        \[ (f+g)(n) = f(n) + g(n) .\] 
+        \[ (f\cdot g)(n) = \sum\limits_{i+j=n} f(i)\cdot b(j)  .\]
+        $R[[x]]$ - кольцо,  $R[x]$ - его подкольцо.\\
+        Оба кольца наследуют свойства $R$.
+    \end{definition}
+    \begin{definition}
+        Пусть $\left<R, +, \cdot \right>$ - ассоциативное кольцо с единицей.\\
+        $x$ называется обратимым, если он обратим относительно $\cdot $
+        \[ \exists{x^{-1}\in R}\quad x\cdot x^{-1} = x^{-1} \cdot x = 1 .\] 
+    \end{definition}
+    \begin{theorem}
+        \[ R^{*} = \{a\in R\ssep a\text{ - обратим} \}  .\]
+        $R^{*}$ - подкольцо $R$.\\
+        \[ (a\cdot b)(b^{-1}a^{-1}) .\]
+        \[ a^{-1}\in R \impliedby a^{-1}(a^{-1})^{-1} = 1 .\] 
+    \end{theorem}
+    \begin{definition}
+        $R$ - поле, если $R$ - ассоциативное коммутативное кольцо с единицей, и $R^{*} = R\setminus \{0\} $.
+    \end{definition}
+    \begin{example}
+        \[ \mathbb{Z}^{*} = \{-1, 1\}  .\] 
+    \end{example}
+    \begin{example}
+        \[ \mathbb{Q}^{*} = \mathbb{Q}\setminus \{0\}  .\]
+        \[ \mathbb{R}^{*} = \mathbb{R}\setminus \{0\}  .\] 
+    \end{example}
+    \begin{example}
+        \[ (\mathbb{Z}/n)^{*} = \{a\in \mathbb{Z}/n\ssep \left( a, n \right) = 1\}  .\]
+        \[ (\mathbb{Z}/n)^{*} = \mathbb{Z}\setminus \{0\} \iff n\in \mathbb{P}  .\] 
+    \end{example}
+    \begin{example}
+        \[ (R^{X})^{*} = \{f(x)\in R^{X}\ssep \forall{x\in X}\quad f(x)\in R^{*}\}  .\] 
+    \end{example}
+    \begin{example}
+        \[ (R_1\times R_2)^{*} = \{\left<a, b\right>\in R_1 \times R_2\ssep a\in R_1^{*} \land b\in R_2^{*}\}  .\] 
+        \[ (R_1\times R_2)^{*} = R_1^{*} \times  R_2^{*} .\] 
+    \end{example}
+    \begin{example}
+        Если $R$ - ассоциативное коммутативное кольцо с единицей.
+        \[ (R[[x]])^{*} = \{f(x)\in R[[x]]\ssep f(0)\in R^{*}\}  .\] 
+    \end{example}
+    В дальнейшем, если не указано иное: кольцо $=$ ассоциативное коммутативное кольцо с единицей.
+\section{Группы}
+    \subsection{Гомоморфизмы групп}
+        \begin{definition}
+            Пусть $\left<g_1, \cdot \right>$, $\left<g_2, \times \right>$ - группы
+            $f: g_1 \mapsto g_2$ - гомоморфизм $g_1$, $g_2$, если:
+            \[ \forall{a, b\in g_1}\quad f(a\cdot b) = f(a) \times  f(b) .\]
+        \end{definition}
+        \begin{dlemma}
+            Если $f: g_1 \mapsto g_2$ - гомоморфизм, то:
+            \[ f(1) = 1 .\]
+            \[ f(x^{-1}) = (f(x))^{-1} .\]
+            \[ f(x^{n}) = f(x)^{n}, n\in \mathbb{Z} .\]
+            \begin{proof}
+                \[ f(1) = f(1\cdot 1) = f(1) \times  f(1) = 1 = 1 \times  1 .\]
+                \[ f(1) = f(x x^{-1}) = f(x)\times f(x^{-1}) = 1 \implies f(x^{-1}) = f(x)^{-1}  .\]
+                Если $n>0$:
+                \[ f(x^{n}) = f(\underbrace{x\cdot x\cdot \ldots \cdot x}_n) = \underbrace{f(x)\times f(x) \times  \ldots f(x)}_n = f(x)^{n} .\]
+                Если $n=0$ :
+                \[ f(x^{0}) = f(1) = 1 = f(x)^{0} .\] 
+            \end{proof}
+        \end{dlemma}
+        \begin{definition}
+             $f: g_1 \mapsto g_2$ - гомоморфизм.\\
+             $f$ - мономорфизм, если  $f$ инъективная\\
+             $f$ - эпиморфизм, если $f$ сюръективна\\
+             $f$ - изоморфизм, если $f$ мономорфизм и эпиморфизм.
+        \end{definition}
+        \begin{definition}
+            Если $f: g_1 \mapsto g_2$ - гомоморфизм, то 
+            \[ \ker f = \{x\in g_1\ssep f(x) = 1\}  .\] 
+        \end{definition}
+        \begin{theorem}
+            $\ker f$ - подгруппа $g_1$\\
+            $f$ - мономорфизм, тогда и только тогда $\ker f = \{1\} $ 
+            \begin{proof}
+                Пусть $a, b\in \ker f$.\\
+                Тогда $f(a) = f(b) = 1$,  $f(a)f(b) = 1$\\ 
+                Докажем что $f(x) = f(y) \implies x=y$:\\
+                Рассмотрим $f(xy^{-1} = f(x) \times f(y)^{-1} = 1 \implies xy^{-1} = 1 \implies x=y$
+            \end{proof}
+        \end{theorem}
+        \begin{theorem}
+            Если $f: g_1 \mapsto g_2$ - изоморфизм, то $f^{-1}: g_2 \mapsto g_1$ - изоморфизм.\\
+            \begin{proof}
+                \[ f^{-1}(a\times b) = f^{-1}(a)\cdot f(b) .\]
+                \[ f^{-1}(f(q)\times  f(v)) = q \cdot v .\]
+                \[ f^{-1}(f(q\cdot v)) = q\cdot v .\] 
+            \end{proof}
+        \end{theorem}
+\end{document} 

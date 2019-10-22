@@ -1,0 +1,146 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cAlgebra}
+%\usepackage{cFonts}
+%\usepackage{cTikz}
+\title{Алгебра 2}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Определения} 
+    $\left( a,b \right)$ - НОД($a$,  $b$).
+\section{Линейные диофантовы уравнения}
+     \[ ax+by=c .\]
+    \begin{definition}
+        $a$ и  $b$ - взаимно простые, если  $\left( a, b \right) = 1$
+    \end{definition}    
+    \begin{dlemma}
+        Если $n$ и  $m$ - взаимно простые, то $\forall{a} am\divby{n} \implies a\divby{n}$ 
+        \begin{proof}
+            \[ nx+ny=1 .\]
+            \[ anx+any=a .\]
+            \[ anx\divby{n}\land amy\divby{n} \implies a\divby{n} .\] 
+        \end{proof}
+    \end{dlemma}
+    \begin{theorem}
+        $ax+by=c$ имеет решения только если  $c\divby(d=\left( a,b \right))$
+        \begin{proof}
+            \[ d = ax'+by'.\] 
+            \[ c=\frac{c}{d}\left( ax'+by' \right) \implies x=\frac{c}{d}x'\land y=\frac{c}{d}y'  .\] 
+        \end{proof}
+    \end{theorem}
+    \[ ax+by=c=ax'+by' .\]
+    \[ a(x-x')+b(y-y')=0 .\]
+    \[ a(x-x')=-b(y-y') .\]
+    \[ \frac{a}{d}(x-x')=-\frac{b}{d}(y-y') .\]
+     $a$ и  $b$ - взаимно простые. Значит
+     \[ \frac{a}{d}t = y-y' .\]
+     \[ \frac{a}{d}(x-x')=-\frac{b}{d}t\frac{a}{d} .\]
+     \[ x-x'=-\frac{b}{d}t .\] 
+     \[ x' = x+\frac{b}{d}t .\]
+     \[ y' = y-\frac{a}{d}t .\]
+\section{Алгоритм Евкилда}
+\[ a=r_{-1}=bq_1+r_1 .\] 
+\[ b=r_{0}=r_1q_2+r_2 .\] 
+\[ \left(a, b\right) = \left( b, r_1 \right) = \left( r_1, r_2 \right) = \ldots\]
+\[ r_i \ge 0 .\]
+\[ r_i > r_{i+1} .\]
+Бесконечно убываяющая последовательность неотрицательных чисел приходит к нулю. Значит, при определённом $i$,  $r_i=0$, тогда $r_{i-2} = qr_{i-1}+r_i=qr_{i-1}$. $r_{i-1} = \left( a, b \right) $.
+Множество  $\left( a,b \right)\cdot \mathbb{Z} = \left( b, r_1 \right) \cdot \mathbb{Z} = \ldots $ 
+Значит, любое $r_i \in \left( a, b \right) \cdot \mathbb{Z}$.
+    \[ r_{-1} = 1a+0b .\]
+    \[ r_0 = 0a+1b .\]
+Пусть $r_i = ax+by$,  $r_{i+1} = ax'+by'$, тогда 
+\[ r_{i+2} = r_i -q_{i+2}r_{i+2} = a(x-x'q_{i+2})+b(y-y'q_{i+2} .\]
+Больше всего итераций если $q_i=1$.
+ \[f_0 = r_{k+1}=0 .\]
+ \[f_1 = r_k=1 .\]
+ \[f_2 = r_{k-1}=r_k+r_{k+1} .\]
+\[ f_i = f_{i-1} + f_{i-2} .\]
+\begin{theorem}
+    $f_n \ge \varphi^{n-2}$. $n>1$. $\varphi$ - золотое сеченией, больший корень  $x^2=x+1$. $\varphi>1$.\\
+    \begin{proof}
+        
+    \[ f_1 = 1 \ge  \frac{1}{\varphi} < 1 .\]
+    \[ f_2 = 1 \ge \varphi^0 = 1 .\] 
+    \[ f_i = f_{i-1}+f_{i-2} \ge \varphi^{n-3}+\varphi^{n-4}=\varphi^{n-4}\left( \varphi+1 \right) = \varphi^{n-4}\cdot \varphi^2=\varphi^{n-2} .\] 
+    \end{proof}
+\end{theorem}
+\[ a=bq_1+r_1 .\] 
+\[ b=r_1q_2+r_2 .\]
+\[ N \ge a > b \ge 0 .\] 
+Количество делений с остатком в алгоритме евклида $\le 1+FLOOR \log_{\varphi}N$
+\begin{theorem}
+    \[ r_{k+1-i} \ge f_{i} .\]
+   \begin{proof}
+        \[ r_{k+1}=0 \ge f_0 = 0 .\]
+        \[ r_k \ge f_1=1 .\]
+        \[ r_{k+1-i} = r_{k+2-i}q_{k+2-i}+r_{k+3-i} \ge r_{k+2-i}+r_{k+3-i} \ge  f_{i-1}+f_{i-2}=f_{i} .\] 
+   \end{proof} 
+\end{theorem}
+Три последовательности: $\varphi^{k-2} \le f_{k} \le r_{k+1-i}$. Последовательность  $r$ достигнет  $a $ раньше чем  $f$ или  $\varphi$.
+ \[ a=r_{-1}\ge f_{k+2}\ge \varphi^{k} .\] 
+ $k+1$ - количество делений с остатком. Значит, $\log_{\varphi}N \ge k \implies 1+\log_{\varphi}N \ge k+1$.
+\section{Сравнение целых чисел}
+\[ x^2+1213x+5321=0 .\]
+Есть-ли целый решения?\\
+Если $x$ - чётное, то  $x^2$ - чётное, $1213x$ - чётное,  $5321$ - нечётное. Значит решений нет.\\
+Если  $x$ - нечётное, то все три числа нечётных, и решений нет.\\
+Чётность - остаток от делений на два. Будем приплетать другие остатки. Это теория сравнений. 
+\begin{definition}
+\[n, a, b \in \mathbb{Z}.\]
+\[ (a\equiv b\mod n)=(a\equiv b(n)) = ab\divby{n} .\]
+\end{definition}
+Замечание: $a \equiv b\mod n$ эквивалетно тому, что остатки от деления на $n$ равны.
+ \begin{proof}
+     \[ a\equiv b\mod n \implies (a-b)=nk \implies a=nk+b .\]
+     \[ a=nq_1+r_1 .\]
+     \[ b=nq_2+r_2 .\]
+     \[ 0 \le r_1, r_2 < n .\]
+     \[ a = nq_2+r_2+nk = n(q_2+k)+r_2 \implies r_2=r_1.\qedhere\]
+\end{proof}
+\subsection{Свойства}
+    \[ a\equiv a\mod n .\]
+    \[ a \equiv b\mod n \implies b\equiv a\mod n .\]
+    \[ a \equiv b\mod n\land b \equiv c\mod n \implies a\equiv c \mod n .\]
+    \[ a\equiv b\mod 0 \implies a=b.\]
+    \[ \forall{a, b}\quad a \equiv b \mod 1 .\]
+    \[ a\equiv b\mod n \implies a\equiv b\mod -n .\]
+    \[ a \equiv b\mod n\land c\equiv d \mod n \implies a+c\equiv b+d\mod n\land ac\equiv bd\mod n .\] 
+\end{document} 
+\begin{proof}
+    \[ a=b+nk .\]
+    \[ c=d+ne .\]
+    \[ ac=\left( b+nk \right) \left( d+ne \right) =bd+nkd+neb+n^2ke=bd+n\left( kd+eb+ke \right)  .\] 
+\end{proof}
+\subsection{Линейное сравнение на $x$}
+\[ ax\equiv b\mod n .\]
+\[ ax=b+ny\implies ax-ny=b .\]
+Это линейное диофантого уравнение. $x$ существует если  $b\divby{d=\left( a, n \right) }$.
+\[ x= x_0 \frac{n}{d}t.\] 
+\[ x\equiv x_0\mod \frac{n}{d} .\]
+Решение линейного сравнения единственно по модулю $\frac{n}{d}$.\\
+Замечание: $\left( a, b \right) =1$ эквивалентно тому, что $ax\equiv b\mod n$ разрешимо для всех $b$.
+\section{Система сравнений}
+\begin{equation*}
+    \begin{cases}
+        x\equiv a_1\mod n_1\\
+        \ldots\\
+        x\equiv a_k \mod n_k
+    \end{cases}
+\end{equation*}
+\begin{theorem}[Китайская теорема об остатках]
+    \begin{equation*}
+        \begin{cases}
+            x \equiv a\mod n\\
+            x \equiv b\mod m
+        \end{cases}
+    \end{quation*}
+\end{theorem}
+\end{document}
