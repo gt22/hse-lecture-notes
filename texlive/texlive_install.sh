@@ -23,6 +23,7 @@ fi
 cp `find ./packages/preamble -type f -name "*.sty"` ./
 # Just including texlua so the cache check above works
 # Needed for any use of texlua even if not testing LuaTeX
+tlmgr update --self --all 
 tlmgr install luatex
 
 # Other contrib packages: done as a block to avoid multiple calls to tlmgr
@@ -33,4 +34,3 @@ tlmgr install amsfonts listings xcolor pgfplots amsmath oberdiek babel-russian c
 tlmgr option -- autobackup 0
 
 # Update the TL install but add nothing new
-tlmgr update --self --all --no-auto-install
