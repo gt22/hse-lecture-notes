@@ -27,7 +27,7 @@ tlmgr install luatex
 
 # Other contrib packages: done as a block to avoid multiple calls to tlmgr
 # texlive-latex-base is needed to run pdflatex
-tlmgr install amsfonts listings xcolor pgfplots amsmath oberdiek babel-russian cyrillic collection-langcyrillic accents
+tlmgr install amsfonts listings xcolor pgfplots amsmath oberdiek babel-russian cyrillic collection-langcyrillic accent tikzs
 
 # Keep no backups (not required, simply makes cache bigger)
 tlmgr option -- autobackup 0
