@@ -17,13 +17,10 @@ def build(d):
             print(f'Compiling {pt}...')
             extra_files = copy(d, '.')
             out_dir = os.path.abspath(os.path.join('_build', d[d.index('/') + 1:d.rindex('/')])) #cut src/ and courseN/ from output dir
-            print(f'Out dir: {out_dir}')
             os.makedirs(os.path.join(out_dir), exist_ok=True)
-            sp.call(['pdflatex', '-output-directory', out_dir, a], stdout=sp.DEVNULL)
+            sp.call(['pdflatex', '-output-directory', out_dir, a])
             for out in os.listdir(out_dir):
                 if not out.endswith('.pdf'):
-                    print(pt)
-                    print(os.path.join(out_dir, out))
                     os.remove(os.path.join(out_dir, out))
             for ff in extra_files:
                 os.remove(ff)
