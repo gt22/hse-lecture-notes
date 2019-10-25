@@ -17,30 +17,34 @@
 \section{}
     \begin{theorem}
         \begin{equation*}
-            \overline{\lim x_n} = a
-            \iff \forall{\varepsilon > 0}\quad \forall{N}\quad \exists{n \ge N}\quad  a-\varepsilon < x_n < a+\varepsilon        
+            \varlimsup x_n = b \iff \begin{cases}
+                \forall{\varepsilon > 0}\quad \exists{N}\quad \forall{n > N}\quad x_n < b + \varepsilon\\
+                \forall{\varepsilon > 0}\quad \forall{N}\quad \exists{n > N}\quad x_n > b - \varepsilon
+            \end{cases}
         \end{equation*}
         \begin{equation*}
-            \underline{\lim x_n} = a
-            \iff \forall{\varepsilon > 0}\quad  \forall{N}\quad \exists{n\ge N}\quad a-\varepsilon > x_n > a+\varepsilon
+            \varliminf x_n = a \iff \begin{cases}
+                \forall{\varepsilon > 0}\quad \exists{N}\quad \forall{n > N}\quad x_n > a - \varepsilon\\
+                \forall{\varepsilon > 0}\quad \forall{N}\quad \exists{n > N}\quad x_n < a + \varepsilon
+            \end{cases}
         \end{equation*}
         \begin{proof}
             \[ z_n = \sup \{x_n, x_{n+1}, x_{n+2}, \ldots\}  .\]
             Достаточность:
-            \[ z_n \le b+\varepsilon .\] 
-            \[ \forall{\varepsilon > 0}\quad \exists{N}\quad \forall{n \ge N}\quad z_n \le a+\varepsilon .\]
+            \[ \forall{n > N}\quad z_n \le b+\varepsilon .\]
+            \[ \forall{N} \quad \exists{n > N}\quad x_n > b - \varepsilon \implies \forall{n}\quad  z_n > b - \varepsilon .\] 
+            \[ \forall{\varepsilon > 0}\quad \exists{N}\quad \forall{n \ge N}\quad b-\varepsilon \le  z_n \le b+\varepsilon \implies \lim z_n = b \implies \varlimsup x_n = b .\]
             Необходиомсть:
             \[ z_n \ge z_{n+1} .\] 
-            \[ \lim z_n = b \implies z_n \ge b > b-\varepsilon .\]
-            \[ \exists{k\ge n}\quad x_k > b-\varepsilon .\]
+            \[ \lim z_n = b \implies z_n \ge b > b-\varepsilon \implies \exists{k > n}\quad x_n > b-\varepsilon .\]
             \[ \lim z_n = b \implies \forall{\varepsilon > 0}\quad \exists{N}\quad \forall{n \ge N}\quad z_n < b+\varepsilon \implies x_n < b+\varepsilon .\qedhere\] 
         \end{proof}
     \end{theorem}    
     \begin{theorem}
-        Если $x_n \le \tilde{x}_n$, то $\underline{\lim x_n} \le \underline{\lim}\tilde{x}_n$, $\overline{\lim}x_n \le  \overline{\lim} \tilde{x}_n$
+        Если $x_n \le \tilde{x}_n$, то $\varliminf x_n \le \varliminf\tilde{x}_n$, $\varlimsup x_n \le  \varlimsup \tilde{x}_n$
         \begin{proof}
             \[ y_n =\inf \{x_n, x_{n+1}, \ldots\}  .\]
-            \[ \tilde{y}_n = \inf \{\tilde{x}_n, \tilde{x_{n+1}}\}  .\]
+            \[ \tilde{y}_n = \inf \{\tilde{x}_n, \tilde{x}_{n+1}\}  .\]
             \[ y_n \le \tilde{y_n} \implies \lim y_n \le \lim \tilde{y}_n .\qedhere\] 
         \end{proof}
     \end{theorem}
@@ -48,21 +52,21 @@
     \subsection{Пределы функций}
         \begin{definition}
             Окрестность точки $a$ - $U_a = \left( a-\varepsilon; a+\varepsilon \right) $, для $\varepsilon > 0$.\\
-            Проколотая окрестность - $\accentset{\circ}{U}_a^ = U_a \setminus \{a\} $ \\
+            Проколотая окрестность - $\accentset{\circ}{U}_a = U_a \setminus \{a\} $ \\
             Окрестность бесконечности: $U_{+\infty} = \left( E; +\infty \right) $ \\
             Окрестность минус бесконечности: $U_{-\infty} = \left( -\infty; E \right) $
         \end{definition}
         \begin{definition}
             \[ a\in E \subset \mathbb{R} .\] 
             $a$ - предельная точка $E$, если
-            \[ \accentset{\circ}{U}_a\cap E \neq \emptyset .\] 
+            \[ \forall{\accentset{\circ}{U}_a}\quad \accentset{\circ}{U}_a\cap E \neq \emptyset .\] 
         \end{definition}
         \begin{theorem}
             Следующие условия равносильны:\\
             \begin{enumerate}
                 \item $a$ - предельная точка $E $
                 \item В любой окрестности $a$ содержится бесконечно много точек из $E$ 
-                \item Существует $x_n\in E$, $x_n \neq a$, такие, что $\lim x_n = a$.
+                \item Существуют $x_n\in E$, $x_n \neq a$, такие, что $\lim x_n = a$.
             \end{enumerate}
             \begin{proof}
                 Докажем $2 \implies 1$:
@@ -95,7 +99,7 @@
                 \[ \forall{\varepsilon>0}\quad \exists{\delta>0}\quad \forall{x\in E}\quad 0<|x-a|<\delta \implies |f(x)-A|<\varepsilon .\] 
                 Берём последовательность $x_n\in E$, $x_n \neq  a$, $\lim x_n = a$.\\
                 \[ \forall{\delta > 0}\quad \exists{N}\quad \forall{n>N}\quad 0 < |x_n-a|<\delta .\]
-                Тогда $f(x_n)-A<\varepsilon$. $\lim f(x_n) = A$
+                Тогда $f(x_n)-A<\varepsilon \implies \lim f(x_n) = A$\\
                  $5 \implies \left<2, 3, 4\right>$:\\
                 Докажем от противного:
                 Пусть существует $\varepsilon>0$, для которого $\delta=\frac{1}{n}$ не подходит.\\
@@ -120,11 +124,11 @@
             \end{proof}
         \end{dlemma}
         \begin{dlemma}[Локальная ограниченность] 
-            \[\lim\limits_{x \to a} f(x) = A\in \mathbb{R} \implies  \exists{U_a}\quad \exists{a, b\in R}\quad  \forall{x\in U_a}\quad a \le f(x) \le b  .\]
+            \[\lim\limits_{x \to a} f(x) = A\in \mathbb{R} \implies  \exists{U_a}\quad \exists{a, b\in \mathbb{R}}\quad  \forall{x\in U_a}\quad a \le f(x) \le b  .\]
             \begin{proof}
                 Возьмём $\varepsilon=1$, выберем подходящую $\delta$.  $U_a = \left( a-\delta; a+\delta \right) $ \\
                 Если $x\in E$ и $x\in \accentset{\circ}{U}_a$, то $|f(x) - A| < 1$\\
-                \[ |f(x) \le |A| + |f(x)-A| < |A|+1.\]
+                \[ |f(x)| \le |A| + |f(x)-A| < |A|+1.\]
                 \[ |f(x)| \le\max \{|A|+1, |f(a)|\}  .\qedhere\] 
             \end{proof}
         \end{dlemma}
