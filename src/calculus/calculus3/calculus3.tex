@@ -27,21 +27,23 @@
         \[ \lim (x_n-y_n) = \lim(x_n+(-1)\cdot y_n) = a+(-1)b=a-b .\]
         Для доказательсвта отношения достаточно доказать, что $\lim \frac{1}{y_n} = \frac{1}{b}$
         \[ \left|\frac{1}{y_n}-\frac{1}{b}\right|=\frac{|y_n-b|}{|y_n| |b|} .\]
-        Подставим $\epsilon = \frac{|b|}{2}$, тогда $\exists{N}\quad \forall{n > N} |y_n-b|<\frac{|B|}{2}$.\\
-        Тогда, $|y_n| > \frac{|B|}{2}$. Тогда
-        \[ \frac{|y_n-b|}{|y_n| |b|} < \frac{|y_n-b|}{|b| / 2\cdot |b|} = \frac{2|y_n-b|}{b^2} < \epsilon'.\]
-        Подставим $\epsilon'=\frac{b^2\epsilon}{2}$, тогда найтётся $ \tilde{N}$ удовлетворяющие условию предела.\\
+        Подставим $\varepsilon = \frac{|b|}{2}$, тогда $\exists{N}\quad \forall{n > N}\quad |y_n-b|<\frac{|b|}{2}$.\\
+        Тогда, $|y_n| > \frac{|b|}{2}$. Тогда
+        \[ \frac{|y_n-b|}{|y_n| |b|} < \frac{|y_n-b|}{|b| / 2\cdot |b|} = \frac{2|y_n-b|}{b^2} < \varepsilon'.\]
+        Подставим $\varepsilon'=\frac{b^2\varepsilon}{2}$, тогда найтётся $ \tilde{N}$ удовлетворяющие условию предела.\\
         Докажем про модуль. 
         \[ | |x_n|-a| \le |x_n-a| \iff -|x_n-a| \le |x_n|-|a|\le |x_n-a|.\]
         \[ |x_n|=|(x_n-a)+a| \le |x_n-a|+|a| .\]
         \[ |a| \le  |x_n|+|x_n-a|\text{, симметрично} .\]
         \[ \lim x_n=a \implies \lim (x_n-a) = 0 \implies \lim |x_n-a| = 0 \implies \lim |x_n|-|a| = 0 \implies \lim |x_n| = |a| .\qedhere\] 
     \end{proof} 
-    \subsection{Примеры}
-    \[ \lim \frac{n^2-3n+5}{3n^2+4n-6}=\lim \frac{1-\frac{3}{n}+\frac{5}{n^2}}{3+\frac{4}{n}-\frac{6}{n^2}} .\]
-    \[ \frac{\lim (1-\frac{3}{n}+\frac{5}{n^2})}{\lim (3+\frac{4}{n}-\frac{6}{n^2})}.\]
-    \[ \frac{1-\lim \frac{3}{n} + \lim \frac{5}{n^2}}{3+\lim \frac{4}{n} + \lim \frac{6}{n^2}} = \frac{1}{3} .\] 
 \end{theorem}
+\begin{example}
+\[ \lim \frac{n^2-3n+5}{3n^2+4n-6}=\lim \frac{1-\frac{3}{n}+\frac{5}{n^2}}{3+\frac{4}{n}-\frac{6}{n^2}} .\]
+\[ \frac{\lim (1-\frac{3}{n}+\frac{5}{n^2})}{\lim (3+\frac{4}{n}-\frac{6}{n^2})}.\]
+\[ \frac{1-\lim \frac{3}{n} + \lim \frac{5}{n^2}}{3+\lim \frac{4}{n} + \lim \frac{6}{n^2}} = \frac{1}{3} .\] 
+    
+\end{example}
 \begin{definition}
     Последовательность $x_n$ монотонно возрастает, если $\forall{n}\quad x_n \le x_{n+1}$
 \end{definition}
@@ -59,8 +61,8 @@
     \end{enumerate}
     \begin{proof}
         Пусть $\{x_n\} $ - ограниченное множество, значит у него есть супремум. Пусть  $\sup \{x_n\} = b$. Докажем что $\lim x_n = b$.\\
-        Возьмём  $\epsilon$. $b-\epsilon$ не является верхней гранью множества, занчит $\exists{N}\quad x_N>b-\epsilon$
-        \[ \forall{n>N}\quad b\ge x_n>b-\epsilon \implies b-\epsilon < x_n < b+\epsilon \iff \lim x_n = b .\qedhere\] 
+        Возьмём  $\varepsilon$. $b-\varepsilon$ не является верхней гранью множества, занчит $\exists{N}\quad x_N>b-\varepsilon$
+        \[ \forall{n>N}\quad b\ge x_n>b-\varepsilon \implies b-\varepsilon < x_n < b+\varepsilon \iff \lim x_n = b .\qedhere\] 
     \end{proof}
     Второй пункт доказывается симметрично.
     \begin{proof}
@@ -82,7 +84,7 @@
         Обратное неверно.
     \end{dlemma}
     \begin{dlemma}
-        \[ \lim x_n = \infty \iff \lim |x_n| = \infty  .\] 
+        \[ \lim x_n = \infty \iff \lim |x_n| = +\infty  .\] 
     \end{dlemma}
     \begin{definition}
         $x_n$ - бесконечно большая, если  $\lim x_n = \infty$.
@@ -91,11 +93,11 @@
         Если  $x \neq 0$, то $x_n$ - бесконечно большая тогда, и только тогда, когда  $\frac{1}{x_n}$ - бесконечно малая.
         \begin{proof}
             Необходимость:\\
-            Возьмём $\epsilon$, и подставим  $E = \frac{1}{\epsilon}$ в $\lim x_n = \infty$.\\
-            \[\exists{N}\quad \forall{n>N}\quad |x_n|>E=\frac{1}{\epsilon} \iff |\frac{1}{x_n}| < \epsilon .\]
+            Возьмём $\varepsilon$, и подставим  $E = \frac{1}{\varepsilon}$ в $\lim x_n = \infty$.\\
+            \[\exists{N}\quad \forall{n>N}\quad |x_n|>E=\frac{1}{\varepsilon} \iff \left|\frac{1}{x_n}\right| < \varepsilon .\]
             Достаточность:\\
-            Возьмём $E>0$, подставим  $\epsilon=\frac{1}{E}$ в $\lim \frac{1}{x} = 0$ :
-            \[ \exists{N}\quad \forall{n>N}\quad \left|\frac{1}{x}\right|<\epsilon=\frac{1}{E} \iff  |x_n|>E .\qedhere\] 
+            Возьмём $E>0$, подставим  $\varepsilon=\frac{1}{E}$ в $\lim \frac{1}{x} = 0$ :
+            \[ \exists{N}\quad \forall{n>N}\quad \left|\frac{1}{x}\right|<\varepsilon=\frac{1}{E} \iff  |x_n|>E .\qedhere\] 
         \end{proof}
     \end{theorem}
 \section{Число $e$}
@@ -120,9 +122,9 @@
 \begin{tlemma}
     Если $|t|<1$, то  $\lim t^{n} = 0$ 
     \[ \frac{1}{t} = 1+x, x>0 .\]
-    \[ |\frac{1}{t}|=(1+x)^{n}>1+nx>nx .\]
-    \[ \left|t^n\right| < \frac{1}{nx}<\epsilon .\]
-    \[ N > \frac{1}{\epsilon x} .\] 
+    \[ \left|\frac{1}{t^{n}}\right|=(1+x)^{n}>1+nx>nx .\]
+    \[ \left|t^n\right| < \frac{1}{nx}<\varepsilon .\]
+    \[ N > \frac{1}{\varepsilon x} .\] 
 \end{tlemma}
 Рассмотрим последовательности $x_n = \left(1+\frac{1}{n}\right)^{n} < y_n = (1+\frac{1}{n})^{n+1}$ 
 \begin{theorem}
@@ -130,16 +132,26 @@
     \begin{proof}
         \begin{equation*}
             \begin{split}
-                \frac{y_{n-1}}{y_n} &= \frac{(1+\frac{1}{n-1})^{n}}{(1+\frac{1}{n})^{n}}\\
+                \frac{y_{n-1}}{y_n} &= \frac{(1+\frac{1}{n-1})^{n}}{(1+\frac{1}{n})^{n+1}}\\
                 &= \frac{\frac{n^{n}}{(n-1)^{n}}}{\frac{(n+1)^{n+1}}{n^{n+1}}}\\
                 &= \frac{n^{2n+1}}{(n-1)^{n}(n+1)^{n+1}}\\ 
                 &= \frac{n^{2(n+1)}}{(n^2-1)^{n+1}} \cdot \frac{n-1}{n}\\ 
-                &= \left(1+\frac{1}{n^2-1}\right)^{n+1}\cdot \frac{n-1}{n} > \frac{n-1}{n}\cdot \frac{n}{n-1} = 1 
+                &= \left(1+\frac{1}{n^2-1}\right)^{n+1}\cdot \frac{n-1}{n}\\
+                &> \frac{n-1}{n}\cdot \frac{n}{n-1} = 1 \qedhere 
             \end{split}
         \end{equation*}
     \end{proof} 
     \begin{proof}
-        \[ \frac{x_n}{x_{n-1}} = \frac{(1+\frac{1}{n})^{n}}{(1+\frac{1}{n-1})^{n-1}} = \frac{(n^2-1)^{n}}{(n^2)^{n}} \cdot \frac{n}{n-1} = (1-\frac{1}{n^2})^{n}\cdot \frac{n}{n-1} > (1-\frac{1}{n})\cdot \frac{n}{n-1} = \frac{n-1}{n}\cdot \frac{n}{n-1} = 1.\] 
+        \begin{equation*}
+            \begin{split}
+                \frac{x_n}{x_{n-1}} &= \frac{\left( 1+\frac{1}{n} \right)^{n} }{\left( 1+\frac{1}{n-1} \right)^{n-1} }\\
+                                    &= \frac{\left( n^2-1 \right)^{n} }{n^{2n}} \cdot  \frac{n}{n-1}\\
+                                    &= \left( 1-\frac{1}{n^2} \right)^{n} \cdot  \frac{n}{n-1}\\ 
+                                    &> \left( 1-\frac{1}{n} \right) \cdot \frac{n}{n-1}\\
+                                    &= \frac{n-1}{n}\cdot \frac{n}{n-1} = 1
+            \end{split}
+        \end{equation*}
+        
     \end{proof}
     $x_n$ - ограничена сверху, значит у неё есть предел. $\lim x_n = e$.
 \end{theorem}
@@ -150,13 +162,13 @@
     \[ 2 = x_1 < e < y_5 < 3 .\] 
 \end{tlemma}
 \begin{dlemma}
-    \[ y_n - x_n = (1+\frac{1}{n})x_n - x_n = \frac{x_n}{n} > \frac{2}{n} .\] 
+    \[ y_n - x_n = \left(1+\frac{1}{n}\right)x_n - x_n = \frac{x_n}{n} > \frac{2}{n} .\] 
 \end{dlemma}
 \begin{theorem}
-    Пусть $x_n>0$ и  $\lim \frac{x_{n+1}}{x_n} < 1$, то $\lim x_n = 0$
+    Пусть $x_n>0$ и  $\lim \frac{x_{n+1}}{x_n} < 1$, тогда $\lim x_n = 0$
      \begin{proof}
          \[ q = \lim \frac{x_{n+1}}{x_n} .\] 
-         Подставим $\epsilon = \frac{q+1}{2}$. Тогда,  $\exists{N}\quad \forall{n>N}\quad \frac{x_{n+1}}{x_n} < \epsilon$.\\
+         Подставим $\varepsilon = \frac{q+1}{2}$. Тогда,  $\exists{N}\quad \forall{n>N}\quad \frac{x_{n+1}}{x_n} < \varepsilon$.\\
          Возьмём $n\ge N$: $x_n = \frac{x_n}{x_{n-1}}\cdot \frac{x_{n-1}}{x_{n-2}} \cdot \ldots \cdot \frac{x_{N-1}}{x_N} \cdot  x_N < \left( \frac{q+1}{2} \right)^{n-N}x_N = \left(\frac{q+1}{2}\right)^{n}\frac{x_N}{c} \iff \lim x_n = 0 $
     \end{proof}
 \end{theorem}
