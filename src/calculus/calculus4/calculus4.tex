@@ -15,6 +15,9 @@
 \section{}
     \begin{theorem}
         $x_n >0$ и  $\lim \frac{x_{n+1}}{x_n} < 1$, то $\lim x_n = 0$
+        \begin{proof}
+            Доказано на прошлой лекции.
+        \end{proof}
     \end{theorem}    
     \begin{tlemma}
         $\lim \frac{n^{k}}{a^{n}}=0$ если $k\in \mathbb{N}$ и $a>1$
@@ -43,10 +46,10 @@
         \begin{proof}
             Рассмотрим случай $\ell = 0$\\
             Пусть $\varepsilon_n = \frac{x_{n+1}-x_n}{y_{n+1}-y_n}$ \\
-            Зафиксируем $\varepsilon > 0$, и выберем  $m$, такое, что  $\forall{n\ge m}\quad |\varepsilon_n| < \epsilon$\\
+            Зафиксируем $\varepsilon > 0$, и выберем  $m$, такое, что  $\forall{n\ge m}\quad |\varepsilon_n| < \varepsilon$\\
             \[ x_n = (x_n-x_{n-1})+(x_{n-1}-x_{n-2}) + \ldots + (x_{m+1} - x_m) + x_m .\]
             \[ x_n = \varepsilon_{n-1}(y_n-y_{n-1})+\ldots+\varepsilon_m(y_{m+1}-y_m)+x_m .\]
-            \[ \left|x_n\right| \le \varepsilon_{n-1}(y_n-y_{n-1} + \ldots + \varepsilon_m(y_{m+1}-y_m)+\left|x_m\right| .\]
+            \[ \left|x_n\right| \le |\varepsilon_{n-1}|(y_n-y_{n-1}) + \ldots + |\varepsilon_m|(y_{m+1}-y_m)+\left|x_m\right| .\]
             \[ \left|x_n\right| < \varepsilon\left( y_n - y_m \right) + \left|x_m\right|  .\]
             \[ \left|\frac{x_n}{y_n}\right| < \frac{\varepsilon(y_n-y_m)}{y_n} + \frac{\left|x_m\right|}{y_n} < \varepsilon + \frac{|x_m|}{y_n} .\]
             \[ \exists{n > m}\quad \left|\frac{x_n}{y_n}\right| < \varepsilon \implies \lim \frac{x_n}{y_n} = 0 .\]
@@ -66,8 +69,8 @@
             \[ \lim \frac{1^{m}+2^{m}+\ldots+n^{m}}{n^{m+1}} .\] 
             \[ x_n = \sum\limits_{i=1}^{n} i^{m} .\]
             \[ x_{n+1}-x_{n} = (n+1)^{m} .\]
-            \[ y_{n+1}-y_{n} = (n+1)^{m+1}-n^{m+1} = \sum\limits_{i=1}^{m+1} = \binom{m+1}{i}n^{m-i} .\]
-            \[ \frac{x_n}{y_n} = \frac{\left(1+\frac{1}{n}\right)^{m}}{\binom{m+1}{1} + \ldots} = \frac{1}{m+1} .\]
+            \[ y_{n+1}-y_{n} = (n+1)^{m+1}-n^{m+1} = \sum\limits_{i=1}^{m+1} \binom{m+1}{i}n^{m-i} .\]
+            \[ \frac{x_{n+1}-x_n}{y_{n+1}-y_n} = \frac{\left(1+\frac{1}{n}\right)^{m}}{\binom{m+1}{1} + \ldots} = \frac{1}{m+1} .\]
             Значит, начальный предел тоже равен $\frac{1}{m+1}$
                
         \end{example}
@@ -78,15 +81,15 @@
          \begin{proof}
             Рассмотрим случай $\ell = 0$:\\
             Пусть $\varepsilon_n = \frac{x_{n+1}-x_n}{y_{n+1}-y_n}$ \\
-            Зафиксируем $\varepsilon > 0$, и выберем  $m$, такое, что  $\forall{n\ge m}\quad |\varepsilon_n| < \epsilon$\\
+            Зафиксируем $\varepsilon > 0$, и выберем  $m$, такое, что  $\forall{n\ge m}\quad |\varepsilon_n| < \varepsilon$\\
             \[ x_n - x_m = (x_n-x_{n-1}) + \ldots (x_{m+1}-x_m) .\]
             \[ x_n - x_m = \varepsilon_{n-1}(y_n-y_{n-1}) + \ldots .\]
             \[ |x_n - x_m| \le |\varepsilon| |y_n-y_{n-1}| + \ldots  .\]
-            \[ |x_n-x_m| < \varepsilon\left( (y_{n-1}-y_n) + (y_{n-2}-y_{n-1}) + \ldots \right)  .\]
-            \[ |x_n - x_m| < \varepsilon\left( y_m-y_n \right)  .\]
-            \[ \lim |x_n-x_{n-1}| = |x_m| .\]
-            \[ \lim \varepsilon(y_m-y_n) = \varepsilon y_m .\]
-            \[ |x_m| \le \varepsilon y_m \implies \left|\frac{x_m}{y_m}\right| \le \varepsilon < 2\varepsilon .\] 
+            \[ |x_n-x_m| < \varepsilon\left( (y_{n}-y_{n-1}) + (y_{n-1}-y_{n-2}) + \ldots \right)  .\]
+            \[ |x_n - x_m| < \varepsilon\left| y_n-y_m \right|  .\]
+            \[ \lim |x_n-x_{m}| = |x_m| .\]
+            \[ \lim \varepsilon(y_n-y_m) = -\varepsilon y_m .\]
+            \[ |x_m| \le |\varepsilon y_m| \implies \left|\frac{x_m}{y_m}\right| \le \varepsilon < 2\varepsilon .\] 
          \end{proof}
     \end{theorem}
 \section{Подпоследовательности}
@@ -110,13 +113,13 @@
     \end{dlemma}
     \begin{theorem}[Теорема о стягивающихся отрезках]
         \[ \left[a_1, b_1\right] \supset \left[a_2,b_2\right] \supset \ldots.\]
-        \[ \forall{i}\quad \lim (b_i - a_i) = 0 .\] 
+        \[ \lim\limits_{i \to \infty} (b_i - a_i) = 0 .\] 
         Тогда существует единственная точка, принадлежащая всем отрезкам. Если это точка $c$, то  $\lim a_n = \lim b_n = c$
          \begin{proof}
             Существование следует из теоремы о вложенных отрезках.\\
             Предположим, существует две точки: $c$ и  $d$.
              \[ \forall{n}\quad |d-c| \le b_n - a_n .\]
-             \[ \lim |c-d| \le \lim b_n-a_n \iff \lim |c-d| = 0 \implies c-d .\] 
+             \[ \lim |c-d| \le \lim b_n-a_n \iff \lim |c-d| = 0 \implies c=d .\] 
              Докажем равенство:\\
              Рассмотрим расстояние $|c-a_n| \le  |b_n-a_n| \to 0$. Симметрично для $b_n$.
         \end{proof}
@@ -134,7 +137,7 @@
             Возьмём некоторый $x_{n_1}$ принадлежащий отрезку $ \left[a_1,b_1\right]$\\
             Возьмём такой $x_{n_2}$ принадлежащий отрезку $ \left[a_2, b_2\right]$, так, что $n_2>n_1$\\
             Повторяем, получаем подпоследовательность, где $x_{n_k}\in \left[a_k, b_k\right]$.\\
-            Значит, $\lim a_k \le \lim x_{n_k} \le \lim b_k \iff c \le \lim x_{n_k} \le c \iff \lim x_{n_K} = c$.
+            Значит, $\lim a_k \le \lim x_{n_k} \le \lim b_k \iff c \le \lim x_{n_k} \le c \iff \lim x_{n_k} = c$.
         \end{proof}
     \end{theorem}
     \begin{tlemma}
@@ -144,7 +147,7 @@
            Тогда $b_1$ не является верхней границей. Тогда $\exists{n_1}\quad x_{n_1} > b_1 $ \\
            Пусть $b_2 = \max\left( \{2\} \cup x_{\left[1, n_{n_1}\right]}  \right) $.\\
            Тогда $\exists{n_2 > n_1}\quad x_{n_2} > b_2$.
-           Повторяем. $x_{n_k}$ - возрастающая последовательность неограниченная сверху. Значит, $\lim\limits_k x_{n_k} = +\infty$. 
+           Повторяем. $x_{n_k}$ - возрастающая последовательность неограниченная сверху. Значит, $\lim\limits_{k\to \infty} x_{n_k} = +\infty$. 
         \end{proof}
     \end{tlemma}
     \begin{definition}
@@ -164,7 +167,7 @@
         \begin{proof}
             Пусть $x_n$ - фундаментальная последовательность. $\lim x_{n_k} = \ell$.
             \[ \forall{\varepsilon>0}\quad \exists{N>1}\quad \forall{n,m\ge N}\quad |x_n-x_m|<\varepsilon .\]
-            \[ \forall{\varepsilon}\quad \exists{K>1}\quad \forall{k\ge K}\quad |x_{n_k}-\ell| < \epsilon .\]
+            \[ \forall{\varepsilon}\quad \exists{K>1}\quad \forall{k\ge K}\quad |x_{n_k}-\ell| < \varepsilon .\]
             Возьмём $\varepsilon$, $N$ и $K$ удовлетворяющие условиям.\\
             Возьмём $n\ge N$, $k \ge \max\left( N, K \right) $. Тогда
             \[ |x_{n_k}-\ell| < \varepsilon .\]
@@ -196,7 +199,7 @@
                 Вне любого интервала содержащего $a$ лежит конечное число членов подпоследовательности. Значит, внутри находится бесконечное.\\
             Достаточность:
             Возьмём интервал $\left( a-1; a+1 \right) $. В этом интервале бесконечное числе членов последовательность. Возьмём один из них, и назовём $x_{n_1}$.\\
-            Рассмотрим интервал $\left( a-0.5; \right) $ найдём такой элемент, что его номер больше чем $n_1$, назовём $x_{n_2}$. Повторяем.\\
+            Рассмотрим интервал $\left( a-0.5; a+0.5\right) $ найдём такой элемент, что его номер больше чем $n_1$, назовём $x_{n_2}$. Повторяем.\\
         По аналогии с доказательством \ref{bolz-weier}, $\lim x_{n_k} = a$.
         \end{proof}
         \begin{problem}
@@ -204,10 +207,6 @@
             Рассмотрим случай для $a=+\infty$
             Вместо отрезков будем выбирать лучи с началами в $1$,  $2$,  $3$,  $\ldots$.\\
             Из каждого будем выбирать $x_{n_k}$. Это будет неограниченная возрастающая подпоследовательность. Для $a=-\infty$ аналогично.
-        \end{problem}
-        \begin{problem}
-            Доказать, что 
-            \[\{\text{част. пределы}\}\cap \mathbb{R} = \{\text{предельные точки} x_n\} \cup \{\text{члены последовательности с бесконечной кратностью}\}\]
         \end{problem}
     \end{theorem}
     \begin{tlemma}\label{monolim}
@@ -219,26 +218,26 @@
         \end{proof}
     \end{tlemma}
     \begin{definition}
-        Нижний предел - $\underline{\lim} x_n = \lim\limits_{n \to \infty} \inf\limits_{k\ge n} x_k$ \\
-        Верхний предел - $\overline{\lim} x_n = \lim\limits_{n \to \infty} \sup\limits_{k\ge n} x_k $ \\
+        Нижний предел - $\varliminf x_n = \lim\limits_{n \to \infty} \inf\limits_{k\ge n} x_k$ \\
+        Верхний предел - $\varlimsup x_n = \lim\limits_{n \to \infty} \sup\limits_{k\ge n} x_k $ \\
         \[ y_n =\inf\limits_{k\ge n}x_k .\]
         \[ z_n = \sup\limits_{k\ge n}x_k .\]
     \end{definition}
     \begin{theorem}
-        $\underline{lim}$ и  $\overline{lim}$ существуют в $\overline{\mathbb{R}}$ и $\underline{lim} \le \overline{lim}$ 
+        $\varliminf$ и  $\varlimsup$ существуют в $\overline{\mathbb{R}}$ и $\varliminf \le \varlimsup$ 
         \begin{proof}
             \[ y_n \le y_{n+1} .\]
             \[ z_{n} \ge z_{n+1} .\]
-            Тогда, по \ref{monolim}, существуют $\underline{\lim}x_n = \lim y_n$,  $\overline{\lim}x_n = \lim z_n$.
+            Тогда, по \ref{monolim}, существуют $\varliminf x_n = \lim y_n$,  $\varlimsup x_n = \lim z_n$.
         \end{proof}
         
     \end{theorem}
     \begin{theorem}
-        $\overline{\lim}$ - наибольший из частичных пределов.\\
-        $\underline{\lim}$ - нименьший из частичных пределов.\\
-        $\lim x_n$ существует тогда и только тогда, когда  $\overline{lim} x_n = \underline{\lim x_n}$ \\
+        $\varlimsup$ - наибольший из частичных пределов.\\
+        $\varliminf$ - нименьший из частичных пределов.\\
+        $\lim x_n$ существует тогда и только тогда, когда  $\varlimsup x_n = \varliminf x_n$ \\
         \begin{proof}
-            Пусть $b = \overline{\lim} x_n = \lim z_n$ \\
+            Пусть $b = \varlimsup x_n = \lim z_n$ \\
             Возьмём $z_\ell$. Это  $\sup\limits_{k\ge \ell} x_k$. Тогда найдётся такой $x_i$, $i\ge \ell$, такой, что  $x_i \ge z_{\ell} - \frac{1}{\ell}$.\\
             Назовём $n_{\ell} = i$.\\
             \[ z_{\ell} \ge x_{n_\ell} > z_{\ell}-\frac{1}{\ell} \implies b \ge \lim x_{n_\ell} >b-\varepsilon \implies \lim x_{n_\ell} = b.\]
@@ -254,7 +253,7 @@
             Необходимость:\\
             Если последовательность имеет предел, то любая её подпоследовательность имеет тот-же предел, значит существует ровно один частичный предел\\
             Достаточность:\\
-            \[ y_n \le x_n \le z_n \implies \underline{\lim} x_n \le \lim x_n \le \overline{\lim} x_n \implies \lim x_n = \overline{\lim} x_n = \underline{\lim} x_n .\]
+            \[ y_n \le x_n \le z_n \implies \varliminf x_n \le \lim x_n \le \varlimsup x_n \implies \lim x_n = \varlimsup x_n = \varliminf x_n .\]
         \end{proof}
     \end{theorem}
 \end{document} 
