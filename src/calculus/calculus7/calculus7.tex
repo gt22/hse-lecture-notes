@@ -33,11 +33,16 @@
         Пусть $f$ строго возрастает.\\
         Возьмём $x<y$, допустим $f^{-1}(x) \ge f^{-1}(y)$.\\
         Тогда $f(f^{-1}(x)) \ge f(f^{-1}(y)) \iff x \ge y$, что противоречит условию.\\
-        Возьмём произвольную точку $y_9$.\\
+        Возьмём произвольную точку $y_0$.\\
         \[ f(y) < f(y_0) \iff y < y_0 \iff f^{-1}(y) < f^{-1}(y_0).\]
-        \[ A = \sup\limits_{y<y_0} f^{-1}(y) = \lim\limits_{y \to y_0-} f^{-1}(y) \le f^{-1}(y_0) =  .\]
-        \[ \lim\limits_{y \to y_0+} f^{-1}(y) \ge f^{-1}(y_0) = \inf\limits_{y>y_0} f^{-1}(y) = B.\]
-        Если $A=B$ то функция непрерывна в этой точки.\\
+        \begin{equation*}
+            \begin{split}
+                A &= \sup_{y<y_0} f^{-1}(y)\\
+                  &= \lim\limits_{y \to y_0-} f^{-1} y \le f^{-1}(y_0) \le \lim\limits_{y \to y_0+} f^{-1}(y)\\ 
+                  &= \inf_{y>y_0} f^{-1}(y) = B
+            \end{split}
+        \end{equation*}
+        Если $A=B$ то функция непрерывна в этой точке.\\
         Пусть $A<B$.\\
         \[ f^{-1}\left( \left<m, M\right> \right) = f^{-1}\left( \left<m, y_0\right) \right) \cup \{f(y_0)\} \cup f^{-1}\left( \left(y_0, M\right> \right) \subset \left(-\infty; A\right] \cup \{f^{-1}(y_0)\} \cup \left[B; \infty\right)    .\]
         Что невозможно, так-как облать значений непрерывна.
@@ -46,8 +51,12 @@
 \begin{theorem}[Первый замечательный предел]
     \[ \lim\limits_{x \to 0} \frac{\sin x}{x} = 1 .\]
     \begin{proof}
-        \[ \sin x < x < \tan x \le x\in \left( 0; \frac{\pi}{2} \right) .\]
-        \[ \cos x < \frac{\sin x}{x} < 1 \le x\in \left(-\frac{\pi}{2};  0\right) \cup \left( 0; \frac{\pi}{2} \right)   .\]
+        \[ x\in \left( 0; \frac{\pi}{2} \right)  .\] 
+        \[ \sin x \le  x \le  \tan x .\]
+        \[ \frac{\sin x}{x} \le  1 \le  \frac{\sin x}{x} \cdot \frac{1}{\cos x} .\]
+        \[ \cos x \le \frac{\sin x}{x} \le 1 \text{, из-за чётности верно при $x\in \left( -\frac{\pi}{2}; 0 \right) \cup \left( 0; \frac{\pi}{2} \right)  $.} .\]
+
+        \[ \cos x < \frac{\sin x}{x} < 1 .\]
         \[ \lim\limits_{x \to 0} \cos x < \frac{\sin x}{x} < 1  \iff 1 \le \frac{\sin x}{x} \le 1 \implies \lim\limits_{x \to 0} \frac{\sin x}{x} = 1.\] 
     \end{proof}
 \end{theorem}
@@ -60,16 +69,16 @@
     \subsubsection{$n$ чётно}
     $x^{n}: \left[0;\infty \right) \mapsto \left[0;\infty \right)$, строго возрастает, есть обратная.
     \subsection{Обратная степенная функция}
-    \[ x^{-n} = \frac{1}{x^{n}} .\]]
+    \[ x^{-n} = \frac{1}{x^{n}} .\]
     $x^{-n}: \mathbb{R}\setminus \{0\} \mapsto \mathbb{R}\setminus \{0\}  $, непрерывна.
     \subsection{Рациональная степень}
     \[ x^{\frac{p}{q}} = \left(x^{\frac{1}{q}}\right)^{p} .\]
     \begin{equation*}
         \begin{cases}
-            \mathbb{R} \mapsto \mathbb{R} & q \text{нечётное, } p>0\\
-            \mathbb{R}\setminus \{0\} \mapsto \mathbb{R} & q \text{нечётное, } p<0\\
-            \left[0; +\infty\right) \mapsto \mathbb{R} & q \text{чётное}, p>0\\
-            \left(0; +\infty\right) \mapsto \mathbb{R} & q \text{чётное}, p<0\\
+            \mathbb{R} \mapsto \mathbb{R} & q \text{ нечётное, } p>0\\
+            \mathbb{R}\setminus \{0\} \mapsto \mathbb{R} & q \text{ нечётное, } p<0\\
+            \left[0; +\infty\right) \mapsto \mathbb{R} & q \text{ чётное}, p>0\\
+            \left(0; +\infty\right) \mapsto \mathbb{R} & q \text{ чётное}, p<0\\
         \end{cases}
     \end{equation*}
     \subsection{Показательная функция}
@@ -84,7 +93,7 @@
         \begin{proof}
             \[ a > 1 .\] 
             \[ b_n = a^{\frac{1}{n}}-1 > 0 .\]
-            \[ a = (b_1 + 1)^{n} \ge  1 + nb_n > b_n .\]
+            \[ a = (b_n + 1)^{n} \ge  1 + nb_n > nb_n \implies b_n < \frac{a}{n} .\]
             \[ 0 < b_n < \frac{a}{n} \implies \lim b_n = 0 .\]
             \[ 0 < a < 1 .\]
             \[ \lim \left( \frac{1}{a} \right)^{\frac{1}{n}} = \frac{1}{\lim a^{\frac{1}{n}}} = 1  .\] 
@@ -92,10 +101,10 @@
     \end{theorem}
     \begin{theorem}
         \[ a > 0 .\]
-        \[ x_n\in Q .\]
+        \[ x_n\in \mathbb{Q} .\]
         \[ \lim x_n = x .\]
         Тогда
-        \[ \exists{}\quad \lim a^{x_n} = f(x) .\]
+        \[ \exists\lim a^{x_n} = f(x) .\]
         \begin{proof}
             Не умаляя общности, $a>1$.\\
             $x_n$ ограниченна. $\exists{M}\quad \forall{n}\quad x_n \le M  $
@@ -166,7 +175,7 @@
         \begin{proof}
             Проверим на мотонном $x_n \to +\infty$.\\
             Пусть $k_n = \left\lfloor x_n \right\rfloor$ - нестрого монотонная последовательность.\\
-            \[ \left( 1 + \frac{1}{k_n + 1} \right)^{k_n} \le \left( 1+\frac{1}{x^{n}} \right)^{x_n} \le \left( \frac{1}{k_n} \right)^{k_n+1}   .\]
+            \[ \left( 1 + \frac{1}{k_n + 1} \right)^{k_n} \le \left( 1+\frac{1}{x^{n}} \right)^{x_n} \le \left( 1 + \frac{1}{k_n} \right)^{k_n+1}   .\]
             \[ \left( 1+\frac{1}{k_n+1}\right)^{k_n} \le \left( 1 + \frac{1}{x_n} \right)^{x_n} \le \left( 1 + \frac{1}{k_n} \right)^{k_n+1}    .\]
             $k_n$ повторяются только конечное число раз, значит предел не потерялся.\\
             \[ e \le \lim\limits_{x \to \infty} \left( 1 + \frac{1}{x_n} \right)^{x_n} \le e  .\] 
@@ -178,9 +187,9 @@
         \[ \left( 1-\frac{1}{y_n} \right)^{-y_n} = \left( 1+\frac{1}{y_n-1}\right)^{y_n} = e   .\] 
     \end{tlemma}
     \begin{tlemma}[Второй замечательный предел]
-        \[ \lim\limits_{x \to 9} \left( 1+x \right)^{\frac{1}{x}} = e .\]
+        \[ \lim\limits_{x \to 0} \left( 1+x \right)^{\frac{1}{x}} = e .\]
         \begin{proof}
-            Возьмём монотонную по1ледовательность $x_n \to \infty$.\\
+            Возьмём монотонную последовательность $x_n \to \infty$.\\
             Возьмём $y_n = \frac{1}{x_n}$.
             \[ \left( 1+\frac{1}{y_n} \right)^{y_n} = e  .\] 
         \end{proof}
@@ -188,7 +197,7 @@
     \begin{theorem}
         \[ \lim\limits_{x \to 0} \frac{\ln(1+x)}{x} = 1 .\]
         \begin{proof}
-            \[ \frac{\ln(1_x)}{x} = \ln \left( 1+x \right)^{\frac{1}{x}}  .\]
+            \[ \frac{\ln(1+x)}{x} = \ln \left( 1+x \right)^{\frac{1}{x}}  .\]
             \[ \lim\limits_{x \to 0} \ln \left( 1+x \right)^{\frac{1}{x}} = \ln e = 1 .\] 
         \end{proof}
     \end{theorem}
