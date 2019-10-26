@@ -19,11 +19,11 @@
     \begin{theorem}[Предельный переход в неравенстве]
         \[ f, g: E \mapsto \mathbb{R} .\]
         \[ \forall{x\in E}\quad f(x) \le g(x)  .\]
-        $a$ - предельная точка $e$, и существуют $\lim\limits_{x \to a} f(x) = A$ и $\lim\limits_{x \to a} g(x) = B$.\\
+        $a$ - предельная точка $E$, и существуют $\lim\limits_{x \to a} f(x) = A$ и $\lim\limits_{x \to a} g(x) = B$.\\
         Тогда $\lim\limits_{x \to a} f(x) \le \lim\limits_{x \to a} g(x)$.
         \begin{proof}
-            Пусть $\{x_n\} \to a$.\\
-            Тогда $\lim f(x_n) = A$, $\lim g\left( x_n \right) $.\\
+            Пусть $(x_n) \to a$.\\
+            Тогда $\lim f(x_n) = A$, $\lim g\left( x_n \right) = B$.\\
             \[ \forall{x_n}\quad f(x_n) \le g(x_n) \implies A\le B .\qedhere\] 
         \end{proof}
     \end{theorem}
@@ -33,19 +33,17 @@
         \[ \forall{x\in E}\quad f(x) \le g(x) \le h(x)   .\]
         Если $\lim\limits_{x \to a} f(x) = \lim\limits_{x \to a} h(x) = A$, то $\lim\limits_{x \to a} g(x) = A$.
         \begin{proof}
-            Пусть $\{x_n\} \to a$.\\
-            \[ \lim f(x_n) = \lim h(x)n) = A .\]
+            Пусть $(x_n) \to a$.\\
+            \[ \lim f(x_n) = \lim h(x_n) = A .\]
             \[ A \le \lim g(x_n) \le A \implies \lim g(x_n) = A \implies \lim\limits_{x \to a} g(x) = A .\qedhere\] 
         \end{proof}
     \end{theorem}
     \begin{definition}[Предел слева и справа]
         \[ f: E \mapsto \mathbb{R} .\] 
-        \[ E_1 = \left( -\infty; a \right)\cap E .\]
-        $a$ - предельная точка $ E_1$.\\
+        $E_1 = \left( -\infty; a \right)\cap E$, $a$ - предельная точка $ E_1$.\\
         \[ g = \left.f\right|_{E_1}\]
         \[ \lim\limits_{x \to a-} f(x) = \lim\limits_{x \to a-0} f(x) = \lim\limits_{x \to a} g(x)  .\] 
-        \[ E_2 = \left( a, +\infty \right)\cap E .\]
-        $a$ - предельная точка $ E_2$.\\
+        $E_2 = \left( a, +\infty \right)\cap E$, $a$ - предельная точка $ E_2$.\\
         \[ h = \left.f\right|_{E_2} .\]
             \[ \lim\limits_{x \to a+} f(x) = \lim\limits_{x \to a+0} f(x) = \lim\limits_{x \to a} h(x) .\] 
     \end{definition}
@@ -87,7 +85,7 @@
         \[ \lim\limits_{x \to a-} f(x) = \inf\limits_{x\in E_1} f(x)  .\]
         \begin{proof}
             Пусть $\sup\limits_{x\in E_1} f(x) = B < \infty$.\\
-            \[ \forall{\varepsilon>0}\quad \exists{y\in E}\quad f(y)>B-\varepsilon .\]
+            \[ \forall{\varepsilon>0}\quad \exists{y\in E_1}\quad f(y)>B-\varepsilon .\]
             Пусть $\delta = a-y$, возьмём $0<a-x<\delta \iff y<x<a$\\
             \[ B-\varepsilon < f(y) \le f(x) \le B < B+\varepsilon. \implies \lim\limits_{x \to a-} f(x) = B.\qedhere\]
         \end{proof}
@@ -102,7 +100,7 @@
             \[ \forall{\varepsilon>0}\quad \exists{\delta > 0}\quad \forall{y\in E}\quad 0<|y-a|<\delta \implies |f(y)-A| < \varepsilon   .\] 
             \[ |f(x)-f(y)| \le |f(x)-A|+|A-f(y)| < 2\varepsilon .\]
             Достаточность:
-            Пусть $\{x_n\} \to a$.\\
+            Пусть $(x_n) \to a$.\\
             Возьмём $\delta>0$ по $\varepsilon$.\\
             По $\delta$ найдётся $N$, такой, что $\forall{n>N}\quad |x_n-a|<\delta $, $\forall{m>N}\quad |x_m-a|<\delta $.\\
             Тогда
@@ -143,7 +141,7 @@
             $C_c(x) = c$ - непрерывна.\\
             $f(x) = x$ - непрерывна.\\
             $F_a(x) = x^{a} = \underbrace{x\cdot x\cdot \ldots\cdot x}_{a} $ - непрерывна.\\
-            $P(x) = C_{a_1}(x) + C_{a_1}F_{a}(x) + \ldots C_{a_n}F_n(x)$ - непрервына.
+            $P(x) = C_{a_0}(x) + C_{a_1}F_{1}(x) + \ldots C_{a_n}F_n(x)$ - непрервына.
         \end{proof}
     \end{tlemma}
     \begin{tlemma}
@@ -155,7 +153,7 @@
     \end{tlemma}
     \begin{theorem}[Теорема о стабилизации знака]
         $f: E \mapsto \mathbb{R}$, $f$ непрерывна в точке $a$, $a\in E$, $f(a) \neq 0$.
-        \[ \exists{U_a}\quad \forall{x\in U_a\cap E}\quad \sgn(f(x)) = \sgn((f(y))   .\]
+        \[ \exists{U_a}\quad \forall{x\in U_a\cap E}\quad \sgn(f(x)) = \sgn(f(a))   .\]
         \begin{proof}
             Если $a$ не предельная точка, то утверждение эквивалентно $\sgn(f(a)) = \sgn(f(a))$.\\
             Если $a$ предельная точка, то следует из стабилизации знака для передлов.
@@ -226,7 +224,7 @@
         \begin{proof}
            Докажем от противного.\\
            Пусть $f$ неограничена.\\
-           \[ \forall{n}\quad \exists{x_n}\quad |f(x_n)| > n .\]
+           \[ \forall{n}\quad \exists{x_n\in \left[a; b\right]}\quad |f(x_n)| > n .\]
            $x_n$ - ограниченная последовательность, существует $x _{n_k}$, $\lim x_{n_k} = c$.\\
            \[ a \le x_n \le b \implies a \le c \le b .\]
            Тогда $f$ непрерывна в точке $c$.\\
@@ -241,7 +239,7 @@
            Но $M$ - супремум. Так-что пртиворечие. В другую сторону аналогично.
         \end{proof}
     \end{theorem}
-    \begin{theorem}[Теорема Больцмана-Коши]
+    \begin{theorem}[Теорема Больцано-Коши]
         $f: \left[a; b\right] \mapsto \mathbb{R}$, непрерывна на всей области определения.\\
         Если $C\in \left[f(a), f(b)\right]$, то $\exists{c\in \left[a; b\right]}\quad f(c)=C$.
         \begin{proof}
@@ -266,7 +264,7 @@
             \[ \forall{C\in \left[f(p); f(q)\right]}\quad \exists{c\in \left[p; q\right]}\quad f(c) = C   .\] 
         \end{proof}
     \end{theorem}
-    \begin{theorem}]
+    \begin{theorem}
         Непрерывный образ промежутка - промежуток.\\
         Пусть $ \left<a; b\right>$ - одно из $\left[a; b\right]$, $(a;b]$, $ \left( a; b \right) $, $[a; b)$.
         $f: \left<a, b\right> \mapsto \mathbb{R}$, $f$ непрерывна на $\left<a, b\right>$
