@@ -1,0 +1,271 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+\usepackage{cTikz}
+\DeclareMathOperator{\const}{const}
+\title{Мат. Анализ 8}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Дифференциальное исчисление}
+    \subsection{Дифференцируемость и производная}
+        \begin{definition}
+            $f: <a,b> \mapsto \mathbb{R}$, $x_0\in \left<a, b\right>$.\\
+            $f$ дифференцируема в точке $x_0$, если 
+            \[ \exists{k\in \mathbb{R}}\quad f(x) = f(x_0) + k(x-x_0) + o(x-x_0), x \to x_0 .\] 
+        \end{definition}
+        \begin{definition}
+            Производная $f$ в точке $x_0$:
+            \[ f'(x_0) = \lim\limits_{dx \to 0} \frac{f(x_0+dx)-f(x_0)}{dx}  .\] 
+        \end{definition}
+        \begin{theorem}[Критерий дифференцируемости]
+            $f: \left<a, b\right> \mapsto \mathbb{R}$, $x_0\in \left<a, b\right>$.\\
+            Следующие условия равносильны:
+            \begin{enumerate}
+                \item $f$ дифференцируема в точке $x_0$
+                \item Существует конечная $f'(x_0)$
+                \item $\exists{\varphi: \left<a, b\right> \mapsto \mathbb{R}}\quad f(x)-f(x_0)=\varphi(x)(x-x_0)$, $\varphi$ непрерывна в токе $x_0$.
+            \end{enumerate}
+            Если эти условия выполняются, то $k=f'(x_0) = \varphi(x_0)$.
+            \begin{proof}
+            $1 \implies 2$:\\
+              \[ f(x)-f(x_0) = k(x-x_0) + o(x-x_0) \implies \frac{f(x)-f(x_0)}{x-x_0} = k + \frac{o(x-x_0)}{x-x_0}\to k .\]
+              Тогда производная существует, конечна, и равна $k$.\\
+              $2 \implies 3$:\\
+              \begin{equation*}
+                  \varphi(x) = \begin{split}
+                      \frac{f(x)-f(x_0)}{x-x_0} & x \neq x_0\\
+                      f'(x)
+                  \end{split}
+              \end{equation*}
+              Проверим что $\varphi$ непрерывна: $\lim\limits_{x \to x_0} \varphi(x) = x_0$, но предел это $f'(x_0)$.
+              $3 \implies 1$:\\
+              $\varphi$ непрерына, значит, $\varphi(x) = \varphi(x_0) + o(1)$.\\
+              $f(x) = f(x_0) + \varphi(x)(x-x_0) = f(x_0) + \varphi(x)(x-x_0) + o(x-x_0)$
+          \end{proof}
+      \end{theorem}
+      \begin{definition}
+          Производная справа:
+          \[ f'_+(x_0) = \lim\limits_{x \to x_0+} \frac{f(x)-f(x_0)}{x-x_0} .\]
+          Аналогично слева.
+      \end{definition}
+      \begin{dlemma}
+          \[ f'_+(x_0) = f'_{-}(x_0) \implies f'(x_0) = f'_{+}(x_0) = f'_{-}(x_0) .\] 
+      \end{dlemma}
+      \begin{definition}
+          \[ f(x_0+dx) = f(x_0) + kdx + o(dx) .\]
+          Отображение $kdx$ называется дифференциалом.
+      \end{definition}
+      \begin{theorem}
+          Если $f$ дифференцируема в $x_0$, то $f$ непрерывна в $x_0$.
+          \begin{proof}
+              \[ f(x+dx) = f(x_0) + kdx+o(dx) .\]
+              \[ \lim\limits_{x \to x_0} f(x) = f(x_0) + \lim\limits_{dx \to 0} kdx + \lim\limits_{dx\to 0} o(dx) = f(x_0)  .\] 
+          \end{proof}
+      \end{theorem}
+      \begin{theorem}[Арифметические действия с производными]
+          $f,g: \left<a, b\right> \mapsto \mathbb{R}$, $x_0\in \left<a, b\right>$, $f,g$ - дифференцируемы в $x_0$.\\
+          Тогда:
+          \[ (f\pm g)'(x_0) = f'(x_0) \pm g'(x_0) .\]
+          \begin{proof}
+              \[ \lim\limits_{x \to x_0} \frac{(f\pm g)(x)-\left( f\pm g \right)(x_0) }{x-x_0} = \lim\limits_{x \to x_0} \frac{f(x)-f(x_0)+g(x)-g(x_0)}{x-x_0} = f'(x_0)+g'(x_0) .\] 
+          \end{proof}
+          \[ (fg)'(x_0) = f'(x_0)g(x_0) + f(x_0)g'(x_0) .\]
+          \begin{proof}
+              \begin{equation*}
+                  \begin{split}
+                      \lim\limits_{x \to x_0} \frac{(fg)(x)-(fg)(x_0)}{x-x_0} 
+                      &= \lim\limits_{x \to x_0} \frac{f(x)g(x)-f(x_0)g(x_0)}{x-x_0}\\
+                      &= \lim\limits_{x \to x_0} \frac{f(x)g(x)-f(x_0)g(x_0)+f(x)g(x_0)-f(x)g(x_0)}{x-x_0}\\
+                      &= \lim\limits_{x \to x_0} f(x) \frac{g(x)-g(x_0)}{x-x_0} + \lim\limits_{x \to 0} g(x_0) \frac{f(x)-f(x_0)}{x-x_0}\\
+                      &= f(x_0)g'(x_0)+g(x_0)f(x)
+                  \end{split}
+                  %FIXME: Insert drawing
+              \end{equation*}
+          \end{proof}
+          \[ (cf)'(x_0) = cf'(x_0) .\]
+          \begin{proof}
+              $g(x) = c \implies g'(x) = 0 \implies (fg)'(x_0) = f(x_0)g'(x_0)+g(x_0)f'(x_0)=cf(x_0)$.
+          \end{proof}
+          \[ g(x_0) \neq 0 \implies \left(\frac{f}{g}\right)'(x_0) = \frac{f'(x_0)g(x_0) -f(x_0)g'(x_0)}{g^2(x_0)}  .\]
+          \begin{proof}
+              \begin{equation*}
+                  \begin{split}
+                      \lim\limits_{x \to x_0} \frac{\left( \frac{f}{g} \right)(x) - \left( \frac{f}{g} \right)(x_0)  }{x-x_0}
+                      &= \lim\limits_{x \to x_0} \frac{\frac{f(x)}{g(x)} - \frac{f(x_0)}{g(x_0)}}{x-x_0}\\
+                      &= \lim\limits_{x \to x_0} \frac{1}{g(x)g(x_0)} \cdot \lim\limits_{x \to x_0} \frac{f(x)g(x_0)-f(x_0)g(x)}{x-x_0}\\
+                      &= \frac{1}{g^2(x_0)} \cdot \lim\limits_{x \to x_0} \frac{f(x)g(x_0)-f(x_0)g(x)+f(x_0)g(x_0)-f(x_0)g(x_0)}{x-x_0}\\
+                      &= \frac{1}{g^2(x_0)} \cdot  \left(\lim\limits_{x \to x_0} g(x_0) \frac{f(x)-f(x_0)}{x-x_0} -  \lim\limits_{x \to x_0} f(x_0) \frac{g(x)-g(x_0)}{x-x_0}\right)\\
+                      &= \frac{g(x_0)f'(x_0)-f(x_0)g'(x_0)}{g^2(x_0)}
+                  \end{split}
+              \end{equation*}
+          \end{proof} 
+      \end{theorem}
+      \begin{theorem}[Производная композиции]
+          $f:\left<a, b\right> \mapsto \mathbb{R}$, $g: \left<c, d\right> \mapsto \left<a, b\right>$, $x_0\in \left<c, d\right>$, $g$ дифференцируема в $x_0$, $f$ в $g(x_0)$.
+          \[ (f\circ g)(x) = f'(g(x))g'(x) .\]
+          \[ \frac{d(f\circ g)}{dx} = \frac{df}{dg}\frac{dg}{dx} .\]
+          \begin{proof}
+              \[ y_0 = g(x_0) .\] 
+              \[ g(x)-g(x_0) = \psi(x)(x-x_0) \text{, $\psi$ непрерывна в  $x_0$} .\]
+              \[ f(y)-f(y_0) = \varphi(y)(y-y_0) \text{, $\varphi$ непрерывна в $y_0$} .\] 
+              \[ f(g(x))-f(g(x_0)) = \varphi(g(x))(\psi(x)(x-x_0)) .\]
+              $g(x)$ непрерывна в $x_0$, значит $\varphi(g(x))$ непрерывна в $x_0$, и $\varphi(g(x))(\psi(x)(x-x_0))$ непрерынва в $x_0$, как произведение непрерывных.
+          \end{proof}
+      \end{theorem}
+      \begin{theorem}[Производная обратной фнукции]
+          $f: \left<a, b\right> \mapsto \mathbb{R}$, $f$ непрерывна и строго монотонна и дифференцируема в $x_0$, при этом $f'(x_0) \neq 0$.\\
+          Тогда, $g=f^{-1}$ дифференцируема в $y_0f(x_0)$, $g'(y_0) =\frac{1}{f'(x_0)} = \frac{1}{f'(g(x_0)}$.
+          \begin{proof}
+              \[ f(x) - f(x_0) = \varphi(x)(x-x_0) .\]
+              Заметим, что $\varphi(x) \neq 0$, так-как в $x\neq x_0 \implies f(x)-f(x_0) \neq 0$, а в $x_0$ она равна производной.\\
+              \[ x-x_0 = \frac{1}{\varphi(x)}(f(x)-f(x_0)) \iff g(y) - g(y_0) = \frac{1}{\varphi(x)}(y-y_0) .\]
+              Так-как $\varphi(x) \neq 0$, то $\frac{1}{\varphi(x)}$ непрерывна.\\
+              \[ g'(x_0) = \frac{1}{\varphi(x_0)} = \frac{1}{f'(x_0)} = \frac{1}{f'(g(y_0))} .\] 
+          \end{proof}
+      \end{theorem}
+    \subsection{Производные элементарных функций}
+        \[ c' = 0 .\]
+        \[ (x^{p})' = px^{p-1} .\]
+        \[ (a^{x})' = a^{x}\ln a \text{, $a>0$} .\]
+        \[ (e^{x})' = e^{x} .\]
+        \[ (\log_a x)' = \frac{1}{x\ln a} \text{, $a>0$,  $a\neq 1$} .\]
+        \[ (\ln x)' = \frac{1}{x} .\]
+        \[ (\sin x)' = \cos x .\]
+        \[ (\cos x)' = \sin x .\]
+        \[ (\tan x)' = \frac{1}{\cos^2 x} .\]
+        \[ (\ctg x)' = \frac{1}{\sin^2 x} .\] 
+        \[ (\arctan x)' = \frac{1}{1+x^2} .\]
+        \[ (\arcctg x)' = -\frac{1}{1+x^2} .\]
+        \[ (\arcsin x)' = \frac{1}{\sqrt{1-x^2} } .\]
+        \[ (\arccos x)' = 0\frac{1}{\sqrt{1-x^2} } .\] 
+        \begin{proof}
+            \[ (x^{p})' = \lim\limits_{dx \to 0} \frac{(x+dx)^{p}-x^{p}}{dx} = x^{p} \lim\limits_{x \to h} \frac{(1+\frac{dx}{x})^{p} - 1}{\frac{dx}{x}}\cdot \frac{1}{x} = x^{p}\cdot p\cdot \frac{1}{x} = px^{p-1}  .\]
+            \[ (a^{x})' = \lim\limits_{dx \to 0} \frac{a^{x+h}-a^{x}}{h} = a^{x} \lim\limits_{dx \to 0} \frac{a^{dx}-1}{dx} = a^{x}\ln a .\]
+            \[ (\ln x)' = \lim\limits_{dx \to 0} \frac{\ln(x+dx)-\ln x}{dx} = \lim\limits_{dx \to 0} \frac{\ln\left( 1+\frac{dx}{x} \right) }{\frac{dx}{x}}\cdot \frac{1}{x} = \frac{1}{x}  .\]
+            \[ (\sin x)' = \lim\limits_{dx \to 0} \frac{\sin(x+dx)-\sin x}{dx} = \lim\limits_{dx \to 0} \frac{2(\sin \frac{dx}{2}\cos\left( x+\frac{dx}{2} \right) }{dx} = \cos x .\]
+            Косинус аналогично, остальные по арифметике и обратным.
+        \end{proof}
+    \subsection{Теорема о среднем}
+        \begin{theorem}[Теорема Ферма]
+            $f: \left<a, b\right> \mapsto \mathbb{R}$, $x_0\in \left( a, b \right)$, и $f(x_0) = \max f(x)$ или $\min f(x)$, и $f$ дифференцируема в $x_0$, тогда $f'(x_0) = 0$.
+            \begin{proof}
+                Для определённости, пусть будем минмум.
+                \begin{equation*}
+                    \begin{cases}
+                        f_{+}'(x_0) = \lim\limits_{x \to x_0+} \frac{f(x) - f(x_0)}{x-x_0} \ge 0\\
+                        f_{-}'(x_0) = \lim\limits_{x \to x_0-} \frac{f(x)-f(x_0)}{x-x_0} \le 0 
+                    \end{cases}
+                    \implies f'(x_0) = 0
+                \end{equation*}
+
+            \end{proof}
+        \end{theorem}
+        \begin{theorem}[Теорма Ролля]
+            $f: \left[a, b\right] \mapsto \mathbb{R}$, дифференцируема на $\left( a, b \right) $, непрерывна на всём отрезке, и $f(a) = f(b)$.\\
+            Тогда существует $c\in \left( a, b \right) $, $f(c) = 0$.\\
+            \begin{proof}
+                По теореме Вейерштрасса, $f$ достигает максимума и минимума в каких-то точках.\\
+                Если максимум или минимум внутри интервала, то по теореме Ферма производная там равна нулю.\\
+                Если и максимум и минимум достагается на концевых точках, то функция постоянна на отрезке, и её производная равна нулю.
+            \end{proof}
+        \end{theorem}
+        \begin{theorem}[Теорема Лагранжа (формула конечных приращений)]
+            $f: \left[a, b\right] \mapsto \mathbb{R}$, дифференцируема на интервале, непрерывна на отрезке.\\
+            \[ \exists{c\in \left(a, b\right)}\quad f(b)-f(a) = f'(c)(b-a) .\] 
+            \begin{proof}
+                \[ g(x) = f(x) - kx .\]
+                \[ g(a) = g(b) = f(a) - ka = f(b) - kb \implies k = k = \frac{f(b) - f(a)}{b-a} .\]
+                Применим теорему Ролля: \[ \exists{c\in \left( a, b \right) }\quad g'(c) = 0 = f'(c)-k = f'(c) - \frac{f(b)-f(a)}{b-a} \implies f'(c)(b-a) = f(b) - f(a) .\] 
+            \end{proof}
+        \end{theorem}
+        \begin{theorem}[Теорема Коши (очередная)]
+            $f, g: \left[a, b\right] \mapsto \mathbb{R}$, $f,g$ непрерывны на отрезке, дифференцируемы на интервале, $\forall{x\in \left( a, b \right) }\quad g'(x) \neq  0$.\\
+            Тогда
+            \[ \exists{c\in (c, b)}\quad \frac{f(b) - f(a)}{g(b) - g(a)} = \frac{f'(c)}{g'(c)} .\]
+            \begin{proof}
+                \[ h(x) = f(x) - kg(x) .\]
+                \[ f(b) - kg(b) = h(b) = h(a) = f(a) - kg(a) \implies k = \frac{f(b) - f(a)}{g(b) - g(a)} .\] 
+                \[ \exists{c\in \left( a, b \right) }\quad h'(c) = 0 = f'(c) - kg'(c) .\]
+                Подставив $k$ получим что надо.
+            \end{proof}
+        \end{theorem}
+        \subsubsection{Следствия из Лагранжа}
+            
+            $f: \left<a, b\right> \mapsto \mathbb{R}$, дифферецируема на интервале, непрерывна на промежутке.\\
+            \begin{tlemma}
+                Если $\forall{x\in \left( a, b \right) }\quad |f'(x)| \le  M$, то $|f(x)-f(y)| \le M|x-y|$.\\
+                Такая функция называется Липщецевой функйией с константой $M$.
+                \begin{proof}
+                    По Т. Л. $\exists{c\in \left( x, y \right) }\quad |f(y)-f(x)| = f'(c)|x-y| \le M|x-y|$.
+                \end{proof}
+            \end{tlemma}
+            \begin{tlemma}
+                Если $\forall{x\in (a, b)}\quad f'(x) \ge 0$, то $f$ нестрго монотонно возрастает.\\
+                \begin{proof}
+                    \[ f(y) - f(x) = f'(c)(y-x) \ge  0 \iff y \ge  x .\] 
+                \end{proof}
+            \end{tlemma}
+            \begin{tlemma}
+                Если $\forall{x\in \left( a, b \right) }\quad f'(x) > 0$, то $f$ строго монотонно возрастает.
+            \end{tlemma}
+            \begin{tlemma}
+                Если $\forall{x\in \left( a, b \right) }\quad f'(x) \le 0$, то $f$ нестрого монотонно убывает.
+            \end{tlemma}
+            \begin{tlemma}
+                Если $\forall{x\in \left( a, b \right) }\quad f'(x) < 0$, то $f$ строго монотонно убывает.
+            \end{tlemma}
+            \begin{tlemma}
+                Если $\forall{x\in \left( a, b \right) }\quad f'(x) = 0$, то $f(x) = \const$.
+            \end{tlemma}
+            \begin{theorem}[Теорема Варбу]
+                $f: \left[a, b\right] \mapsto \mathbb{R}$, $f$ дифференцируема на отрезке.\\
+                Пусть $C$ лежит строго между $f'(a)$, $f'(b)$, тогда $\exists{c\in \left( a, b \right) }\quad f'(c) = C$
+                \begin{proof}
+                    Случай $C=0$.\\
+                    Для определённости $f'(a) < 0 < f'(b)$.\\
+                    $f$ непрерывна, значит принимает максимальное и минимальное значение на отрезке.\\
+                    При таких знаках производной, минимум функции точно будет внутри интервала, и в этой точке $f'(x) = 0$.\\
+                    \[ f'(a) = \lim\limits_{x \to a+} \frac{f(x)-f(a)}{x-a}  .\]
+                    Пусть $a$ - точка минимума. Тогда числитель больше нуля, знаменатель больше нуля, предел $\ge 0$, но $f'(a) < 0$.\\
+                    Аналогично для $f'(b)$.\\
+                    При другой расстановке знаков, внутри будет максимум.\\
+                    Если $C\neq 0$, можно из $f$ вычесть фукнцию $Cx$, и получится случай для $C=0$.\\
+                \end{proof}
+            \end{theorem}
+            \begin{tlemma}
+                Пусть $f: \left<a, b\right> \mapsto \mathbb{R}$, $f$ непрерывна на промежутке, диффренцируема на интервале, $f'(x) \neq 0$ на всём интервале. Тогда $f$ строго монотонна.
+                \begin{proof}
+                    Если существет точки в которых производная разных знаков, то между ними была-бы точка с нулевой производной.
+                \end{proof}
+            \end{tlemma}
+            \begin{theorem}[Правило Лопиталя]
+                Пусть $-\infty \le a < b \le +\infty$.\\
+                $f,g : \left( a, b \right) \mapsto \mathbb{R}$, дифференцируемы на $\left( a,b \right) $, $g'(x) \neq0$.\\
+                $\lim\limits_{x \to b-} f(x) = \lim\limits_{x \to b-} g(x) = 0$.\\
+                Если $\lim\limits_{x \to b-} \frac{f'(x)}{g'(x)} = \ell\in \overline{\mathbb{R}}$, то $\lim\limits_{x \to b-} \frac{f(x)}{g(x)} = \ell$
+                \begin{proof}
+                    По предыдущей лемме, $g$ строго монотонно, значит, она либо везде положительна, либо везде отрицательная, и $g(x) \neq 0$.\\
+                    Проверим предел по Гейне. Возьмём монотонно возрастающую последовательность $x_n \to b$.\\
+                    Тогда $g(x_n)$ строго монотонно.\\
+                    Тогда, по теореме Штольца:
+                    \[ \lim\frac{f(x_n)}{g(x_n)} = \lim \frac{f(x_{n}) - f(x_{n-1})}{g(x_n) - g(x_{n-1})} .\]
+                    \[ \exists{c_n\in \left( x_{n-1}, x_n \right) }\quad \frac{f(x_n) - f(x_{n-1})}{g(x_n) - g(x_{n-1})} = \frac{f'(c)}{g'(c)} .\]
+                    $c_n \to b$, значит, предел равен $\ell$.\\
+                \end{proof}
+            \end{theorem}
+            \begin{theorem}[Лопиталь для бескончностей]
+                Меняем условие $\lim\limits_{x \to b-} f(x) = \lim\limits_{x \to b-} g(x) = 0$, меняем на $\lim\limits_{x \to b-} g(x) = +\infty$. Доказательство аналогично Лопиталю для нулей, с заменёнными пределами последовательностей.
+            \end{theorem}
+    \subsection{Производные высших порядков}
+        \begin{definition}
+            $f: \left<a, b\right> \mapsto \mathbb{R}$ дифференцируема в окрестности точки $x_0$, тогда $f'$ определена в окретнсоти $x_0$, и если $f'$ дифференцируема, то  $f$ дифференцируема дважды, в  $x_0$.\\ 
+            Вторая производная $f$ - производная $f'$.
+        \end{definition}
+\end{document} 
