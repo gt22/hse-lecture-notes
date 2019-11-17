@@ -1,0 +1,199 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+\usepackage{cAlgebra}
+%\usepackage{cTikz}
+\DeclareMathOperator{\fix}{Fix}
+\DeclareMathOperator{\supp}{Supp}
+\DeclareMathOperator{\sgn}{sgn}
+\title{Алгебра 7}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{}
+    \begin{theorem}
+        Если $H \le \mathbb{Z}/n$, то $H$ - циклическая.\\
+        \[ \forall{d}\quad n\divby{d}\quad \exists!{H \le \mathbb{Z}/n}\quad |H| =d .\]
+        \begin{proof}
+            Заметим, что существует эпиморфизм $\pi : \mathbb{Z} \mapsto \mathbb{Z}/n$.
+            Так-как $H \le \mathbb{Z}/n$, существует прообра $\pi^{-1}(H)$.\\
+            Докажем, что если $f: g_1 \mapsto g_2$, и $H \le g_2$, то $f^{-1}(H) \le g_1$.\\
+            \[ f(e_{g_1}) = e_{g_2} \implies e_{g_1}\in f^{-1}(H) .\]
+            \[ f(a^{-1}) = f(a)^{-1} \implies \left( f(a)\in H \iff f(a)^{-1}\in H \right)  .\]
+            \[ f(a \cdot b) = f(a) \times f(b) \implies f(a \cdot b)\in H .\]
+            Тогда мы знаем, что $\pi^{-1}(H) = \left<k\right>$ - циклическая.\\
+            Тогда $H$ тоже циклическая, и равна $\left<\pi(k)\right>$:\\
+            Пусть $y\in \pi^{-1}(H)$. Тогда $y=sk$, а $\pi(y)=\overline{k}\overline{s}$, и $\pi(y)\in H$.\\
+            Для доказательство второго утверждения, построим подгруппу порядка $d$, где $d$ - делитель $n$.\\
+            Возьмём $\frac{n}{d}$, и построим из него подгруппу.\\
+            Докажем единственность: любая другая подгруппа того-же порядка так-же цикличиская, и порождена элементом порядка $d$. Назовём этот элемент $x$ Тогда $\frac{n}{\left( n,x \right) } = d$, значит, $\left( n, x\right) = \frac{n}{d}$. Значит, $x\divby \frac{n}{d}$, и $\left<x\right> = \left<d\right>$.
+        \end{proof}
+    \end{theorem}
+    \begin{definition}
+        Пусть $a_1 \ldots a_k\in \{1, \ldots, n\} $.\\
+        Тогда по этим элементом можно построить цикл:
+        \begin{equation*}
+            C(x) = \begin{cases}
+                x & x \not\in \{a_1, \ldots, a_k\}\cr
+                a_{i+1} & x=a_i, i < k\cr
+                a_1 & a_k=x
+            \end{cases}
+        \end{equation*}
+        Цикл обозначается $\left( a_1, \ldots, a_k \right) $
+    \end{definition}
+    \begin{theorem}
+        Порядок цикла равен его размеру.
+        \begin{proof}
+            Рассмотрим перестановку $c^{d}(x)$ для каждого $x$:
+            \begin{enumerate}
+                \item Если $x \not\in \{a_1, \ldots, a_k\} $, то $c^{d}(x)=x$ 
+                \item Если $x=a_1$, то $c^{d} = x \iff k$.
+                \item Для других аналогично.
+            \end{enumerate}
+        \end{proof}
+    \end{theorem}
+    \begin{definition}
+        $x$  называется неподвижной относительно перестановки $\sigma$, если $\sigma(x) = x$.\\
+        Множество всех неподвижных точек обозначается $\fix\sigma$.\\
+        Дополнение этого множества: $\supp\sigma$
+    \end{definition}
+    \begin{definition}
+        Перестановки $\sigma_1$ и $\sigma_2$ называются независимыми если $\supp \sigma_1\cap \supp \sigma_2 = \emptyset$.
+    \end{definition}
+    \begin{dlemma}
+        Независимые перестаноки коммутируют.
+    \end{dlemma}
+    \begin{definition}
+        $x$ лежит в одной орбите с $y$ относительно $c$, если $\exists{k\in \mathbb{Z}}\quad c^{k}(x) = y$.
+    \end{definition}
+    \begin{dlemma}
+        Это отношение эквивалентности.\\
+        \begin{proof}
+            Рефлексивность: $c^{0}(x) = x$\\
+            Симметричность: Если $c^{k}(x) = y$, то $c^{-k}(y) = x$.\\
+            Транзитивность: Если $c^{k_1}(x) = y$, $c^{k_2}(y) = z$, то $c^{k_2}(c^{k_1}(x)) = z \implies c^{k_1k_2}(x) = z$  
+        \end{proof}
+    \end{dlemma}
+    \begin{theorem}
+        Любую перестановку $\sigma\in S_n$ можно представить как произведение циклов $c_1, \ldots, c_k$, где циклы попарно независимы.
+        \begin{proof}
+            Разобьём $\sigma$ на орбиты $\Omega_i$.\\
+            Построем циклы: 
+            \begin{equation*}
+                C_i(x) = 
+                \begin{cases}
+                    x & x \not\in \Omega_i\\
+                    \sigma(x) & x\in \Omega_i
+                \end{cases}
+            \end{equation*}
+            Докажем что $C_i$ будет циклом:\\
+            Возьмём какой-нибудь $x\in \Omega_i$, тогда $\Omega_i = \{x, \sigma(x), \sigma^{2}(x), \ldots, \sigma^{k-1}(x)\} $.\\
+            Где $k=|\Omega_i|$.\\
+            Елси хотя-бы один из элементов вида $\sigma^{m}(x)$ повторялся с любой из меньших степеней, $m\neq k$, то в $|\Omega_i|$ было-бы $m$, а не $k$. Строгое доказательство аналогично докательству про эквивалентность определений порядка элемента.\\
+            \begin{equation*}
+                \supp C_i = 
+                \begin{cases}
+                    \Omega_i & |\Omega_i| \neq 1\\
+                    \emptyset & |\Omega_i| = 1
+                \end{cases}
+            \end{equation*}
+            Значит, циклы независимы.\\
+            Пусть $x\in \Omega_i$, тогда все циклы кроме $i$-го ничего с ним не делают, а $i$-ый переводит в $\sigma(x)$. Значит, композиция (произведение) циклов равно $\sigma$.
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}
+        Порядок перестановки равен НОК порядков циклов в её разложении.\\
+        \begin{proof}
+            Пусть $\sigma=c_1c_2\ldots c_k$\\
+            Так-как независимые перестановки коммутируют, $\sigma^{d}=c_1^{d}c_2^{d}\ldots c_k^{d}$.\\
+            Эти циклы всё ещё независимы, значит чтобы $\sigma$ была тождественной, надо чтобы все циклы были тождественными перестановками.\\
+            Наименьшее такое $d$ - НОК порядков циклов.
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}
+        Обратная перестановка получается переворотом элементов в циклах разложения.
+    \end{theorem}
+    \begin{theorem}
+        Пусть $\overline{C}_n$ - множество всех циклов в $S_n$.\\
+        Тогда $S_n = \left<\overline{C}_n\right>$
+    \end{theorem}
+    \begin{definition}
+        Транспозиция - цикл длины $2$.
+    \end{definition}
+    \begin{theorem}
+        $S_n$  порождена транспозициями.\\
+        \begin{proof}
+            Выразим цикл $\left( a_1, \ldots, a_k \right) $ как произведение транспозицией.\\
+            \[ (a_1, \ldots, a_k) = (a_1, a_k)(a_1, a_{k-1})\ldots\left( a_1, a_2 \right)  .\]
+            \[ \left( a_1, \ldots, a_k \right) = \left( a_1, a_2 \right) \left( a_2, a_3 \right) \ldots (a_{k-1}, a_k) .\qedhere\] 
+        \end{proof}
+    \end{theorem}
+    \begin{definition}
+        Перестановка $\sigma\in S_n$, то пара $i<j$ задаёт инверсию для $\sigma$, если $\sigma(i)>\sigma(j)$
+    \end{definition}
+    \begin{definition}
+        Чётность $\sigma$ - чётность число инверсий.
+    \end{definition}
+    \begin{definition}
+        Знак $\sgn \sigma$ - $-1^{\text{число инверсий}}$
+    \end{definition}
+    \begin{dlemma}
+        Знак перестановки равен $1$ если она чётная, и $-1$ если нечётная.
+    \end{dlemma}
+    \begin{dlemma}
+        \[ \sgn \sigma = \prod\limits_{i<j} \frac{\sigma(j)-\sigma(i)}{j-i}  .\]
+        \begin{proof}
+            $j-i$ положительное, $\sigma(j)-\sigma(i)$ отрицательно тогда и только тогда, когда $i,j$ задают инверсию.\\
+            Заметим, для каждого множителя в числителе найдётся равный ему множитель в числителе.
+        \end{proof}
+    \end{dlemma}
+    \begin{dlemma}
+        \[ \sgn \sigma = \prod\limits_{\{i, j\}} \frac{\sigma(j)-\sigma(i)}{j-i}   .\] 
+    \end{dlemma}
+    \begin{dlemma}
+        $\sgn \sigma$ - гомоморфизм из $S_n$ в $\{\pm 1\} $
+        \begin{proof}
+            \[ \sgn \sigma\tau = \sgn\sigma\sgn\tau = \prod\limits_{\{i,j\}} \frac{\sigma(j)-\sigma(i)}{j-i}\prod\limits_{\{e, k\}} \frac{\tau(k)-\tau(e)}{k-e}     .\]
+        \[ {i, j} = \{\tau(k), \tau(e)\}   .\] 
+        \[ \prod\limits_{\{k, e\} } \frac{\sigma(\tau(k))-\sigma(\tau(e)}{\tau(k)-\tau(e)}\prod\limits_{\{k, e\} }\frac{\tau(k)-\tau(e)}{k-e} = \prod\limits_{\{k, e\} } \frac{\sigma(\tau(k))-\sigma(\tau(e))}{k-e} = \sgn \sigma\tau      .\qedhere\] 
+        \end{proof}
+    \end{dlemma}
+    \begin{dlemma}
+        $g\in S_n$.\\
+        \[ g(1,2)g^{-1} = (g(1),g(2)) .\] 
+    \end{dlemma}
+    \begin{dlemma}
+        $\sgn (a_1, a_2) = -1$
+        \begin{proof}
+            \[ \sgn (1,2) = -1 .\]
+            Возьмём $g\in S_n$, такое, что $g(1)=a_i$, $g(2)=a_j$.\\
+            Тогда $\sgn(a_i, a_j) = \sgn g(1,2)g^{-1} = \sgn g\sgn g^{-1} \sgn(1,2) = -1$
+        \end{proof}
+    \end{dlemma}
+    \begin{dlemma}
+        Если $\sigma$ - произведение $k$ транспозиций, то $\sgn \sigma = (-1)^{k}$
+    \end{dlemma}
+    \begin{definition}[Игра в $15$]
+        Возьмём квадрат $4\times 4$, поставим в него $15$ квадратов, слева-направа, сверху-вниз, помяв местами квадраты $14$ и $15$.\\
+        Можно-ли поменять квадраты обртано?
+    \end{definition}
+    \begin{dlemma}
+        Нет.\\
+        \begin{proof}
+            Добавим <<фантомный>> $16$-й квадарт. Тогда квадрат эквивалентен перестановке из $S_{16}$.\\
+            Начальная перестаовка эквивалентна $\left( 14, 15 \right) $.\\
+            Любое действие с квадратом эквивалентно домножению слева на $\left( 16, x \right) $.\\
+            Надо получить тождественную перестановку.\\
+            Количество шагов должно быть нечётно, так-как начальная перестановка нечётна, а тождественная - чётна.
+            Заметим, что квадрат $16$ является фиксированной точкой и в начальной и в тождественной перестановке.\\
+            На каждом ходу квадрат сдвигается на одну клетку, значит движений по вертикали и по горизонтальи, чтоб квадрат вернулся в начальную точку.\\
+            Значит, шагов должно быть чётно. Противоречие.
+        \end{proof}
+    \end{dlemma}
+\end{document} 
