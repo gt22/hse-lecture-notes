@@ -1,0 +1,121 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+%\usepackage{cTikz}
+\DeclareMathOperator{\sgn}{sgn}
+\title{Алгебра 8}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{}
+    \begin{definition}
+        Знакопеременная группа $A_n = \{\sigma\in S_n \ssep \sigma \text{ - чётная}\} $
+        Оно группа, так-как равна ядру гомоморфизма знака. 
+    \end{definition} 
+    \begin{dlemma}
+        \[ |A_n| = \frac{n!}{2} .\] 
+    \end{dlemma}
+    \begin{theorem}
+        Знак перестановки равен $(-1)^{\text{кол-во циклов чётной длины}}$
+    \end{theorem}
+    \begin{tlemma}
+        $\sgn \sigma\in S_n = (-1)^{n-k}$, где $k$ - число орбит.
+        \begin{proof}
+            Каждая орбита раскладывается в $|\Omega|-1$ транспозиций, сумма порядков орбит равна $n$, сумма $-1$ равна $k$.
+        \end{proof}
+    \end{tlemma}
+    \begin{theorem}
+        Пусть $c = (a_1\ldots a_k)$, тогда 
+        \[ gcg^{-1} = (g(a_1)\ldots g(a_K)) .\] 
+        \begin{proof}
+            \[ gcg^{-1}(g(a_1)) = gc(a_1) = g(a_2) .\]
+            итд.
+        \end{proof}
+    \end{theorem}
+    \begin{tlemma}
+        Пусть $\sigma\in S_n = c_1c_2c_3\ldots c_k$, тогда
+        \[ g\sigma g^{-1} = gc_1g^{-1}gc_2g^{-1}\ldots gc_kg^{-1} .\]
+        Где $gc_ig^{-1}$ - независимые циклы.
+    \end{tlemma}
+    \begin{definition}
+        Цикловый (цикленный) тип перестановки $\sigma\in S_n$ - набор пар $(1, k_1), \ldots, (n, k_n)$, где $k_i$ - количество орбит длины  $i$ относительно  $\sigma$. 
+    \end{definition}
+    \begin{dlemma}
+        \[ \forall{\sigma_1, \sigma_2\in S_n}\quad (\exists{g\in S_n}\quad g\sigma_1g^{-1} = \sigma_2) \iff \text{циклинный типы $\sigma_1$ и $\sigma_2$ равны} .\] 
+        \begin{proof}
+            Необходимость тривиальна.\\
+            Достаточность: Пронумеруем все циклы в $\sigma_1$ и $\sigma_2$, так, чтобы циклы меньшей длины имели меньший номер.\\
+            Запишем каждый цикл начиная с наименьшего элемента в нём.\\
+            \[ \sigma_1 = (a)(b)(c)(d,e)\ldots .\]
+            \[ \sigma_2 = (a')(b')(c')(d',e')\ldots .\]
+            Тогда можно построить перестановку $g$, так-как элементы в разложении не повторяются.
+        \end{proof}
+    \end{dlemma}
+    \begin{theorem}
+        Пусть $G = \left<g_1, \ldots, g_n\right>$.\\
+        Тогда $h_1, \ldots h_k$ порождают $G$, тогда и только тогда когда $g_i$ выражается через $h_j$.\\
+    \end{theorem}
+    \begin{theorem}
+        $S_n$ порождена транспозициями вида $(1, i)$, где $i\in \left[2; n\right]$.\\
+        \begin{proof}
+            \[ (a, b) = (1, a)(1, b)(1, a) \qedhere.\] 
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}
+        \[ S_n = \left<\tau = (12), c = (1\ldots n)\right> .\]
+        \begin{proof}
+            По индукции.\\
+            При $n=2$ тривиально.\\
+            Заметим, что $S_{n-1} \le S_n$.\\
+            Построим $\sigma'\in S_{n-1}$ из $\sigma\in S_n$.\\
+            Пусть $\sigma(n) = i$, тогда $(\sigma c^{n-i-1})(n) = (n)$.\\
+            По индукции $\sigma'$ выражается через $\tau$ и $c'$.\\
+            Заметим, что $\tau c = (2\ldots n)$.\\
+            Тогда $c^{-1}\tau c^2 = (1 \ldots n-1) = c'$.\\
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}
+        \[ A_n = \left<(123), (124), \ldots, (12n)\right> .\]
+        \begin{proof}
+            По индукции.\\
+            $\sigma\in A_n$.\\
+            $\sigma[n] = i$.\\
+            $(12n)^2(12i)\sigma = \sigma'\in A_{n-1}$.\\
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}
+        Пусть $g_1 = \left<h_1, \ldots, h_n\right>$, $g_2 = \left<g_1, \ldots, g_m\right>$.\\
+        Тогда $g_1 \times g_2 = \left<(h_1, e_2), \ldots, (h_n, e_2), (e_1, g_1), \ldots, (e_1, g_n)\right>$.
+    \end{theorem}
+    \begin{definition}
+        Пусть $G_1, G_2 \le G$, $G$ раскладывается в прямое произведение, если $f : G_1 \times G_2 \mapsto G$, $f(g_1, g_2) = g_1g_2$ - изоморфизм.
+
+    \end{definition}
+    \begin{theorem}
+        Пусть $G_1, G_2 \le G$, то $G$ раскладывается в прямое произведение $G_1$ и $G_2$ тогда и только тогда, когда выполнятются три условия:
+        \begin{enumerate}
+            \item $g_1\cap g_2 = \{1\} $ 
+            \item $\forall{x\in G_1, y\in G_2}\quad xy = yx$
+            \item $\left<G_1, G_2\right> = G$
+        \end{enumerate}
+        \begin{proof}
+            Необходимость очевидна.\\
+            Докажем что $f$ гомоморфизм.\\
+            \[ f((h_1, h_2) \cdot (g_1, g_2)) = f((h_1g_1, h_2g_2)) = h_1g_1h_2g_2 = g_1g_2h_1h_2 = (g_1g_2, h_1h_2) = f(g_1, g_2)f(h_1, h_2) .\]
+            Образ $f$ содержит  $G_1$ и $G_2$, значит содержит порождённую ими группу, которая равна $G$. \\
+            \[ (g_1, g_2)\in \ker f \iff g_1g_2 = e \iff g_1 = g_2^{-1} \iff g_1 = g_2 = e .\]
+            Значит, ядро тривиально, и $f$ инъективно.
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}
+        Если $H_1, H_2 \le G$, $H_1 = <h_1, \ldots h_{\ell}$, $H_2 = \left<g_1, \ldots, g_k\right>$.\\
+        Тогда
+        \[ \forall{x\in H_1, y\in H_2}\quad xy=yx \iff \forall{h_i, g_i}\quad h_ig_i = g_ih_i  .\] 
+    \end{theorem}
+\end{document} 
