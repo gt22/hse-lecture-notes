@@ -1,0 +1,145 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+%\usepackage{cTikz}
+\title{Матан 9}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{}
+    
+    \begin{definition}
+        $f: \left<a, b\right> \mapsto \mathbb{R}$ дифференцируемая на $\left<a, b\right>$ непрерывна дифференцируема если $f'$ будет непрерывна на $\left<a, b\right>$.\\
+        Аналогично для дважды непрерывно дифференцируемой, и более высоких порядков.\\
+        Обозначения: $C^{1}(\left<a, b\right>)$, $C^{2}(\left<a, b\right>)$. $C(\left<a, b\right>)$ - функция непрерывна на промежутке.\\
+        $C^{\infty}(\left<a, b\right>)$ - дифференцируема сколько угодно раз.
+    \end{definition}
+    \begin{theorem}[Арифметические действия с $n$-ми производными]
+        $f,g$,  $n$ раз дифференцируемы в $x_0$.\\
+        Тогда $\alpha f + \beta g$ $n$ раз дифференцируема в $x_0$, $(\alpha f + \beta g)^{(n)} = \alpha f^{(n)} + \beta g^{(n)}$.\\
+        $fg$  $n$ раз дифференцируема в $x_0$ и $(fg)^{(n)} = \sum\limits_{i=0}^{n} \binom{n}{k}f^{(k)}g^{(n-k)}$ \\
+        $f(\alpha x + \beta)$  $n$ раз дифференцируема, и $\alpha^{n} f^{(n)}(\alpha x + \beta)$.\\
+        \begin{proof}
+            База - $n=1$, теоремы для первой производной.\\
+            1:
+            \[ (\alpha f + \beta g)^{(n+1)} = ((\alpha f + \beta g)^{(n)})' = (\alpha f^{(n)} + \beta g^{(n)})' = \alpha f^{(n+1)} + \beta g^{(n+1)}.\]
+            2:
+            \begin{equation*}
+                \begin{split}
+                    (fg)^{(n+1)} &= ((fg)^{(n)})'\\
+                                 &= \left( \sum\limits_{k=0}^{n}\binom{n}{k}f^{(k)}g^{(n-k)} \right) '\\
+                                 &= \sum\limits_{k=0}^{n}\binom{n}{k}\left(f^{(k)}g^{(n+1-k)}+f^{(k+1)}g^{(n-k)}\right)\\
+                                 &= \sum\limits_{k=0}^{n}\binom{n}{k}f^{(k+1)}g^{(n-k)} + \sum\limits_{k=0}^{n}\binom{n}{k}f^{(k)}g^{(n+1-k)}\\
+                                 &= \sum\limits_{j=1}^{n+1}\binom{n}{j-1}f^{(j)}g^{(n-k)} + \sum\limits_{k=0}^{n}\binom{n}{k}f^{(k)}g^{(n+1-k)}\\
+                                 &= fg^{(n+1)} + f^{(n+1)}g + \sum\limits_{k=1}^{n}(\binom{n}{k-1}+\binom{n}{k})f^{(k)}g^{(n+1-k)}\\
+                                 &= \sum\limits_{k=0}^{n+1}\binom{n+1}{k}f^{(k)}g^{(n+1-k)}
+                \end{split}
+            \end{equation*}
+            3:
+            \[ (f(\alpha x + \beta))' = f'(\alpha x + \beta) \cdot (\alpha x + \beta)' = \alpha f'(\alpha x + \beta) .\]
+            Однократное дифференцирование домножает на $\alpha$, сделаем $n$ раз, получим $\alpha^{n}$.
+        \end{proof}
+    \end{theorem}
+    \begin{tlemma}
+        $f(x) = (x-x_0)^{k}$
+        \begin{equation*}
+            f^{(m)}(x_0) = \begin{cases}
+                m! & m = k\\
+                0 & m \neq k
+            \end{cases}
+        \end{equation*}
+        %FIXME
+        TODO: доказательство
+    \end{tlemma}
+    \begin{theorem}
+        Пусть $T$ многочлен, степени не больше $n$.\\
+        Тогдв
+        \[ T(x) = \sum\limits_{k=0}^{n} \frac{T^{(k)}(x_0)}{k!}(x-x_0)^{k} .\]
+        Правая часть называется формулой Тейлора для многочлена $T$.
+        %FIXME
+        TODO: доказательство
+    \end{theorem}
+    \begin{definition}[Многочлен Тейлора]
+        Пусть $f$ дифференцируема в $x_0$ $n$ раз.\\
+        Тогда
+        \[ T_{n, x_0}f(x) = \sum\limits_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!}(x-x_0)^{k} .\] 
+    \end{definition}
+    \begin{definition}[Формула Тейлора]
+        \[ f(x) = T_{n, x_0}f(x) + R_{n, x_0} f(x) .\] 
+    \end{definition}
+    \begin{dlemma}
+        $g$  $n$ раз дифференцируема в $x_0$, при этом
+        \[ g(x_0) = g'(x_0) = g''(x_0) = \ldots = g^{(n)}(x_0) = 0 .\]
+        Тогда $g(x) = o\left( (x-x_0)^{n} \right) $ при $x \to x_0$
+        \begin{proof}
+            Рассмотрим предел:
+            \begin{equation*}
+                \begin{split}
+                    \lim\limits_{x \to x_0} \frac{g(x)}{(x-x_0)^{n}} &= \lim\limits_{x \to x_0} \frac{g'(x)}{n(x-x_0)^{n-1}} = \ldots = \frac{g^{(n-1)}(x_0)}{n!(x-x_0)}\\
+                    &= \lim\limits_{x \to x_0} \frac{g^{(n-1)}(x_0) + g^{(n)}(x_0)(x-x_0) + o(x-x_0)}{n!(x-x_0)} = 0 \qedhere
+                \end{split}
+            \end{equation*}
+        \end{proof}
+    \end{dlemma}
+    \begin{theorem}[Формула Тейлора с остатком в форме Пеано]
+        $f: \left<a, b\right> \mapsto  \mathbb{R}$, $x_0\in \left<a, b\right>$, $f$  $n$ раз дифференцируема в $x_0$.\\
+        Тогда:
+        \[ f(x) = T_{n, x_0}f(x) + o((x-x_0)^{n}) .\]
+        \begin{proof}
+            \[ g(x) = f(x) - T_{n, x_0}f(x) .\]
+            \[ g^{(m)}(x) = f^{(m)}(x) - (T_{n, x_0}f(x))^{(0)}.\]
+            \[ g^{(m)}(x_0) = f^{(m)}(x_0) - \frac{f^{(m)}(x_0)}{m!} \cdot m! = 0 .\]
+            Верно $\forall{m}\quad 0 \le m \le n$.\\
+            Тогда $g(x) = o((x-x_0)^{n})$.
+        \end{proof}
+    \end{theorem}
+    \begin{tlemma}
+        $f$  $n$ раз дифференцируема в точке $x_0$.\\
+        $P$ - многочлен степени не выше $n$.\\
+        Если $f(x) = P(x) + o((x-x_0)^{n})$ при $x\to x_0$, то $P = T_{n, x_0}f$.
+        \begin{proof}
+            \[ f(x) = T_{n, x_0}f(x) + o((x-x_0)^{n}) .\]
+            \[ Q(x) = P(x) - T_{n, x_0}f(x) = o((x-x_0)^{n}) = \sum\limits_{k=0}^{n} c_k(x-x_0)^{k}.\]
+            Рассмотрим $c_m$ - первый ненулевой коэффициент.\\
+            Тогда $Q(x) = \sum\limits_{k=m}^{n}c_k(x-x_0)^{k}$.
+            \[ \left(\frac{o((x-x_0)^{n})}{(x-x_0)^{n}} \to 0\right) = \frac{Q(x)}{(x-x_0)^{n}} = c_m + \sum\limits_{k=m+1}^{n}c_k(x-x_0)^{k-m} \to c_m .\] 
+        \end{proof}
+    \end{tlemma}
+    \begin{theorem}[Формула Тейлора с остатком в форме Лагранжа]
+        $f: \left<a, b\right> \mapsto \mathbb{R}$, дифференцируема $n+1$ на $\left<a,b\right>$.\\
+        $x_0, x\in \left<a, b\right>$.\\
+        Тогда:
+        (ВНИМАНИЕ: $\left( a, b \right) $ в этой теореме означает $\left( \min \{a, b\}, \max \{a, b\}  \right) $)
+        \[ \exists{c\in \left( x, x_0 \right) }\quad f(x) = T_{n, x_0}f(x) + \frac{f^{(n+1)}(c)}{(n+1)!}(x-x_0)^{(n+1)}  .\]
+        \begin{proof}
+            При $n=0$, эквивалентно теореме Лагранжа.\\
+            \[ f(x) = T_{n,x_0}f(x) + M(x-x_0)^{n+1} .\] 
+            \[ g(t) = f(t) - T_{n, x_0}f(t) - M(t-x_0)^{n+1} .\] 
+            \[ g(x) = 0 .\]
+            \[ g(x_0) = f(x_0) - T_{n, x_0}f(x_0) = 0 .\]
+            \[ g^{(m)}(x_0) = f^{(m)}(x_0) - \left( T_{n, x_0}f(x_0) \right)^{(m)} \impliedby 0 \le m \le n .\]
+            \[ g^{(n+1)}(t) = f^{(n+1)}(t) - M(n+1)! .\]
+            Надо найти такую точку $c$, что $g^{(n+1)}(c) = 0$.\\
+            \[ g(x) = g(x_0) = 0 \implies \exists{c_1\in \left( x, x_0 \right) }\quad g'(c_1) = 0 .\]
+            \[ g'(c_1) = g(x_0) = 0 \implies \exists{c_2\in \left( c_1, x_0 \right) }\quad g''(c_1) = 0 .\] 
+            Повторяем $n+1$ раз, найдём $c_{n+1}$. $g^{(n+1)}(c_{n+1}) = 0$.
+        \end{proof}
+    \end{theorem}
+    \begin{tlemma}
+        Если $\forall{t\in (x, x_0)}\quad |f^{(n+1)}(x)| \le M$ то
+        \[ R_{n, x_0}f(x) \le \frac{M(x-x_0)^{n+1}}{(n+1)!} .\] 
+    \end{tlemma}
+    \begin{tlemma}
+        Есои $\forall{n}\quad \forall{t\in \left<a, b\right>}\quad |f^{(n)}(t)| \le M$, то
+        \[ \lim\limits_{n \to \infty} T_{n, x_0}f(x) = f(x) .\]
+        \begin{proof}
+            \[ \lim\limits_{n \to \infty} R_{n, x_0}f(x) \le \lim\limits_{n \to \infty} \frac{M(x-x_0)^{n+1}}{(n+1)!} = 0 .\] 
+        \end{proof}
+    \end{tlemma}
+\end{document} 
