@@ -1,0 +1,88 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Ima}{Im}
+%\usepackage{cTikz}
+\title{Алгебра 9}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{Нормальные подгруппы}
+    \begin{definition}
+        $g, h\in G$, тогда $ghg^{-1}$ называется сопряжённым к $h$ при помощи $g$.
+    \end{definition}
+    \begin{definition}
+        $h_1, h_2\in G$ называются сопрядёнными, если $\exists{g\in G}\quad h_2 = gh_1g^{-1}$.
+    \end{definition}
+    \begin{definition}
+        $H \le G$ называется нормальной подгруппой $G$ и обозначается $H \unlhd G$, если
+        \[ \forall{h\in H}\quad \forall{g\in G}\quad ghg^{-1}\in H  .\] 
+    \end{definition}
+    \begin{theorem}
+        $H \le  G$, следующие услвоия эквивалентны:
+        \begin{enumerate}
+            \item $H \unlhd G$
+            \item  $\forall{g\in G}\quad gHg^{-1} = H$ 
+            \item $\forall{g\in G}\quad gH = Hg$ 
+            \item $\forall{g\in G}\quad gH \subset Hg$
+        \end{enumerate}
+        \begin{proof}
+            $1 \implies 2$: переформулируем формулировку нормальности: $H \unlhd G \iff \forall{g}\quad gHg^{-1} \subset H$.\\
+            Рассмотрим $H = g^{-1}gHg^{-1}g \subset g^{-1}Hg$, пусть $g=k^{-1}$, тогда $H \subset kHk^{-1}$. Значит, $H = \forall{g}\quad gHg^{-1}$.\\
+            $2 \implies 3$: $gHg^{-1} = H \implies gH = Hg$ (домножение на $g$ справа)\\
+            $3 \implies 4$: тривиально\\
+            $4 \implies 1$: $gH \subset Hg \to gh\in Hg \implies gh = h'g \implies ghg^{-1} = h'$.
+        \end{proof}
+    \end{theorem}
+    \begin{tlemma}
+        Любая подгруппа абелевой группы - нормальная.\\
+        \begin{proof}
+            $ghg^{-1} = gg^{-1}h = h$ 
+        \end{proof}
+    \end{tlemma}
+    \begin{definition}
+        Факторгруппа по $H \unlhd \left<G, \times\right>$, называется группа состоящая из смежных классов по $H$ с операцией $\cdot $:
+        \[ g_1H\cdot g_2H = (g_1 \times g_2)H .\] 
+    \end{definition}
+    \begin{dlemma}
+        Операция задана корректоно.
+        \begin{proof}
+            Возьмём два класса: $g_1H$, $g_2H$.\\
+            Рассмотрим представителей $g_1h_1$, $g_2h_2$.\\
+            Тогда $g_1h_1g_2h_2 = g_1g_2g_2^{-1}h_1g_2h_2 = g_1g_2h_3h_2 = g_1g_2h_4\in g_1g_2H$
+        \end{proof}
+    \end{dlemma}
+    \begin{dlemma}
+        Факторгруппа - группа.
+        \begin{proof} Докажем свойства:\\
+            Ассоциативность: $(g_1H\cdot g_2H)\cdot g_3H = (g_1g_2)g_3H = g_1(g_2g_3)H = g_1H(g_2H\cdot g_3H)$
+            Нейтральный элемент: $eH = H$.\\
+            Обратный элемент: $(gH)^{-1} = g^{-1}H$.
+        \end{proof}
+    \end{dlemma}
+    \begin{theorem}[Теорема о изоморфизме]
+        Пуcть $f: G \mapsto G_1$ - гомоморфизм.\\
+        $G/\Ker f \cong f(G)$ (гомоморфный образ группы изомофрен факторгруппе по ядру гомоморфизма)\\
+        Причём, изоморфизм имеет вид $g\Ker f \mapsto f(g)$.\\
+        \begin{proof}
+            Пусть $H=\Ker f$\\
+            Корректоность: $h\in H$, $f(gh) = f(g)f(h) = f(g)$.\\
+            Гомоморфизм: $\hat{f}(g_1g_2H) = f(g_1g_2) = f(g_1)f(g_2) = \hat{f}(g_1H)\hat{f}(g_2H)$.\\
+            Инъективность: $gH\in \Ker \hat{f} \iff f(g) = e \iff gH = H$\\
+            Сюръективность: $x\in \Ima f$, $f(g) = x$, тогда $f(gH) = x$.
+        \end{proof}
+    \end{theorem}
+    \begin{definition}
+        Группа $G$ называется простой, если в ней нет нетривиальных нормальных подгрупп.
+    \end{definition}
+    \begin{theorem}
+        Есть список всех конечных простых групп.
+    \end{theorem}
+\end{document} 
