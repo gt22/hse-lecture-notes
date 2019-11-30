@@ -1,0 +1,114 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+%\usepackage{cTikz}
+\title{Алгебра 10}
+\author{Igor Engel}
+\date{}
+\newcommand{\actson}{\curvearrowright}
+\DeclareMathOperator{\Stab}{Stab}
+\begin{document}
+\maketitle
+\section{} 
+    \begin{definition}
+        Отображение $f : G \times X \mapsto X$, $\left<g, x\right> \to gx$ называется действием $G$ на $x$, если:
+        \begin{enumerate}
+            \item $\forall{x\in X}\quad (e, x) \to x$
+            \item $\forall{g_1, g_2\in G}\quad f(g_1, f(g_2, x)) = f(g_1g_2, x)$
+        \end{enumerate}
+    \end{definition}
+    \begin{definition}
+        Группа действует на множестве, если существует действие этой группы на это множесетсво.\\
+        Обозначается $G\actson X$
+    \end{definition}
+    \begin{dlemma}
+        Если $G\actson X$.
+        \begin{enumerate}
+            \item $\forall{n > 0}\quad G\actson X^{n}$
+            \item $G\actson 2^{X}$
+            \item $G\actson \{f \ssep f : X \mapsto A\} $
+            \item Пусть $H \le G$, тогда $H\actson X$
+            \item Если существует гомоморфизм $H \mapsto G$, то $H\actson X$
+        \end{enumerate}
+    \end{dlemma}
+    \begin{theorem}
+        $G$ -  группа, $X$ - множество. Тогда есть биекция между действиями $G\actson X$ и гомоморфизмами $G \mapsto S_{X}$.
+        \begin{proof}
+            Действие по гомоморфизму тривиально: $S_{X}\actson X$, ограничим $S_{X}$ на образ $G$.\\
+            Построим гомоморфизм $T_{g} : G \mapsto S_{X}$ по действию:\\
+            $T_g(x) = gx$.\\
+            $T_g$ -  биекция, так-как $T_{g^{-1}}\left( T_{g}(x) \right) = g^{-1}gx=x $.\\
+            $T_g$ -  гомоморфизм, так-как $T_{g_1}\left( T_{g_2}(x) \right) = g_1g_2x = T_{g_1g_2}(x)$.\\
+            Покажем что построение $T_g$ обратно ограничению на образ:\\
+            \[ \left<g, x\right> \to T_{g}(x) = g\cdot x .\]
+            \[ \left<g, x\right> \to \varphi_{g}(x) = g\cdot x .\qedhere\] 
+        \end{proof}
+    \end{theorem}
+    \begin{tlemma}
+        $G$ - все изометрии, сохраняющие правильный тетраэдр. $G \cong S_4$.
+        \begin{proof}
+            Заметим, что любая изометрия пространства определяется образом четырёх точек, не лежащих в одной плоскости.\\
+            Гомоморфизм существует, так-как $G\actson \text{множество вершин}$.\\
+            Если все $4$ вершины остались на месте, то $G$ - тождественная перестановка. Значит, гомоморфизм инъективен.\\
+            Заметим, что перестановки $(12)$ и $(1234)$ входят в образ $G$, как симметрия и поворот на $120^{\circ}$.\\
+            $S_4 = \left<12, 1234\right>$, значит гомоморфизм сюръективен, а значит он изоморфизм.
+        \end{proof}
+    \end{tlemma}
+    \begin{tlemma}[Теорема Кэли]
+        Любая группа $G$, $|G| = n$ вкладывается в $S_n$.\\
+        \begin{proof}
+            Зададим действие $G\actson G$: $f(g, h) = gh$.\\
+            Получили $\varphi : G \mapsto S_G$, докажем что он инъективен:\\
+            Путь $g \neq e$, тогда $\varphi(g)(1) = g$. Значит, ядро тривиально. 
+        \end{proof}
+    \end{tlemma}
+    \begin{theorem}
+        $G\actson X$,  $Y \subset X$. $G\actson Y \iff \forall{g\in G}\quad g(Y) \subset Y$.\\
+        $Y$ называется инвариантным подмножеством, если $G\actson Y$.
+    \end{theorem}
+    \begin{definition}
+        $G\actson X$,  $x\in X$, орбитой элемента $x$ назывется $Gx = O_{x} = \{gx \ssep g\in G\} $.
+    \end{definition}
+    \begin{dlemma}
+        $G\actson X$, $x\sim y := y\in O_x$ - отношение эквивалентности.
+        \begin{proof}
+            \[ x = ex .\]
+            \[ y=gx \implies x = g^{-1}x .\]
+            \[ y=gx\quad z=hy \implies z = hgx .\] 
+        \end{proof}
+    \end{dlemma}
+    \begin{definition}
+        $G\actson X$,  $x\in X$, $G_x = \Stab_{x}$ - $\{g\in G\ssep gx=x\} $.
+    \end{definition}
+    \begin{dlemma}
+        $\forall{x\in X}\quad \Stab_{x} \le G$.
+    \end{dlemma}
+    \begin{theorem}
+        $G\actson X$,  $x\in X$, есть биекция $f : y\in O_x \mapsto g\Stab_{x}\in G/\Stab_{x}$.
+        \begin{proof}
+            Пусть $y=gx$. Тогда  $y = gx \to_{f} g\Stab_{x} \to_{f^{-1}} gx = y$\\
+           Докажем корректность:\\
+           $h\in \Stab_{x}$, $g_2 = g_1h$. Тогда $g_2x = g_1hx = g_1x$.\\
+           Обратимость тривиальна.
+        \end{proof}
+    \end{theorem}
+    \begin{tlemma}
+        $G\actson X$,  $x\in X$. Тогда $\left|G\right| = \left|\Stab_x\right| \left|O_{x}\right|$.
+    \end{tlemma}
+    \begin{tlemma}[Лемма Шрайера]
+        $\left<g_1, \ldots, g_n\right> = G$, $G\actson X$,  $x\in X$.\\
+        При этом $g_i^{-1}\in \{g_1, \ldots, g_n\} $.
+        Для каждого $y\in O_x$, зафиксируем $h_y$, такое, что $h_y(x) = y$. При этом $h_x = e$\\
+        Тогда $\Stab_{x} = \left<h_{g_{i}y}^{-1}g_ih_{g_{i}y}\right>$
+        \begin{proof}
+            Возьмём $g\in \Stab_{x}$.\\
+            $g = g_{i_s}\ldots g_{i_1}$.\\
+            $x \to^{g_{i_1}} x_1 \to^{g_{i_2}} \to \ldots \to^{g_{i_s}} x$.\\
+            Тогда $x = (h_{x_i}^{-1} x_i h_{x_i})(x)$.
+        \end{proof}
+    \end{tlemma}
+\end{document} 

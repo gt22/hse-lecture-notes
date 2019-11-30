@@ -1,0 +1,284 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+%\usepackage{cTikz}
+\title{Мат. Анализ 11}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{}
+\[ f(\lambda x + (1-\lambda) y) = \lambda f(x) + (1-\lambda)f(y) .\]
+\[ z = \lambda x + (1-\lambda)y .\]
+\[ \lambda = \frac{y-z}{y-x} .\]
+\[ 1-\lambda = \frac{z-x}{y-x} .\]
+\[ f(z) \le \frac{y-z}{y-x}f(x) + \frac{z-x}{y-x}f(y) .\]
+\[ (y-x)f(z) \le (y-z)f(x) + (z-x)f(y) .\]
+\begin{theorem}[Ариф. Действия с выпуклыми функция]
+    $f, g$ -   выпуклые функции.\\
+    $f+g$ -  выпуклая.\\
+    $\forall{\alpha > 0}\quad \alpha f$ - выпуклая.
+    \begin{proof}
+        %FIXME?
+        Доказательство очевидно.
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Лемма о трёх хордах]
+    $f: \left<a, b\right> \mapsto \mathbb{R}$ - выпуклая.\\
+    Тогда, если $u < v < w$ из $\left<a, b\right>$, то:
+    \[ \frac{f(v)-f(u)}{v-u} \le \frac{f(w)-f(u)}{w-u} \le \frac{f(w)-f(v)}{w-v} .\]
+    Каждое из трёх неравенств равносильно выпуклости.\\
+    Если поставить строгие знаки, то выпуклость строгая.
+    \begin{proof}
+         Неравенство $1$:
+         \begin{equation*}
+             \begin{split}
+                 &(w-u)(f(v)-f(u)) \le (v-u)(f(w)-f(u))\\
+                 &\iff (w-u)f(v) \le (v-u)f(w) + ((w-u)-(v-u))f(u)\\
+                 &\iff (w-u)f(v) \le (v-u)f(w) + (w-u)f(u)
+             \end{split}
+         \end{equation*}
+         Неравенство $2$:
+         \begin{equation*}
+             \begin{split}
+                 &(w-v)(f(w)-f(u)) \le (w-u)(f(w)-f(v))\\
+                 &\iff (w-u)f(v) \le (w-v)f(u)+((w-u)-(w-v))f(w)\\
+                 &\iff (w-u)f(v) \le (w-v)f(u) + (v-u)f(w)
+             \end{split}
+         \end{equation*}
+         Неравенство $3$:
+         \begin{equation*}
+             \begin{split}
+                 &(w-v)(f(v)-f(u)) \le (w-u)(f(w)-f(v))\\
+                 &\iff ((w-v)-(v-u))f(v) \le (w-v)f(u) + (v-u)f(w)\\
+                 &\iff (w-u)f(u) \le (w-v)f(u)+(v-u)f(w) \qedhere
+             \end{split}
+         \end{equation*}
+    \end{proof}
+\end{theorem}
+\begin{theorem}
+    $f: \left<a, b\right> \mapsto \mathbb{R}$ - выпуклая, $x\in \left( a, b \right) $.\\
+    Тогда в $x$ существует конечная $f_{\pm}'(x)$, и $f_{-}'(x) \le f_{+}'(x)$.
+    \begin{proof}
+       \[ u < v < x < y < z\in \left<a, b\right> .\]
+       \[ \frac{f(u)-f(x)}{u-x} \le \frac{f(v)-f(x)}{v-x} \le \frac{f(y)-f(x)}{x-y} \le \frac{f(z) - f(x)}{z-x} .\]
+       Из первого неравенства следует, что $\frac{f(u)-f(x)}{u-x}$ возрастает по $u$, из второго неравенства следует, что она ограничена $\frac{f(y)-f(x)}{y-x}$.\\
+       Тогда сщуествует конечная $f_{-}'(x) = \lim\limits_{u \to x-} \frac{f(u)-f(x)}{u-x} \le \frac{f(y)-f(x)}{y-x}$.\\
+       Аналогично, $\frac{f(y)-f(x)}{y-x}$ возрастает по $y$, и онграничена снизу $f_{-}'(x)$.\\
+       Значит, существует конечная $f_{-}' \le f_{+}'(x) = \lim\limits_{y \to x+} \frac{f(y)-f(x)}{y-x}$.
+    \end{proof}
+\end{theorem}
+\begin{tlemma}
+    $f : \left<a, b\right> \mapsto \mathbb{R}$ - выпуклая, тогда $f$ непрерывна на $\left( a, b \right) $.\\
+    \begin{proof}
+        Рассмотрим $x\in \left( a, b \right) $.\\
+        Тогда существует конечная $f'_{\pm}(x)$, значит функция непрерывна слева в $x$ и справа в $x$.
+    \end{proof}
+\end{tlemma}
+\begin{theorem}
+    $f : \left<a, b\right> \mapsto \mathbb{R}$, дифференцируемая.\\
+    Тогда $f$ - выпуклая тогда и только тогда $\forall{x, x_0\in \left<a, b\right>}\quad f(x) \ge (x-x_0)f'(x_0)+f(x_0)$.
+    \begin{proof}
+        Необходиомсть:
+        При $x>x_0$ :
+        \[ f'(x_0) = f_{-}'(x_0)\le  \frac{f(x)-f(x_0)}{x-x_0} .\]
+        \[ (x-x_0)f'(x_0) + f(x_0) \le f(x) .\]
+        При $x<x_0$ :
+        \[ f'(x_0) = f_{+}'(x_0) \ge \frac{f(x)-f(x_0)}{x-x_0} .\]
+        \[ (x-x_0)f'(x_0) + f(x_0) \le  f(x) .\]
+        При $x=x_0$ равенство очевидно.\\
+        Достаточность:
+            \[ x < x_0 < y .\]
+            \[ f(x) \ge (x-x_0)f'(x_0) + f(x_0) .\]
+            \[ f(y) \le (y-x_0)f'(x_0) + f(x_0) .\]
+            \begin{equation*}
+                \begin{split}
+                    (y-x_0)f(x) + (x_0-x)f(y) &\ge (y-x_0)(x-x_0)f'(x_0) + (y-x_0)f(x_0)\\
+                                              &+(y-x_0)(x_0-x)f'(x_0)+(x_0-x)f(x_0)\\
+                    &= ((y-x_0)+(x_0-x))f(x_0) = y-x)f(x_0) \qedhere
+                \end{split}
+            \end{equation*}
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Критерий выпуклости]
+    $f : \left<a, b\right> \mapsto \mathbb{R}$, дифференцируемая на $\left( a, b \right) $ и непрерывная на $\left<a, b\right>$.\\
+    Тогда:
+    \begin{enumerate}
+        \item $f$ выпуклая на $\left<a, b\right>$ тогда и только тогда, когда $f'$ возрастает.
+        \item Если $f$ дважды дифференцируема, $f$ выпукла тогда и только тогда, когда $f'' \ge 0$ на $\left( a, b \right)$.
+        \begin{proof}
+            Необходимость:\\
+            При $x>y$:
+            \[ f'(y) \le \frac{f(x)-f(y)}{x-y} \le f'(x) .\]
+            Значит, с ростом $x$ растёт $f'(x)$.
+            Достаточность:
+            \[ \frac{f(u)-f(v)}{u-v} \le \frac{f(w)-f(v)}{w-v} .\]
+            По теореме Лагранжа: $\exists{p\in (u, v)}\quad \exists{q\in (v, w)}\quad $
+            \[ f'(p) = \frac{f(u)-f(v)}{u-v} \le \frac{f(w)-f(v)}{w-v} = f(q) .\]
+            Но $p<q$, значит $f'$ возрастает. 
+        \end{proof}
+    \end{enumerate}
+\end{theorem}
+\begin{theorem}[Неравенство Йенсена]
+    $f : \left<a, b\right> \mapsto \mathbb{R}$, выпуклая.\\
+    Тогда
+    \[ \forall{x_1, \ldots, x_n\in \left<a, b\right>}\quad \forall{\lambda_1, \ldots, \lambda_n >0}\quad \sum\limits_{i=1}^{n}\lambda_i = 1 \implies f(\lambda_1x_1 + \ldots + \lambda_nx_n) \le \lambda_1 f(x_1) + \ldots + \lambda_{n}f(x_n) .\]
+    \begin{proof}
+        При $n=1$ - тривиально.
+        При $n=2$ - опеределение выпуклости.\\
+        Переход:
+        \[ \sum\limits_{i=1}^{n}\lambda_{i} = 1 - \lambda_{n+1} .\]
+        \[ y = \frac{\sum\limits_{i=1}^{n}\lambda_i x_i}{1-\lambda_{n+1}} .\] 
+        \[ f((1-\lambda_{n+1})y+\lambda_{n+1}x_{n+1}) \le (1-\lambda_{n+1})f(y) + \lambda f(x_{n+1}.\]
+        Раскрывая $f(y)$ по предположению индукции получим нужное утверждение.
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Неравенство о средних]
+    $x_1, \ldots, x_n \ge 0$, тогда
+    \[ \frac{x_1 + \ldots + x_{n}}{n} \ge \sqrt[n]{x_1 \cdot \ldots \cdot  x_n}  .\]
+    \begin{proof}
+        Если какой-то $x_i$ равен нулю, то утверждение оченвидно.\\
+        \[ \ln \left( \frac{x_1 + \ldots + x_n}{n} \right) \ge \frac{\log(x_1) + \ldots + \log(x_n)}{n}  .\]
+        Заметим, что логарифм - вогнутая функция, подставим $\lambda_i = \frac{1}{n}$ в неравенство Йенсена с функцией $f(x) = -\ln(x)$. Получим нужное утверждение.\\
+    \end{proof}
+\end{theorem}
+\section{Интегральное исчесление фукнции одной переменной}
+    \subsection{Первообразная и непрерывный интеграл}
+         \begin{definition}
+             Первообразная функции $f : \left<a, b\right> \mapsto \mathbb{R}$, тогда $F : \left<a, b\right> $ называется первообразной для $f$, если $F$ дифференцируема, и $\forall{x\in \left<a, b\right>}\quad F'(x) = f(x)$.
+         \end{definition}
+         \begin{theorem}
+             $f\in C\left<a, b\right>$, тогда у $f$ есть первообразная.\\
+             Пока без доказательтва.
+         \end{theorem}
+         \begin{theorem}
+             $f,F: \left<a, b\right> \mapsto \mathbb{R}$, $F$ -  первообразная $f$.\\
+             \begin{enumerate}
+                 \item Тогда $F+C$ - первообразная $f$ 
+                 \item $\Phi$ -  первообразная $f$, то $\Phi = F + C$
+             \end{enumerate}
+             \begin{proof}
+                 Пункт $1$ : $(F+C)' = F'+C' = F' = F$ \\
+                 Пункт $2$ : Рассмотрим $(\Phi - F)' = \Phi' - F' = f - f =0$, значит $\Phi - F$ - постоянная, и $\Phi = F + C$.
+             \end{proof}
+         \end{theorem}
+         \begin{definition}
+             Множество всех первообразных для $f$ называется неопределённым интеграло $f$, и обозначается следующим образом:
+             \[ \int f .\]
+             \[ \int f(x)dx.\] 
+         \end{definition}
+         \begin{dlemma}
+             \[ \int f = \{F+C \ssep C\in \mathbb{R}\}  .\]
+             Где $F$ - произвольная первообразная.
+         \end{dlemma}
+         \begin{theorem}[Таблица интегралов]
+             \[ \int 0 = C .\]
+             \[ \int x^{p}dx = \frac{x^{p+1}}{p+1} + C \text{, $p \neq -1$} .\]
+             \[ \int \frac{dx}{x} = \ln |x| + C.\]
+             \[ \int a^{x}dx = \frac{a^{x}}{\ln a} + C \text{, $a \neq 1$}.\]
+             \[ \int \sin x dx = -\cos x + C .\]
+             \[ \int \cos x dx = \sin x + C .\] 
+            \[ \int \frac{dx}{\cos x} = \tg x + C .\]
+            \[ \int \frac{dx}{\sin x} = -\ctg x + C .\]
+            \[ \int \frac{dx}{\sqrt{1-x^2} } = \arcsin x + C .\]
+            \[ \int \frac{dx}{1+x^2} = \arctan x + C .\]
+            \[ \int \frac{dx}{\sqrt{x^2\pm 1} } = \ln(x+\sqrt{x^2\pm 1}) + C  .\]
+            \[ \int \frac{dx}{x^2-1} = \frac{1}{2}\ln\left|\frac{x-1}{x+1}\right| + C .\]
+            \begin{proof}
+                \[ \ln(-x)' = \frac{1}{-x}(-x)' = \frac{1}{x} \]
+                \[ \left( \ln(x+\sqrt{x^2+1}  \right)' = \frac{1}{x+\sqrt{x^2+1} }\cdot (x'  + (\sqrt{x^2+1})') = \frac{1}{x+\sqrt{x^2+1} }\left(1 + \frac{x}{\sqrt{x^2+1} }\right) = \frac{1}{x^2+1}  .\]
+                %FIXME
+                \[ \left( \frac{1}{2}\ln\left|\frac{x-1}{x+1}\right| \right)' =   .\] 
+            \end{proof}
+         \end{theorem}
+         \begin{theorem}[Ариф. действия с непор. интегралами]
+            Пусть $f, g : \left<a, b\right> \mapsto \mathbb{R}$, $f$ и $g$ имеют первообразные.\\
+            Тогда:
+            \[ \int (f+g) = \int f + \int g .\]
+            \[ \int \alpha f = \alpha \int f \text{, при $\alpha \neq 0$} .\]
+            \begin{proof}
+                Пусть $F, G$ - первообразные $f,g$.\\
+                Тогда $(F+G)' = F'+G' = f+g$.\\
+                $(\alpha F)' = \alpha F' = \alpha f$.
+            \end{proof}
+         \end{theorem}
+         \begin{tlemma}[Линейность интеграла]
+             $f, g : \left<a, b\right> \mapsto \mathbb{R}$, $f$ и $g$ имеют первообразные, $\alpha, \beta\in \mathbb{R}$, при $|\alpha| + |\beta| \neq 0$.\\
+             Тогда:
+             \[ \int (\alpha f + \beta g) = \alpha\int f + \beta \int g .\]
+         \end{tlemma}
+         \begin{theorem}[Замена переменной в неопр. интеграле]
+             $f: \left<a, b\right> \mapsto \mathbb{R}$ имеет первообразную $F : \left<a, b\right> \mapsto \mathbb{R}$.\\
+             $\varphi : \left<c, d\right> \mapsto \left<a, b\right>$ дифференцируема.\\
+             Пусть $g(t) = f(\varphi(t))\varphi'(t)$, $g : \left<c, d\right> \mapsto \mathbb{R}$.\\
+             Тогда:
+             \[ \int f(\varphi(t))\varphi'(t)dt = F(\varphi(t)) + C .\]
+             \begin{proof}
+                 \[ F(\varphi(t))' = F'(\varphi(t))\varphi'(t) = f(\varphi(t))\varphi'(t) .\] 
+             \end{proof}
+         \end{theorem}
+         \begin{tlemma}
+             Если $F$ - первообразная $f$, то
+             \[ \int f(\alpha x + \beta) = \frac{F(\alpha x + \beta)}{\alpha} + C.\]
+             \begin{proof}
+                 $\varphi(x) = \alpha x + \beta$.\\
+                 $\varphi'(x) = \alpha$.\\
+                 \[ \int f(\alpha x + \beta)\alpha = F(\alpha x + \beta) .\] 
+             \end{proof}
+         \end{tlemma}
+         \begin{theorem}[Формула интегрирования по частям]
+             $f,g: \left<a, b\right> \mapsto \mathbb{R}$ дифференцируемые и $f'g$ имеет первообразную.\\
+             Тогда $fg'$ имеет первообразную.\\
+             \[ \int fg' = fg - \int f'g .\]
+             \[ \int fg' + \int f'g = fg .\] 
+             \begin{proof}
+             \[ H = \int f'g.\]
+             \[ (fg-H)' = (fg)' - f'g = f'g + fg' - f'g = fg' .\] 
+             \end{proof}
+         \end{theorem}
+    \subsection{Площади и определённый интеграл}
+        \begin{definition}
+            $\mathcal{F}$ - совокупность всех ограниченных подномжеств $\mathbb{R}^2$
+        \end{definition}
+        \begin{definition}
+            $\sigma : \mathcal{F} \mapsto \left[0; +\infty\right]$ - площадь, если $\sigma\left( \left[a, b\right]\times \left[c, d\right] \right) = (b-a)(d-c)$, при $a\le b$, $c\le d$ и если $A, B\in \mathcal{F}$, $A\cap B = \emptyset$, то $\sigma(A \cup B) = \sigma\left(A\right) + \sigma(B) $.\\
+
+        \end{definition}
+        \begin{dlemma}
+            Если $E \subset \tilde{E}$, то $\sigma(E) \le \sigma(\tilde{E})$.\\
+            \begin{proof}
+                \[ \tilde{E} = E \cup (\tilde{E} \setminus E) .\]
+                \[ \sigma(\tilde{E}) = \sigma(E) + \sigma(\overline{E}) \ge \sigma(E) .\] 
+            \end{proof}
+        \end{dlemma}
+        \begin{definition}
+        $\sigma : \mathcal{F} \mapsto  [0, +\infty)$ назвоём квазиплощадью, если:
+            \begin{enumerate}
+                \item $\sigma\left( [a, b] \times [c, d] \right) = \left( b-a \right) \left( d-c \right)  $
+                \item Если $E \subset  \tilde{E}$, то $\sigma(E) \le \sigma(\tilde{E})$
+                \item $E\in \mathcal{F}$, $\ell$ - горизонтальная или вертикальная прямая.\\
+                    Обозначим за $E_-$ чусть множества, лежащую слева от прямой, или на ней.\\
+                    $E_{+} = E \ E_{-}$, $\sigma(E) = \sigma(E_{-}) + \sigma(E_{+})$.
+            \end{enumerate}
+        \end{definition}
+        \begin{dlemma}
+            $A$ - подмножество вертикального или горизонтального отрезка, то $\sigma(A) = 0$.\\
+            \begin{proof}
+                Если $A$ - отрезок, то $A = \left[a, a\right] \times \left[c, d\right]$, и площадь равна нулю.\\
+                Площадь подмножества не больше площади самого отрезка.
+            \end{proof}
+        \end{dlemma}
+        \begin{dlemma}
+            Куда относятся точки на $\ell$ не имеет значения.\\
+            \begin{proof}
+                Пусть $\tilde{E}_{-} = E_{-} \cup \ell$.\\
+                Тогда $\sigma(\tilde{E}_{-}) = \sigma(E_{-}) + \sigma(\tilde{E}_{-} \setminus E) = \sigma(E)$
+            \end{proof}
+        \end{dlemma}
+        
+\end{document} 
