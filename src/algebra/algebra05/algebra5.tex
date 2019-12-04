@@ -7,8 +7,7 @@
 \usepackage{cTheorem}
 \usepackage{cTable}
 \usepackage{colortbl}
-\DeclareMathOperator{\Aut}{Aut}
-\DeclareMathOperator{\odr}{ord}
+\usepackage{cAlgebra}
 %\usepackage{cTikz}
 \title{Алгебра 5}
 \author{Igor Engel}
@@ -85,13 +84,13 @@
         $\left<g\right>$ - циклическая подгруппа порождённая $g$.
     \end{definition}
     \begin{definition}
-    \[ |\left<g\right>| = \odr g .\] 
+    \[ |\left<g\right>| = \ord g .\] 
     \end{definition}
     \begin{dlemma}
         \[ \forall{g\in G}\quad \exists!{f: \mathbb{Z} \mapsto G \text{, $f$ - гомоморфизм}}\quad f(1) = g .\] 
     \end{dlemma}
     \begin{dlemma}
-        Пусть $g\in G$ и $\odr g = n$.\\
+        Пусть $g\in G$ и $\ord g = n$.\\
         \begin{equation*}
             \begin{cases}
                 g^{n} = e\\
@@ -102,8 +101,8 @@
     \begin{theorem}
         $g\in G$, то
         \begin{enumerate}
-            \item $\odr g\in \mathbb{N} \implies \left<g\right> \sim \mathbb{Z}/n$
-            \item $\odr g = \infty \implies \left<g\right> \sim \mathbb{Z}$
+            \item $\ord g\in \mathbb{N} \implies \left<g\right> \sim \mathbb{Z}/n$
+            \item $\ord g = \infty \implies \left<g\right> \sim \mathbb{Z}$
         \end{enumerate}
     \end{theorem}
 \end{document} 

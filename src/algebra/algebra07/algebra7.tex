@@ -7,9 +7,6 @@
 \usepackage{cTheorem}
 \usepackage{cAlgebra}
 %\usepackage{cTikz}
-\DeclareMathOperator{\fix}{Fix}
-\DeclareMathOperator{\supp}{Supp}
-\DeclareMathOperator{\sgn}{sgn}
 \title{Алгебра 7}
 \author{Igor Engel}
 \date{}
@@ -60,11 +57,11 @@
     \end{theorem}
     \begin{definition}
         $x$  называется неподвижной относительно перестановки $\sigma$, если $\sigma(x) = x$.\\
-        Множество всех неподвижных точек обозначается $\fix\sigma$.\\
-        Дополнение этого множества: $\supp\sigma$
+        Множество всех неподвижных точек обозначается $\Fix\sigma$.\\
+        Дополнение этого множества: $\Supp\sigma$
     \end{definition}
     \begin{definition}
-        Перестановки $\sigma_1$ и $\sigma_2$ называются независимыми если $\supp \sigma_1\cap \supp \sigma_2 = \emptyset$.
+        Перестановки $\sigma_1$ и $\sigma_2$ называются независимыми если $\Supp \sigma_1\cap \Supp \sigma_2 = \emptyset$.
     \end{definition}
     \begin{dlemma}
         Независимые перестаноки коммутируют.
@@ -97,7 +94,7 @@
             Где $k=|\Omega_i|$.\\
             Елси хотя-бы один из элементов вида $\sigma^{m}(x)$ повторялся с любой из меньших степеней, $m\neq k$, то в $|\Omega_i|$ было-бы $m$, а не $k$. Строгое доказательство аналогично докательству про эквивалентность определений порядка элемента.\\
             \begin{equation*}
-                \supp C_i = 
+                \Supp C_i = 
                 \begin{cases}
                     \Omega_i & |\Omega_i| \neq 1\\
                     \emptyset & |\Omega_i| = 1

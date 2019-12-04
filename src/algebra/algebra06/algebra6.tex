@@ -6,7 +6,6 @@
 \usepackage{cPicture}
 \usepackage{cTheorem}
 \usepackage{cAlgebra}
-\DeclareMathOperator{\odr}{ord}
 %\usepackage{cTikz}
 \title{Алгебра 6}
 \author{Igor Engel}
@@ -28,7 +27,7 @@
         \end{proof}
     \end{theorem}
     \begin{theorem}
-        \[ \forall{g\in G}\quad \exists!{f: \mathbb{Z}/\odr g \mapsto \left<g\right>} .\] 
+        \[ \forall{g\in G}\quad \exists!{f: \mathbb{Z}/\ord g \mapsto \left<g\right>} .\] 
     \end{theorem}
     \begin{definition}
         \[ X \subset G .\]
@@ -47,7 +46,7 @@
     \end{dlemma}
     \begin{dlemma}
         \[ g^{n} = e .\]
-        \[ n\divby (\odr g=m) .\]
+        \[ n\divby (\ord g=m) .\]
         \begin{proof}
             \begin{equation*}
                 \begin{split} 
@@ -114,16 +113,16 @@
         \[ |G|\divby |H| .\]
     \end{tlemma}
     \begin{tlemma}
-        \[ \forall{g\in G}\quad |G| \divby \odr g  .\]
+        \[ \forall{g\in G}\quad |G| \divby \ord g  .\]
         \begin{proof}
-            \[ \odr g = |\left<g\right>| .\]
+            \[ \ord g = |\left<g\right>| .\]
             $\left<g\right>$ - подгруппа.
         \end{proof}
     \end{tlemma}
     \begin{tlemma}
         \[ |G| = n \implies g^{n} = e .\]
         \begin{proof}
-            \[ n\divby \odr g \implies g^{n} = (g^{\odr g})^{\frac{n}{\odr g}} = e .\] 
+            \[ n\divby \ord g \implies g^{n} = (g^{\ord g})^{\frac{n}{\ord g}} = e .\] 
         \end{proof}
     \end{tlemma}
     \begin{tlemma}[Теорема Эйлера]

@@ -1,0 +1,146 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+\usepackage{cAlgebra}
+%\usepackage{cTikz}
+\title{Алгебра 11}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{}
+    \begin{theorem}
+        Пусть $p\in \mathbb{P}$, $G$ - группа, $|G|\divby p$.\\
+        Тогда $\exists{x\in G}\quad \ord x = p$.
+        \begin{proof}
+            Пусть $X = G^{p}$.\\
+            $Y = \{(a_0, \ldots, a_{p-1})\in X \ssep a_0\ldots a_{p-1} = e\} $.\\
+            Ввердём действие $\mathbb{Z}/p\actson Y$.\\
+            \[ k(a_0, \ldots, a_{p-1}) \to (a_{k}, \ldots, a_{i+k}\mod p, a_{k-1} .\]
+            Сопряжением с элементом $a_0$ можно показать, что тождество сохраняется\\ %FIXME
+            Рассмотрим множество неподвижных точек при $k=1$:\\
+            Это $(a_0, a_0, \ldots, a_0)$. По условию в $Y$, получаем что $a_0^{p}=e$.\\
+            Тогда существует два случая: $a_0=e$, или $\ord a_0 = p$.\\
+            Покажем что точки второго типа существуют, посчитаем количетсво элементов:\\
+            Заметим, что последний элемент любого элемента $Y$ определяется однозначно через предыдущие. Тогда
+            \[ |Y| = n^{p-1}\divby p .\]
+            Разобьём $Y$ на орбиты:
+            \[ |Y| = \sum\limits_{x} |O_x| .\]
+            $|O_x|$ может быть либо $1$, либо $p$, поэтому $|Y| = r + kp$, так-как $|Y|\divby$, то $r=k'p$, $k' \neq  0$, так-как $|O_e| = 1$, значит существует хотя-бы одна нетривиальная неподвижная точка.
+        \end{proof}
+    \end{theorem}
+    \begin{definition}
+        $X$ - множество, $G$ - группа, $G\actson X$.\\
+        Тогда $X / G$ - множество всех орбит.
+    \end{definition}
+    \begin{definition}
+        Множество неподвижных точек элемента $g$:
+        \[ \Fix g = \{x\in X\ssep gx=x\}  .\] 
+    \end{definition}
+    \begin{dlemma}[Лемма (Не) Бернсайда]
+       $G$ - конечная группа,  $X$ - конечное множетсво,  $G\actson X$.\\
+       Тогда:
+       \[ |X / G| = \frac{1}{|G|}\sum\limits_{g\in G} |\Fix g|.\]
+       \begin{proof}
+          Рассмотрим множество $Y = \{\left<g, x\right>\in G \times X\ssep gx=x\} $.\\
+          \[ |Y| = \sum\limits_{g\in G} |\Fix g| .\]
+          \[ |Y| = \sum\limits_{x\in X} |\Stab x| = \sum\limits_{x\in X} \frac{|G|}{|O_x|} = |G|\sum\limits_{x\in X} \frac{1}{|O_x|} = |G| \sum\limits_{O\in X / G} \sum\limits_{x\in O} \frac{1}{|O|} = |G| |X / G|.\]
+          \[ |Y| = \sum\limits_{g\in G}|\Fix g| = |G| |X / G| \implies |X / G| = \frac{1}{|G|} \sum\limits_{g\in G} |\Fix g| .\qedhere\] 
+       \end{proof}
+    \end{dlemma}
+\section{Теория Колец}
+    \begin{definition}
+        $R$ - кольцо, $a\in R$ называется делителем нуля, если $\exists{b \neq 0\in R}\quad ab = 0$.\\
+        $a\in R$ называется нильпотентным, если $\exists{n\in \mathbb{N}}\quad a^{n} = 0$.
+    \end{definition}
+    \begin{dlemma}
+        В $R$ нет нетривиальных делителей нуля тогда и только тогда, когда $\forall{c \neq  0}\quad \forall{a, b}\quad  ac=bc \implies a=b$.
+        \begin{proof}
+            \[ ac=bc \implies ac-bc = 0 \implies (a-b)c = 0 .\].\\
+            Если делителей нуля нет, то $a-b=0 \implies a=b$.\\
+            Если $a-b \neq 0$, но утверждение выполнено, то $c=0$.
+        \end{proof}
+    \end{dlemma}
+    \begin{definition}
+        Кольцо $R$ называется областью целостности, если в нём нет нетривиальных делителей нуля.\\
+    \end{definition}
+    \begin{definition}
+        Пусть $a, b\in R$, тогда
+        \[ a\divby b \iff \exists{c\in R}\quad a = bc.\]
+    \end{definition}
+    \begin{definition}
+        Пусть $a, b\in R$, тогда $a$ ассоциированно с $b$ ($a\sim b$), если $a\divby b$ и $b\divby a$.
+    \end{definition}
+    \begin{dlemma}
+        Пусть $a, b\in R$, тогда следующие утверждения эквивалентны:
+        \begin{enumerate}
+            \item $a\sim b$
+            \item  $\exists{\varepsilon\in R^{*}}\quad a = \varepsilon b$
+        \end{enumerate}
+        \begin{proof}
+            $2 \implies 1$: $a = \varepsilon b$, $b = \varepsilon^{-1} a$.\\
+            $1 \implies 2$: $a = bc_1$, $b = ac_2$, $a = ac_2c_1$, тогда либо $a=0$, либо $c_1=c_2^{-1}$.
+        \end{proof}
+    \end{dlemma}
+    \begin{dlemma}
+        Ассоциированность - отношение эквивалентности на $R$
+        \begin{proof}
+            Рефлексивность и симметричность очевидны.\\
+            $a\divby b$,  $b\divby a$,  $b\divby c$,  $c\divby b$.\\
+            Из $1$ и $3$ следует $a\divby c$, из $2$ и $4$ - $c\divby a$.
+        \end{proof}
+    \end{dlemma}
+    \begin{definition}
+        $d\in R$ называется наибольшим общим делителем $a$ и  $b$, и обозначается  $(a,b)$, если $a\divby d$, $b\divby d$ и 
+        \[ \forall{d'\in R}\quad \begin{cases}
+            a\divby d'\\
+            b\divby d'
+        \end{cases} \implies d\divby d'.\] 
+    \end{definition}
+    \begin{dlemma}
+        Пусть $a, b\in R$, Если существет $(a, b)$, то он определён однозначно с точностью до ассоциированности.
+        \begin{proof}
+            Пусть $d$, $d'$ - два простых делителя. Тогда $d\divby d'$ и $d'\divby d$.
+        \end{proof}
+    \end{dlemma}
+    \begin{definition}
+        Элемент $p\in R$ называется простым, если $p \not\in R^{*}$, $p \neq 0$ и
+        \[ ab\divby p \implies \bcases{a\divby p\cr b\divby p} .\] 
+    \end{definition}
+    \begin{definition}
+        Элемент $p\in R$ называется неприводимым, если $p \not\in R^{*}$, $p \neq 0$ и
+        \[ p=ab \implies \bcases{a\sim p\cr b\sim p} .\] 
+    \end{definition}
+    \begin{dlemma}
+        Если $p\in R$ простой, то он неприводимый.
+        \begin{proof}
+            Предположим что $p=ab$.\\
+            Заметим, что $ab\divby p$, значит либо $a$ либо  $b$ делится на  $p$. Предположим что  $a\divby p$.\\            Так-же $p\divby a$, а значит  $a\sim p$ 
+        \end{proof}
+    \end{dlemma}
+    \begin{definition}
+        $R$ - кольцо. $R[x]$ - кольцо многочленов над $R$.\\
+        $f\in R[x]$, степень многочлена $\deg f$ - индекс последнего ненулевого элемента. Старший коэффициент - последний ненулевой элемент.\\
+        $\deg 0 = -\infty$
+    \end{definition}
+    \begin{dlemma}
+       \[ \deg fg \le \deg f + \deg g .\]
+       Если $R$ - область целостности, то $\deg fg = \deg f + \deg g$.
+    \end{dlemma}
+    \begin{dlemma}
+        Пусть $\deg f = n$, $\deg g = m$.\\
+        Тогда $fg[n+m] = f[n]g[m]$.\\
+        Если $f[n]$ и $f[m]$ - не делители нуля, то $\deg fg = \deg f + \deg g$.
+    \end{dlemma}
+    \begin{dlemma}
+        Если $R$ - область целостности, то $R[x]$ - тоже область целостности.
+    \end{dlemma}
+    \begin{dlemma}
+        $R$ - область целостности, тогда $(R[x])^{*} = R^{*}$.
+    \end{dlemma}
+\end{document} 
