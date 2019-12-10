@@ -1,0 +1,129 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+\usepackage{cAlgebra}
+%\usepackage{cTikz}
+\title{Алгебра 12}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{}
+   \begin{definition}
+       $R$ - кольцо, $I \subset R$, $I$ называется идеалом $R$, если
+       \begin{enumerate}
+           \item $u, v\in I \implies u+v\in I$
+           \item $u\in I$, $r\in R$, $ru\in I$
+           \item $0\in I$
+       \end{enumerate}
+   \end{definition}
+   \begin{dlemma}
+       Если $I$ - идеал в $R$, то $I$ - подгруппа аддитивной группы $R$.
+       \begin{proof}
+          Замкнутость и наличие нетрального гарантиуется свойствами.\\
+          Заметим, что $-1\in R$, тогда $\forall{u\in I}\quad -1\cdot u = -u\in I$.
+       \end{proof}
+   \end{dlemma}
+   \begin{definition}
+       Идеал, порождённый элементами $a_1, \ldots, a_n$:
+       \[ I = \{a_1x_1+a_2x_2 + \ldots + a_nx_n \ssep \forall{i}\quad x_i\in R\}  .\] 
+   \end{definition}
+   \begin{definition}
+       Главный идеал - идеал, порождённый одним элементом.
+       \[ dR = \{dx\ssep x\in R\}  .\] 
+   \end{definition}
+   \begin{theorem}
+       $K$ - поле, тогда $\forall{I \le K[x]}\quad \exists{d\in K[x]}\quad I = dK[x]$.
+       \begin{proof}
+           Если  $I = \{0\} $, то $I = 0K[x]$.\\
+           Пусть $I \neq \{0\} $ :
+           Рассмотрим ненулевой многочлен $d\in I$, $\deg d$ - минимальна.\\
+           Покажем, что $I = dK[x]$.\\
+           Рассмотрим $a\in I$, тогда $a = dq+r$, $\deg r < \deg d$.\\
+           $dq\in I$,  $a-dq=r$,  $r\in I$, $\deg r < \deg d \implies r = 0$, $a\in dK[x]$, $I \subset dK[x]$.\\
+           По воторому свойству, $dK[x] \subset  I$, значит $I = dK[x]$
+       \end{proof}
+   \end{theorem}
+   \begin{tlemma}
+       $K$ - поле, $f, g\in K[x]$. Тогда $\exists{(f, g)}\quad$, и $(f,g)K[x] = \left<f, g\right>$.
+       \begin{proof}
+           Пусть $\left<f, g\right> = dK[x]$.\\
+           Заметим, что $f,g\in dK[x]$, значит $f\divby d$ и $g\divby d$.\\
+           Возьмём произвольный общий делитель $f, g$ назовём $d'$.\\
+           \[ d = fu + gv .\]
+           $fu\divby d'$,  $gv\divby d'$, знаит $d\divby d'$.
+       \end{proof}
+   \end{tlemma}
+    \begin{dlemma}
+        Пусть $p\in K[x]$.\\
+        $p$ прост только тогда, когда неприводим.\\
+        \begin{proof}
+            Рассмотрим $(a,p)$.\\
+            Есть два случая: $(a,p)\in K[x]^{*}$, $(a,p) \equiv p$.\\
+            Разберём второй случай:
+            \[ (a,p)\divby p .\]
+            Но $a\divby(a,p)$, значит $a\divby p$.\\
+            Рассмотрим первый случай: НОД определённ с точностью до ассоциированности, значит можно считать что $(a,p)=1$.\\
+            Тогда $1=ax+py$ %FIXME
+        \end{proof}
+    \end{dlemma}
+    \begin{theorem}
+        \[ \forall{f\in K[x]}\quad \exists{p_1, \ldots, p_n}\quad\in K[x] \exists{\varepsilon\in K^{*}}\quad \varepsilon \prod\limits_{i=1}^{n} p_i    .\] 
+        Это разложение единственно, с точностью до порядка и ассоцированности.
+        \begin{proof}
+            Если $f$ неприводим, то, $n=1$  $p_1=f$.\\
+            Если $f$ обратим, то $n=0$, $\varepsilon=f$.\\
+            Иначе существует разложение $f=gh$, степени $g,h$ меньше степени $f$, раскладываем по индукции.\\
+            Докажем единственность:\\
+            \[ \varepsilon_1 \prod\limits_{i=1}^{n} p_i = \varepsilon_2 \prod\limits_{i=1}^{n} q_i  .\]
+            Левая часть делится на $p_1$, значит, правая часть делится на $p_1$, значит какое-то $q_i$ ассоциированно с $p_1$, делим, переходим по индукции.
+        \end{proof}
+    \end{theorem}
+    \begin{tlemma}
+        $R$ - кольцо, $f\in R[x]$, $f\divby(x-a) \iff f(a)=0$.
+        \begin{proof}
+            %FIXME
+        \end{proof}
+    \end{tlemma}
+    \begin{definition}
+    $R$ - область целостности. Тогда $a\in R$ является корнем $f\in R[x]$ кратнсоти $k \ge 1$, если $f\divby (x-a)^{k}$ и $f\ndivby(x-a)^{k+1}$.
+    \end{definition}
+    \begin{theorem}
+        $K$ -  поле, $f\in K[x]$, тогда кол-во корней $f$ с учётом кратности не больше степени $f$.
+        \begin{proof}
+            Перечислим все корни $\lambda_1, \ldots, \lambda_s$ и их кратность $r_1, \ldots, r_s$.\\
+            Тогда кол-во корней - $\sum\limits_{i=1}^{s}r_i$.\\
+            Заметим, что многочлен $x-\lambda_i$ неприводим.\\
+            Заметим, что $(x-\lambda_i) \not\sim (x-\lambda_j)$.\\
+            Разложим $f$ на множители:
+            \[ f = \varepsilon (x-\lambda_1)^{r_1} \ldots (x-\lambda_s)^{r_s}g .\]
+            \[ \deg f = r_1 + \ldots +  r_s + \deg g .\]
+            \[ \deg g \ge  0 .\qedhere\] 
+        \end{proof}
+    \end{theorem}
+    \begin{tlemma}
+        $f,g\in K[x]$, $\deg f, \deg g \le n$, и есть попарно различные $\lambda_0, \ldots, \lambda_n$, такие, что $\forall{i}\quad f(\lambda_i) = g(\lambda_i)$, тогда $f=g$.\\
+        \begin{proof}
+            Рассмотрим $h=f-g$.\\
+            Тогда $\lambda_i$ - корни. Но тогда у $h$ есть $n+1$ корень, значит $h(x) = 0$.
+        \end{proof}
+    \end{tlemma}
+    \begin{theorem}[Теорема о формальном и функциональном равенстве многочленов]
+        $f, g\in K[x]$, $K$ - бесконечное, если $\forall{\lambda\in K}\quad f(\lambda) = g(\lambda)$, то $f=g$.
+        \begin{proof}
+            Пусть $n = \max(\deg f, \deg g)$.\\
+            Выберем $n+1$ точку из $K$. По предыдущей лемме, многочлены равны.
+        \end{proof}
+    \end{theorem}
+    \begin{theorem}[Теорема Вильсона]
+        $p\in \mathbb{Z}$ - простое, тогда и только тогда, когда $(p-1)! \equiv -1 \mod p$.\\
+        \begin{proof}
+            %FIXME
+        \end{proof}
+    \end{theorem}
+\end{document} 

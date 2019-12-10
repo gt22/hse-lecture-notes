@@ -1,0 +1,166 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+%\usepackage{cTikz}
+\title{Мат. Анализ 12}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{}
+    \begin{theorem}
+        Покрытие прямоугольниками $\sigma(E)$ - квазиплощадь.\\
+        $\sigma(E)$  не меняется при парралелльном переносе.
+        \begin{proof}
+            Докажем сначала второе свойство: перенесём все прямоугольники вместе с $E$, они все ещё его покрывают, сумма их площадей не изменилась.\\
+            Докажем что это квазиплощадь:\\
+            Если $E \subset \tilde{E}$, то $\sigma(E) \le \sigma(\tilde{E})$.\\
+            Любое покрытие $\tilde{E}$ так-же является покрытием $E$, значит инфинум не может быть больше $\sigma(\tilde{E})$.\\
+            \[ \sigma(E) \ge  \sigma(E_{+}) + \sigma(E_{-}) .\]
+            Возьмём покрытие $E \subset \bigcup_{k = 1}^{n}P_k$.\\
+            Тогда разделим покрытие:
+            \[ P_{k}^{+} \text{- часть $P_k$ лежащая правее прямой  $\ell$} .\]
+        \[ P_{k}^{-} \text{- часть $P_k$ лежащая левее прямой  $\ell$} .\]
+            Тогда $|P_{k}| = |P_{k}^{+}| + |P_{k}^{-}|$.\\
+            Тогда 
+            \[ \sum\limits_{i=1}^{n} |P_i| = \sum\limits_{i=1}^{n} |P_{i}^{+}| + \sum\limits_{i=1}^{n} |P_{i}^{-}|.\] 
+            Правая часть соответствует покрытиям $E_{+}$ и $E_-$, значит $\sigma(E) \ge \sigma(E_{+}) + \sigma(E_{-})$.
+            \[ \sigma(E) \le \sigma(E_{+}) + \sigma(E_{-}) .\]
+            Возьмём какое-нибудь покрытие для $E_{+}$ (назовём $P$) и $E_{-}$ (назовём $Q$).\\
+            Тогда 
+            \[ E \subset  \bigcup_{k=1}^{n}P_{k} \cup \bigcup_{k=1}^{m} Q_k .\]
+            Тогда $\sigma(E) \le \sum\limits_{k=1}^{n} |P_k| + \sum\limits_{k=1}^{m} |Q_k|$.\\
+            Зафиксируем $Q$, тогда $\sigma(E) \le \inf\left( \sum\limits_{k=1}^{n} |P_k| \right) + \sum\limits_{k=1}^{m} |Q_k|$.\\
+            Значит, $\sigma(E) \le \sigma(E_{+}) + \sum\limits_{k=1}^{m} |Q_k|$.\\
+            Взяв инфинум по $Q$ получим $\sigma(E) \le \sigma(E_{+}) + \sigma(E_{-})$.\\
+            Значит, $\sigma(E) = \sigma(E_{+}) + \sigma(E_{-})$.\\
+            \[ \sigma([a; b] \times [c; d]) = (b-a)(d-c) .\]
+            Неравнество $\le$ очевидно.\\
+            Докажем $\ge$ неравнество:\\
+            Разделим прямоугольник на прямоугольники вертикальными ($a$) и горизонтальными ( $b$).\\
+            Тогда 
+            \[ \sigma(E) = \sum\limits_{i=1}^{n}\sum\limits_{i=j}^{m}a_ib_j = \sum\limits_{i=1}^{n}a_i \cdot \sum\limits_{i=1}^{m} b_j = (b-a)(d-c) .\]
+            Теперь рассмотрим произвольное покрытие:\\
+            Проведём все вертикальные и горизонтальые прямые, которые будут включать в себя стороны прямоугольников.\\
+            Заменим все прямоугольники покрытаия его нарезкой.\\
+            Получсим некоторое покрытие, выкинем из него части, которые вылезают за границы исходного множества, и те, которые повторяются.\\
+            Площадь может только уменьшится, а в результате получится площадь начального прямоугольника. Значит площадь покрытия была не меньше.
+        \end{proof}
+    \end{theorem}
+    \begin{definition}
+        $f: \left<a, b\right> \mapsto \mathbb{R}$.\\
+        Тогда 
+        \[f_{+}(x) = \max \{f(x), 0\} .\]
+        \[ f_{-}(x) = \max \{-f(x), 0\}  .\] 
+    \end{definition}
+    \begin{dlemma}
+        \[f_\pm \ge 0.\]
+         \[ f = f_{+} - f_{-} .\]
+         \[ |f| = f_{+} + f_{-} .\]
+         \[ f_{+} = \frac{|f| + f}{2} .\]
+         \[ f_{-} = \frac{|f| - f}{2} .\]
+         Если $f$ непрерывна, то $f_\pm$ тоже непрерывна.
+    \end{dlemma}
+    \begin{definition}
+        Пусть $f: \left[a, b\right] \mapsto \mathbb{R}$, $f \ge 0$.\\
+        Тогда подграфик функции $\mathcal{P}_f = \{\left<x, y\right>\ssep x\in \left[a; b\right] 0 \le y \le f(x)\} $.\\
+    \end{definition}
+    \begin{dlemma}
+        Подграфик непрерывной функции - ограниченное множество,
+    \end{dlemma}
+    \begin{definition}
+        Определённый интеграл функции $f\in C\left[a, b\right]$.\\
+        \[ \int\limits_{a}^{b} f(x)dx = \sigma(\mathcal{P}_{f_+}) - \sigma(\mathcal{P}_{f_-})  .\] 
+    \end{definition}
+    \begin{dlemma} Свойства интеграла:
+        \begin{enumerate}
+            \item $\int\limits_{a}^{a} f = 0$.
+            \item $ \int\limits_{a}^{b} 0 = 0$.
+            \item $f \ge 0 \implies \int\limits_{a}^{b} f \ge 0$.
+            \item $\int\limits_{a}^{b} -f = -\int\limits_{a}^{b} f$   .
+            \item $\int\limits_{a}^{b} c = c(b-a)$.
+            \item $\begin{cases}
+                f \ge 0\\
+                \int\limits_{a}^{b} f = 0 
+            \end{cases} \implies f = 0$.
+        \end{enumerate}
+        \begin{proof}
+            $6$: Пусть $f(c) > 0$ при $c\in \left[a; b\right]$.\\
+            Тогда $\exists{\delta > 0}\quad \forall{x\in (c-\delta; c+\delta)}\quad f(x)>f\frac{c}{2}$.\\
+            Тогда при $x\in \left[c-\frac{\delta}{2}; c+\frac{\delta}{2}\right]$, $f(x) \ge f\frac{c}{2}$.\\
+            Тогда подграфик содержит прямоугольник $\left[c-\frac{\delta}{2}, c+\frac{\delta}{2}\right] \times \left[0; \frac{f(c)}{2}\right]$.\\
+            Площадь этого прямоугольника больше нуля, что пртиворечит тому, что площадь подграфика равна нулю.
+        \end{proof}
+    \end{dlemma}
+    \section{Свойства интегралов}
+    \begin{theorem}[Аддитивность интеграла] Пусть $f\in C\left[a, b\right]$, $a \le c \le b$, тогда
+            \[ \int\limits_{a}^{b} f = \int\limits_{a}^{c} f + \int\limits_{c}^{b} f    .\]
+            \begin{proof}
+                Обозначим за $\mathcal{P}_{f}(E)$ - подграфик $\left. f\right|_{E}$.\\
+                Тогда 
+                \[ \int\limits_{a}^{c} f = \sigma\left( \mathcal{P}_{f_{+}}([a, c] \right) - \sigma(\mathcal{P}_{f_{-}}([a, c]))   .\]
+                \[ \int\limits_{c}^{b} \sigma(\mathcal{P}_{f_{+}}([c, b])) - \sigma(\mathcal{P}_{f_{-}}([c, b]))  .\]
+                Эти частичные подграфики ялвяются разделением всего подграфика вертикальной прямой, значит их сумма равна площади самого подграфика.
+            \end{proof}
+       \end{theorem}
+       \begin{theorem}[Монотонность интеграла]
+            $f, g\in C\left[a; b\right]$, $f \ge g$.\\
+            Тогда
+            \[ \int\limits_{a}^{b} f \ge \int\limits_{a}^{b} g   .\]
+            \begin{proof}
+                Заметим, что $f_{+} \ge g_{+}$, $f_{-} \le g_{-}$.\\
+                Значит, $\mathcal{P}_{f_+} \subset \mathcal{P}_{g_+}$, $\mathcal{P}_{g_-} \subset \mathcal{P}_{f_{-}}$.\\
+                Значит, $\sigma(P_{f_+}) > \sigma(\mathcal{P}_{g_+})$, $\sigma(\mathcal{P}_{f_-}) < \sigma(\mathcal{P}_{g_{-}})$.
+            \end{proof}
+       \end{theorem}
+       \begin{tlemma} Следствия:
+           \begin{enumerate}
+               \item $(b-a)\min\limits_{\left[a; b\right]} f \le \int\limits_{a}^{b} f \le (b-a)\max\limits_{\left[a; b\right]} f$
+               \item $\left|\int\limits_{a}^{b} f\right| \le \int\limits_{a}^{b} |f|  $
+           \end{enumerate}
+           \begin{proof}
+               \begin{enumerate}
+                   \item $m \le f \le M \implies \int\limits_{a}^{b} m \le \int\limits_{a}^{b} f \le \int\limits_{a}^{b} M \implies (b-a)m \le f \le (b-a)M    $
+                   \item $-|f| \le f \le |f| \implies \int\limits_{a}^{b} -|f| \le \int\limits_{a}^{b} f \le \int\limits_{a}^{b} |f| \implies \left| \int\limits_{a}^{b} f\right| \le \int\limits_{a}^{b} |f|      $
+               \end{enumerate}
+           \end{proof}
+       \end{tlemma}
+       \begin{theorem}[Интегральная теорема о срденем]
+           $f\in C\left[a; b\right]$, тогда $\exists{c\in \left[a; b\right]}\quad \int\limits_{a}^{b} f = (b-a)f(c) $.
+           \begin{proof}
+               По теореме Вейерштрасса, $\exists{p, q\in \left[a; b\right]}\quad \begin{cases}
+                   f(p) = \min f\\
+                   f(q) = \max f
+               \end{cases}$.\\
+               Тогда $(b-a)f(p) \le \int\limits_{a}^{b} f \le (b-a)f(q) $.\\
+               $f(p) \le \frac{1}{b-a} \int\limits_{a}^{b} f \le f(q) $.\\
+               По теореме Больцано-Коши, $\exists{c\in \left[a ,b\right]}\quad f(c) = \frac{1}{b-a}\int\limits_{a}^{b} f$.
+           \end{proof}
+       \end{theorem}
+       \begin{definition}[Среднее значение функции]
+       \[ I_f := \frac{1}{b-a} \int\limits_{a}^{b} f  .\]  
+       \end{definition}
+       \begin{definition}[Опр. интеграл с переменным пределом]
+           \[ \Phi, \Psi : \left[a, b\right] \mapsto \mathbb{R} .\] 
+           \[ \Phi(x) := \int\limits_{a}^{x} f  .\]
+           \[ \Psi(x) := \int\limits_{x}^{b} f  .\]
+           \[ \Phi(x) + \Psi(x) = \int\limits_{a}^{b} f  .\] 
+       \end{definition}
+       \begin{theorem}[Теорема Барроу]
+           Если $f\in C[a, b]$, то $\Phi(x)$ - первообразная $f$.
+           \begin{proof}
+               \[ \lim\limits_{h \to 0} \frac{\Phi(x+h) - \Phi(x)}{h} = f(x) .\]
+               Будем считать, что $h>0$.\\
+               Тогда $\Phi(x+h) - \Phi(x) = \int\limits_{x}^{x+h} f $.\\
+               Тогда 
+               \[ \frac{\Phi(x+h)-\Phi(x)}{h} = \frac{1}{h}\int\limits_{x}^{x+h} f  .\]
+               Тогда $\exists{\theta_{h}\in \left[0; 1\right]}\quad \frac{1}{h}\int\limits_{x}^{x+h} f(x+\theta_h h) $.\\
+               По нерпреывности, $\lim\limits_{h \to 0} f(x+\theta_{h} h) = f(x)$.
+           \end{proof}
+       \end{theorem}
+\end{document} 
