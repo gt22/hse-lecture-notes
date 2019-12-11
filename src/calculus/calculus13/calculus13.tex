@@ -157,4 +157,74 @@
         \end{equation*}
     \end{proof}
 \end{definition}
+\begin{theorem}[Теорема Ламберта]
+    $\pi$ и $\pi^2$ - иррацональны.\\
+    %FIXME
+    \begin{proof}
+        \[ H_j := \frac{1}{j!} \int\limits_{0}^{\frac{\pi}{2}} \left( \left( \frac{\pi}{2} \right)^2 - x^2  \right)^{j}\cos x dx    .\]
+        \[ H_1 = 1 .\]
+        \[ H_2 = 2 .\] 
+        \[ H_j = (4j-1)H_{j-1} - \pi^2 H_{j-2} .\]
+        \[ P_j(x) = (4j-1)P_{j-1} + xP_{j-2}(x).\] 
+        Если $\pi^2$ иррационально, то $\pi$ тоже.\\
+        Предположим что $\pi^2 = \frac{m}{n}$.\\
+        \[ 0 < H_j = P_j(\pi^2) = P_j\left( \frac{m}{n} \right) = \frac{x\in \mathbb{Z}}{n^{j}} \ge \frac{1}{n^{j}} \implies n^{j}H_j \ge 1 .\]
+        Но $\lim\limits_{j \to \infty} n^{j}H_j = 1$.
+    \end{proof}
+\end{theorem}
+\section{Интегральные суммы}
+    \begin{definition}
+        $f: E \mapsto \mathbb{R}$ равномерно непрерынва, если
+        \[ \forall{\varepsilon > 0}\quad \exists{\delta > 0}\quad \forall{x, y\in E}\quad |x-y| < \delta \implies|f(x)-f(y)| .\]
+        (Если функция непрерывна всюду, то $\delta$ зависит от $\varepsilon$ и $y$, а если равномерно - только от $\varepsilon$ ).
+    \end{definition}
+    \begin{dlemma}
+        Липщицева функция всегда равномерно нерпревна.
+        \[ \forall{x, y\in E} \quad |f(x) - f(y)| \le M |x-y|.\] 
+    \end{dlemma}
+    \begin{theorem}[Теорема Кантора]
+        $f\in C[a, b]$, $f$ равномерно непрерынва на $\left[a, b\right]$.
+        \begin{proof}
+            Предположим что равномерное непрерывности нет.
+            Значит, 
+            \[ \exists{\varepsilon > 0}\quad \forall{\delta > 0}\quad \exists{x, y\in \left[a, b\right]}\quad |x-y| < \delta \land |f(x)-f(y)| > \varepsilon  .\]
+            Рассмотрим $\delta=\frac{1}{n}$. Пусть оно не подходит. Т. е.
+            \[ \exists{x_n, y_n\in \left[a, b\right]}\quad |x_n - y_n| < \frac{1}{n} |f(x_n) - f(y_n)| \ge \varepsilon  .\]
+            Возьмём подпоследовательность $x_{n_k}$ имеющие предел, $\lim\limits_{k \to \infty} x_{n_{k}} = c$, $c\in \left[a, b\right]$.\\
+            Заметим, что $y_{n_k}\in \left[x_{n_k} - \frac{1}{n}; x_{n_k} + \frac{1}{n}\right]$, значит $\lim\limits_{k \to \infty} y_{n_k} = c$.\\
+            Так-как $f$ непрерывна в $c$, выберем подоходящее $\delta'$ по $\frac{\varepsilon}{2}$.\\
+            \[ \forall{x\in \left[a; b\right]}\quad |x-c| < \delta \implies |f(x)-f(c)| < \frac{\varepsilon}{2} .\]
+            Так-как $\exists{K}\quad \forall{k > K}\quad x_{n_k}, y_{n_k}\in \left[a, b\right]$, возьмём такую пару, тогда
+            \[ \begin{cases}
+                |x_{n_k} - c| < \delta\\
+                |y_{n_k} - c| < \delta
+            \end{cases} \implies \begin{cases}
+            |f(x_{n_k}-f(c)| < \frac{\varepsilon}{2}\\
+            |f(c) - f(y_{n_k}| < \frac{\varepsilon}{2}
+        \end{cases} \implies |f(x_{n_k} - f(y_{n_k})| < \varepsilon .\]
+        Значит, $\delta = \frac{1}{n}$ подходит, и функция равномерно непрерынва.
+            \[ \delta(\varepsilon) = \inf\limits_{y\in E} \delta(\varepsilon, y) .\] 
+        \end{proof}
+    \end{theorem}
+    \begin{definition}[Модуль непрерывности]
+        $f: E \mapsto \mathbb{R}$, тогда модуль непрерывности $\omega_{f}(\delta) = \sup\limits_{|x-y| \le \delta} |f(x)-f(y)|$
+    \end{definition}
+    \begin{dlemma}
+        $\omega_{f}(0) = 0$.\\
+        $\omega_{f}(\delta) \ge  0$.\\
+        $\omega_{f}$ - нестрого монотонно возрастает.\\
+        $|f(x)-f(y)| \le \omega_{f}(|x-y|)$.\\
+        $f$ равномерно непрерывна на $E$ тогда и только тогда, когда $\omega_f(\delta)$ непрерывна в нуле.
+        \begin{proof}
+            Необходиомть:
+            \[ \forall{\varepsilon > 0}\quad \exists{\delta > 0}\quad \forall{x, y\in E}\quad |x-y| < \delta \implies |f(x) - f(y)| < \varepsilon .\]
+            \[ \forall{x, y\in E}\quad |x-y| < \frac{\delta}{2} \implies |f(x)-f(y)|<\varepsilon .\]
+            \[ \omega_{f}\left(\frac{\delta}{2}\right) < \varepsilon  .\]
+            \[ \forall{\varepsilon > 0}\quad \exists{\beta > 0}\quad \forall{0 < \gamma < \beta}\quad \omega_{f}(\gamma) < \varepsilon .\]
+            Значит, $\lim\limits_{\delta \to 0} \omega_f(\delta) = 0$.
+            Достаточность:
+            \[ |f(x)-f(y)| \le \omega_{f}(|x-y|) \le \omega_{f}(\delta).\]
+            Так-как $\omega_{f}(\delta) \to 0$, можно найти такое $\delta$, которое подойдёт для всех. 
+        \end{proof}
+    \end{dlemma}
 \end{document} 
