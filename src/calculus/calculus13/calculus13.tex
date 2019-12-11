@@ -1,0 +1,160 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[11pt, oneside]{article}   	% use "amsart" instead of "article" for AMSLaTeX format
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{cRussian}
+\usepackage{cPicture}
+\usepackage{cTheorem}
+%\usepackage{cTikz}
+\title{Матан 13}
+\author{Igor Engel}
+\date{}
+
+\begin{document}
+\maketitle
+\section{}
+\begin{theorem}[Теорема барроу (с прошлой лекции)]
+    \[ \Phi(x) = \int\limits_{a}^{x} f  .\]
+    \[ \Phi' = f .\] 
+\end{theorem}
+   \begin{tlemma}
+       \[ \Psi' = -f .\]
+       \begin{proof}
+           \[ \Psi(x) = \left( \int\limits_{a}^{b} f - \Phi(x)  \right)' = -\Phi'(x) = -f(x)  .\]
+       \end{proof}
+   \end{tlemma}
+   \begin{tlemma}
+       \[ f\in C\left<a, b\right> \implies \exists{F}\quad F' = f .\]
+      \begin{proof}
+          Возьмём $c\in \left<a, b\right>$ 
+           \begin{equation*}
+               F(x) = \begin{cases}
+                   \int\limits_{c}^{x} f & x \ge c\\
+                   -\int\limits_{x}^{c} f & x < c 
+               \end{cases}
+            \end{equation*}
+            Рассмотрим $x > c$:
+            \[ F'(x) = \left( \int\limits_{c}^{x} f  \right)' = f(x) .\]
+            При $x < c$:
+            \[ F'(x) = \left( -\int\limits_{x}^{c} f  \right)' = -(-f) = f(x) .\]
+            При $x=c$:
+            \[ F_{+}'(x) = \left( \int\limits_{c}^{x}   \right)' = f(x).\] 
+            \[ F_{-}'(x) = \left( -\int\limits_{x}^{c}   \right)' = f(x)  .\] 
+      \end{proof} 
+   \end{tlemma}
+   \begin{theorem}[Формула Ньютона-Лейбница]
+       Пусть $f\in C\left[a, b\right]$. $F = \int f$. Тогда:
+       \[ \int\limits_{a}^{b} f = F(b) - F(a) =: \left. F\right|_{a}^{b}  .\]
+        \begin{proof}
+            Все первообразные отличаются только на константу. Тогда $\Phi(x) = F(x) + C$.\\
+            \[ \Phi(a) = F(a) + C = 0.\]
+            \[ \Phi(b) = F(b) + C = \int\limits_{a}^{b} f .\]
+            \[ \Phi(b) - \Phi(a) = \int\limits_{a}^{b} f - 0 = F(b) + C - F(a) + C = F(b) - F(a)  .\] 
+        \end{proof}
+   \end{theorem}
+   \begin{tlemma}[Линейность опр. инт.]
+       $f, g\in C[a, b]$, $\alpha, \beta\in \mathbb{R}$, тогда:
+       \[ \int\limits_{a}^{b} \alpha f + \beta g = \alpha \int\limits_{a}^{b} f + \beta \int\limits_{a}^{b} g    .\]
+       \begin{proof}
+           \[ F = \int f .\]
+           \[ G = \int g .\]
+           \[ \alpha F + \beta G = \int \alpha f + \beta g .\]
+           \[ (\alpha F + \beta G)(b) - (\alpha F + \beta G)(a) = \alpha F(b) - \alpha F(a) + \beta G(b) - \beta G(a) = \int\limits_{a}^{b} \alpha f + \int\limits_{a}^{b} \beta g   .\] 
+       \end{proof}
+   \end{tlemma}
+   \begin{tlemma}[Интегрирование по частям для опр. инт.]
+       $f, g\in C^{1}[a,b]$. Тогда
+       \[ \int\limits_{a}^{b} fg' = \left. fg\right|_{a}^{b} - \int\limits_{a}^{b} f'g   .\]
+        \begin{proof}
+            \[ H = \int f'g .\]
+            \[ fg - H = \int fg' .\]
+            \[ \int\limits_{a}^{b} fg' = (fg-H)(b)-(fg-H)(a) = (fg)(b)-(fg)(a) - H(b)+H(a) = \left.fg\right|_{a}^{b} - \int\limits_{a}^{b} f'g   .\] 
+        \end{proof}
+   \end{tlemma}
+   \begin{definition}
+       Если $a>b$:
+       \[ \int\limits_{a}^{b} f = - \int\limits_{b}^{a} f   .\] 
+   \end{definition}
+   \begin{tlemma}[Замена переменной в опр. инт]
+       $f\in C\left<a, b\right>$, $\varphi\in C^{1}\left<c, d\right>$, $\varphi : \left<c, d\right> \mapsto \left<a, b\right>$, $p,q\in \left<c, d\right>$. Тогда:
+       \[ \int\limits_{p}^{q} f(\varphi(t))\varphi'(t)dt = \int\limits_{\varphi(p)}^{\varphi(q)} f(x)dx   .\]
+       \begin{proof}
+           \[ F = \int f(x) dx .\]
+           \[ F \circ \varphi = \int f(\varphi(t))\varphi'(t) dt.\]
+           \[ \int\limits_{p}^{q} f(\varphi(t))\varphi'(t)dt = F(\varphi(q))-F(\varphi(p)) = \int\limits_{\varphi(p)}^{\varphi(q)} f   .\] 
+       \end{proof}
+   \end{tlemma}
+\section{Продолжение формулы интегрирования по частям}
+\begin{definition}
+    \[ W_n = \int\limits_{0}^{\frac{\pi}{2}} \sin^{n} x dx = \int\limits_{0}^{\frac{\pi}{2}} dx .\]
+\end{definition}
+\begin{dlemma}
+    Интегралы действительно равны.
+    \begin{proof}
+        \[ \cos^{n}(\frac{\pi}{2}-x) = \sin(x) .\]
+        \[ \varphi(x) = \frac{\pi}{2}-x .\]
+        \[ \varphi'(x) = -1 .\]
+        \[ \int\limits_{0}^{\frac{\pi}{2}} \cos x = \int\limits_{0}^{\frac{\pi}{2}} \sin(\frac{\pi}{2}-x) = \int\limits_{\frac{\pi}{2}}^{0} -\sin(x) = \int\limits_{0}^{\frac{\pi}{2}} \sin x       .\] 
+    \end{proof}
+\end{dlemma}
+\begin{dlemma}
+    \[ W_0 = \int\limits_{0}^{\frac{\pi}{2}} 1 = \frac{\pi}{2}  .\]
+    \[ W_1 = \int\limits_{0}^{\frac{\pi}{2}} \sin x = \left. -\cos x\right|_{0}^{\frac{\pi}{2}} = 1   .\]
+        \begin{equation*}
+            \begin{split}
+                W_{n} &= \int\limits_{0}^{\frac{\pi}{2}} \sin^{n} x dx \\
+                      &= -\int\limits_{0}^{\frac{\pi}{2}} \sin^{n-1}(x) \cdot (\cos)'(x) dx \\
+                      &= -\left.(\sin^{n-1}\cos)(x)\right|_{0}^{\frac{\pi}{2}} + \int\limits_{0}^{\frac{\pi}{2}} (\sin^{n-1})'(x) \cos (x)\\ 
+                      &= \int\limits_{0}^{\frac{\pi}{2}} (n-1)\sin^{n-2}x\cos^2 x dx\\
+                      &= \int\limits_{0}^{\frac{\pi}{2}} (n-1)\sin^{n-2}x(1-\sin^2 x)dx\\
+                      &= (n-1)\left( \int\limits_{0}^{\frac{\pi}{2}}\sin^{n-2} x -\sin^{n} x dx  \right)\\
+                      &= (n-1)\left(\int\limits_{0}^{\frac{\pi}{2}} \sin^{n-2}xdx - \int\limits_{0}^{\frac{\pi}{2}}\sin^{n} xdx \right)\\
+                      &= (n-1)\left( W_{n-2} - W_n \right)\\
+                      &= (n-1)W_{n-2} - (n-1)W_{n}\\
+                 nW_n &= (n-1)W_{n-2}\\
+                  W_n &= \frac{n-1}{n}W_{n-2}
+            \end{split}
+        \end{equation*}
+\end{dlemma}
+\begin{dlemma}
+    \[ W_{2n} = \frac{2n-1}{2n}W_{2n-2} = \frac{(2n-1)!!}{(2n)!!} \cdot  \frac{\pi}{2} .\]
+    \[ W_{2n+1} = \frac{2n}{2n+1} W_{2n-1} = \frac{(2n)!!}{(2n+1)!!} .\] 
+\end{dlemma}
+\begin{dlemma}[Формула Валлиса]
+    \[ \lim\limits_{n \to \infty} \frac{(2n)!!}{(2n-1)!!} \cdot \frac{1}{\sqrt{2n+1} } = \sqrt{\frac{\pi}{2}}  .\]
+    \begin{proof}
+        \[\forall{x\in \left[0; \frac{\pi}{2}\right]}\quad \sin^{2n+2} \le\sin^{2n+1} \le\sin^{2n} .\]
+        \[ \int\limits_{0}^{\frac{\pi}{2}} \sin^{2n+2} \le \int\limits_{0}^{\frac{\pi}{2}} \sin^{2n+1} \le \int\limits_{0}^{\frac{\pi}{2}}\sin^{2n}       .\]
+        \[ W_{2n+2} \le W_{2n+1} \le W_{2n}.\]
+        \[ \frac{2n+1}{2n+2} \cdot  \frac{\pi}{2} \le \frac{(2n)!!}{(2n+1)!!} \cdot \frac{(2n)!!}{(2n-1)!!} \le \frac{\pi}{2} .\]
+        \[ \frac{\left( (2n)!! \right)^{2}}{((2n-1)!!)^2(2n+1)} \to \frac{\pi}{2} .\qedhere\] 
+    \end{proof}
+\end{dlemma}
+\begin{dlemma}
+    \[ \binom{2n}{n} \sim \frac{4^{n}}{\sqrt{\pi n} }.\]
+    \begin{proof}
+        \[ \binom{2n}{n} = \frac{(2n)!}{(n!)^2} = \frac{(2n)!!(2n-1)!!}{\frac{(n!!)^2}{4^{n}}} = 4^{n} \cdot \frac{(2n-1)!!}{(2n)!!} \sim 4^{n} \sqrt{\frac{2}{\pi}}\cdot \frac{1}{\sqrt{2n+1} } \sim 4^{n} \frac{\sqrt{2} }{\sqrt{\pi} } \cdot \frac{1}{\sqrt{2n} } = \frac{4^{n}}{\sqrt{\pi n} }.\] 
+    \end{proof}
+\end{dlemma}
+\begin{definition}[Формула Тейлора с остатком в интегральной форме]
+    $f\in C^{n+1}\left<a, b\right>$, $x, x_0\in \left<a, b\right>$. Тогда
+    \[ f(x) = Tf_{n,x_0}(x) + \frac{1}{n!} \int\limits_{x_0}^{x} (x-t)^{n}f^{(n+1)}(t) dt  .\]
+    \begin{proof}
+        База: $n=0$:
+        \[ f(x) = f(x_0) + \frac{1}{0!} \int\limits_{x_0}^{x} (x-t)^{0} f'(t) dt = f(x_0) + f(x) - f(x_0)  .\]
+        Переход:
+        \[ R_n(x) = \frac{1}{n!} \int\limits_{x_0}^{x} (x-t)^{n}f^{(n+1)}(t)dt  .\]
+        \[ R_{n}(x) = \frac{(x-x_0)^{n+1}}{(n+1)!} f^{(n+1)}(x_0) + R_{n+1}(x) .\]
+        \[ g'(x) = (x-t)^{n} .\]
+        \[ g(x) = \int (x-t)^{n} dt = -\frac{(x-t)^{n+1}}{n+1} .\]
+        \begin{equation*}
+            \begin{split}
+                R_n(x) &= \frac{1}{n!}\left( \int\limits_{x_0}^{x} f^{(n+1)}(t) \cdot \left( - \frac{(x-t)^{n+1}}{n+1} \right)dt   \right)\\
+                       &= \frac{1}{n!}\left( \left.\left(-f^{(n+1)}(t) \cdot \frac{(x-t)^{n+1}}{n+1}\right)\right|_{t=x_0}^{t=x} - \int\limits_{x_0}^{x} -f^{(n+2)}(t) \cdot  \left( \frac{(x-t)^{n+1}}{n+1} \right)dt    \right)\\
+                       &= \frac{1}{n!}\left( \frac{(x-x_0)^{n+1}f^{(n+1)}(x_0)}{n+1} + \int\limits_{x_0}^{x} f^{(n+2)}(t) \cdot \frac{(x-t)^{n+1}}{n+1} dt \right)\\
+                       &= \frac{(x-x_0)^{n+1}f^{(n+1)(x_0)}}{(n+1)!} + \frac{1}{(n+1)!} \int\limits_{x_0}^{x} f^{(n+2)}(t) \cdot (x-t)^{n+1} dt \qedhere 
+            \end{split}
+        \end{equation*}
+    \end{proof}
+\end{definition}
+\end{document} 
