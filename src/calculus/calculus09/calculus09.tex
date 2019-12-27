@@ -36,7 +36,7 @@
                                  &= \left( \sum\limits_{k=0}^{n}\binom{n}{k}f^{(k)}g^{(n-k)} \right) '\\
                                  &= \sum\limits_{k=0}^{n}\binom{n}{k}\left(f^{(k)}g^{(n+1-k)}+f^{(k+1)}g^{(n-k)}\right)\\
                                  &= \sum\limits_{k=0}^{n}\binom{n}{k}f^{(k+1)}g^{(n-k)} + \sum\limits_{k=0}^{n}\binom{n}{k}f^{(k)}g^{(n+1-k)}\\
-                                 &= \sum\limits_{j=1}^{n+1}\binom{n}{j-1}f^{(j)}g^{(n-k)} + \sum\limits_{k=0}^{n}\binom{n}{k}f^{(k)}g^{(n+1-k)}\\
+                                 &= \sum\limits_{j=1}^{n+1}\binom{n}{j-1}f^{(j)}g^{(n+1-j)} + \sum\limits_{k=0}^{n}\binom{n}{k}f^{(k)}g^{(n+1-k)}\\
                                  &= fg^{(n+1)} + f^{(n+1)}g + \sum\limits_{k=1}^{n}(\binom{n}{k-1}+\binom{n}{k})f^{(k)}g^{(n+1-k)}\\
                                  &= \sum\limits_{k=0}^{n+1}\binom{n+1}{k}f^{(k)}g^{(n+1-k)}
                 \end{split}
@@ -66,8 +66,13 @@
         Тогда
         \[ T(x) = \sum\limits_{k=0}^{n} \frac{T^{(k)}(x_0)}{k!}(x-x_0)^{k} .\]
         Правая часть называется формулой Тейлора для многочлена $T$.\\
-        %FIXME
-        TODO: доказательство
+        \begin{proof}
+            (Доказательство взято из АУшного конспекта, я сам его чёт не совсем понимаю, если у кого есть получше - просьба написать мне)
+            \[ T(x) = \sum\limits_{k=0}^{n} c_k(x-x_0)^{k} .\]
+            \[ T^{(m)}(x) = \sum\limits_{k=0}^{n} c_{k}((x-x_0)^{k})^{(m)} .\]
+            Подставим $x=x_0$
+            \[ T^{(m)}(x_0) = c_m \cdot m! \implies c_{m} = \frac{T^{(m)}(x_0)}{m!} .\qedhere\] 
+        \end{proof}
     \end{theorem}
     \begin{definition}[Многочлен Тейлора]
         Пусть $f$ дифференцируема в $x_0$ $n$ раз.\\
@@ -86,7 +91,8 @@
             \begin{equation*}
                 \begin{split}
                     \lim\limits_{x \to x_0} \frac{g(x)}{(x-x_0)^{n}} &= \lim\limits_{x \to x_0} \frac{g'(x)}{n(x-x_0)^{n-1}} = \ldots = \frac{g^{(n-1)}(x_0)}{n!(x-x_0)}\\
-                    &= \lim\limits_{x \to x_0} \frac{g^{(n-1)}(x_0) + g^{(n)}(x_0)(x-x_0) + o(x-x_0)}{n!(x-x_0)} = 0 \qedhere
+                    &= \lim\limits_{x \to x_0} \frac{g^{(n-1)}(x_0) + g^{(n)}(x_0)(x-x_0) + o(x-x_0)}{n!(x-x_0)}\\
+                    &= \lim\limits_{x \to x_0} \frac{1}{n!} \cdot \frac{o(x-x_0)}{(x-x_0)} = 0 \qedhere
                 \end{split}
             \end{equation*}
         \end{proof}
@@ -97,7 +103,7 @@
         \[ f(x) = T_{n, x_0}f(x) + o((x-x_0)^{n}) .\]
         \begin{proof}
             \[ g(x) = f(x) - T_{n, x_0}f(x) .\]
-            \[ g^{(m)}(x) = f^{(m)}(x) - (T_{n, x_0}f(x))^{(0)}.\]
+            \[ g^{(m)}(x) = f^{(m)}(x) - (T_{n, x_0}f(x))^{(m)}.\]
             \[ g^{(m)}(x_0) = f^{(m)}(x_0) - \frac{f^{(m)}(x_0)}{m!} \cdot m! = 0 .\]
             Верно $\forall{m}\quad 0 \le m \le n$.\\
             Тогда $g(x) = o((x-x_0)^{n})$.
@@ -112,14 +118,15 @@
             \[ Q(x) = P(x) - T_{n, x_0}f(x) = o((x-x_0)^{n}) = \sum\limits_{k=0}^{n} c_k(x-x_0)^{k}.\]
             Рассмотрим $c_m$ - первый ненулевой коэффициент.\\
             Тогда $Q(x) = \sum\limits_{k=m}^{n}c_k(x-x_0)^{k}$.
-            \[ \left(\frac{o((x-x_0)^{n})}{(x-x_0)^{n}} \to 0\right) = \frac{Q(x)}{(x-x_0)^{n}} = c_m + \sum\limits_{k=m+1}^{n}c_k(x-x_0)^{k-m} \to c_m .\] 
+            \[ \left(\frac{o((x-x_0)^{n})}{(x-x_0)^{k}} \to 0\right) = \frac{Q(x)}{(x-x_0)^{k}} = c_m + \sum\limits_{k=m+1}^{n}c_k(x-x_0)^{k-m} \to c_m .\]
+            Значит, $c_m = 0$, что невозможно по предположению что $c_m$ - ненулевой коэффициент. Значит, ненулевых коэффициентов не существует.
         \end{proof}
     \end{tlemma}
     \begin{theorem}[Формула Тейлора с остатком в форме Лагранжа]
-        $f: \left<a, b\right> \mapsto \mathbb{R}$, дифференцируема $n+1$ на $\left<a,b\right>$.\\
+        $f: \left<a, b\right> \mapsto \mathbb{R}$, дифференцируема $n+1$ раз на $\left<a,b\right>$.\\
         $x_0, x\in \left<a, b\right>$.\\
         Тогда:
-        (ВНИМАНИЕ: $\left( a, b \right) $ в этой теореме означает $\left( \min \{a, b\}, \max \{a, b\}  \right) $)
+        (ВНИМАНИЕ: $\left( x, y \right) $ в этой теореме означает $\left( \min \{x, y\}, \max \{x, y\}  \right) $)
         \[ \exists{c\in \left( x, x_0 \right) }\quad f(x) = T_{n, x_0}f(x) + \frac{f^{(n+1)}(c)}{(n+1)!}(x-x_0)^{(n+1)}  .\]
         \begin{proof}
             При $n=0$, эквивалентно теореме Лагранжа.\\
