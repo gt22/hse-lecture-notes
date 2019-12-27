@@ -6,7 +6,31 @@
 \usepackage{cPicture}
 \usepackage{cTheorem}
 \usepackage{cTikz}
+\usepackage{xcolor}
 \DeclareMathOperator{\const}{const}
+
+\definecolor{func}{HTML}{0b8000}
+\definecolor{func2}{HTML}{bd0000}
+\definecolor{diff}{HTML}{3700ff}
+\definecolor{diff2}{HTML}{8b00db}
+\definecolor{dx}{HTML}{1da100}
+\definecolor{x0}{HTML}{800800}
+
+\newcommand{\dk}{\textcolor{diff}{k}}
+\newcommand{\df}{\textcolor{diff}{f'}}
+\newcommand{\dg}{\textcolor{diff2}{g'}}
+\newcommand{\rf}{\textcolor{diff}{f_{+}'}}
+\newcommand{\lf}{\textcolor{diff}{f_{-}'}}
+\newcommand{\ds}{\textcolor{diff}{\varphi}}
+\newcommand{\dl}{\textcolor{diff2}{\psi}}
+\newcommand{\dx}{\textcolor{dx}{dx}}
+\newcommand{\xz}{\textcolor{x0}{x_0}}
+\newcommand{\yz}{\textcolor{x0}{y_0}}
+\newcommand{\ff}{\textcolor{func}{f}}
+\newcommand{\fg}{\textcolor{func2}{g}}
+
+\newcommand{\px}{\textcolor{func}{x}}
+\newcommand{\py}{\textcolor{func}{y}}
 \title{Мат. Анализ 8}
 \author{Igor Engel}
 \date{}
@@ -16,118 +40,134 @@
 \section{Дифференциальное исчисление}
     \subsection{Дифференцируемость и производная}
         \begin{definition}
-            $f: <a,b> \mapsto \mathbb{R}$, $x_0\in \left<a, b\right>$.\\
-            $f$ дифференцируема в точке $x_0$, если 
-            \[ \exists{k\in \mathbb{R}}\quad f(x) = f(x_0) + k(x-x_0) + o(x-x_0), x \to x_0 .\] 
+            $\ff: \left<a,b\right> \mapsto \mathbb{R}$, $\xz\in \left<a, b\right>$.\\
+            $\ff$ дифференцируема в точке $\xz$, если 
+            \[ \exists{\dk\in \mathbb{R}}\quad \ff(\px) = \ff(\xz) + \dk(\px-\xz) + o(\px-\xz)\quad \px \to \xz .\]
+            \[ \exists{\dk\in \mathbb{R}}\quad \ff(\xz+\dx) = \ff(\xz) + \dk\dx + o(\dx)\quad \dx\to 0 .\] 
         \end{definition}
         \begin{definition}
-            Производная $f$ в точке $x_0$:
-            \[ f'(x_0) = \lim\limits_{dx \to 0} \frac{f(x_0+dx)-f(x_0)}{dx}  .\] 
+            Производная $\ff$ в точке $\xz$:
+            \[ \df(\xz) = \lim\limits_{\px \to \xz} \frac{\ff(\px)-\ff(\xz)}{\px-\xz} .\] 
+            \[ \df(\xz) = \lim\limits_{\dx \to 0} \frac{\ff(\xz+\dx)-\ff(\xz)}{\dx}  .\] 
         \end{definition}
         \begin{theorem}[Критерий дифференцируемости]
-            $f: \left<a, b\right> \mapsto \mathbb{R}$, $x_0\in \left<a, b\right>$.\\
+            $\ff: \left<a, b\right> \mapsto \mathbb{R}$, $\xz\in \left<a, b\right>$.\\
             Следующие условия равносильны:
             \begin{enumerate}
-                \item $f$ дифференцируема в точке $x_0$
-                \item Существует конечная $f'(x_0)$
-                \item $\exists{\varphi: \left<a, b\right> \mapsto \mathbb{R}}\quad f(x)-f(x_0)=\varphi(x)(x-x_0)$, $\varphi$ непрерывна в токе $x_0$.
+                \item $\ff$ дифференцируема в точке $\xz$
+                \item Существует конечная $\df(\xz)$
+                \item $\exists{\ds: \left<a, b\right> \mapsto \mathbb{R}}\quad \ff(\px)-\ff(\xz)=\ds(\px)(\px-\xz)$, $\ds$ непрерывна в точке $\xz$.
+                \item $\exists{\ds: \left<a, b\right> \mapsto \mathbb{R}}\quad \ff(\xz+\dx)-\ff(\xz)=\ds(\xz+\dx)\dx$, $\ds$ непрерывна в точке $\xz$
             \end{enumerate}
-            Если эти условия выполняются, то $k=f'(x_0) = \varphi(x_0)$.
+            Если эти условия выполняются, то $\dk=\df(\xz) = \ds(\xz)$.
             \begin{proof}
-            $1 \implies 2$:\\
-              \[ f(x)-f(x_0) = k(x-x_0) + o(x-x_0) \implies \frac{f(x)-f(x_0)}{x-x_0} = k + \frac{o(x-x_0)}{x-x_0}\to k .\]
-              Тогда производная существует, конечна, и равна $k$.\\
-              $2 \implies 3$:\\
+            $\dk \implies \df$:\\
+            \[ \ff(\px)-\ff(\xz) = \dk(\px-\xz) + o(\px-\xz) \implies \frac{\ff(\px)-\ff(\xz)}{\px-\xz} = \dk + \frac{o(\px-\xz)}{\px-\xz}\to \dk .\]
+              \[ \ff(\xz+\dx) - \ff(\xz) = \dk\dx + o(\dx) \implies \frac{\ff(\xz+\dx) - \ff(\xz)}{\dx} = \dk + \frac{o(\dx)}{\dx} \to \dk .\] 
+              Тогда производная существует, конечна, и равна $\dk$.\\
+              $\df \implies \ds$:\\
               \begin{equation*}
-                  \varphi(x) = \begin{split}
-                      \frac{f(x)-f(x_0)}{x-x_0} & x \neq x_0\\
-                      f'(x)
-                  \end{split}
+                  \ds(\px) = \begin{cases}
+                      \frac{\ff(\px)-\ff(\xz)}{\px-\xz} & x \neq \xz\\
+                      \df(\px)
+                  \end{cases}
               \end{equation*}
-              Проверим что $\varphi$ непрерывна: $\lim\limits_{x \to x_0} \varphi(x) = x_0$, но предел это $f'(x_0)$.
-              $3 \implies 1$:\\
-              $\varphi$ непрерына, значит, $\varphi(x) = \varphi(x_0) + o(1)$.\\
-              $f(x) = f(x_0) + \varphi(x)(x-x_0) = f(x_0) + \varphi(x)(x-x_0) + o(x-x_0)$
+              \begin{equation*}
+                  \ds(\xz+\dx) = \begin{cases}
+                      \frac{\ff(\xz+\dx)-\ff(x_{0})}{\dx} & \dx \neq 0\\
+                      \df(\xz)
+                  \end{cases}
+              \end{equation*}
+              Проверим что $\ds$ непрерывна:\\
+              \[ \lim\limits_{\px \to \xz} \ds(\px) = \lim\limits_{\px \to \xz} \frac{\ff(\px)-\ff(\xz)}{\px-\xz} = \df(\xz) = \ds(\xz) .\]
+              \[ \lim\limits_{\dx \to 0} \ds(\xz+\dx) = \lim\limits_{\dx \to 0} \frac{\ff(\xz+\dx)-\ff(\xz)}{\dx} = \df(\xz) = \ds(\xz) .\] 
+              $\ds \implies \dk$:\\
+              $\ds$ непрерына, значит, $\ds(\px) = \ds(\xz) + o(1)$.
+              \[\ff(\px) = \ff(\xz) + \ds(\px)(\px-\xz) = \ff(\xz) + (\ds(\xz) + o(1))(\px-\xz) = \ff(\xz) + \ds(\xz)(\px-\xz) + o(\px-\xz)\]
+              \[ \ff(\xz+\dx) = \ff(\xz)+\dx\cdot \ds(\xz+\dx) = \ff(\xz) + \dx\left( \ds(\xz)+o(1) \right) = \ff(\xz)+\ds(\xz)\cdot \dx + o(\dx) .\]
+              Значит, $\dk=\ds(\xz)$.
           \end{proof}
       \end{theorem}
       \begin{definition}
           Производная справа:
-          \[ f'_+(x_0) = \lim\limits_{x \to x_0+} \frac{f(x)-f(x_0)}{x-x_0} .\]
+          \[ \rf(\xz) = \lim\limits_{\px \to \xz+} \frac{\ff(\px)-\ff(\xz)}{\px-\xz} .\]
+          \[ \rf(\xz) = \lim\limits_{\dx \to 0+} \frac{\ff(\xz+\dx)-\ff(\xz)}{\dx}  .\] 
           Аналогично слева.
       \end{definition}
       \begin{dlemma}
-          \[ f'_+(x_0) = f'_{-}(x_0) \implies f'(x_0) = f'_{+}(x_0) = f'_{-}(x_0) .\] 
+          \[ \rf(\xz) = \lf(\xz) \implies \df(\xz) = \rf(\xz) = \lf(\xz) .\] 
       \end{dlemma}
       \begin{definition}
-          \[ f(x_0+dx) = f(x_0) + kdx + o(dx) .\]
-          Отображение $kdx$ называется дифференциалом.
+          \[ \ff(\xz+\dx) = \ff(\xz) + \dk\dx + o(\dx) .\]
+          Отображение $\dx \mapsto  \dk\dx$ называется дифференциалом.
       \end{definition}
       \begin{theorem}
-          Если $f$ дифференцируема в $x_0$, то $f$ непрерывна в $x_0$.
+          Если $\ff$ дифференцируема в $\xz$, то $\ff$ непрерывна в $\xz$.
           \begin{proof}
-              \[ f(x+dx) = f(x_0) + kdx+o(dx) .\]
-              \[ \lim\limits_{x \to x_0} f(x) = f(x_0) + \lim\limits_{dx \to 0} kdx + \lim\limits_{dx\to 0} o(dx) = f(x_0)  .\] 
+              \[ \ff(\px+\dx) = \ff(\xz) + \dk\dx+o(\dx) .\]
+              \[ \lim\limits_{\px \to \xz} \ff(\px) = \ff(\xz) + \lim\limits_{\dx \to 0} \dk\dx + \lim\limits_{\dx\to 0} o(\dx) = \ff(\xz)  .\qedhere\] 
           \end{proof}
       \end{theorem}
       \begin{theorem}[Арифметические действия с производными]
-          $f,g: \left<a, b\right> \mapsto \mathbb{R}$, $x_0\in \left<a, b\right>$, $f,g$ - дифференцируемы в $x_0$.\\
+          $\ff,\fg: \left<a, b\right> \mapsto \mathbb{R}$, $\xz\in \left<a, b\right>$, $\ff,\fg$ - дифференцируемы в $\xz$.\\
           Тогда:
-          \[ (f\pm g)'(x_0) = f'(x_0) \pm g'(x_0) .\]
+          \[ (\ff\pm \fg)'(\xz) = \df(\xz) \pm \dg(\xz) .\]
           \begin{proof}
-              \[ \lim\limits_{x \to x_0} \frac{(f\pm g)(x)-\left( f\pm g \right)(x_0) }{x-x_0} = \lim\limits_{x \to x_0} \frac{f(x)-f(x_0)+g(x)-g(x_0)}{x-x_0} = f'(x_0)+g'(x_0) .\] 
+              \[ \lim\limits_{\px \to \xz} \frac{(\ff\pm \fg)(\px)-\left( \ff\pm \fg \right)(\xz) }{\px-\xz} = \lim\limits_{\px \to \xz} \frac{\ff(\px)-\ff(\xz)+\fg(\px)-\fg(\xz)}{\px-\xz} = \df(\xz)+\dg(\xz) .\] 
           \end{proof}
-          \[ (fg)'(x_0) = f'(x_0)g(x_0) + f(x_0)g'(x_0) .\]
+          \[ (\ff\fg)'(\xz) = \df(\xz)\fg(\xz) + \ff(\xz)\dg(\xz) .\]
           \begin{proof}
               \begin{equation*}
                   \begin{split}
-                      \lim\limits_{x \to x_0} \frac{(fg)(x)-(fg)(x_0)}{x-x_0} 
-                      &= \lim\limits_{x \to x_0} \frac{f(x)g(x)-f(x_0)g(x_0)}{x-x_0}\\
-                      &= \lim\limits_{x \to x_0} \frac{f(x)g(x)-f(x_0)g(x_0)+f(x)g(x_0)-f(x)g(x_0)}{x-x_0}\\
-                      &= \lim\limits_{x \to x_0} f(x) \frac{g(x)-g(x_0)}{x-x_0} + \lim\limits_{x \to 0} g(x_0) \frac{f(x)-f(x_0)}{x-x_0}\\
-                      &= f(x_0)g'(x_0)+g(x_0)f(x)
+                      \lim\limits_{\px \to \xz} \frac{(\ff\fg)(\px)-(\ff\fg)(\xz)}{\px-\xz} 
+                      &= \lim\limits_{\px \to \xz} \frac{\ff(\px)\fg(\px)-\ff(\xz)\fg(\xz)}{\px-\xz}\\
+                      &= \lim\limits_{\px \to \xz} \frac{\ff(\px)\fg(\px)-\ff(\xz)\fg(\xz)+\ff(\px)\fg(\xz)-\ff(\px)\fg(\xz)}{\px-\xz}\\
+                      &= \lim\limits_{\px \to \xz} \frac{(\ff(\px)\fg(\px)-\ff(\px)\fg(\xz))+(\ff(\px)\fg(\xz)-\ff(\xz)\fg(\xz))}{\px-\xz}\\
+                      &= \lim\limits_{\px \to \xz} \ff(\px) \frac{\fg(\px)-\fg(\xz)}{\px-\xz} + \lim\limits_{\px \to \xz} \fg(\xz) \frac{\ff(\px)-\ff(\xz)}{\px-\xz}\\
+                      &= \ff(\xz)\dg(\xz)+\fg(\xz)\df(\xz)
                   \end{split}
                   %FIXME: Insert drawing
               \end{equation*}
           \end{proof}
-          \[ (cf)'(x_0) = cf'(x_0) .\]
+          \[ (cf)'(\xz) = c\df(\xz) .\]
           \begin{proof}
-              $g(x) = c \implies g'(x) = 0 \implies (fg)'(x_0) = f(x_0)g'(x_0)+g(x_0)f'(x_0)=cf(x_0)$.
+              $\fg(\px) = c \implies \df(\px) = 0 \implies (\ff\fg)'(\xz) = \ff(\xz)\dg(\xz)+\fg(\xz)\df(\xz)=c\df(\xz)$.
           \end{proof}
-          \[ g(x_0) \neq 0 \implies \left(\frac{f}{g}\right)'(x_0) = \frac{f'(x_0)g(x_0) -f(x_0)g'(x_0)}{g^2(x_0)}  .\]
+          \[ \fg(\xz) \neq 0 \implies \left(\frac{\ff}{\fg}\right)'(\xz) = \frac{\df(\xz)\fg(\xz) -\ff(\xz)\dg(\xz)}{\fg^2(\xz)}  .\]
           \begin{proof}
               \begin{equation*}
                   \begin{split}
-                      \lim\limits_{x \to x_0} \frac{\left( \frac{f}{g} \right)(x) - \left( \frac{f}{g} \right)(x_0)  }{x-x_0}
-                      &= \lim\limits_{x \to x_0} \frac{\frac{f(x)}{g(x)} - \frac{f(x_0)}{g(x_0)}}{x-x_0}\\
-                      &= \lim\limits_{x \to x_0} \frac{1}{g(x)g(x_0)} \cdot \lim\limits_{x \to x_0} \frac{f(x)g(x_0)-f(x_0)g(x)}{x-x_0}\\
-                      &= \frac{1}{g^2(x_0)} \cdot \lim\limits_{x \to x_0} \frac{f(x)g(x_0)-f(x_0)g(x)+f(x_0)g(x_0)-f(x_0)g(x_0)}{x-x_0}\\
-                      &= \frac{1}{g^2(x_0)} \cdot  \left(\lim\limits_{x \to x_0} g(x_0) \frac{f(x)-f(x_0)}{x-x_0} -  \lim\limits_{x \to x_0} f(x_0) \frac{g(x)-g(x_0)}{x-x_0}\right)\\
-                      &= \frac{g(x_0)f'(x_0)-f(x_0)g'(x_0)}{g^2(x_0)}
+                      \lim\limits_{\px \to \xz} \frac{\left( \frac{\ff}{\fg} \right)(\px) - \left( \frac{\ff}{\fg} \right)(\xz)  }{\px-\xz}
+                      &= \lim\limits_{\px \to \xz} \frac{\frac{\ff(\px)}{\fg(\px)} - \frac{\ff(\xz)}{\fg(\xz)}}{\px-\xz}\\
+                      &= \lim\limits_{\px \to \xz} \frac{1}{\fg(\px)\fg(\xz)} \cdot \lim\limits_{\px \to \xz} \frac{\ff(\px)\fg(\xz)-\ff(\xz)\fg(\px)}{\px-\xz}\\
+                      &= \frac{1}{\fg^2(\xz)} \cdot \lim\limits_{\px \to \xz} \frac{\ff(\px)\fg(\xz)-\ff(\xz)\fg(\px)+\ff(\xz)\fg(\xz)-\ff(\xz)\fg(\xz)}{\px-\xz}\\
+                      &= \frac{1}{\fg^2(\xz)} \cdot  \left(\lim\limits_{\px \to \xz} \fg(\xz) \frac{\ff(\px)-\ff(\xz)}{\px-\xz} -  \lim\limits_{\px \to \xz} \ff(\xz) \frac{\fg(\px)-\fg(\xz)}{\px-\xz}\right)\\
+                      &= \frac{\fg(\xz)\df(\xz)-\ff(\xz)\dg(\xz)}{\fg^2(\xz)}
                   \end{split}
               \end{equation*}
           \end{proof} 
       \end{theorem}
       \begin{theorem}[Производная композиции]
-          $f:\left<a, b\right> \mapsto \mathbb{R}$, $g: \left<c, d\right> \mapsto \left<a, b\right>$, $x_0\in \left<c, d\right>$, $g$ дифференцируема в $x_0$, $f$ в $g(x_0)$.
-          \[ (f\circ g)(x) = f'(g(x))g'(x) .\]
-          \[ \frac{d(f\circ g)}{dx} = \frac{df}{dg}\frac{dg}{dx} .\]
+          $\ff:\left<a, b\right> \mapsto \mathbb{R}$, $\fg: \left<c, d\right> \mapsto \left<a, b\right>$, $\xz\in \left<c, d\right>$, $\fg$ дифференцируема в $\xz$, $\ff$ в $\fg(\xz)$.
+          \[ (\ff\circ \fg)(\px) = \df(\fg(\px))\dg(\px) .\]
+          \[ \frac{d(\ff\circ \fg)}{\dx} = \frac{d\ff}{d\fg}\frac{d\fg}{\dx} .\]
           \begin{proof}
-              \[ y_0 = g(x_0) .\] 
-              \[ g(x)-g(x_0) = \psi(x)(x-x_0) \text{, $\psi$ непрерывна в  $x_0$} .\]
-              \[ f(y)-f(y_0) = \varphi(y)(y-y_0) \text{, $\varphi$ непрерывна в $y_0$} .\] 
-              \[ f(g(x))-f(g(x_0)) = \varphi(g(x))(\psi(x)(x-x_0)) .\]
-              $g(x)$ непрерывна в $x_0$, значит $\varphi(g(x))$ непрерывна в $x_0$, и $\varphi(g(x))(\psi(x)(x-x_0))$ непрерынва в $x_0$, как произведение непрерывных.
+              \[ \yz = \fg(\xz) .\] 
+              \[ \fg(\px)-\fg(\xz) = \dl(\px)(\px-\xz) \text{, $\dl$ непрерывна в  $\xz$} .\]
+              \[ \ff(\py)-\ff(\yz) = \ds(\py)(\py-\yz) \text{, $\ds$ непрерывна в $\yz$} .\] 
+              \[ \ff(\fg(\px))-\ff(\fg(\xz)) = \ds(\fg(\px))(\dl(\px)(\px-\xz)) .\]
+              $\fg(\px)$ непрерывна в $\xz$, значит $\ds(\fg(\px))$ непрерывна в $\xz$, и $\ds(\fg(\px))\dl(\px)$ непрерынва в $\xz$, как произведение непрерывных.
           \end{proof}
       \end{theorem}
       \begin{theorem}[Производная обратной фнукции]
-          $f: \left<a, b\right> \mapsto \mathbb{R}$, $f$ непрерывна и строго монотонна и дифференцируема в $x_0$, при этом $f'(x_0) \neq 0$.\\
-          Тогда, $g=f^{-1}$ дифференцируема в $y_0f(x_0)$, $g'(y_0) =\frac{1}{f'(x_0)} = \frac{1}{f'(g(x_0)}$.
+          $\ff: \left<a, b\right> \mapsto \mathbb{R}$, $\ff$ непрерывна, строго монотонна и дифференцируема в $\xz$, при этом $\df(\xz) \neq 0$.\\
+          Тогда, $\fg=\ff^{-1}$ дифференцируема в $\yz=\ff(\xz)$, $\dg(\yz) =\frac{1}{\df(\xz)} = \frac{1}{\df(\fg(\xz)}$.
           \begin{proof}
-              \[ f(x) - f(x_0) = \varphi(x)(x-x_0) .\]
-              Заметим, что $\varphi(x) \neq 0$, так-как в $x\neq x_0 \implies f(x)-f(x_0) \neq 0$, а в $x_0$ она равна производной.\\
-              \[ x-x_0 = \frac{1}{\varphi(x)}(f(x)-f(x_0)) \iff g(y) - g(y_0) = \frac{1}{\varphi(x)}(y-y_0) .\]
-              Так-как $\varphi(x) \neq 0$, то $\frac{1}{\varphi(x)}$ непрерывна.\\
-              \[ g'(x_0) = \frac{1}{\varphi(x_0)} = \frac{1}{f'(x_0)} = \frac{1}{f'(g(y_0))} .\] 
+              \[ \ff(\px) - \ff(\xz) = \ds(\px)(\px-\xz) .\]
+              Заметим, что $\ds(\px) \neq 0$, так-как в $\px\neq \xz \implies \ff(\px)-\ff(\xz) \neq 0$, а в $\xz$ она равна производной.\\
+              \[ \px-\xz = \frac{1}{\ds(\px)}(\ff(\px)-\ff(\xz)) \iff \fg(\py) - \fg(\yz) = \frac{1}{\ds(\px)}(\py-\yz) .\]
+              Так-как $\ds(\px) \neq 0$, то $\frac{1}{\ds(\px)}$ непрерывна.\\
+              \[ \dg(\xz) = \frac{1}{\ds(\xz)} = \frac{1}{\df(\xz)} = \frac{1}{\df(\fg(\yz))} .\qedhere\] 
           \end{proof}
       \end{theorem}
     \subsection{Производные элементарных функций}
@@ -146,126 +186,129 @@
         \[ (\arcsin x)' = \frac{1}{\sqrt{1-x^2} } .\]
         \[ (\arccos x)' = 0\frac{1}{\sqrt{1-x^2} } .\] 
         \begin{proof}
-            \[ (x^{p})' = \lim\limits_{dx \to 0} \frac{(x+dx)^{p}-x^{p}}{dx} = x^{p} \lim\limits_{x \to h} \frac{(1+\frac{dx}{x})^{p} - 1}{\frac{dx}{x}}\cdot \frac{1}{x} = x^{p}\cdot p\cdot \frac{1}{x} = px^{p-1}  .\]
-            \[ (a^{x})' = \lim\limits_{dx \to 0} \frac{a^{x+h}-a^{x}}{h} = a^{x} \lim\limits_{dx \to 0} \frac{a^{dx}-1}{dx} = a^{x}\ln a .\]
-            \[ (\ln x)' = \lim\limits_{dx \to 0} \frac{\ln(x+dx)-\ln x}{dx} = \lim\limits_{dx \to 0} \frac{\ln\left( 1+\frac{dx}{x} \right) }{\frac{dx}{x}}\cdot \frac{1}{x} = \frac{1}{x}  .\]
-            \[ (\sin x)' = \lim\limits_{dx \to 0} \frac{\sin(x+dx)-\sin x}{dx} = \lim\limits_{dx \to 0} \frac{2(\sin \frac{dx}{2}\cos\left( x+\frac{dx}{2} \right) }{dx} = \cos x .\]
+            \[ (x^{p})' = \lim\limits_{\dx \to 0} \frac{(x+\dx)^{p}-x^{p}}{\dx} = x^{p} \lim\limits_{\dx \to 0} \frac{(1+\frac{\dx}{x})^{p} - 1}{\frac{\dx}{x}} = x^{p}\cdot p\cdot \frac{1}{x} = px^{p-1}  .\]
+            \[ (a^{x})' = \lim\limits_{\dx \to 0} \frac{a^{x+h}-a^{x}}{h} = a^{x} \lim\limits_{\dx \to 0} \frac{a^{\dx}-1}{\dx} = a^{x}\ln a .\]
+            \[ (\ln x)' = \lim\limits_{\dx \to 0} \frac{\ln(x+\dx)-\ln x}{\dx} = \lim\limits_{\dx \to 0} \frac{\ln\left( 1+\frac{\dx}{x} \right) }{\frac{\dx}{x}}\cdot \frac{1}{x} = \frac{1}{x}  .\]
+            \[ (\sin x)' = \lim\limits_{\dx \to 0} \frac{\sin(x+\dx)-\sin x}{\dx} = \lim\limits_{\dx \to 0} \frac{2\left(\sin \frac{\dx}{2}\cos\left( x+\frac{\dx}{2} \right)\right) }{\dx} = \cos x .\]
             Косинус аналогично, остальные по арифметике и обратным.
         \end{proof}
     \subsection{Теорема о среднем}
         \begin{theorem}[Теорема Ферма]
-            $f: \left<a, b\right> \mapsto \mathbb{R}$, $x_0\in \left( a, b \right)$, и $f(x_0) = \max f(x)$ или $\min f(x)$, и $f$ дифференцируема в $x_0$, тогда $f'(x_0) = 0$.
+            $\ff: \left<a, b\right> \mapsto \mathbb{R}$, $\xz\in \left( a, b \right)$, и $\ff(\xz) = \max \ff(\px)$ или $\min \ff(\px)$, и $\ff$ дифференцируема в $\xz$, тогда $\df(\xz) = 0$.
             \begin{proof}
                 Для определённости, пусть будем минмум.
                 \begin{equation*}
                     \begin{cases}
-                        f_{+}'(x_0) = \lim\limits_{x \to x_0+} \frac{f(x) - f(x_0)}{x-x_0} \ge 0\\
-                        f_{-}'(x_0) = \lim\limits_{x \to x_0-} \frac{f(x)-f(x_0)}{x-x_0} \le 0 
+                        \rf(\xz) = \lim\limits_{\px \to \xz+} \frac{\ff(\px) - \ff(\xz)}{\px-\xz} \ge 0\\
+                        \lf(\xz) = \lim\limits_{\px \to \xz-} \frac{\ff(\px)-\ff(\xz)}{\px-\xz} \le 0 
                     \end{cases}
-                    \implies f'(x_0) = 0
+                    \implies \df(\xz) = 0
                 \end{equation*}
 
             \end{proof}
         \end{theorem}
         \begin{theorem}[Теорма Ролля]
-            $f: \left[a, b\right] \mapsto \mathbb{R}$, дифференцируема на $\left( a, b \right) $, непрерывна на всём отрезке, и $f(a) = f(b)$.\\
-            Тогда существует $c\in \left( a, b \right) $, $f(c) = 0$.\\
+            $\ff: \left[a, b\right] \mapsto \mathbb{R}$, дифференцируема на $\left( a, b \right) $, непрерывна на всём отрезке, и $\ff(a) = \ff(b)$.\\
+            Тогда существует $c\in \left( a, b \right) $, $\ff(c) = 0$.\\
             \begin{proof}
-                По теореме Вейерштрасса, $f$ достигает максимума и минимума в каких-то точках.\\
+                По теореме Вейерштрасса, $\ff$ достигает максимума и минимума в каких-то точках.\\
                 Если максимум или минимум внутри интервала, то по теореме Ферма производная там равна нулю.\\
                 Если и максимум и минимум достагается на концевых точках, то функция постоянна на отрезке, и её производная равна нулю.
             \end{proof}
         \end{theorem}
         \begin{theorem}[Теорема Лагранжа (формула конечных приращений)]
-            $f: \left[a, b\right] \mapsto \mathbb{R}$, дифференцируема на интервале, непрерывна на отрезке.\\
-            \[ \exists{c\in \left(a, b\right)}\quad f(b)-f(a) = f'(c)(b-a) .\] 
+            $\ff: \left[a, b\right] \mapsto \mathbb{R}$, дифференцируема на интервале, непрерывна на отрезке.\\
+            \[ \exists{c\in \left(a, b\right)}\quad \ff(b)-\ff(a) = \df(c)(b-a) .\]
+            \[ \exists{c\in (a, b)}\quad \frac{\ff(b) - \ff(a)}{b-a} = \df(c) .\] 
             \begin{proof}
-                \[ g(x) = f(x) - kx .\]
-                \[ g(a) = g(b) = f(a) - ka = f(b) - kb \implies k = k = \frac{f(b) - f(a)}{b-a} .\]
-                Применим теорему Ролля: \[ \exists{c\in \left( a, b \right) }\quad g'(c) = 0 = f'(c)-k = f'(c) - \frac{f(b)-f(a)}{b-a} \implies f'(c)(b-a) = f(b) - f(a) .\] 
+                \[ \dk = \frac{\ff(b)-\ff(a)}{b-a} .\] 
+                \[ \fg(\px) = \ff(\px) - \dk(\px-a) .\]
+                \[ \fg(a) = \ff(a) .\]
+                \[ \fg(b) = \ff(b) - \frac{\ff(b) - \ff(a)}{b-a}\left( b-a \right) = \ff(a) .\] 
+                Применим теорему Ролля: \[ \exists{c\in \left( a, b \right) }\quad \dg(c) = 0 = \df(c)-\dk = \df(c) - \frac{\ff(b)-\ff(a)}{b-a} \implies \df(c)(b-a) = \ff(b) - \ff(a) .\qedhere\] 
             \end{proof}
         \end{theorem}
         \begin{theorem}[Теорема Коши (очередная)]
-            $f, g: \left[a, b\right] \mapsto \mathbb{R}$, $f,g$ непрерывны на отрезке, дифференцируемы на интервале, $\forall{x\in \left( a, b \right) }\quad g'(x) \neq  0$.\\
+            $\ff, \fg: \left[a, b\right] \mapsto \mathbb{R}$, $\ff,\fg$ непрерывны на отрезке, дифференцируемы на интервале, $\forall{\px\in \left( a, b \right) }\quad \dg(\px) \neq  0$.\\
             Тогда
-            \[ \exists{c\in (c, b)}\quad \frac{f(b) - f(a)}{g(b) - g(a)} = \frac{f'(c)}{g'(c)} .\]
+            \[ \exists{c\in (a, b)}\quad \frac{\ff(b) - \ff(a)}{\fg(b) - \fg(a)} = \frac{\df(c)}{\dg(c)} .\]
             \begin{proof}
-                \[ h(x) = f(x) - kg(x) .\]
-                \[ f(b) - kg(b) = h(b) = h(a) = f(a) - kg(a) \implies k = \frac{f(b) - f(a)}{g(b) - g(a)} .\] 
-                \[ \exists{c\in \left( a, b \right) }\quad h'(c) = 0 = f'(c) - kg'(c) .\]
-                Подставив $k$ получим что надо.
+                \[ \dk = \frac{\ff(b) - \ff(a)}{\fg(b) - \fg(a)} .\] 
+                \[ h(\px) = \ff(\px) - \dk(\fg(\px)-\fg(a)) .\]
+                \[ \exists{c\in \left( a, b \right) }\quad h'(c) = 0 = \df(c) - \dk\dg(c) = \df(c) - \frac{\ff(b) - \ff(a)}{\fg(b)-\fg(a)}\dg(c) \implies \frac{\df(c)}{\dg(c)} = \frac{\ff(b) - \ff(a)}{\fg(b)-\fg(a)}.\qedhere\]
             \end{proof}
         \end{theorem}
         \subsubsection{Следствия из Лагранжа}
             
-            $f: \left<a, b\right> \mapsto \mathbb{R}$, дифферецируема на интервале, непрерывна на промежутке.\\
+            $\ff: \left<a, b\right> \mapsto \mathbb{R}$, дифферецируема на интервале, непрерывна на промежутке.\\
             \begin{tlemma}
-                Если $\forall{x\in \left( a, b \right) }\quad |f'(x)| \le  M$, то $|f(x)-f(y)| \le M|x-y|$.\\
-                Такая функция называется Липщецевой функйией с константой $M$.
+                Если $\forall{\px\in \left( a, b \right) }\quad |\df(\px)| \le  M$, то 
+                \[\forall{\px, \py\in \left( a, b \right) }\quad |\ff(\px)-\ff(\py)| \le M|\px-\py|.\]
+                Такая функция называется Липшицевой функйией с константой $M$.
                 \begin{proof}
-                    По Т. Л. $\exists{c\in \left( x, y \right) }\quad |f(y)-f(x)| = f'(c)|x-y| \le M|x-y|$.
+                    По Т. Л. $\exists{c\in \left( \px, \py \right) }\quad |\ff(\py)-\ff(\px)| = \df(c)|\px-\py| \le M|\px-\py|$.
                 \end{proof}
             \end{tlemma}
             \begin{tlemma}
-                Если $\forall{x\in (a, b)}\quad f'(x) \ge 0$, то $f$ нестрго монотонно возрастает.\\
+                Если $\forall{x\in (a, b)}\quad \df(\px) \ge 0$, то $\ff$ нестрго монотонно возрастает.\\
                 \begin{proof}
-                    \[ f(y) - f(x) = f'(c)(y-x) \ge  0 \iff y \ge  x .\] 
+                    \[ \ff(y) - \ff(\px) = \df(c)(y-x) \ge  0 \iff y \ge  x .\] 
                 \end{proof}
             \end{tlemma}
             \begin{tlemma}
-                Если $\forall{x\in \left( a, b \right) }\quad f'(x) > 0$, то $f$ строго монотонно возрастает.
+                Если $\forall{x\in \left( a, b \right) }\quad \df(\px) > 0$, то $\ff$ строго монотонно возрастает.
             \end{tlemma}
             \begin{tlemma}
-                Если $\forall{x\in \left( a, b \right) }\quad f'(x) \le 0$, то $f$ нестрого монотонно убывает.
+                Если $\forall{x\in \left( a, b \right) }\quad \df(\px) \le 0$, то $\ff$ нестрого монотонно убывает.
             \end{tlemma}
             \begin{tlemma}
-                Если $\forall{x\in \left( a, b \right) }\quad f'(x) < 0$, то $f$ строго монотонно убывает.
+                Если $\forall{x\in \left( a, b \right) }\quad \df(\px) < 0$, то $\ff$ строго монотонно убывает.
             \end{tlemma}
             \begin{tlemma}
-                Если $\forall{x\in \left( a, b \right) }\quad f'(x) = 0$, то $f(x) = \const$.
+                Если $\forall{x\in \left( a, b \right) }\quad \df(\px) = 0$, то $\ff(\px) = \const$.
             \end{tlemma}
-            \begin{theorem}[Теорема Варбу]
-                $f: \left[a, b\right] \mapsto \mathbb{R}$, $f$ дифференцируема на отрезке.\\
-                Пусть $C$ лежит строго между $f'(a)$, $f'(b)$, тогда $\exists{c\in \left( a, b \right) }\quad f'(c) = C$
+            \begin{theorem}[Теорема Дарбу]
+                $\ff: \left[a, b\right] \mapsto \mathbb{R}$, $\ff$ дифференцируема на отрезке.\\
+                Пусть $C$ лежит строго между $\df(a)$, $\df(b)$, тогда $\exists{c\in \left( a, b \right) }\quad \df(c) = C$
                 \begin{proof}
                     Случай $C=0$.\\
-                    Для определённости $f'(a) < 0 < f'(b)$.\\
-                    $f$ непрерывна, значит принимает максимальное и минимальное значение на отрезке.\\
-                    При таких знаках производной, минимум функции точно будет внутри интервала, и в этой точке $f'(x) = 0$.\\
-                    \[ f'(a) = \lim\limits_{x \to a+} \frac{f(x)-f(a)}{x-a}  .\]
-                    Пусть $a$ - точка минимума. Тогда числитель больше нуля, знаменатель больше нуля, предел $\ge 0$, но $f'(a) < 0$.\\
-                    Аналогично для $f'(b)$.\\
+                    Для определённости $\df(a) < 0 < \df(b)$.\\
+                    $\ff$ непрерывна, значит принимает максимальное и минимальное значение на отрезке.\\
+                    При таких знаках производной, минимум функции точно будет внутри интервала, и в этой точке $\df(\px) = 0$.\\
+                    \[ \df(a) = \lim\limits_{\px \to a+} \frac{\ff(\px)-\ff(a)}{\px-a}  .\]
+                    Пусть $a$ - точка минимума. Тогда числитель больше нуля, знаменатель больше нуля, предел $\ge 0$, но $\df(a) < 0$.\\
+                    Аналогично для $\df(b)$.\\
                     При другой расстановке знаков, внутри будет максимум.\\
-                    Если $C\neq 0$, можно из $f$ вычесть фукнцию $Cx$, и получится случай для $C=0$.\\
+                    Если $C\neq 0$, можно из $\ff$ вычесть фукнцию $C\px$, и получится случай для $C=0$.\\
                 \end{proof}
             \end{theorem}
             \begin{tlemma}
-                Пусть $f: \left<a, b\right> \mapsto \mathbb{R}$, $f$ непрерывна на промежутке, диффренцируема на интервале, $f'(x) \neq 0$ на всём интервале. Тогда $f$ строго монотонна.
+                Пусть $\ff: \left<a, b\right> \mapsto \mathbb{R}$, $\ff$ непрерывна на промежутке, диффренцируема на интервале, $\df(\px) \neq 0$ на всём интервале. Тогда $\ff$ строго монотонна.
                 \begin{proof}
                     Если существет точки в которых производная разных знаков, то между ними была-бы точка с нулевой производной.
                 \end{proof}
             \end{tlemma}
             \begin{theorem}[Правило Лопиталя]
                 Пусть $-\infty \le a < b \le +\infty$.\\
-                $f,g : \left( a, b \right) \mapsto \mathbb{R}$, дифференцируемы на $\left( a,b \right) $, $g'(x) \neq0$.\\
-                $\lim\limits_{x \to b-} f(x) = \lim\limits_{x \to b-} g(x) = 0$.\\
-                Если $\lim\limits_{x \to b-} \frac{f'(x)}{g'(x)} = \ell\in \overline{\mathbb{R}}$, то $\lim\limits_{x \to b-} \frac{f(x)}{g(x)} = \ell$
+                $\ff,\fg : \left( a, b \right) \mapsto \mathbb{R}$, дифференцируемы на $\left( a,b \right) $, $\dg(\px) \neq0$.\\
+                $\lim\limits_{\px \to b-} \ff(\px) = \lim\limits_{\px \to b-} \fg(\px) = 0$.\\
+                Если $\lim\limits_{\px \to b-} \frac{\df(\px)}{\dg(\px)} = \ell\in \overline{\mathbb{R}}$, то $\lim\limits_{\px \to b-} \frac{\ff(\px)}{\fg(\px)} = \ell$
                 \begin{proof}
-                    По предыдущей лемме, $g$ строго монотонно, значит, она либо везде положительна, либо везде отрицательная, и $g(x) \neq 0$.\\
+                    По предыдущей лемме, $\fg$ строго монотонно, значит, она либо везде положительна, либо везде отрицательная, и $\fg(\px) \neq 0$.\\
                     Проверим предел по Гейне. Возьмём монотонно возрастающую последовательность $x_n \to b$.\\
-                    Тогда $g(x_n)$ строго монотонно.\\
+                    Тогда $\fg(x_n)$ строго монотонно.\\
                     Тогда, по теореме Штольца:
-                    \[ \lim\frac{f(x_n)}{g(x_n)} = \lim \frac{f(x_{n}) - f(x_{n-1})}{g(x_n) - g(x_{n-1})} .\]
-                    \[ \exists{c_n\in \left( x_{n-1}, x_n \right) }\quad \frac{f(x_n) - f(x_{n-1})}{g(x_n) - g(x_{n-1})} = \frac{f'(c)}{g'(c)} .\]
+                    \[ \lim\frac{\ff(x_n)}{\fg(x_n)} = \lim \frac{\ff(x_{n}) - \ff(x_{n-1})}{\fg(x_n) - \fg(x_{n-1})} .\]
+                    \[ \exists{c_n\in \left( x_{n-1}, x_n \right) }\quad \frac{\ff(x_n) - \ff(x_{n-1})}{\fg(x_n) - \fg(x_{n-1})} = \frac{\df(c)}{\dg(c)} .\]
                     $c_n \to b$, значит, предел равен $\ell$.\\
                 \end{proof}
             \end{theorem}
             \begin{theorem}[Лопиталь для бескончностей]
-                Меняем условие $\lim\limits_{x \to b-} f(x) = \lim\limits_{x \to b-} g(x) = 0$, меняем на $\lim\limits_{x \to b-} g(x) = +\infty$. Доказательство аналогично Лопиталю для нулей, с заменёнными пределами последовательностей.
+                Меняем условие $\lim\limits_{x \to b-} \ff(\px) = \lim\limits_{x \to b-} g(\px) = 0$, на $\lim\limits_{x \to b-} g(\px) = +\infty$. Доказательство аналогично Лопиталю для нулей, с заменёнными пределами последовательностей.
             \end{theorem}
     \subsection{Производные высших порядков}
         \begin{definition}
-            $f: \left<a, b\right> \mapsto \mathbb{R}$ дифференцируема в окрестности точки $x_0$, тогда $f'$ определена в окретнсоти $x_0$, и если $f'$ дифференцируема, то  $f$ дифференцируема дважды, в  $x_0$.\\ 
-            Вторая производная $f$ - производная $f'$.
+            $f: \left<a, b\right> \mapsto \mathbb{R}$ дифференцируема в окрестности точки $\xz$, тогда $\df$ определена в окретнсоти $\xz$, и если $\df$ дифференцируема, то  $\ff$ дифференцируема дважды, в  $\xz$.\\ 
+            Вторая производная $\ff$ - производная $\df$.
         \end{definition}
 \end{document} 
