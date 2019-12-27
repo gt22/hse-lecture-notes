@@ -13,50 +13,106 @@
 \begin{document}
 \maketitle
 \section{}
-\[ f(\lambda x + (1-\lambda) y) = \lambda f(x) + (1-\lambda)f(y) .\]
-\[ z = \lambda x + (1-\lambda)y .\]
-\[ \lambda = \frac{y-z}{y-x} .\]
-\[ 1-\lambda = \frac{z-x}{y-x} .\]
-\[ f(z) \le \frac{y-z}{y-x}f(x) + \frac{z-x}{y-x}f(y) .\]
-\[ (y-x)f(z) \le (y-z)f(x) + (z-x)f(y) .\]
+\begin{definition}[Обозначеия внутри конспекта]
+    
+    \[ m_{\lambda}(a,b) := \lambda a + (1-\lambda) b.\]
+    \[m_{\lambda}^{f}(a,b) := m_{\lambda}(f(a), f(b)).\]
+    Заметим, что 
+    \begin{equation*}
+        \begin{split}
+            m_{\lambda}(a,b) + m_{\lambda}(c,d) 
+            &= \lambda a + (1-\lambda)b + \lambda c + (1-\lambda) d\\
+            &= \lambda(a+c) + (1-\lambda)(b+d) = m_{\lambda}(a+c, b+d)
+        \end{split}
+    \end{equation*}
+    \begin{equation*}
+        \begin{split}
+            \alpha m_{\lambda}(a,b)
+            &= \alpha(\lambda a) + \alpha((1-\lambda)b)\\
+            &= \lambda(\alpha a) + (1-\lambda)(\alpha b) = m_{\lambda}(\alpha a, \alpha b)
+        \end{split}
+    \end{equation*}
+    \begin{equation*}
+        \begin{split}
+            m_{\lambda}^{f}(a,b) + m_{\lambda}^{g}(a,b)
+            &= m_{\lambda}(f(a), f(b)) + m_{\lambda}(g(a), g(b))\\ 
+            &= m_{\lambda}(f(a)+g(a), f(b)+g(b)) = m_{\lambda}^{f+g}(a,b) 
+        \end{split}
+    \end{equation*}
+    \begin{equation*}
+        \begin{split}
+            \alpha m_{\lambda}^{f}(a, b) 
+            &= \alpha m_{\lambda}(f(a), f(b))\\
+            &= m_{\lambda}(\alpha f(a), \alpha f(b)) = m_{\lambda}^{\alpha f}(a, b)
+        \end{split}
+    \end{equation*}
+\end{definition}
+\begin{theorem}[Переформулировка выпуклости]
+    $f : \left<a, b\right> \mapsto \mathbb{R}$.
+    \[ f \text{ выпуклая } \iff \forall{x < z < y\in \left<a, b\right>}\quad (y-x)f(z) \le (y-z)f(x)+(z-x)f(y)   .\] 
+    \begin{proof}
+        \[ f(m_{\lambda}(x, y)) \le  m_{\lambda}^{f}(x, y) .\]
+        \[ z = m_{\lambda}(x,y) = \lambda x + (1-\lambda)y  .\]
+        \[ \lambda = \frac{y-z}{y-x} .\]
+        \[ 1-\lambda = \frac{z-x}{y-x} .\]
+        \[ f(z) \le \frac{y-z}{y-x}f(x) + \frac{z-x}{y-x}f(y) .\]
+        \[ (y-x)f(z) \le (y-z)f(x) + (z-x)f(y) .\qedhere\]
+    \end{proof}
+\end{theorem}
 \begin{theorem}[Ариф. Действия с выпуклыми функция]
-    $f, g$ -   выпуклые функции.\\
+    $f, g: \left<a, b\right> \mapsto \mathbb{R}$ -   выпуклые функции.\\
     $f+g$ -  выпуклая.\\
     $\forall{\alpha > 0}\quad \alpha f$ - выпуклая.
     \begin{proof}
-        %FIXME?
-        Доказательство очевидно.
+        \begin{equation*}
+            \forall{x, y\in \left<a, b\right>}\quad \forall{\lambda\in (0, 1)}\quad \begin{cases}
+                f(m_{\lambda}(x,y)) \le m_{\lambda}^{f}(x, y)\\
+                g(m_{\lambda}(x,y)) \le m_{\lambda}^{g}(x, y)
+            \end{cases}
+        \end{equation*}
+        \begin{equation*}
+            \begin{split}        
+                \forall{x, y\in \left<a,b\right>}\quad \forall{\lambda\in (0,1)}\quad  &f(m_{\lambda}(x,y)) + g(m_{\lambda}(x,y))\\
+                &\le m_{\lambda}^{f}(x,y) + m_{\lambda}^{g}(x, y) = m_{\lambda}^{f+g}(x,y) 
+            \end{split}
+        \end{equation*}
+        \begin{equation*}
+            \begin{split}
+                \forall{x, y\in \left<a, b\right>}\quad \forall{\lambda\in (0, 1)}\quad \alpha f(m_{\lambda}(x,y)) \le \alpha m_{\lambda}^{f}(x, y) = m_{\lambda}^{\alpha f}(x, y)\qedhere 
+            \end{split}
+        \end{equation*}
     \end{proof}
 \end{theorem}
 \begin{theorem}[Лемма о трёх хордах]
     $f: \left<a, b\right> \mapsto \mathbb{R}$ - выпуклая.\\
-    Тогда, если $u < v < w$ из $\left<a, b\right>$, то:
-    \[ \frac{f(v)-f(u)}{v-u} \le \frac{f(w)-f(u)}{w-u} \le \frac{f(w)-f(v)}{w-v} .\]
+    Тогда, если $x < z < y$ из $\left<a, b\right>$, то:
+    \[ \frac{f(z)-f(x)}{z-x} \le \frac{f(y)-f(x)}{y-x} \le \frac{f(y)-f(z)}{y-z} .\]
     Каждое из трёх неравенств равносильно выпуклости.\\
     Если поставить строгие знаки, то выпуклость строгая.
     \begin{proof}
          Неравенство $1$:
          \begin{equation*}
              \begin{split}
-                 &(w-u)(f(v)-f(u)) \le (v-u)(f(w)-f(u))\\
-                 &\iff (w-u)f(v) \le (v-u)f(w) + ((w-u)-(v-u))f(u)\\
-                 &\iff (w-u)f(v) \le (v-u)f(w) + (w-u)f(u)
+                 &(y-x)(f(z)-f(x)) \le (z-x)(f(y)-f(x))\\
+                 \iff &(y-x)f(z) - (y-x)f(x) \le (z-x)f(y)-(z-x)f(x)\\
+                 \iff &(y-x)f(z) \le (z-x)f(y) + ((y-x)-(z-x))f(x)\\
+                 \iff &(y-x)f(z) \le (z-x)f(y) + (y-z)f(x)
              \end{split}
          \end{equation*}
          Неравенство $2$:
          \begin{equation*}
              \begin{split}
-                 &(w-v)(f(w)-f(u)) \le (w-u)(f(w)-f(v))\\
-                 &\iff (w-u)f(v) \le (w-v)f(u)+((w-u)-(w-v))f(w)\\
-                 &\iff (w-u)f(v) \le (w-v)f(u) + (v-u)f(w)
+                 &(y-z)(f(y)-f(x)) \le (y-x)(f(y)-f(z))\\
+                 \iff &(y-x)f(z) \le (y-z)f(x)+((y-x)-(y-z))f(y)\\
+                 \iff &(y-x)f(z) \le (y-z)f(x) + (z-x)f(y)
              \end{split}
          \end{equation*}
          Неравенство $3$:
          \begin{equation*}
              \begin{split}
-                 &(w-v)(f(v)-f(u)) \le (w-u)(f(w)-f(v))\\
-                 &\iff ((w-v)-(v-u))f(v) \le (w-v)f(u) + (v-u)f(w)\\
-                 &\iff (w-u)f(u) \le (w-v)f(u)+(v-u)f(w) \qedhere
+                 &(y-z)(f(z)-f(x)) \le (y-x)(f(y)-f(z))\\
+                 \iff &((y-z)-(z-x))f(z) \le (y-z)f(x) + (z-x)f(y)\\
+                 \iff &(y-x)f(z) \le (y-z)f(x)+(z-x)f(y) \qedhere
              \end{split}
          \end{equation*}
     \end{proof}
@@ -66,7 +122,7 @@
     Тогда в $x$ существует конечная $f_{\pm}'(x)$, и $f_{-}'(x) \le f_{+}'(x)$.
     \begin{proof}
        \[ u < v < x < y < z\in \left<a, b\right> .\]
-       \[ \frac{f(u)-f(x)}{u-x} \le \frac{f(v)-f(x)}{v-x} \le \frac{f(y)-f(x)}{x-y} \le \frac{f(z) - f(x)}{z-x} .\]
+       \[ \frac{f(u)-f(x)}{u-x} \le \frac{f(v)-f(x)}{v-x} \le \frac{f(y)-f(x)}{y-x} \le \frac{f(z) - f(x)}{z-x} .\]
        Из первого неравенства следует, что $\frac{f(u)-f(x)}{u-x}$ возрастает по $u$, из второго неравенства следует, что она ограничена $\frac{f(y)-f(x)}{y-x}$.\\
        Тогда сщуествует конечная $f_{-}'(x) = \lim\limits_{u \to x-} \frac{f(u)-f(x)}{u-x} \le \frac{f(y)-f(x)}{y-x}$.\\
        Аналогично, $\frac{f(y)-f(x)}{y-x}$ возрастает по $y$, и онграничена снизу $f_{-}'(x)$.\\
@@ -134,7 +190,7 @@
         Переход:
         \[ \sum\limits_{i=1}^{n}\lambda_{i} = 1 - \lambda_{n+1} .\]
         \[ y = \frac{\sum\limits_{i=1}^{n}\lambda_i x_i}{1-\lambda_{n+1}} .\] 
-        \[ f((1-\lambda_{n+1})y+\lambda_{n+1}x_{n+1}) \le (1-\lambda_{n+1})f(y) + \lambda f(x_{n+1}.\]
+        \[ f((1-\lambda_{n+1})y+\lambda_{n+1}x_{n+1}) \le (1-\lambda_{n+1})f(y) + \lambda f(x_{n+1}).\]
         Раскрывая $f(y)$ по предположению индукции получим нужное утверждение.
     \end{proof}
 \end{theorem}
@@ -143,10 +199,32 @@
     \[ \frac{x_1 + \ldots + x_{n}}{n} \ge \sqrt[n]{x_1 \cdot \ldots \cdot  x_n}  .\]
     \begin{proof}
         Если какой-то $x_i$ равен нулю, то утверждение оченвидно.\\
-        \[ \ln \left( \frac{x_1 + \ldots + x_n}{n} \right) \ge \frac{\log(x_1) + \ldots + \log(x_n)}{n}  .\]
-        Заметим, что логарифм - вогнутая функция, подставим $\lambda_i = \frac{1}{n}$ в неравенство Йенсена с функцией $f(x) = -\ln(x)$. Получим нужное утверждение.\\
+        \[ \ln \left( \frac{x_1 + \ldots + x_n}{n} \right) \ge \frac{\ln(x_1) + \ldots + \ln(x_n)}{n}  .\]
+        Заметим, что логарифм - вогнутая функция, подставим $\lambda_i = \frac{1}{n}$ в неравенство Йенсена с функцией $f(x) = -\ln(x)$. Получим нужное утверждение.
     \end{proof}
 \end{theorem}
+\begin{definition}[Среднее степенное]
+    Среднее степенное порядка $p$, $x_i > 0$:
+    \[ M_p := \left( \frac{x_1^{p}+x_2^{p} + \ldots + x_{n}^{p}}{n} \right)^{\frac{1}{p}}  .\]
+    \[ M_0 := \lim\limits_{p \to 0} M_p = \sqrt[n]{x_1x_2\ldots x_n}  .\] 
+\end{definition}
+\begin{dlemma}[Неравенство между средними степенными]
+    Если $p < q$, то $M_{p} \le M_{q}$
+    \begin{proof}
+        Случай $0 < p < q$:
+        $f(x) = x^{\frac{q}{p}}$ - выпуклая функция\\
+        $y_i = x_i^{p}$, $\lambda_i = \frac{1}{n}$.\\
+        \[ \left( \frac{x_1^{p}+x_2^{p}+\ldots+x_n^{p}}{n} \right)^{\frac{q}{p}} \le  \frac{x_{1}^{q}+x_2^{q}+\ldots+x_n^{q}}{n}  .\]
+        Извлечаем корень степени $q$, получаем слева степень $\frac{1}{p}$, справа $\frac{1}{q}$, что соответвествтует $M_p \le M_{q}$.\\
+        Случай $0 = p < q$:
+        \[ \sqrt[n]{x_1x_2\ldots x_n} \le \left(\frac{x_1^{q}+x_2^{q}+\ldots x_n^{q}}{n}\right)^{\frac{1}{q}}  .\]
+        Возводем в степень $q$, получаем неравенство о средних для $x_i^{q}$.\\
+        Случай $p < q = 0$:
+        Аналогично предыдущему, возводим в степень $p$, возведение в отрицательную сторону перевёрнет знак, и подойдёт неравество о средних для $x_i^{p}$.\\
+        Случай $p < 0 < q$:
+        \[ M_p < M_0 < M_q .\] 
+    \end{proof}
+\end{dlemma}
 \section{Интегральное исчесление фукнции одной переменной}
     \subsection{Первообразная и непрерывный интеграл}
          \begin{definition}
