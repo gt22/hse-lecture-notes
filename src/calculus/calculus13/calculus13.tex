@@ -38,8 +38,8 @@
             При $x < c$:
             \[ F'(x) = \left( -\int\limits_{x}^{c} f  \right)' = -(-f) = f(x) .\]
             При $x=c$:
-            \[ F_{+}'(x) = \left( \int\limits_{c}^{x}   \right)' = f(x).\] 
-            \[ F_{-}'(x) = \left( -\int\limits_{x}^{c}   \right)' = f(x)  .\] 
+            \[ F_{+}'(x) = \left( \int\limits_{c}^{x} f  \right)' = f(x).\] 
+            \[ F_{-}'(x) = \left( -\int\limits_{x}^{c} f  \right)' = f(x)  .\] 
       \end{proof} 
    \end{tlemma}
    \begin{theorem}[Формула Ньютона-Лейбница]
@@ -49,7 +49,7 @@
             Все первообразные отличаются только на константу. Тогда $\Phi(x) = F(x) + C$.\\
             \[ \Phi(a) = F(a) + C = 0.\]
             \[ \Phi(b) = F(b) + C = \int\limits_{a}^{b} f .\]
-            \[ \Phi(b) - \Phi(a) = \int\limits_{a}^{b} f - 0 = F(b) + C - F(a) + C = F(b) - F(a)  .\] 
+            \[ \Phi(b) - \Phi(a) = \int\limits_{a}^{b} f - 0 = F(b) + C - F(a) - C = F(b) - F(a)  .\qedhere\] 
         \end{proof}
    \end{theorem}
    \begin{tlemma}[Линейность опр. инт.]
@@ -59,7 +59,14 @@
            \[ F = \int f .\]
            \[ G = \int g .\]
            \[ \alpha F + \beta G = \int \alpha f + \beta g .\]
-           \[ (\alpha F + \beta G)(b) - (\alpha F + \beta G)(a) = \alpha F(b) - \alpha F(a) + \beta G(b) - \beta G(a) = \int\limits_{a}^{b} \alpha f + \int\limits_{a}^{b} \beta g   .\] 
+            \begin{equation*}
+                \begin{split}
+                    (\alpha F + \beta G)(b) - (\alpha F + \beta G)(a) 
+                    &= \alpha F(b) - \alpha F(a) + \beta G(b) - \beta G(a)\\ 
+                    &= \alpha(F(b)-F(a)) + \beta(F(b)-F(a))\\ 
+                    &= \alpha\int\limits_{a}^{b} f + \beta\int\limits_{a}^{b} g \qedhere
+                \end{split}
+            \end{equation*}
        \end{proof}
    \end{tlemma}
    \begin{tlemma}[Интегрирование по частям для опр. инт.]
@@ -68,7 +75,14 @@
         \begin{proof}
             \[ H = \int f'g .\]
             \[ fg - H = \int fg' .\]
-            \[ \int\limits_{a}^{b} fg' = (fg-H)(b)-(fg-H)(a) = (fg)(b)-(fg)(a) - H(b)+H(a) = \left.fg\right|_{a}^{b} - \int\limits_{a}^{b} f'g   .\] 
+            \begin{equation*}
+                \begin{split}
+                    \int\limits_{a}^{b} fg' 
+                    &= (fg-H)(b)-(fg-H)(a)\\ 
+                    &= (fg)(b)-(fg)(a) - H(b)+H(a)\\ 
+                    &= \left.fg\right|_{a}^{b} - \int\limits_{a}^{b} f'g \qedhere 
+                \end{split}
+            \end{equation*}
         \end{proof}
    \end{tlemma}
    \begin{definition}
@@ -81,20 +95,20 @@
        \begin{proof}
            \[ F = \int f(x) dx .\]
            \[ F \circ \varphi = \int f(\varphi(t))\varphi'(t) dt.\]
-           \[ \int\limits_{p}^{q} f(\varphi(t))\varphi'(t)dt = F(\varphi(q))-F(\varphi(p)) = \int\limits_{\varphi(p)}^{\varphi(q)} f   .\] 
+           \[ \int\limits_{p}^{q} f(\varphi(t))\varphi'(t)dt = F(\varphi(q))-F(\varphi(p)) = \int\limits_{\varphi(p)}^{\varphi(q)} f   .\qedhere\] 
        \end{proof}
    \end{tlemma}
 \section{Продолжение формулы интегрирования по частям}
 \begin{definition}
-    \[ W_n = \int\limits_{0}^{\frac{\pi}{2}} \sin^{n} x dx = \int\limits_{0}^{\frac{\pi}{2}} dx .\]
+    \[ W_n = \int\limits_{0}^{\frac{\pi}{2}} \sin^{n} x dx = \int\limits_{0}^{\frac{\pi}{2}} \cos^{n} xdx .\]
 \end{definition}
 \begin{dlemma}
     Интегралы действительно равны.
     \begin{proof}
-        \[ \cos^{n}(\frac{\pi}{2}-x) = \sin(x) .\]
+        \[ \cos^{n}\left(\frac{\pi}{2}-x\right) = \sin^{n}(x) .\]
         \[ \varphi(x) = \frac{\pi}{2}-x .\]
         \[ \varphi'(x) = -1 .\]
-        \[ \int\limits_{0}^{\frac{\pi}{2}} \cos x = \int\limits_{0}^{\frac{\pi}{2}} \sin(\frac{\pi}{2}-x) = \int\limits_{\frac{\pi}{2}}^{0} -\sin(x) = \int\limits_{0}^{\frac{\pi}{2}} \sin x       .\] 
+        \[ \int\limits_{0}^{\frac{\pi}{2}} \cos^{n} x = \int\limits_{0}^{\frac{\pi}{2}} \sin^{n}\left(\frac{\pi}{2}-x\right) = \int\limits_{\frac{\pi}{2}}^{0} -\sin^{n}(x) = \int\limits_{0}^{\frac{\pi}{2}} \sin^{n} x       .\qedhere\] 
     \end{proof}
 \end{dlemma}
 \begin{dlemma}
@@ -126,14 +140,15 @@
         \[\forall{x\in \left[0; \frac{\pi}{2}\right]}\quad \sin^{2n+2} \le\sin^{2n+1} \le\sin^{2n} .\]
         \[ \int\limits_{0}^{\frac{\pi}{2}} \sin^{2n+2} \le \int\limits_{0}^{\frac{\pi}{2}} \sin^{2n+1} \le \int\limits_{0}^{\frac{\pi}{2}}\sin^{2n}       .\]
         \[ W_{2n+2} \le W_{2n+1} \le W_{2n}.\]
-        \[ \frac{2n+1}{2n+2} \cdot  \frac{\pi}{2} \le \frac{(2n)!!}{(2n+1)!!} \cdot \frac{(2n)!!}{(2n-1)!!} \le \frac{\pi}{2} .\]
+        \[ \frac{(2n+1)!!}{(2n+2)!!} \cdot  \frac{\pi}{2} \le \frac{(2n)!!}{(2n+1)!!} \le  \frac{(2n-1)!!}{(2n)!!} \cdot  \frac{\pi}{2} .\]
+        \[ \frac{\left( 2n+1 \right)}{(2n+2)} \cdot \frac{\pi}{2} \le \frac{((2n)!!)^2}{(2n+1)((2n-1)!!)^2} \le \frac{\pi}{2}.\] 
         \[ \frac{\left( (2n)!! \right)^{2}}{((2n-1)!!)^2(2n+1)} \to \frac{\pi}{2} .\qedhere\] 
     \end{proof}
 \end{dlemma}
 \begin{dlemma}
     \[ \binom{2n}{n} \sim \frac{4^{n}}{\sqrt{\pi n} }.\]
     \begin{proof}
-        \[ \binom{2n}{n} = \frac{(2n)!}{(n!)^2} = \frac{(2n)!!(2n-1)!!}{\frac{(n!!)^2}{4^{n}}} = 4^{n} \cdot \frac{(2n-1)!!}{(2n)!!} \sim 4^{n} \sqrt{\frac{2}{\pi}}\cdot \frac{1}{\sqrt{2n+1} } \sim 4^{n} \frac{\sqrt{2} }{\sqrt{\pi} } \cdot \frac{1}{\sqrt{2n} } = \frac{4^{n}}{\sqrt{\pi n} }.\] 
+        \[ \binom{2n}{n} = \frac{(2n)!}{(n!)^2} = \frac{(2n)!!(2n-1)!!}{\frac{((2n)!!)^2}{4^{n}}} = 4^{n} \cdot \frac{(2n-1)!!}{(2n)!!} \sim 4^{n} \sqrt{\frac{2}{\pi}}\cdot \frac{1}{\sqrt{2n+1} } \sim 4^{n} \frac{\sqrt{2} }{\sqrt{\pi} } \cdot \frac{1}{\sqrt{2n} } = \frac{4^{n}}{\sqrt{\pi n} }.\] 
     \end{proof}
 \end{dlemma}
 \begin{definition}[Формула Тейлора с остатком в интегральной форме]
@@ -145,11 +160,9 @@
         Переход:
         \[ R_n(x) = \frac{1}{n!} \int\limits_{x_0}^{x} (x-t)^{n}f^{(n+1)}(t)dt  .\]
         \[ R_{n}(x) = \frac{(x-x_0)^{n+1}}{(n+1)!} f^{(n+1)}(x_0) + R_{n+1}(x) .\]
-        \[ g'(x) = (x-t)^{n} .\]
-        \[ g(x) = \int (x-t)^{n} dt = -\frac{(x-t)^{n+1}}{n+1} .\]
         \begin{equation*}
             \begin{split}
-                R_n(x) &= \frac{1}{n!}\left( \int\limits_{x_0}^{x} f^{(n+1)}(t) \cdot \left( - \frac{(x-t)^{n+1}}{n+1} \right)dt   \right)\\
+                R_n(x) &= \frac{1}{n!}\left( \int\limits_{x_0}^{x} f^{(n+1)}(t) \cdot \left( - \frac{(x-t)^{n+1}}{n+1} \right)'dt   \right)\\
                        &= \frac{1}{n!}\left( \left.\left(-f^{(n+1)}(t) \cdot \frac{(x-t)^{n+1}}{n+1}\right)\right|_{t=x_0}^{t=x} - \int\limits_{x_0}^{x} -f^{(n+2)}(t) \cdot  \left( \frac{(x-t)^{n+1}}{n+1} \right)dt    \right)\\
                        &= \frac{1}{n!}\left( \frac{(x-x_0)^{n+1}f^{(n+1)}(x_0)}{n+1} + \int\limits_{x_0}^{x} f^{(n+2)}(t) \cdot \frac{(x-t)^{n+1}}{n+1} dt \right)\\
                        &= \frac{(x-x_0)^{n+1}f^{(n+1)(x_0)}}{(n+1)!} + \frac{1}{(n+1)!} \int\limits_{x_0}^{x} f^{(n+2)}(t) \cdot (x-t)^{n+1} dt \qedhere 
@@ -169,7 +182,7 @@
         Если $\pi^2$ иррационально, то $\pi$ тоже.\\
         Предположим что $\pi^2 = \frac{m}{n}$.\\
         \[ 0 < H_j = P_j(\pi^2) = P_j\left( \frac{m}{n} \right) = \frac{x\in \mathbb{Z}}{n^{j}} \ge \frac{1}{n^{j}} \implies n^{j}H_j \ge 1 .\]
-        Но $\lim\limits_{j \to \infty} n^{j}H_j = 1$.
+        Но $\lim\limits_{j \to \infty} n^{j}H_j = 0$.
     \end{proof}
 \end{theorem}
 \section{Интегральные суммы}
