@@ -14,7 +14,7 @@
 \maketitle
 \section{}
     \begin{theorem}
-        Покрытие прямоугольниками $\sigma(E)$ - квазиплощадь.\\
+        Инфинум по всем покрытииям прямоугольниками $\sigma(E)$ - квазиплощадь.\\
         $\sigma(E)$  не меняется при парралелльном переносе.
         \begin{proof}
             Докажем сначала второе свойство: перенесём все прямоугольники вместе с $E$, они все ещё его покрывают, сумма их площадей не изменилась.\\
@@ -42,7 +42,7 @@
             \[ \sigma([a; b] \times [c; d]) = (b-a)(d-c) .\]
             Неравнество $\le$ очевидно.\\
             Докажем $\ge$ неравнество:\\
-            Разделим прямоугольник на прямоугольники вертикальными ($a$) и горизонтальными ( $b$).\\
+            Разделим прямоугольник на прямоугольники вертикальными ($a$) и горизонтальными ($b$) прямыми.\\
             Тогда 
             \[ \sigma(E) = \sum\limits_{i=1}^{n}\sum\limits_{i=j}^{m}a_ib_j = \sum\limits_{i=1}^{n}a_i \cdot \sum\limits_{i=1}^{m} b_j = (b-a)(d-c) .\]
             Теперь рассмотрим произвольное покрытие:\\
@@ -91,8 +91,8 @@
         \end{enumerate}
         \begin{proof}
             $6$: Пусть $f(c) > 0$ при $c\in \left[a; b\right]$.\\
-            Тогда $\exists{\delta > 0}\quad \forall{x\in (c-\delta; c+\delta)}\quad f(x)>f\frac{c}{2}$.\\
-            Тогда при $x\in \left[c-\frac{\delta}{2}; c+\frac{\delta}{2}\right]$, $f(x) \ge f\frac{c}{2}$.\\
+            Тогда $\exists{\delta > 0}\quad \forall{x\in (c-\delta; c+\delta)}\quad f(x)>\frac{f(c)}{2}$.\\
+            Тогда при $x\in \left[c-\frac{\delta}{2}; c+\frac{\delta}{2}\right]$, $f(x) \ge \frac{f(c)}{2}$.\\
             Тогда подграфик содержит прямоугольник $\left[c-\frac{\delta}{2}, c+\frac{\delta}{2}\right] \times \left[0; \frac{f(c)}{2}\right]$.\\
             Площадь этого прямоугольника больше нуля, что пртиворечит тому, что площадь подграфика равна нулю.
         \end{proof}
@@ -159,7 +159,7 @@
                Тогда $\Phi(x+h) - \Phi(x) = \int\limits_{x}^{x+h} f $.\\
                Тогда 
                \[ \frac{\Phi(x+h)-\Phi(x)}{h} = \frac{1}{h}\int\limits_{x}^{x+h} f  .\]
-               Тогда $\exists{\theta_{h}\in \left[0; 1\right]}\quad \frac{1}{h}\int\limits_{x}^{x+h} f(x+\theta_h h) $.\\
+               Тогда $\exists{\theta_{h}\in \left[0; 1\right]}\quad \Phi'(x) = \frac{1}{h} \int\limits_{x}^{x+h} f  = f(x+\theta_h h) $.\\
                По нерпреывности, $\lim\limits_{h \to 0} f(x+\theta_{h} h) = f(x)$.
            \end{proof}
        \end{theorem}
