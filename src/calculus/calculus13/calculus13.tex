@@ -198,23 +198,23 @@
     \begin{theorem}[Теорема Кантора]
         $f\in C[a, b]$, $f$ равномерно непрерынва на $\left[a, b\right]$.
         \begin{proof}
-            Предположим что равномерное непрерывности нет.
-            Значит, 
+            Предположим что равномерной непрерывности нет.
+            Значит,
             \[ \exists{\varepsilon > 0}\quad \forall{\delta > 0}\quad \exists{x, y\in \left[a, b\right]}\quad |x-y| < \delta \land |f(x)-f(y)| > \varepsilon  .\]
             Рассмотрим $\delta=\frac{1}{n}$. Пусть оно не подходит. Т. е.
-            \[ \exists{x_n, y_n\in \left[a, b\right]}\quad |x_n - y_n| < \frac{1}{n} |f(x_n) - f(y_n)| \ge \varepsilon  .\]
-            Возьмём подпоследовательность $x_{n_k}$ имеющие предел, $\lim\limits_{k \to \infty} x_{n_{k}} = c$, $c\in \left[a, b\right]$.\\
+            \[ \exists{x_n, y_n\in \left[a, b\right]}\quad |x_n - y_n| < \frac{1}{n} \land |f(x_n) - f(y_n)| \ge \varepsilon  .\]
+            Возьмём подпоследовательность $x_{n_k}$ имеющюю предел, $\lim\limits_{k \to \infty} x_{n_{k}} = c$, $c\in \left[a, b\right]$.\\
             Заметим, что $y_{n_k}\in \left[x_{n_k} - \frac{1}{n}; x_{n_k} + \frac{1}{n}\right]$, значит $\lim\limits_{k \to \infty} y_{n_k} = c$.\\
             Так-как $f$ непрерывна в $c$, выберем подоходящее $\delta'$ по $\frac{\varepsilon}{2}$.\\
-            \[ \forall{x\in \left[a; b\right]}\quad |x-c| < \delta \implies |f(x)-f(c)| < \frac{\varepsilon}{2} .\]
-            Так-как $\exists{K}\quad \forall{k > K}\quad x_{n_k}, y_{n_k}\in \left[a, b\right]$, возьмём такую пару, тогда
+            \[ \forall{x\in \left[a; b\right]}\quad |x-c| < \delta' \implies |f(x)-f(c)| < \frac{\varepsilon}{2} .\]
+            Так-как $\exists{K}\quad \forall{k > K}\quad x_{n_k}, y_{n_k}\in \left[c - \delta', c + \delta'\right]$, возьмём такую пару, тогда
             \[ \begin{cases}
-                |x_{n_k} - c| < \delta\\
-                |y_{n_k} - c| < \delta
+                |x_{n_k} - c| < \delta'\\
+                |y_{n_k} - c| < \delta'
             \end{cases} \implies \begin{cases}
-            |f(x_{n_k}-f(c)| < \frac{\varepsilon}{2}\\
-            |f(c) - f(y_{n_k}| < \frac{\varepsilon}{2}
-        \end{cases} \implies |f(x_{n_k} - f(y_{n_k})| < \varepsilon .\]
+            |f(x_{n_k})-f(c)| < \frac{\varepsilon}{2}\\
+            |f(c) - f(y_{n_k})| < \frac{\varepsilon}{2}
+        \end{cases} \implies |f(x_{n_k}) - f(y_{n_k})| < \varepsilon .\]
         Значит, $\delta = \frac{1}{n}$ подходит, и функция равномерно непрерынва.
             \[ \delta(\varepsilon) = \inf\limits_{y\in E} \delta(\varepsilon, y) .\] 
         \end{proof}
@@ -237,7 +237,7 @@
             Значит, $\lim\limits_{\delta \to 0} \omega_f(\delta) = 0$.
             Достаточность:
             \[ |f(x)-f(y)| \le \omega_{f}(|x-y|) \le \omega_{f}(\delta).\]
-            Так-как $\omega_{f}(\delta) \to 0$, можно найти такое $\delta$, которое подойдёт для всех. 
+            \[ \forall{\varepsilon > 0}\quad \exists{\delta > 0}\quad \omega_{f}(\delta) < \varepsilon \implies \forall{x,y}\quad |x-y| < \delta \implies |f(x)-f(y)| < \varepsilon .\] 
         \end{proof}
     \end{dlemma}
 \end{document} 

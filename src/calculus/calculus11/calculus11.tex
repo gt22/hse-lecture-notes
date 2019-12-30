@@ -151,12 +151,12 @@
         Достаточность:
             \[ x < x_0 < y .\]
             \[ f(x) \ge (x-x_0)f'(x_0) + f(x_0) .\]
-            \[ f(y) \le (y-x_0)f'(x_0) + f(x_0) .\]
+            \[ f(y) \ge  (y-x_0)f'(x_0) + f(x_0) .\]
             \begin{equation*}
                 \begin{split}
                     (y-x_0)f(x) + (x_0-x)f(y) &\ge (y-x_0)(x-x_0)f'(x_0) + (y-x_0)f(x_0)\\
                                               &+(y-x_0)(x_0-x)f'(x_0)+(x_0-x)f(x_0)\\
-                    &= ((y-x_0)+(x_0-x))f(x_0) = y-x)f(x_0) \qedhere
+                                              &= ((y-x_0)+(x_0-x))f(x_0) = (y-x)f(x_0) \qedhere
                 \end{split}
             \end{equation*}
     \end{proof}
@@ -241,12 +241,12 @@
                  \item $\Phi$ -  первообразная $f$, то $\Phi = F + C$
              \end{enumerate}
              \begin{proof}
-                 Пункт $1$ : $(F+C)' = F'+C' = F' = F$ \\
+                 Пункт $1$ : $(F+C)' = F'+C' = F' = f$ \\
                  Пункт $2$ : Рассмотрим $(\Phi - F)' = \Phi' - F' = f - f =0$, значит $\Phi - F$ - постоянная, и $\Phi = F + C$.
              \end{proof}
          \end{theorem}
          \begin{definition}
-             Множество всех первообразных для $f$ называется неопределённым интеграло $f$, и обозначается следующим образом:
+             Множество всех первообразных для $f$ называется неопределённым интегралом $f$, и обозначается следующим образом:
              \[ \int f .\]
              \[ \int f(x)dx.\] 
          \end{definition}
@@ -341,7 +341,7 @@
                 \item Если $E \subset  \tilde{E}$, то $\sigma(E) \le \sigma(\tilde{E})$
                 \item $E\in \mathcal{F}$, $\ell$ - горизонтальная или вертикальная прямая.\\
                     Обозначим за $E_-$ чусть множества, лежащую слева от прямой, или на ней.\\
-                    $E_{+} = E \ E_{-}$, $\sigma(E) = \sigma(E_{-}) + \sigma(E_{+})$.
+                    $E_{+} = E \setminus E_{-}$, $\sigma(E) = \sigma(E_{-}) + \sigma(E_{+})$.
             \end{enumerate}
         \end{definition}
         \begin{dlemma}
