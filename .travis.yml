@@ -8,5 +8,5 @@ deploy:
     github_token: $GITHUB_TOKEN
     skip_cleanup: true
     repo: gt22/hse-lecture-notes-pages
-    target_branch: new_conspects
+    target_branch: new_conspect
     local_dir: pdf
