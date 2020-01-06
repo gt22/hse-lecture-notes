@@ -1,4 +1,4 @@
-begore_install:
+before_install:
     - sudo apt-get -y install texlive texlive-lang-cyrillic texlive-xetex texlive-generic-extra texlive-fonts-extra texlive-science fonts-cmu 
 script:
 - pyenv global 3.7
