@@ -2,7 +2,7 @@
 % Настоятельно рекомендуется для использования
 
 \input{core}
-
+\usepackage{import}
 % \enablecode % Включает поддержку кода.
 %\lstset {
 %  style=supercpp% uncomment to use c++ everywhere.
@@ -25,6 +25,7 @@
 % Если конспект очень большой, то осмысленно разбить его на куски.
 % Можно сохранить отдельную часть в отдельный .tex,
 % а затем написать \input{part}, просто подставить в данное место part.tex
+\newcommand\load[1]{\import{parts/#1/}{00_main}}
 
-\input{parts/sets}
+\load{01_intro}
 \end{document}

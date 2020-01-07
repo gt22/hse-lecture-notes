@@ -1,0 +1,76 @@
+\Subsection{Супремум и Инфинум}
+    
+    \begin{definition}
+        $d=\sup A$ - мнимальная верхняя грань:
+        \[ \forall{a \in A}\quad a\le   d.\] 
+        \[\forall{\varepsilon > 0}\quad \exists{a \in A}\quad a>  (d-\varepsilon) .\] 
+    \end{definition}
+    \begin{definition}
+        $d=\inf A$ - максимальная нижняя грань:
+    \[ \forall{a \in A}\quad a\ge   d.\] 
+    \[\forall{\varepsilon > 0}\quad \exists{a \in A}\quad a< (d+\varepsilon) .\] 
+    \end{definition}
+    \begin{theorem}
+        Если $A \neq \emptyset$ ограниченно сверху, то существует $\sup A$.
+         \begin{proof}
+            $B$ - множество всех верхних граней  $A$.  $B \neq \emptyset$.
+            \[ \forall{b \in B}\quad \forall{a \in A}\quad a\le b .\]
+
+            По аксиоме полноты:
+            \[ \exists{c \in \mathbb{R}}\quad \forall{a \in A}\quad \forall{b \in B}\quad a\le c\le b .\]
+
+            $c$ - верхняя грань, значит  $c \in B$. И $c$ - наименьший элемент  $B$.
+        \end{proof}
+        
+    \end{theorem}
+    \begin{lemma}
+        Пусть $B \neq \emptyset$, $B \subset A$, $A$ ограниченно сверху. Тогда  $\sup A \ge \sup B$.
+        \begin{proof}
+            $\sup A$ - верхняя грань  $A$ и $B$. Тогда, наименьшая верхняя грань  $B$ не больше  $\sup A$.
+        \end{proof}
+    \end{lemma}
+    \begin{theorem} Если $A \neq \emptyset$ ограниченно снизу, то существует $\inf A$ \end{theorem}
+    \begin{lemma} Пусть $B \neq \emptyset$, $B \subset A$, $A$ ограничено снизу. Тогда $\inf A \le \inf B$. \end{lemma}
+    \begin{definition} 
+        $\overline{\mathbb{R}} = \mathbb{R} \cup \{+\infty, -\infty\} $.
+        
+        $\forall{r\in \mathbb{R}}\quad \pm \infty \pm r = \pm \infty$
+        
+        $\forall{r\in \mathbb{R}_{+}}\quad \pm \infty \cdot r = \pm \infty$
+
+        $\forall{r\in \mathbb{R}_{-}}\quad \pm \infty \cdot r = \mp \infty$
+
+        $\forall{r\in \mathbb{R}}\quad -\infty < r < \infty$
+    \end{definition}
+    \begin{definition} \slashns
+
+        Если $A$ неограниченно сверху, то  $\sup A = \infty$.
+
+        Если $A$ неограниченно снизу, то  $\inf A = -\infty$.
+ 
+        Тогда со всех предыдущих теорем можно снять условия на ограниченность множеств.
+    \end{definition}
+    \begin{theorem}[Теорема о вложенных отрезках]
+        \[ [a_1;b_1] \supset [a_2, b_2] \supset \ldots .\]
+        \[ \bigcup\limits_{i =1}^{\infty}[a_i; b_i] \neq \emptyset  .\] 
+        \begin{proof}
+            \[ a_1 < b_1 .\] 
+            \[ a_1 \le a_2 \le \ldots .\]
+            \[ b_1 \ge b_2 \ge \ldots .\]
+            \[ A = \{a_k\ssep k \in \mathbb{N}\}  .\]
+            \[ B = \{b_k\ssep k \in \mathbb{N}\}  .\]
+            \[\forall{i, j \in \mathbb{N}}\quad a_i \le b_j .\]
+
+            Тогда, по аксиоме полноты:
+            \[ \exists{c \in \mathbb{R}}\quad \forall{i, j \in \mathbb{N}}\quad a_i \le  c \le b_i .\]
+            \[ \forall{k \in \mathbb{N}}\quad a_k \le c \le b_k .\]
+            
+            Тогда $c \in \bigcup\limits_{i=1}^{\infty}[a_i; b_i] $, а значит оно непустое.
+        \end{proof}
+        \begin{remark} \slashns
+
+            В $\mathbb{Q}$ теорема не верна.
+
+            Для полуинтервалов и лучей теорема не верна.
+        \end{remark}
+    \end{theorem}        

@@ -1,0 +1,82 @@
+\Section{Введение}{Игорь Энгель}
+    \Subsection{Множества}
+        
+        $x \in A$ - x принадлежит A
+        
+        $x \not\in A$ - x не принадлежит A
+        
+        $A \subset B \iff  \forall{x \in A}\quad x \in B$
+        
+        $A = B \iff \begin{cases} A \subseteq B B \subseteq A \end{cases}$
+        
+        $A \subsetneq B \iff  \begin{cases} A \subset B A \neq B  \end{cases}$ - A - собственное подможество B
+        
+        $\emptyset$ - пустое множество
+        
+        $\mathbb{N}$ - натуральные числа
+        
+        $\mathbb{Z}$ - целые числа
+        
+        $\mathbb{Q}$ - рациональные числа
+        
+        $\mathbb{R}$ - вещественные числа
+        
+        $2^A$ - множество всех подмножеств A
+        
+        $A = \{1, 2\}$
+        
+        $2^{A} = \{\{\emptyset\}, \{1\}, \{2\}, \{1, 2\}\}$
+        
+        $\forall$ - для всех
+        
+        $\exists$ - существует
+
+        Способы задания множеств:    
+        \begin{itemize}
+                \item Перечисление: $\{a, b, c\}$, $\{a_1, a_2, \ldots, a_n\},  \{a_1, a_2, a_3, \ldots\}  $ 
+                \item Описание: множество простых чисел - множество таких чисел, которые делятся только на себя и на единицу
+                \item Функция: $\{x \in X\ssep \Phi\left( x \right) \} $ - множество всех $x$ из множества $X$, для которых  $\Phi\left( x \right) $ - истина. Выбирать $\Phi$ аккуратно.
+            \end{itemize}
+        Операции над множествами:
+        \[ A\cup B = \{x\ssep x \in A \text{ или } x \in B\}  .\]
+        \[ A\cap B = \{x\ssep x \in A \text{ и } x \in B\}  .\] 
+        \[ A\setminus B = \{x\ssep x \in A \text{ и } x \not\in B\}   .\] 
+        \[ A\triangle B = \left( A\setminus B  \right)\cup\left( B\setminus A \right)   .\]
+        \[ \bigcup\limits_{\alpha \in I}A_{\alpha} = \{x \ssep \exists{\alpha \in I}\quad x \in A_{\alpha_i}\} .\]
+        \[ \bigcap\limits_{\alpha \in I}A_{\alpha} = \{x \ssep \forall{\alpha \in I}\quad x \in A_{\alpha}\}  .\] 
+        \[ \bigcup\limits_{a=1}^kA_{\alpha} = \bigcup\limits_{\alpha \in \left[1; k\right]}A_{\alpha} .\]
+        \begin{theorem}[Правила Де-Моргана]
+            \[ A\setminus \left(\bigcup_{\alpha\in I} B_{\alpha}\right) = \bigcap_{\alpha\in I} \left(A \setminus B_{\alpha}\right) .\]
+            \begin{proof}
+                \begin{equation*}
+                    \begin{split}
+                        x\in \left( A \setminus \left( \bigcup_{\alpha\in I} B_{\alpha} \right)  \right) 
+                        &\iff x\in A \text{ и } x \not\in \bigcup_{\alpha\in I} B_{\alpha}\\
+                        &\iff \forall{\alpha\in I}\quad x\in A \text{ и } x \not\in B_{\alpha}\\
+                        &\iff \forall{\alpha\in I}\quad x\in \left( A \setminus B_{\alpha} \right)\\
+                        &\iff x\in \bigcap_{\alpha\in I} \left( A \setminus B_{\alpha} \right) \qedhere 
+                    \end{split}
+                \end{equation*}
+            \end{proof}
+            \[ A \setminus \left(\bigcap_{\alpha\in I} B_{\alpha}\right) = \bigcup_{\alpha\in I} \left(A \setminus B_{\alpha}\right).\]
+            \begin{proof}
+                \begin{equation*}
+                    \begin{split}
+                        x\in \left( A \setminus \left( \bigcap_{\alpha\in I} B_{\alpha}  \right)  \right) 
+                        &\iff x\in A \text{ и } x \not\in \bigcap_{\alpha\in I} B_{\alpha}\\
+                        &\iff \exists{\alpha\in I}\quad x\in A \text{ и } x \not\in B_{\alpha}\\
+                        &\iff \exists{\alpha\in I}\quad x\in \left( A \setminus B_{\alpha} \right)\\ 
+                        &\iff x\in \bigcup_{\alpha \in I} \left( A \setminus B_{\alpha} \right) \qedhere
+                    \end{split}
+                \end{equation*}
+            \end{proof}
+        \end{theorem}
+        \begin{definition} 
+            Упорядоченная пара $\left<x, y\right>$ - набор элементов в котором важен порядок
+
+            \[ \left<x, y\right> = \left<x', y'\right> \iff x = x' \text{ и } y = y'  .\]
+
+            Кортерж (упорядоченная $n$-ка):
+            \[ \left<x_1, x_2, \ldots, x_n\right> = \left<x_1', x_2', \ldots, x_n'\right> \iff \forall{i\in \left[1; n\right]}\quad x_i = x_i' .\] 
+        \end{definition}
+        \begin{definition}[Декартово произведение] $A \times B = \{\left<a, b\right> \ssep a\in A, b\in B\}$ \end{definition}
