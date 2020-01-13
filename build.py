@@ -256,7 +256,7 @@ def build_target(target, config, util, hashes_new):
             PRINT = PRINT + "Result saved to {}, log in {}\n".format(colored(human, 'cyan'), os.path.join(tmpdir, conf_main + '.log'))
             print(PRINT, end="")
             util.record_target_hashes(target, hashes_new)
-            next(NUM_SCS)
+        next(NUM_SCS)
     except Exception as ex:
         print("Python error: {}".format(ex))
         traceback.print_exc()
