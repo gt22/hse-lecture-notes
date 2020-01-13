@@ -17,6 +17,7 @@
 import sys, os, os.path, subprocess, distutils.dir_util, shutil
 import hashlib, json, traceback, itertools
 
+from os.path import commonprefix
 from concurrent.futures import ThreadPoolExecutor as Pool
 
 if sys.version_info < (3,4):
@@ -187,11 +188,15 @@ def load_target_conf(target, gconf):
     with open(os.path.join(gconf['srcdir'], target, '.tgconfig'), "r") as f:
         conf = json.load(f)
     
-    if not ('main' in conf and isinstance(conf['main'], str)):
+    if not ('main' in conf and (isinstance(conf['main'], str) or isinstance(conf['main'], list))):
         print("{}: Invalid config in {}, 'main' is not defined or has wrong type, see manual".format(colored("Error", "red"), target))
+    if isinstance(conf['main'], str):
+        conf['main'] = [conf['main']]
     return conf
 
 NUM_SCS= itertools.count()
+
+
 
 def build_target(target, config, util, hashes_new):
     try:
@@ -200,50 +205,58 @@ def build_target(target, config, util, hashes_new):
         os.makedirs(tmpdir)
         distutils.dir_util.copy_tree(os.path.join(config['srcdir'], target), tmpdir)
         lconf = load_target_conf(target, config)
-        if os.path.exists(os.path.join(tmpdir, lconf['main'] + '.tex')):
-            nonzero = False
-            # we need to run xelatex twice to get table of contents setup'ed correctly.
-            for i in range(1 if config['rush'] else 2):
-                try:
-                    proc = subprocess.Popen(['xelatex', '-interaction=nonstopmode', '-halt-on-error', lconf['main'] + '.tex'], stdout=subprocess.DEVNULL, cwd=tmpdir)
-                    proc.wait()
-                    if proc.returncode != 0:
-                        nonzero = True
-                        break
-                except FileNotFoundError:
-                    print("[{}] Failed to built {}, check that tex is installed".format(colored("!!!", "red"), target))
-                    return
-            PRINT = ""
-            if not nonzero:
-                PRINT = PRINT + "[{}] Built {}\n".format(colored("***", "green"), target)
-            else:
-                PRINT = PRINT + "[{}] Failed to built {}, log available in {}\n".format(colored("!!!", "red"), target, tmpdir)
-                log = []
-                try:
-                    with open(os.path.join(tmpdir, lconf['main'] + ".log"), "r", errors="replace") as flog:
-                        for line in flog:
-                            log.append(line)
-                        if len(log) > 20:
-                            log = log[-20:]
-                        for elem in log:
-                            PRINT += colored('> ', "red") + elem.rstrip() + '\n'
-                except:
-                    PRINT += "We sinсerely tried to show you error log, but something went wrong:\n"
+        prefix = commonprefix(lconf['main'])
+        for conf_main in lconf['main']:
+            main_file = conf_main + '.tex'
+            if os.path.exists(os.path.join(tmpdir, main_file)):
+                nonzero = False
+                # we need to run xelatex twice to get table of contents setup'ed correctly.
+                for i in range(1 if config['rush'] else 2):
+                    try:
+                        proc = subprocess.Popen(['xelatex', '-interaction=nonstopmode', '-halt-on-error', main_file], stdout=subprocess.DEVNULL, cwd=tmpdir)
+                        proc.wait()
+                        if proc.returncode != 0:
+                            nonzero = True
+                            break
+                    except FileNotFoundError:
+                        print("[{}] Failed to built {}, check that tex is installed".format(colored("!!!", "red"), target))
+                        return
+                PRINT = ""
+                if not nonzero:
+                    PRINT = PRINT + "[{}] Built {}\n".format(colored("***", "green"), target)
+                else:
+                    PRINT = PRINT + "[{}] Failed to built {}, log available in {}\n".format(colored("!!!", "red"), target, tmpdir)
+                    log = []
+                    try:
+                        with open(os.path.join(tmpdir, conf_main + ".log"), "r", errors="replace") as flog:
+                            for line in flog:
+                                log.append(line)
+                            if len(log) > 20:
+                                log = log[-20:]
+                            for elem in log:
+                                PRINT += colored('> ', "red") + elem.rstrip() + '\n'
+                    except:
+                        PRINT += "We sinсerely tried to show you error log, but something went wrong:\n"
+                        print(PRINT, end="")
+                        raise
                     print(PRINT, end="")
-                    raise
-                print(PRINT, end="")
+                    return
+            else:
+                print("[{}] Error: unknown target format in {}/{}".format(colored("!!!", "red"), target, conf_main))
                 return
-        else:
-            print("[{}] Error: unknown target format in {}".format(colored("!!!", "red"), target))
-            return
-        
-        human = os.path.join('pdf', target + ".pdf")
-        os.makedirs(os.path.dirname(human), exist_ok=True)
-        shutil.copyfile(os.path.join(tmpdir, lconf['main'] + '.pdf'), human)
-        PRINT = PRINT + "Result saved to {}, log in {}\n".format(colored(human, 'cyan'), os.path.join(tmpdir, lconf['main'] + '.log'))
-        print(PRINT, end="")
-        util.record_target_hashes(target, hashes_new)
-        next(NUM_SCS)
+            
+            sub_name = conf_main.lstrip(prefix).lstrip('_').lstrip('-')
+            if sub_name:
+                human = target + "-" + sub_name + ".pdf"
+            else:
+                human = target + ".pdf"
+            human = os.path.join('pdf', human)
+            os.makedirs(os.path.dirname(human), exist_ok=True)
+            shutil.copyfile(os.path.join(tmpdir, conf_main + '.pdf'), human)
+            PRINT = PRINT + "Result saved to {}, log in {}\n".format(colored(human, 'cyan'), os.path.join(tmpdir, conf_main + '.log'))
+            print(PRINT, end="")
+            util.record_target_hashes(target, hashes_new)
+            next(NUM_SCS)
     except Exception as ex:
         print("Python error: {}".format(ex))
         traceback.print_exc()

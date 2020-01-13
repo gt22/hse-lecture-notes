@@ -24,6 +24,7 @@
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{polyglossia}
 \usepackage{xspace}
+\usepackage{centernot}
 \setdefaultlanguage[spelling=modern]{russian}
 \setotherlanguage{english}
 \defaultfontfeatures{Ligatures={TeX},Renderer=Basic}
@@ -203,7 +204,8 @@
   \let\Re\relax
   \DeclareMathOperator\Im{Im}
   \DeclareMathOperator\Re{Re}
-  
+  \DeclareMathOperator\id{id}
+
   \DeclareMathOperator*{\lcm}{lcm}
   \newcommand\vphi{\phi}
   \renewcommand\phi{\varphi}
@@ -216,6 +218,7 @@
   \DeclareMathOperator{\sgn}{sgn}
   \DeclareMathOperator{\Ima}{Im}
   \DeclareMathOperator{\Stab}{Stab}
+  \DeclareMathOperator{\Arg}{Arg}
   \newcommand{\actson}{\curvearrowright}
   
   \usepackage{

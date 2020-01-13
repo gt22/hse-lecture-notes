@@ -1,0 +1,327 @@
+\Section{Комплексные числа}{Игорь Энгель}
+
+\begin{remark} ~\\[-12pt]
+
+    В $\mathbb{R}$ существуют неприводимые многочлены с $\deg p(x) \ge 2$.
+
+    Это неудобно.
+
+    Хотим найти поле содержащие $\mathbb{R}$ в котором таких многочленов нет.
+\end{remark}
+\begin{definition} 
+    Пусть $K, L$ - поля. $K$ - подкольцо внутри $L$. Тогда $L$ называется расширением поля $K$.
+\end{definition}
+
+Рассмотрим многочлен $x^2+1$. Назовём его корень $i$.
+
+\begin{enumerate}
+    \item $i\in L$
+    \item $\mathbb{R} \subset L$
+    \item Тогда $a+bi\in L$ если $a, b\in \mathbb{R}$
+\end{enumerate}
+
+Так-же поле $L$ содержит выражения вида $a+bi+ci^2$, но так-как $i^2$ по определению равен $-1$. Значит, такие выражения сводятся к $a'+bi$. Аналогично для больших степений.
+
+Рассмотрим операции поля:
+\[ (a+bi)+(c+di) = (a+c)+(b+d)i .\] 
+\[ (a+bi)(c+di) = ac+adi+bci+bdi^2 = (ac-bd)+(ad+bc)i = a'+b'i .\]
+
+Значит, эти выражения задают подкольцо в $L$.
+
+Возьмём множество пар вещественных чисел $\mathbb{R}^2$.
+
+Введём на нём сложение: $\left<a, b\right> + \left<c, d\right> = \left<a+c, b+d\right>$.
+
+Введём умножения: $\left<a, b\right> \cdot \left<c, d\right> = \left<ac-bd, ad+bc\right>$.
+
+Заметим, что сущетсвует корень многочлена $x^2+1\in \mathbb{R}^2[x]$: $\left<0, 1\right>\cdot \left<0, 1\right> = \left<0 - 1, 0 + 0\right> = \left<-1, 0\right>$.
+
+\begin{theorem} 
+    $\mathbb{R}^2$ с этими операциями - кольцо.
+    \begin{proof}
+        $\mathbb{R}^2$ - абелева группа, как произведение абелевых групп.
+        
+        Коммутативность:
+            \[ \left<a, b\right> \cdot \left<c, d\right> = \left<ac-bd, ad+bc\right> = \left<ca-db, da+cb\right> = \left<c, d\right> \cdot \left<a, b\right>.\]
+
+        Дистрибутивность:
+            \begin{equation*}
+                \begin{split}
+                    \left<a, b\right> &\cdot \left( \left<c, d\right> + \left<e, f\right> \right) \\
+                                      &= \left<a,b\right> \cdot  \left<c+e, d+f\right>\\
+                                      &= \left<a(c+e)-b(d+f), a(d+f)+b(c+e)\right>\\
+                                      &= \left<ac+ae-(bd+bf), ad+af+bc+be\right>\\
+                                      &= \left<ac-bd, ad+bc\right> + \left<ae-bf, af+be\right>\\
+                                      &= \left<a, b\right>\cdot \left<c, d\right> + \left<a, b\right> \cdot \left<e, f\right>
+                \end{split}
+            \end{equation*}
+
+        Ассоциативность:
+            \begin{equation*}
+                \begin{split}
+                    \left<a,b\right> &\cdot \left( \left<c, d\right> \cdot \left<e, f\right> \right)\\
+                                     &= \left<a, b\right> \cdot \left<ce-df, cf+de\right>\\
+                                     &= \left<a(ce-df)-b(cf+de), a(cf+de)-b(ce-df)\right>\\
+                                     &= \left<ace-adf-bcf-bde, acf+ade-bce-bdf\right>\\
+                                     &= \left<e(ac-bd)-f(ad+bc), e(ad-bc)+f(ac-bd)\right>\\
+                                     &= \left<ac-bd, ad+bc\right> \cdot \left<e, f\right>\\
+                                     &= (\left<a, b\right> \cdot \left<c, d\right>) \cdot \left<e, f\right>
+                \end{split}
+            \end{equation*}    
+        
+        Единица:
+            \[ \left<1, 0\right> \cdot \left<a, b\right> = \left<1a-0b, 1b+0a\right> = \left<a, b\right>.\qedhere\] 
+    \end{proof}
+\end{theorem}
+
+\begin{definition} 
+    Полем комплексных чисел $\mathbb{C}$ называется $\left<\mathbb{R}^2, +, \cdot \right>$
+
+    Элементы $\mathbb{C}$ записываются как $a+bi$ (соответсвуют элементам вида $\left<a, b\right>$)
+\end{definition}
+
+\begin{theorem} 
+    $\mathbb{C}$ - поле
+    \begin{proof}
+        Найдём обратный элемент для $a+bi$.
+
+        \[ (a+bi)(a-bi) = a^2-b^2i^2 = a^2+b^2 .\]
+        
+        Если $a+bi \neq 0$, то $a^2+b^2 \neq 0$.
+
+        Поделим:
+
+        \[ \frac{(a+bi)(a-bi)}{a^2+b^2} = 1 .\]
+        Значит, $\frac{a-bi}{a^2+b^2}$ - обратный к $a+bi$.
+    \end{proof}
+\end{theorem}
+
+\begin{remark} 
+    В $\mathbb{C}$ любой вещественный многочлен степени $2$ раскладывается на линейные множители.
+    \begin{proof}
+        Рассмотрим многочлен $x^2+bx+c$. $b, c\in \mathbb{R}$.
+
+        Тогда его корни имеют вид
+
+        \[ x_{1,2} = \frac{-b \pm \sqrt{b^2-4c} }{2} .\]
+
+        Если $D=b^2-4c \ge 0$, то у него есть вещественный корень.\\
+
+        Если $D < 0$, то вещественных корней нет.
+
+        Тогда $D = -1 \cdot |D|$.
+
+        \[ x_{1, 2} = \frac{-b \pm \sqrt{(-1)|D|} }{2} = \frac{-b \pm \sqrt{|D|}\sqrt{-1}  }{2} = \frac{-b\pm |D|i}{2} .\qedhere\] 
+    \end{proof}
+\end{remark}
+
+\begin{properties} 
+    Пусть $z = a+bi\in \mathbb{C}$.
+
+    $a = \Re z$ - вещественная часть
+
+    $b = \Im z$ - мнимая часть
+
+    $\overline{z} = a-bi$ - комплексно-сопряжённое к $z$ число
+
+    $|z| = \sqrt{a^2+b^2}$ - модуль $z$
+\end{properties}
+
+\begin{definition} 
+    $R_1, R_2$ - кольца. $f : R_1 \to R_2$ называется гомоморфизмом колец, если
+    \begin{enumerate}
+        \item $f(a+b) = f(a)+f(b)$
+        \item $f(a\cdot b) = f(a) \cdot f(b)$
+        \item $f(1) = 1$ - если кольцо с единицей.
+    \end{enumerate}
+\end{definition}
+\begin{definition} 
+    Если $f : R_1 \mapsto R_2$ гомоморфизм колец и биекция, то $f$ - изоморфизм колец.
+\end{definition}
+\begin{statement} 
+    Комплексное сопряжения - изоморфзим $\mathbb{C} \mapsto \mathbb{C}$.
+    \begin{proof}
+       
+        \[ \overline{(a+bi)+(c+di)} = \overline{(a+c)+(b+d)i} = (a+c)-(b+d)i .\]
+        \[ \overline{a+bi}+\overline{c+di} = (a-bi)+(c-di) = (a+c)-(b+d)i .\]
+
+        \[ \overline{(a+bi)(c+di)} = \overline{(ac-bd)+(ad+bc)i} = (ac-bd)-(ad+bc)i .\]
+        \[ \overline{a+bi}\cdot \overline{c+di} = (a-bi)(c-di) = (ac-(-b)(-d))+(a(-d)+(-b)c)i = (ac-bd)-(ad+bc)i .\]
+        \[ \overline{1+0i} = 1+0i .\qedhere\] 
+    \end{proof}
+\end{statement}
+\begin{lemma} 
+    $\psi : R_1 \mapsto R_2$ гомоморфизм колец.
+
+    $g(x)\in R_1[x]$ - многочлен. $\lambda\in R_1$ - корень $g(x)$
+
+    Построим многочлен $\psi(g) = \psi(a_0)+\psi(a_1)x + \ldots \psi(a_n)x^{n}$
+
+    Тогда $\psi(\lambda)\in \mathbb{R}_2$ - корень $\psi(g)$
+    \begin{proof}
+        \[ a_1\lambda + a_2\lambda^2 + \ldots + a_n\lambda^{n} = 0 .\]
+        \[ \psi(a_1\lambda+a_2\lambda + \ldots + a_n\lambda^{n}) = \psi(0) = 0 .\]
+        \[ \psi(a_1\lambda + a_2\lambda^2 + \ldots + a_n\lambda) = \psi(a_1)\psi(\lambda) + \psi(a_2)\psi(\lambda)^2 + \ldots + \psi(a_n)\psi(\lambda)^{n} = \psi(g)(\psi(\lambda)) = 0 .\qedhere\] 
+    \end{proof}
+\end{lemma}
+\begin{statement}
+    Если $\phi : \mathbb{C} \mapsto \mathbb{C}$ - изоморфизм колец, и $\forall{x\in \mathbb{R}}\quad \phi(x) = x$, то либо $\forall{z\in \mathbb{C}}\quad \phi(z) = z$, либо $\forall{z\in \mathbb{C}}\quad \phi(z) = \overline{z}$
+        \begin{proof}
+            $\phi(a+bi) = \varphi(a)+\varphi(b)\varphi(i) = a+b\varphi(i)$.
+
+            $\phi(x^2+1) = x^2+1$. 
+
+            Значит $\phi(i)$ тоже корень $x^2+1$. Значит, либо $\varphi(i)=i$, либо $\varphi(i)=-i$.
+        \end{proof}
+\end{statement}
+\begin{statement} 
+    $|z| = \sqrt{z \overline{z}} $ 
+    \begin{proof} $z \overline{z} = (a+bi)(a-bi) = a^2+b^2$. \end{proof}
+\end{statement}
+\begin{statement} 
+    $|z_1z_2| = |z_1| |z_2|$
+    \begin{proof}
+        $|z_1 z_2|^2 = z_1z_2 \cdot \overline{z_1 z_2} = z_1 \overline{z_1} z_2 \overline{z_2} = |z_1|^2|z_2|^2 $. \end{proof}
+\end{statement}
+\begin{definition} 
+    Аргументом $z = a+bi \neq 0$ называется угол между вещественной прямой и радиус-вектором точки задаваемой этим числом на комплексной плоскости. И обозначается $\Arg z \in \mathbb{R}/(2\pi \mathbb{Z})$.
+\end{definition}
+\begin{statement} 
+    $z_1, z_2 \neq 0$. $\Arg z_1z_2 = \Arg z_1 + \Arg z_2$.
+    \begin{proof}
+        $\Arg \frac{z_1}{|z_1|} = z_1$, значит можно доказывать только для элементов с $|z|=1$.
+
+        $|z_1|=|z_2|=1$. Пусть $\phi = \Arg z_1$, $\psi = \Arg z_2$. 
+
+        Тогда $z_1 =\cos \phi + i\sin \varphi$, $z_2 =\cos \psi + i\sin \psi$.
+        \[ z_1z_2 = (\cos \phi \cos \psi -\sin \varphi\sin \psi) + i\left(\cos \varphi\sin \psi +\cos \psi\sin \varphi \right) =\cos (\varphi + \psi) + i\sin(\varphi + \psi)  .\qedhere\] 
+    \end{proof}
+    \begin{proof}
+       Факт: Пусть есть изометрия плоскости у которой ести единственная неподвижная точка, то эта изометрия - поворот.
+
+       Введём расстояние между комплексными числами - $\rho(z_1, z_2) = |z_1-z_2|$. Оно соответсвует обычному расстоянию на плоскости.
+
+       $|z_1| = |z_2| = 1$.
+
+       При $z_1 = 1$ тривиально, предположим что $z_1 \neq 1$.
+
+       Рассмотрим отображения $x \mapsto z_1 x$.
+
+       Докажем что это изометрия: $|z_1 x - z_1 y| = |z_1(x-y)| = |z_1| |x-y| = |x-y|$.
+
+       Заметим, что $z_1 x = x \iff x(z_1-1) = 0 \iff x = 0$.
+
+       Значит, заданное отображение - поворот вокруг начала координат. При этом, так-как $z_1 \cdot  1 = z_1$, то это поворот на угол $\Arg z_1$. Значит, $\Arg z_1 x = \Arg z_1 + \Arg x \implies \Arg z_1 z_2 = \Arg z_1 + \Arg z_2$.
+    \end{proof}
+\end{statement}
+\begin{definition} 
+    Тригонометрическая форма записи комплексного числа $z \neq 0$ с аргументом $\phi = \Arg z$:
+
+    \[ a+bi = z = |z| \frac{z}{|z|} = |z| \left( \cos \phi + i\sin \phi \right) =: |z|e^{i\phi}.\] 
+\end{definition}
+\begin{property} 
+    $z_1 = r_1e^{i\phi_1}$, $z_2 = r_2e^{i\phi_2}$.
+
+    $z_1z_2 = r_1r_2 e^{i\phi_1} e^{i\phi_2} = r_1r_2 e^{i(\phi_1 + \phi_2)}$
+\end{property}
+\begin{remark} 
+    \[ e^{x} = 1 + x + \frac{x^2}{2!} + \ldots \frac{x^{j}}{j!} + \ldots .\]
+    \[ e^{ix} = 1 + ix + \frac{-x}{2!} + \frac{-ix}{3!} + \frac{x}{4!} + \ldots .\]
+
+    При чётных степенях:
+    \[ 1 - \frac{x^2}{2} + \frac{x^{4}}{4!} + \ldots + (-1)^{k} \frac{x^{2k}}{2k!} = \cos x.\]
+    
+    При нечётных:
+    
+    \[ ix - \frac{ix^3}{3!} + \ldots + (-1)^{k}\frac{ix^{2k+1}}{(2k+1)!} = i\sin x.\]
+    \[ e^{ix} = \cos x + i\sin x .\] 
+\end{remark}
+\begin{theorem} 
+    В комплексных числах есть корни уравнения вида $x^{n} = a$
+    \begin{proof}
+        Если $a=0$, то сущетсвует единственный корень кратности $n$ - $x=0$.
+        
+        Предположим что $a\neq 0$.
+    
+        \[ a = re^{i\phi} \] 
+
+        \[ x = s e^{i\alpha} .\]
+        
+        \[ x^{n} = s^{n} e^{in\alpha} .\]
+
+        \[ s^{n} = r \implies s = \sqrt[n]{r}  .\]
+
+        \[ n\alpha = \phi + 2\pi k \implies \alpha = \frac{\phi}{n} + \frac{2\pi}{n}k.\]
+        
+        \[ x_k = \sqrt[n]{r} e^{i\left( \frac{\phi}{n} + \frac{2\pi}{n}k \right) }  .\]
+
+        Таких решений $n$ штук, значит это все решения уравнения.
+    \end{proof}
+\end{theorem}
+\begin{example} 
+    Рассмотрим уравнение $x^{n} = 1 = 1 \cdot e^{0}$.
+
+    Тогда $\eps_k = e^{i \cdot \frac{2\pi k}{n}}$. 
+\end{example}
+\begin{definition} 
+    $R$ - кольцо, $x\in R$ удовлетворяющий $x^{n} = 1$. Тогда $x$ - корнеь степени $n$ из единицы.
+\end{definition}
+\begin{definition} 
+    $K$ - поле, тогда $\eps\in K$ называется первообразным корнем степени $n$ из единицы, если $\ord \eps = n$.
+\end{definition}
+\begin{remark} 
+    Все первообразные корни степени $n$ из единицы в $\mathbb{C}$ имеют вид $\eps_k$, где $k$ взаимно просто с $n$.
+\end{remark}
+\begin{theorem}[Основная теорема алгебры] 
+    Любой неконстантный многочлен $p(x)\in \mathbb{C}[x]$ имеет хотя-бы один корень в $\mathbb{C}$.
+
+    Без доказательства.
+\end{theorem}
+\begin{definition} 
+    Поле $K$ называется алгебраически замкнутым, если у любого неконстантного многочлена $p(x)\in K[x]$ есть корень в $K$.
+\end{definition}
+\begin{lemma} 
+    $K$ - алгебраически замкнутое поле. $p(x)\in K[x]$, $n=\deg p \ge 1$, тогда $p$ имеет ровно  $n$ корней с учётом кратности.
+    \begin{proof}
+        Если $n=1$, то есть ровно один корень.
+
+        Пусть $n>1$, так-как $K$ замкнуто, то существует корень $\lambda$.
+
+        Тогда $p(x) = p'(x)(x-\lambda)$.
+
+        По индукции у $p'(x)$ ровно $n-1$ корень с учётом кратности, и один корень у $x-\lambda$. Итого, $n$ корней.
+    \end{proof}
+\end{lemma}
+\begin{remark} 
+    Любой многочлен $f(x)\in \mathbb{C}[x]$ представляется в виде
+    \[ f(x) = c(x-\lambda_1)\ldots\left( x-\lambda_n \right)  .\] 
+\end{remark}
+\begin{lemma} 
+    Если $\lambda\in \mathbb{C}$ - корень $p(x)\in \mathbb{R}[x]$, то $\overline{\lambda}$ - тоже корень.
+    \begin{proof}
+        Заметим, что $p(x) = \overline{p}(x)$. Значит, их корни совпадают. Но $\overline{\lambda}$ - корень $\overline{p}(x)$.
+    \end{proof}
+\end{lemma}
+\begin{statement} 
+    Если $p(x)\in \mathbb{R}[x]$ неприводимый, то либо $p(x) = c(x-\lambda)$, либо $p(x) = x^2+bx+c$ и $b^2-4c < 0$.
+    \begin{proof}
+        То, что эти многочлены неприводимы тривиально.
+
+        Предположим что $p$ неприводим и $\deg p > 2$.
+
+        Заметим, что $p$ имеет комплексный корень $\lambda$. Тогда $p \divby_{\mathbb{C}} (x-\lambda)$ и $p \divby_{\mathbb{C}} (x-\overline{\lambda})$.
+
+        $\lambda \neq \overline{\lambda}$, так-как $p$ неприводим.
+
+        Тогда $p(x) = p'(x) ((x-\lambda)(x-\overline{\lambda})) = p'(x) \left( x^2-\lambda x - \overline{\lambda} x + \lambda \overline{\lambda} \right) = p'(x)\left( x^2 - 2 \Re \lambda x + |\lambda|^2 \right)  $.
+
+        Предположим что $p(x) \ndivby_{\mathbb{R}} (x-\lambda)(x-\lambda')$.
+
+        Тогда они взаимно простые. Тогда 
+        \[ a(x)p(x) + b(x)(x-\lambda)(x-\overline{\lambda})=1 .\]
+
+        Но $p (\lambda) = 0$ и $(\lambda - \lambda)(\lambda - \overline{\lambda}) = 0$. Противоречие.
+
+        Значит, $p'\in \mathbb{R}[x]$, и $p$ приводим. Противоречие, значит неприводимых многочленов степени больше $2$ не существует.
+    \end{proof}
+\end{statement}
