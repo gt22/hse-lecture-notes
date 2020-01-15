@@ -1,0 +1,234 @@
+\Subsection{Интегральные суммы} 
+\Subsubsection{Модуль непрерывности (с первого семестра)} 
+\begin{definition} \thmslashn
+
+    $f: E \mapsto \mathbb{R}$ равномерно непрерынва, если
+    \[ \forall{\varepsilon > 0}\quad \exists{\delta > 0}\quad \forall{x, y\in E}\quad |x-y| < \delta \implies|f(x)-f(y)| .\]
+    
+    (Если функция непрерывна всюду, то $\delta$ зависит от $\varepsilon$ и $y$, а если равномерно - только от $\varepsilon$ ).
+\end{definition}
+\begin{remark} \thmslashn
+
+    Липшицева функция всегда равномерно нерпревна.
+    \[ \forall{x, y\in E} \quad |f(x) - f(y)| \le M |x-y|.\] 
+\end{remark}
+\begin{theorem}[Теорема Кантора] \thmslashn
+
+    $f\in C[a, b]$, $f$ равномерно непрерынва на $\left[a, b\right]$.
+    \begin{proof} \thmslashn
+    
+        Предположим что равномерной непрерывности нет. Значит,
+        \begin{equation*}
+            \exists{\eps > 0}\quad \forall{\delta > 0}\quad \exists{x, y\in \left[a, b\right]}\quad      \begin{cases}
+                |x - y| < \delta\\
+                |f(x)-f(y)| \ge \eps
+            \end{cases} 
+        \end{equation*}
+
+        Рассмотрим $\delta=\frac{1}{n}$. Пусть оно не подходит. Т. е.
+        \begin{equation*}
+            \forall{n} \quad \exists{x_n, y_n}\quad \begin{cases}
+                |x_n - y_n| < \frac{1}{n}\\
+                |f(x_n)-f(y_n)| \ge \eps
+            \end{cases}  
+        \end{equation*}
+
+        Возьмём подпоследовательность $x_{n_k}$ имеющюю предел, $\lim\limits_{k \to \infty} x_{n_{k}} = c$, $c\in \left[a, b\right]$.
+        
+        Заметим, что $y_{n_k}\in \left[x_{n_k} - \frac{1}{n}; x_{n_k} + \frac{1}{n}\right]$, значит $\lim\limits_{k \to \infty} y_{n_k} = c$.
+        
+        Так-как $f$ непрерывна в $c$, выберем подоходящее $\delta'$ по $\frac{\varepsilon}{2}$.
+        \[ \forall{x\in \left[a; b\right]}\quad |x-c| < \delta' \implies |f(x)-f(c)| < \frac{\eps}{2} .\]
+
+        Так-как $\exists{K}\quad \forall{k > K}\quad x_{n_k}, y_{n_k}\in \left[c - \delta', c + \delta'\right]$, возьмём такую пару, тогда
+        \[ \begin{cases}
+            |x_{n_k} - c| < \delta'\\
+            |y_{n_k} - c| < \delta'
+        \end{cases} \implies \begin{cases}
+        |f(x_{n_k})-f(c)| < \frac{\varepsilon}{2}\\
+        |f(c) - f(y_{n_k})| < \frac{\varepsilon}{2}
+    \end{cases} \implies |f(x_{n_k}) - f(y_{n_k})| < \varepsilon .\]
+    
+    Значит, $\delta = \frac{1}{n}$ подходит, и функция равномерно непрерынва.
+        \[ \delta(\varepsilon) = \inf\limits_{y\in E} \delta(\varepsilon, y) .\qedhere\] 
+    \end{proof}
+\end{theorem}
+\begin{definition}[Модуль непрерывности] \thmslashn
+
+    $f: E \mapsto \mathbb{R}$, тогда модуль непрерывности $\omega_{f}(\delta) = \sup\limits_{|x-y| \le \delta} |f(x)-f(y)|$
+\end{definition}
+\begin{properties} \thmslashn
+
+    $\omega_{f}(0) = 0$.
+
+    $\omega_{f}(\delta) \ge  0$.
+
+    $\omega_{f}$ - нестрого монотонно возрастает.
+    
+    $|f(x)-f(y)| \le \omega_{f}(|x-y|)$.
+
+    $f$ равномерно непрерывна на $E$ тогда и только тогда, когда $\omega_f(\delta)$ непрерывна в нуле.
+    \begin{proof} \thmslashn
+
+        Необходиомть:
+        \[ \forall{\varepsilon > 0}\quad \exists{\delta > 0}\quad \forall{x, y\in E}\quad |x-y| < \delta \implies |f(x) - f(y)| < \varepsilon .\]
+        \[ \forall{x, y\in E}\quad |x-y| < \frac{\delta}{2} \implies |f(x)-f(y)|<\varepsilon .\]
+        \[ \omega_{f}\left(\frac{\delta}{2}\right) < \varepsilon  .\]
+        \[ \forall{\varepsilon > 0}\quad \exists{\beta > 0}\quad \forall{0 < \gamma < \beta}\quad \omega_{f}(\gamma) < \varepsilon .\]
+        
+        Значит, $\lim\limits_{\delta \to 0} \omega_f(\delta) = 0$.
+
+        Достаточность:
+        \[ |f(x)-f(y)| \le \omega_{f}(|x-y|) \le \omega_{f}(\delta).\]
+        \[ \forall{\varepsilon > 0}\quad \exists{\delta > 0}\quad \omega_{f}(\delta) < \varepsilon \implies \forall{x,y}\quad |x-y| < \delta \implies |f(x)-f(y)| < \varepsilon .\qedhere\] 
+    \end{proof}
+\end{properties}
+\Subsubsection{Собственно, интегральные суммы}
+\begin{definition} \thmslashn
+
+    Дроблением (разбиением, пунктиром) отрезка $\left[a, b\right]$ называется набор точек $a=x_0 < x_1 < \ldots < x_{n-1} < x_n = b$
+    \[ \tau = \{a=x_0, x_1, \ldots, x_n=b\}  .\]
+
+    Такой, что $\forall{k}\quad x_{k-1} < x_k$
+\end{definition}
+\begin{definition} \thmslashn
+
+    Мелкотью дробления $\tau$ называется $|\tau| = \max\limits_{k=1, \ldots, n} \{x_{k} - x_{k-1}\} $
+\end{definition}
+\begin{definition} \thmslashn
+
+    Оснащённым дроблением называется пара $\left<\tau, \xi\right>$, где $\tau$ - дробление, $\xi = \{\xi_{k}\in \left[x_{k-1}, x_k\right]\} $
+\end{definition}
+\begin{definition}[Интегральная сумма (сумма Римана)] \thmslashn
+
+    Пусть есть функция $f : [a, b] \mapsto \mathbb{R}$, и оснащённое дробление $\left<\tau, \xi\right>$
+
+    Тогда сумма Римана этой функции:
+    \[ S(f, \tau, \xi) = \sum\limits_{k=1}^{n} f(\xi_k)(x_{k}-x_{k-1}) .\] 
+\end{definition}
+\begin{theorem}[Теормеа об интегральных суммах] \thmslashn
+
+    Пусть $f\in C\left[a, b\right]$, $\left<\tau, \xi\right>$ - оснащённое дробление $\left[a, b\right]$. Тогда 
+    \[ \left|S(f, \tau, \xi) - \int\limits_{a}^{b} f\right| \le (b-a)\omega_{f}(|\tau|) .\]
+    \begin{proof}
+        \begin{equation*}
+            \begin{split}
+                \Delta 
+                &= S(f, \tau, \xi) - \int\limits_{a}^{b} f\\
+                &= \sum\limits_{k=1}^{n} f(\xi_k)(x_{k}-s_{k-1}) 
+                - \sum\limits_{k=1}^{n} \int\limits_{x_{k-1}}^{x_{k}} f\\
+                &= \sum\limits_{k=1}^{n} \left( f(\xi_{k})(x_{k}-x_{k-1}) 
+                - \int\limits_{x_{k-1}}^{x_{k}} f   \right)\\
+                &= \sum\limits_{k=1}^{n} \left( \int\limits_{x_{k-1}}^{x_{k}} f(\xi_{k})dt 
+                - \int\limits_{x_{k-1}}^{x_{k}} f(t)dt    \right)\\
+                &= \sum\limits_{k=1}^{n} \int\limits_{x_{k-1}}^{x_k} \left( (f(\xi_{k}) - f(t))dt\right)  
+            \end{split}
+        \end{equation*}
+        \begin{equation*}
+            \begin{split}
+                |\Delta|
+                &= \left|\sum\limits_{k=1}^{n} \left( \int\limits_{x_{k-1}}^{x_k} (f(\xi_{k})-f(t))dt  \right)\right|\\
+                &\le \sum\limits_{k=1}^{n} \left| \int\limits_{x_{k-1}}^{x_{k}} \left( f(\xi_{k})-f(t) \right) dt\right|\\
+                & \le \sum\limits_{k=1}^{n} \int\limits_{x_{k-1}}^{x_k} |f(\xi_k) - f(t)|dt\\
+                & \le \sum\limits_{k=1}^{n} \int\limits_{x_{k-1}}^{x_{k}} \omega_{f}(x_{k}-x_{k-1})dt\\
+                & \le  \sum\limits_{k=1}^{n} \omega_{f}(|\tau|)(x_{k} - x_{k-1}) = \omega_{f}(|\tau|)(b-a) \qedhere
+            \end{split}
+        \end{equation*}
+    \end{proof}
+\end{theorem}
+\begin{consequence} 
+    \[ \forall{\eps > 0}\quad \exists{\delta > 0}\quad \forall{\left<\tau, \xi\right>}\quad |\tau| < \delta \implies \left|S\left( f, \tau, \xi \right) - \int\limits_{a}^{b} f\right| < \eps   .\] 
+    \begin{proof}
+        \[ f\in C\left[a, b\right] \implies \lim\limits_{\alpha \to  0} \omega_{f}(\alpha) = 0 .\]
+        По $\eps > 0$ можем выбрать $\delta > 0$, такое, что $0 < |\tau| < \delta \implies \omega_{f}(|\tau|) < \frac{\eps}{b-a}$.
+        Тогда
+        \[ \left|S(f, \tau, \xi) - \int\limits_{a}^{b} f\right| < (b-a) \frac{\eps}{(b-a)} = \eps  .\qedhere\] 
+    \end{proof}
+\end{consequence}
+\begin{consequence} 
+    Пусть $\left<\tau_n, \xi_n\right>$ - последовательность дроблений, такая, что $\lim |\tau_n| = 0$, тогда
+    \[ \lim S\left( f, \tau_n, \xi_n \right) = \int\limits_{a}^{b} f   .\] 
+    \begin{proof}
+        Фиксируем $\eps > 0$, выбираем $\delta$ по предыдущему следствию, так-как $|\tau_n| \to 0$, то $\exists{N > 0}\quad \forall{n > N}\quad |\tau_n| < \delta$, тогда $|S(f, \tau, \xi) - \int\limits_{a}^{b} f| < \eps $. 
+    \end{proof}
+\end{consequence}
+\begin{example} 
+    \[ S_{n}(p) = 1^{p}+2^{p}+\ldots+n^{p} .\]
+
+    Хотим что-то узнать про эту сумму ($p > 0$).
+    
+    Можем легко оценить сверху: $S_{n}(p) < n n^{p} = n^{p+1}$
+
+    Оценим снизу через середину:
+    \[ \frac{n}{2} \cdot \left( \frac{n}{2} \right)^{p} = \left( \frac{n}{2} \right)^{p+1} < S_{n}(p)   .\]
+
+    Попробуем посчитать предел:
+    \[ \lim\limits_{n \to \infty} \frac{S_{n}(p)}{n^{p+1}} = \lim\limits_{n \to \infty} \sum\limits_{k=1}^{n} \frac{k^{p}}{n^{p}} \cdot \frac{1}{n} .\]
+
+    Представим как интегральную сумму: возьмём отрезок $\left[0, 1\right]$, $x_{k} = x_{k-1} + \frac{1}{n}$. $\xi_k = x_{k}$, $f(t) = t^{p}$
+
+    Тогда
+    \[ \lim\limits_{n \to \infty} \sum\limits_{k=1}^{n} \frac{k^{p}}{n^{p}} \cdot \frac{1}{n} = \lim\limits_{n \to \infty} \sum\limits_{k=1}^{n} f(\xi_{k})(x_{k}-x_{k-1}) = \int\limits_{0}^{1} f(t)dt = \left. \frac{t ^{p+1}}{p+1}\right|_{0}^{1} = \frac{1}{p+1}  .\] 
+    
+    Тогда $S_{n}(p) \sim_{n\to +\infty} \frac{n^{p+1}}{p+1}$. 
+\end{example}
+\begin{lemma} 
+    Пусть есть $f\in C^2\left[\alpha, \beta\right]$, тогда
+    \[ \Delta = \int\limits_{\alpha}^{\beta} f(t)dt - \frac{f(\alpha) + f(\beta)}{2}(\beta - \alpha) = -\frac{1}{2}\int\limits_{\alpha}^{\beta} f''(t)(t-\alpha)(\beta-t)dt    .\] 
+\begin{proof}
+    Пусть $\gamma = \frac{\alpha + \beta}{2}$.
+    \begin{equation*}
+        \begin{split}
+            \int\limits_{\alpha}^{\beta} f(t)dt 
+            &= \int\limits_{\alpha}^{\beta} f(t)(t-\gamma)'dt\\ 
+            &= \left. f(t)(t-\gamma)\right|_{\alpha}^{\beta} - \int\limits_{\alpha}^{\beta} f'(t)(t-\gamma)dt\\
+            &= f(\beta) \frac{\beta-\alpha}{2} - \left( f(\alpha) \frac{\alpha - \beta}{2} \right) - \int\limits_{\alpha}^{\beta} f'(t)(t-\gamma)dt\\
+            &= \frac{f(\alpha)+f(\beta)}{2}\left( \beta-\alpha \right) - \int\limits_{\alpha}^{\beta} f'(t)(t-\gamma)dt\\
+        \end{split}
+    \end{equation*}
+    
+    Заметим, что 
+    \[ ((t-\alpha)(\beta-t))' = (-t^2 + (\alpha + \beta)t - \alpha\beta)' = -2t + (\alpha + \beta) = -2(t-\gamma) .\]
+
+    Тогда
+    \begin{equation*}
+        \begin{split}
+            \Delta
+            &= -\int\limits_{\alpha}^{\beta} f'(t)(t-\gamma)\\
+            &= \frac{1}{2} \int\limits_{\alpha}^{\beta} f'(t)((t-\alpha)(\beta-t))'\\
+            &= \frac{1}{2} \left( \left. f'(t)(t-\alpha)(\beta-t)\right|_{\alpha}^{\beta} - \int\limits_{\alpha}^{\beta} f''(t)(t-\alpha)(t-\beta)   \right)\\
+            &= -\frac{1}{2} \int\limits_{\alpha}^{\beta}  f''(t)(t-\alpha)(\beta-t) \qedhere
+        \end{split}
+    \end{equation*}
+\end{proof}
+\end{lemma}
+\begin{theorem}[оценка погрешностей в формуле трапеции] 
+    $f\in C^2\left[a, b\right]$, $\tau$ - дробление. Тогда 
+    \[ \left|\Delta := \int\limits_{a}^{b} f - \sum\limits_{k=1}^{n} \frac{f(x_{k-1}) + f(x_{k})}{2}(x_{k}-x_{k-1})\right|   \le \frac{|\tau|^{2}}{8} \int\limits_{a}^{b} |f''| .\] 
+    \begin{proof}
+        \[ \Delta = \sum\limits_{k=1}^{n} \left( \int\limits_{x_{k-1}}^{x_{k}} f - \frac{f(x_{k-1}) + f(x_{k})}{2}(x_{k}-x_{k-1})    \right) = - \frac{1}{2}\sum\limits_{k=1}^{n} \left( \int\limits_{x_{k-1}}^{x_{k}} f''(t)(t-x_{k-1})(x_{k}-t)dt   \right)   .\]
+        \[ |\Delta| \le \frac{1}{2} \sum\limits_{k=1}^{n} \int\limits_{x_{k-1}}^{x_{k}} |f''(t)| |t-x_{k-1}| |x_{k} - t| \le \frac{1}{2} \sum\limits_{k=1}^{n} \int\limits_{x_{k-1}}^{x_{k}} |f''| \left(\frac{|\tau|}{2}\right)^{2} = \frac{|\tau|^2}{8} \int\limits_{a}^{b} |f''(t)|dt     .\qedhere\] 
+    \end{proof}
+\end{theorem}
+\begin{remark} 
+    Если в  $\tau$ $x_{k} = (b-a) \frac{k}{n}$, $|\tau| = \frac{b-a}{n}$.
+
+    \[ \sum\limits_{k=1}^{n} f(x_{k})(x_{k}-x_{k-1}) = \frac{b-a}{n} \sum\limits_{k=1}^{n} f(x_{k}) .\]
+
+    \[ \sum\limits_{k=1}^{n} \frac{f(x_{k-1})+f(x_{k})}{2}(x_{k}-x_{k-1}) = \frac{b-a}{n}\left( \frac{f(x_0) + f(x_{n})}{2} + \sum\limits_{k=1}^{n} f(x_{n}) \right)  .\] 
+\end{remark}
+\begin{theorem}[Формула Эйлера-Маклорена для второй производной] 
+    $f\in C^2\left[m , n\right]$, $m,n\in \mathbb{Z}$.
+
+    \[ \sum\limits_{k=m}^{n} f(k) = \int\limits_{m}^{n} f(t)dt + \frac{f(m) + f(n)}{2} + \frac{1}{2}\int\limits_{m}^{n} f''(t)\{t\}(1-\{t\})  dt   .\]
+    \begin{proof}
+        \[ f(k) = \int\limits_{k}^{k+1} f(t)dt + \frac{f(k)-f(k+1)}{2} + \frac{1}{2}\int\limits_{k}^{k+1} f''(t)\{t\}dt    .\]
+        \[ \sum\limits_{k=m}^{n-1} f(k) = \int\limits_{m}^{n} f(t)dt + \frac{f(m)-f(n)}{2} + \frac{1}{2}\int\limits_{m}^{n} f''(t)\{t\}(1-\{t\})dt    .\]
+        Если прибавить $f(n)$, то получим нужную формулу.
+
+        Теперь докажем первую формулу. Можем считать что $k=0$, так-как можно заменить функцию.
+
+        \[ f(0) = \int\limits_{0}^{1} f(t)dt + \frac{f(0) - f(1)}{2} + \frac{1}{2}\int\limits_{0}^{1} f''(t)t(1-t)  \iff  \int\limits_{0}^{1} f(t)dt - \frac{f(0)-f(1)}{2}  = -\frac{1}{2} \int\limits_{0}^{1} f''(t)t(1-t)  .\]
+    А последнее выражение верно по лемме.
+    \end{proof}
+\end{theorem}

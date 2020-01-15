@@ -8,9 +8,9 @@
 %\lstset {
 %  style=supercpp% uncomment to use c++ everywhere.
 %}
-\lstset {
-  texcl=true %Включить, если хотите писать русские комментарии в коде.
-}
+%\lstset {
+%  texcl=true %Включить, если хотите писать русские комментарии в коде.
+%}
 \enablemath % добавляет новые определения, например: \N, \divby
 
 \begin{document}
@@ -27,4 +27,5 @@
 % Можно сохранить отдельную часть в отдельный .tex,
 % а затем написать \input{part}, просто подставить в данное место part.tex
 \newcommand\load[1]{\import{parts/#1/}{00_main}}
+\load{01_integral_sums}
 \end{document}
