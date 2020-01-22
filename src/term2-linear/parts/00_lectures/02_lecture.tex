@@ -1,0 +1,144 @@
+\SectionLecture{Лекция 2}{Игорь Энгель}
+\begin{example}[Гомоморфизмы колец] \thmslashn
+
+    \begin{enumerate}
+        \item $\overline{z} : \mathbb{C} \mapsto \mathbb{C}$ 
+        \item $\id : R \mapsto R$
+        \item $\mathbb{Z} \mapsto \mathbb{Z}/n$ 
+        \item $\mathbb{Z}/nm \mapsto \mathbb{Z}/n$
+        \item $a\in R$, $\phi : R[x] \mapsto R$, $\phi(f) = f(a)$ 
+        \item $g(x)\in R[x]$, $\phi : R[x] \mapsto R[x]$. $\phi(f) = f(g(x))$
+        \item $g\in C[0, 1]$, $\phi : C[0, 1] \mapsto C[0, 1]$, $\phi(f) = f(g(x))$.
+    \end{enumerate}
+\end{example}
+
+\begin{statement} \thmslashn
+
+    $R, S$ - кольца.
+
+    Тогда,
+    \[ \forall{\psi : R \mapsto S}\quad \forall{\lambda\in S}\quad \exists!{\phi : R[x] \mapsto S}\quad \begin{cases}
+        \forall{r\in R}\quad \phi(r) = \psi(r)\\
+        \phi(x) = \lambda
+    \end{cases}   .\] 
+
+    \begin{proof}
+        Пусть есть $\psi : R \mapsto S$. Построим $\phi : R[x] \mapsto S$, такое, что $\left. \phi\right|_{R} = \psi$ и $\phi(x) = \lambda$.
+            \[ \phi(a_0 + a_1x + \ldots + a_{n}x^{n} = \phi(a_0) + \phi(a_0)\phi(x) + \ldots + \phi(a_n)\phi(x) .= \psi(a_0) + \psi(a_1)\lambda + \ldots + \psi(a_n)\lambda^{n}\]
+            Значит, такой гомоморфизм единственнен. Существование доказывается проверкой, что это формула - гомоморфизм. Заметим, что формула эквивалентна гомоморфизму подстановки (из примеров).
+    \end{proof}
+\end{statement}
+\begin{statement} \thmslashn
+
+    $S$ - кольцо.
+    \[ \exists!{\phi : Z \mapsto S}\quad  .\]
+    \begin{proof}
+        \[ \phi(1) = 1_{S} .\]
+        \[ \phi(n) = \phi(\underbrace{1+1+\ldots+1}_{n}) = n\cdot 1_{S} .\]
+        Существование проверяется тривиально.
+    \end{proof}
+\end{statement}
+\begin{definition} \thmslashn 
+
+    Пусть $R$ - кольцо. Тогда $\exists!{\phi : \mathbb{Z} \mapsto R}\quad $
+    
+    Тогда $\exists{n\in \mathbb{N} \cup \{0\} }\quad \Ker \phi = n \mathbb{Z}$.
+
+    Число $\Char R := n$ называется характеристикой кольца $R$.
+\end{definition}
+
+\begin{example} \thmslashn
+
+    \begin{enumerate}
+        \item $\Char  \mathbb{Z} = 0$ 
+        \item $\forall{R}\quad \mathbb{Z} \subset R \implies \Char R = 0$ 
+        \item $\Char \mathbb{Z}/n = n$ 
+        \item $\Char \mathbb{Z}/n[x] = n$
+    \end{enumerate}
+\end{example}
+\begin{theorem} \thmslashn
+
+    $R$ - область целостности.
+
+    Тогда, либо $\Char R = 0$, либо $\Char R$ - простое.
+    \begin{proof}
+        Пусть $\Char R = n_1n_2$.\\
+
+        Тогда $\phi(n_1)\phi(n_2) = \phi(n) = 0 $, но $n_1\ndivby n$ и $n_2 \ndivby n$, значит $n_1$, $n_2$ - делители нуля.
+    \end{proof}
+\end{theorem}
+\begin{definition} \thmslashn 
+    
+    $R$ - кольцо.
+
+    Производной $ \frac{d}{dx} : R[x] \mapsto R[x] $ называется
+    \[ \frac{d}{dx}(a_0+a_1x + \ldots + a_{n}x^{n}) = a_1 + 2a_2x + \ldots + na_nx^{n} .\] 
+\end{definition}
+\begin{properties} \thmslashn
+
+    \begin{itemize}
+        \item $(\lambda\in R)' = 0$
+        \item $(f+g)' = f'+g'$ 
+        \item $(fg)' = f'g+fg'$
+        \item  $(f^{n})' = nf'f^{n-1}$ 
+        \item $(f\circ g)' = g'(f' \circ g)$
+    \end{itemize}
+    \begin{proof}
+        Сидим и раскрываем скобки. \textbf{МНЕ ЛЕНЬ}.
+    \end{proof}
+\end{properties}
+\begin{theorem} \thmslashn
+
+    Пусть $K$ - поле. $f, q\in K[x]$, $\deg q \ge 1$, при этом $q$ неприводим. Пусть $q^{\ell} | f$, $\ell \ge 1$. Тогда $q^{\ell-1} | f'$.
+ 
+    Если $\Char K = 0$ ил $\Char K > \deg f$, то если $q^{\ell+1} \notmid f$ то $q^{\ell} \notmid f'$.
+    \begin{proof}
+        \[ f = q^{\ell} \cdot g(x) .\]
+        \[ f' = \ell q'g^{\ell - 1}g + g'q^{\ell} = q^{\ell - 1}\left( \ell q'g + g'q \right)  .\]
+
+        Для второго утверждения надо доказать что $\left( \ell q'g + g'q \right) \ndivby q \iff q'g \ndivby q$.
+
+        Заметим, что $\deg q' < \deg q$, так-что если $\ell q' \divby q$, то $\ell q' = 0$.
+
+        Если $\Char K = 0$, то $\ell_{K} \neq 0$. Аналогично, мы знаем что $\ell \le \deg f$, иначе $f$ не могло-бы делиться на $q^{\ell}$. Значит $\ell_{K} \neq 0$.
+
+        Мы знаем что $q$ не константа, значит $q' \neq 0$ если $\Char K = 0$.
+
+        Знаем, что $\deg q \le \deg f < \Char K$, значит доп-множители в производной не $0$ в $K$, значит сущесвует ненулвой коэффициент. \TODO{Почему $s\cdot a_{s} \neq 0_{K}$?}
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Если $\Char K = 0$ или $\Char k > \deg f$, то $\lambda$ корень $f$ кратности $\ell \ge 1$ тогда и только тогда, когда $\lambda$ - корень $f'$ кратности $\ell$.
+\end{consequence}
+\begin{consequence} \thmslashn
+
+    Если $\Char K = 0$ или $\Char k > \deg f$, то есть простой алгоритм переводящий $f = p_1^{\alpha_1}\ldots p_{k}^{\alpha_k}$ в $\hat{f} = p_1\ldots p_k$.
+    \begin{proof}
+        Заметим, что $(f, f') = p_k^{\alpha_1 - 1} \ldots p_{k}^{\alpha_{k} - 1}$, значит $\frac{f}{(f, f')} = p_1\ldots p_k$.
+    \end{proof}
+\end{consequence}
+\begin{theorem}[Метод Ньютона] \thmslashn
+
+    Есть $f\in \mathbb{R}[x]$, хотим найти корень $x_0$.
+
+    Возьмём произвольную точку $x_1$, проверим является-ли она корнем. Если нет, то рассмотрим значение аппроксимации многочлена в окретсности $x_1$:  $\hat{f}(x) = f(x_1) + f'(x_1)(x-x_1)$.
+
+    Найдём корень $\hat{f}$:
+    \[ f(x_1)+f'(x_1)(x-x_1) = 0 \iff x_1 - \frac{f(x_1)}{f'(x_1)} .\]
+    Возьмём этот корень как новую точку $x_2$.
+
+    \[ x_{i} = x_{i-1} = - \frac{f(x_{i-1})}{f'(x_{i-1})} .\]
+\end{theorem}
+\begin{theorem} \thmslashn
+
+    Пусть $f\in \mathbb{R}[x]$ не имеет кратных корней.
+
+    Тогда $\exists{\delta > 0}\quad \forall{x_1}\quad |x_1-x_0| < \delta \implies \lim\limits_{i \to \infty} x_i = x_0$
+\end{theorem}
+\begin{statement} \thmslashn
+
+    Пусть $x_0\in K$, тогда $\forall{f\in K[X]}\quad f = a_0+a_1(x-x_0) + \ldots + a_{n}(x-x_0)^{n}$.
+
+    Если $\Char K = 0$ или $\Char K > i$, то $a_{i} = \frac{f^{(i)}(x_0)}{i!}$ (условие на хар-ку нужно для обратимости факториала).
+\end{statement}
