@@ -1,0 +1,305 @@
+\SectionLecture{Лекция 2}{Игорь Энгель}
+\begin{example} \thmslashn
+
+    \TODO{Добавить среднее}
+    \[ S_p(n) = \sum\limits_{k=1}^{n} k^{p} .\]
+    \[ f(t) = t^p .\]
+    \[ f''(t) = p(p-1)t^{p-2} .\]
+    \[ S_{p}(n) = \int\limits_{1}^{n} t^{p}dt + \frac{1 + n^{p}}{2} + \frac{1}{2}\int\limits_{1}^{n} p(p-1)+t^{p-2}\{t\}(1-\{t\})   .\]
+    \[ \int\limits_{1}^{n} t^pdt  = \frac{n^{p+1}}{p+1} - \frac{1}{p+1}.\] 
+    
+    Пусть $-1 < p < 1$
+    \[ 0 \le \int\limits_{1}^{n} t^{p-2}\{t\}(1-\{t\})dt \le \frac{1}{4} \int\limits_{1}^{n} t^{p-2}dt \impliedby \{t\}(1-\{t\}) \ge \frac{1}{4}      .\]
+    \[ 0 \le \int\limits_{1}^{n} t^{p-2}\{t\}(1-\{t\})dt \le \frac{1}{4(1-p)}\left(1 - \frac{1}{n^{1-p}}\right)  \le \frac{1}{4(1-p)}  = O(1) .\] 
+    \[ -1 < p < 1 \implies S_{p}(n) = \frac{n^{p+1}}{p+1} + \frac{n^{p}}{2} + \mathcal{O}(1) .\]
+    
+    Если $p>1$:
+    \[ 0 \le \int\limits_{1}^{n} t^{p-2}\{t\}(1-\{t\})dt \le \frac{1}{4} \int\limits_{1}^{n} t^{p-2}dt = \frac{1}{4(p-1)}\left( n^{p-1} - 1 \right) = \mathcal{O}(n^{p-1})      .\]
+    \[ S_{p}(n) = \frac{n^{p+1}}{p+1} + \frac{n^{p}}{2} + \mathcal{O}(n^{p-1}) .\] 
+\end{example}
+\begin{example} \thmslashn
+
+    \[ H_n = \sum\limits_{k=1}^{n} \frac{1}{k} .\] 
+    \[ f(t) = \frac{1}{t} .\]
+    \[ f''(t) = \frac{2}{t^3} .\]
+    \[ H_n = \int\limits_{1}^{n} \frac{dt}{t} + \frac{1+\frac{1}{n}}{2} + \int\limits_{1}^{n} \frac{1}{t^3}\{t\}(1-\{t\})dt     .\]
+    \[ a_n := \int\limits_{1}^{n} \frac{1}{t^3} \{t\}(1-\{t\})dt    .\] 
+    \[ a_{n+1} = a_n = \int\limits_{n}^{n+1} (g(x) \ge 0) \ge a_n  .\] 
+    \[ a_{n} \le \frac{1}{4} \int\limits_{1}^{n} \frac{dt}{t^3} = \left.\frac{-1}{8t^2}\right|_{1}^{n} = \frac{1}{8} - \frac{1}{8n^2} \le \frac{1}{8}  .\]
+
+        Значит, $\exists{} \lim\limits_{n \to \infty} a_n =: a \implies a_{n} = a + o(1)$.
+
+        \[ H_n = \ln n + \frac{1}{2} + \frac{1}{2n} = \ln n + \gamma + o(1) .\] 
+        
+        Где $\gamma := a + \frac{1}{2} = 0.5772156649\ldots$ - постоянная Эйлера. 
+\end{example}
+\begin{example} \thmslashn
+
+    \[ \ln n! = \sum\limits_{k=1}^{n} \ln k .\]
+    \[ f(t) = \ln t .\] 
+    \[ f'(t) = \frac{1}{t} .\]
+    \[ f''(t) = -\frac{1}{t^2} .\]
+    \[ \ln n! = \int\limits_{1}^{n} \ln t dt + \frac{\ln n}{2} - \frac{1}{2}\int\limits_{1}^{n} \frac{1}{t^2}\{t\}(1-\{t\})dt     .\]
+    \[ b_n = \int\limits_{1}^{n} \frac{\{t\}(1-\{t\})  }{t^2}dt  .\]
+    \[ b_{n+1} \ge b_{n} .\]
+    \[ b_{n} \le \frac{1}{4}\int\limits_{1}^{n} \frac{dt}{t^2} = \frac{1}{4}(1-\frac{1}{n}) \le \frac{1}{4}  .\]
+    \[ \exists{}\lim\limits_{n \to \infty} b_{n} =: b \implies b_{n} = b + o(1) .\] 
+    \[ \ln n! = n\ln n - n + \frac{\ln n}{2} - \frac{b}{2} + o(1) .\] 
+    \[ n! = n^{n}e^{-n}\sqrt{n}e^{-\frac{b}{2}}ie^{o(1)} \sim n^{n}e^{-n}\sqrt{n}\cdot C   .\]
+    
+    Попробуем найти $C$:
+    \[ \frac{2n!}{(n!)^2} = \binom{2n}{n} \sim \frac{4^{n}}{\sqrt{\pi n} } .\]
+    \[ \frac{2n!}{(n!)^2} \sim \frac{(2n)^{2n}e^{-2n}\sqrt{2n}C }{(n^{n}e^{-n}\sqrt{n}C )^2} = \frac{2^{2n}\sqrt{2} }{\sqrt{n}C } .\]
+    \[ \frac{4^{n}\sqrt{2} }{C\sqrt{n} } \sim \frac{4^{n}}{\sqrt{\pi n} } \implies C \sim \sqrt{2\pi} \implies C = \sqrt{2\pi}    .\]
+    \[ n! \sim n^{n}e^{-n}\sqrt{2\pi n}  .\] 
+\end{example}
+\begin{definition}[Интеграл Римана] \thmslashn 
+
+    Пусть есть $f: \left[a, b\right] \mapsto \mathbb{R}$, $f$ огранич.
+    
+    Если $\exists{I\in \mathbb{R}}$ для которого верно, что
+    \[ \forall{\eps > 0}\quad \exists{\delta > 0}\quad \forall{\left<\tau, \xi\right>}\quad |\tau| < \delta \implies |S(f, \tau, \xi) - I| < \eps  .\]
+
+    То $I := \int\limits_{a}^{b} f $ - интеграл Римана.
+\end{definition}
+\begin{properties} \thmslashn
+    
+    Сохраняются:
+    \begin{itemize}
+        \item Линейность
+        \item Аддитивность
+        \item Монотонность по функции
+        \item Интегрирование по частям
+        \item Замена переменной
+    \end{itemize}
+
+    Теряются:
+    \begin{itemize}
+        \item Всё связанное с первообразной.
+    \end{itemize}
+\end{properties}
+
+\TODO{параграф 6 несобственные интегралы}
+
+\begin{definition} \thmslashn 
+
+    Пусть $-\infty < a < b \le +\infty$, $f\in C[a, b)$
+
+    Тогда
+    \[ \int\limits_{a}^{b} f := \lim\limits_{c \to b-} \int\limits_{a}^{c} f   .\]
+    
+    Или $-\infty \le a < b < +\infty$, $f\in C(a, b]$
+
+    Тогда
+    \[ \int\limits_{a}^{b} f := \lim\limits_{c \to a+} \int\limits_{c}^{b} f   .\] 
+\end{definition}
+\begin{remark} \thmslashn
+
+    Если функция непрерывна в точке $b$ (точке $a$), то ничего не изменилось.
+    \begin{proof}
+        \[ \lim\limits_{c \to b-} \int\limits_{a}^{c} f = \lim\limits_{c \to b-} (F(c) - F(a)) = F(b) - F(a) = \int\limits_{a}^{b} f  .\]
+        
+        Так-как первообразная непрерывна.
+    \end{proof}
+\end{remark}
+\begin{definition} \thmslashn 
+
+    Несобственный интеграл сходится, если он конечный, и расходится если он бесконечный или не существует.
+\end{definition}
+\begin{theorem}[Критерий Коши для сходимости интегралов] \thmslashn
+
+    Пусть $f\in C[a, b)$. Тогда
+
+    \[ \int\limits_{a}^{b} f\in \mathbb{R} \iff \forall{\eps > 0}\quad \exists{c\in (a, b)}\quad \forall{A, B\in (c, b)}\quad \left| \int\limits_{A}^{B} f\right| < \eps   .\]
+    \begin{proof}
+        \[ \int\limits_{a}^{b} f = \lim\limits_{y \to b} F(y) \iff \forall{\eps > 0}\quad \exists{c\in \left( a, b \right) }\quad \forall{A, B\in (c, b)}\quad |F(B) - F(A)| < \eps  .\]
+
+        Так-как $F$ - первообразная, 
+        \[ |F(B) - F(A)| <\eps \iff  \left| \int\limits_{A}^{B} f\right| < \eps  \qedhere.\]
+
+        
+    \end{proof}
+\end{theorem}
+\begin{remark} \thmslashn
+
+    Если $b=+\infty$
+
+    \[ \int\limits_{a}^{+\infty} f\in \mathbb{R} \iff \forall{\eps > 0}\quad \exists{c > a}\quad \forall{A, B > c}\quad \left| \int\limits_{A}^{B} f\right| < \eps    .\]
+
+    Если $b\in \mathbb{R}$
+    \[ \int\limits_{a}^{b} f\in \mathbb{R} \iff \forall{\eps > 0}\quad \exists{\delta > 0}\quad \forall{A, B < b}\quad \begin{cases}
+        |A-b| < \delta\\
+        |B-b| < \delta
+    \end{cases} \implies \left| \int\limits_{A}^{B} f \right| < \eps  .\]
+
+    Если $\exists{A_{n}, B_{n}\in (a, b)}\quad \lim A_n = \lim B_n = b \land \forall{n}\quad \left| \int\limits_{A_{n}}^{B_{n}} f\right| \ge \eps   $
+
+    Если $F$ - первообразная $f$ на $[a, b)$, то 
+    \[ \int\limits_{a}^{b} f = \lim\limits_{c \to b-} \int\limits_{a}^{c} f = \lim\limits_{c \to b-} F(c) - F(a)  .\] 
+\end{remark}
+\begin{example} \thmslashn
+    
+    \[ p \neq 1 .\] 
+    \[ \int\limits_{1}^{+\infty} \frac{dx}{x^{p}}   .\]
+    \[ F(x) = -\frac{1}{p-1} \frac{1}{x^{p-1}} .\]
+    \[ \lim\limits_{x \to +\infty} \frac{1}{p-1} \frac{1}{x^{p-1}} + \frac{1}{p-1}\in \mathbb{R} \iff p > 1 .\]
+
+    Значит, при $p > 1$ интеграл сходится и равен $\frac{1}{p-1}$.
+
+    При $p < 1$, интеграл равен $+\infty$
+
+    Рассмотрим $p=1$:
+
+    \[ F(x) = \ln x .\]
+    \[ \int\limits_{1}^{\infty} \frac{dx}{x} = \lim\limits_{x\to +\infty} \ln x - \ln 1 = +\infty  .\] 
+\end{example}
+\begin{example} \thmslashn
+
+    Пусть $p \neq 1$
+    \[ \int\limits_{0}^{1} \frac{dx}{x^{p}} = F(1) - \lim_{x \to 0+} F(x) = \frac{1}{1-p} - \lim\limits_{x \to 0+} \frac{1}{1-p} \cdot \frac{1}{x^{p-1}}.\]
+
+    Если $p < 1$, то интеграл сходится, и равень $\frac{1}{1-p}$
+
+    Если $p > 1$, то интеграл равен $+\infty$
+
+    Пусть $p=1$
+    \[ \int\limits_{0}^{1} \frac{dx}{x} = F(1) - \lim\limits_{x \to 0+} \ln x = +\infty  .\] 
+\end{example}
+\begin{definition} \thmslashn 
+
+    Пусть $F\in C[a, b)$.
+
+    Тогда, 
+    \[ \left. F\right|_{a}^{b} = \lim\limits_{c \to b-} F(c) - F(a) .\] 
+\end{definition}
+\begin{properties} \thmslashn
+
+    Пусть $f\in C[a, b)$.
+
+    \begin{enumerate}
+        \item Аддитивность. Если $\int\limits_{a}^{b} f $ - сходится, и есть точка $c$, то, $\int\limits_{c}^{b} f$ сходится, и $\int\limits_{a}^{b} f = \int\limits_{a}^{c} f + \int\limits_{c}^{b} f   $
+            \begin{proof}
+                Пусть $F$ - первообразная $f$ на $[a, b)$.
+
+                Тогда
+                \[ \int\limits_{a}^{b} = \lim\limits_{B \to b-} F(B) - F(a)  .\]
+                \[ \int\limits_{c}^{b} = \lim\limits_{B \to b-} F(B) - F(c)  .\]
+                \[ \int\limits_{a}^{c} = F(c) - F(a)  .\]
+                Заметим, что предел существует и конечен, так-как сходиться начальный интеграл, а значить сходится $\int\limits_{c}^{b}  f$.
+                \[ \int\limits_{a}^{c} f + \int\limits_{c}^{b} f = F(c) - F(a) + \lim\limits_{B \to b-} F(B) - F(c) = \lim\limits_{B \to b-} F(B) - F(a) = \int\limits_{a}^{b} f    .\] 
+            \end{proof}
+        \item[1'] Если $\int\limits_{c}^{b} f $ сходится, то $\int\limits_{a}^{b} f $ сходится и $\int\limits_{a}^{b} f = \int\limits_{a}^{c} f + \int\limits_{c}^{b} f  $.
+        \item Если $\int\limits_{a}^{b} f $ сходится, то $\lim\limits_{c \to b-} \int\limits_{c}^{b} f = 0 $
+            \begin{proof}
+               \[ \int\limits_{c}^{b} f = \int\limits_{a}^{b} f - \int\limits_{a}^{c}     .\]
+               \[ \lim\limits_{c \to b-} \int\limits_{c}^{b} f = \int\limits_{a}^{b} f - \int\limits_{a}^{b} f = 0    .\] 
+            \end{proof}
+        \item Линейность. Пусть $f, g\in C[a, b)$. $\int\limits_{a}^{b} f $ и $\int\limits_{a}^{b} g $ сходятся, тогда
+            \[ \int\limits_{a}^{b} \left( \alpha f + \beta g \right) = \alpha \int\limits_{a}^{b} f + \beta \int\limits_{a}^{b} g    .\]
+            \begin{proof}
+                $F, G$ - первообразные $f, g$.
+
+                Тогда 
+                \[ \int\limits_{a}^{b} f = \lim\limits_{c \to b-} F(c) - F(a)  .\]
+                \[ \int\limits_{a}^{b} g = \lim\limits_{c \to b-} G(c) - G(a)  .\]
+                \[ \int\limits_{a}^{b} \left( \alpha f + \beta g \right) = \lim\limits_{c \to b-} \int\limits_{a}^{c} \left( \alpha f + \beta g \right) = \alpha \lim\limits_{c \to b-} F(c) + \beta \lim\limits_{c \to b-} G(c) = \alpha \int\limits_{a}^{b} f + \beta \int\limits_{a}^{b} g      \qedhere.\] 
+            \end{proof}
+        \item Пусть $f \le g$, $\int\limits_{a}^{b} f $, $\int\limits_{a}^{b} g $ определены в $\overline{\mathbb{R}}$. Тогда $\int\limits_{a}^{b} f \le \int\limits_{a}^{b} g  $.
+            \begin{proof}
+                \TODO
+            \end{proof}
+            \item Если $\int\limits_{a}^{b} f $ - сходится, то $\int\limits_{a}^{b} f = \left. F\right|_{a}^{b} $
+                    \begin{proof}
+                        \TODO
+                    \end{proof}
+                \item Пусть $f,g\in C^{1}[a, b)$, $\int\limits_{a}^{b} fg'$ - сходится и $\exists{} \lim\limits_{c \to b-} f(c)g(c)$, тогда сходится $\int\limits_{a}^{b} f'g $, и $\int\limits_{a}^{b} f'g = \left. fg\right|_{a}^{b} - \int\limits_{a}^{b} fg'   $
+                        \begin{proof}
+                            \TODO
+                        \end{proof}
+                    \item Если $f\in C[a, b)$, $\phi : [\alpha, \beta) \mapsto [a, b)$, $\phi\in C^{1}[\alpha, \beta)$. Обозначим $\phi(\beta-) := \lim\limits_{\gamma \to \beta-} \phi(\gamma)$. Если этот предел существует и конечен, а так-же сходится один из данных интегралов, то верно равенство
+                        \[ \int\limits_{\alpha}^{\beta} f(\phi(t))\phi'(t)dt = \int\limits_{\phi(\alpha)}^{\phi(\beta-)} = f(x)dx    .\]
+                        \begin{proof}
+                            Пусть $F(y) := \int\limits_{\phi(\alpha)}^{y} f(x)dx  $, $\Phi(\gamma) = \int\limits_{\alpha}^{\gamma} f(\phi(t))\phi'(t)dt = \int\limits_{\phi(\alpha)}^{\phi(\gamma)} f(x) = F(\phi(\gamma))$.
+
+                            Пусть существует $\lim\limits_{y \to \phi(\beta-)} F(y) = \int\limits_{\phi(\alpha)}^{\phi(\beta-)} f(t)dt  =: I $.
+
+                            Возьмём возрастающией $\gamma_n$, $\lim \gamma_n = \beta$. Тогда $\lim \phi(\gamma_n) = \phi(\beta-)$.
+                            
+                            Тогда $I = \lim F(\phi(\gamma_n)) = \lim \Phi(\gamma_n) = \int\limits_{\alpha}^{\beta} f(\phi(t))\phi'(t)dt $.
+
+
+                            Пусть существует $\lim\limits_{\gamma \to \beta-} \Phi(\gamma)$.
+                            
+                            Случай $1$: $\phi(\beta-) < b$. Тогда результирующий интеграл собственный, и всё тривиально.
+
+                            Случай $2$: $\phi(\beta-) = b$:
+
+                            Возьмём возрастающий $\phi(\alpha) < b_n$, $\lim b_n = b$.
+                            
+                            Заметим, что любой член $b_n$ - значение функции $\phi$ в какой-то точке. (По Больцано-Коши).
+
+                            Значит, $\exists{\gamma_n}\quad \phi(\gamma_n) = b_n$.
+
+                            Заметим что $\lim \gamma_n = \beta$. Докажем это от противного: тогда либо $\varliminf \gamma_n$ либо $\varliminf \gamma_n$ $\neq  \beta$. Возьмём подпоследовательность $\gamma_{n_k}$, такую что $\lim \gamma_{n_k} = \tilde{\beta}$, но тогда $\lim \phi(\gamma_{n_k}) = \phi(\tilde{\beta}) < \beta$. Что невозможно.
+
+                            \[ F(b_n) = \lim F(\phi(\gamma_n)) = \lim \Phi(\gamma_n) = \lim\limits_{\gamma \to \beta-} \Phi(\gamma) .\]
+
+                            Значит, предел существует и верна предыдущая часть док-ва.
+                        \end{proof}
+    \end{enumerate}
+    \begin{remark} \thmslashn
+    
+        Пусть $f\in C[a, b)$, $b < +\infty$.
+
+        \[ \int\limits_{a}^{b} f = \int\limits_{\frac{1}{b-a}}^{+\infty} f(b-\frac{1}{t}) \frac{1}{t^2}dt    .\] 
+    \end{remark}
+\end{properties}
+\begin{example} \thmslashn
+
+   \[ \int\limits_{0}^{1} \frac{dx}{\sqrt{1-x^2} }  .\] 
+   \[ x = \sin t .\]
+   \[ \sqrt{1 - x^2} = \cos t  .\]
+   \[ \phi(t) = \sin t .\]
+   \[ f(x) = \frac{1}{\sqrt{1-x^2} } .\] 
+\end{example}
+\begin{theorem} \thmslashn
+
+    Пусть $f\in C[a, b)$, $f \ge 0$. Тогда сходимость $\int\limits_{a}^{b} f$ сходится $\iff$ первообразная $f$ ограниченна сверху.
+    \begin{proof}
+        \[ F(y) := \int\limits_{a}^{y} f  .\] 
+        \[ \int\limits_{a}^{b} f = \lim\limits_{c \to b-} F(c)  .\]
+        \[ y < z \implies F(z) = F(y) + \int\limits_{y}^{z} \ge F(y)  .\]
+
+        Тогда $F$ возрастает и ограниченна сверху, значит интеграл сходится.
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Пусть $f, g\in C[a, b)$, $0 \le f \le g$.
+
+    \begin{enumerate}
+        \item Если $\int\limits_{a}^{b} g $ сходится, то $\int\limits_{a}^{b} f $ сходится
+        \item Если $\int\limits_{a}^{b} f $ расходится, то $\int\limits_{a}^{b} g $ расходится.
+        \begin{proof}
+            \TODO
+        \end{proof}
+    \end{enumerate}
+\end{consequence}
+\begin{remark} \thmslashn
+
+    Достаточно выполнения неравенства $f \le g$ только при аргументах близких к $b$. (так-как интеграл до произвольной промежуточной точки собственный).
+
+    Вместо $f\le g$ можно использовать $f = \mathcal{O}(g)$
+
+    Если $f\in C[a, +\infty) $ $f \ge 0$ и $f= O(\frac{1}{x^{1+\eps}})$, $\eps > 0$, то $\int\limits_{a}^{+\infty} f $ сходится.
+\end{remark}
+\begin{consequence} \thmslashn
+
+    $f, g\in C[a, b)$, $f, g \ge 0$ и $f\sim_{x\to b-} g$. Тогда $\int\limits_{a}^{b} f $ и $\int\limits_{a}^{b} g $ ведут себя одинакого.
+    \begin{proof}
+        \[ f \sim g \implies \begin{cases}
+            f = \mathcal{O}(g)\\
+            g = \mathcal{O}(f)
+        \end{cases} .\] 
+    \end{proof}
+\end{consequence}
