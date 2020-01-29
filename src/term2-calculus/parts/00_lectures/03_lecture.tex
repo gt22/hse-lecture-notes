@@ -1,0 +1,390 @@
+\SectionLecture{Лекция 3}{Игорь Энгель}
+\begin{definition} \thmslashn 
+
+    Пусть $f\in C[a, b)$, тогда $\int\limits_{a}^{b} f $ абсолютно сходится, если сходится $\int\limits_{a}^{b} |f| $.
+\end{definition}
+\begin{theorem} \thmslashn
+
+    Если $\int\limits_{a}^{b} f $ абсолютно сходится, то он сходится.
+    \begin{proof}
+        Заметим, что $0 \le f_{\pm} \le |f|$.
+        Тогда сходятся интегралы $\int\limits_{a}^{b} f_{+} $ и $\int\limits_{a}^{b} f_{-} $, а значит сходится
+        \[ \int\limits_{a}^{b} f = \int\limits_{a}^{b} f_{+} - \int\limits_{a}^{b} f_{-}    .\] 
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Признак Дирихле] \thmslashn
+    
+    Пусть $f, g\in C[a, +\infty)$. При этом:
+    \[ \forall{c > a} \quad \left| \int\limits_{a}^{c} f\right| \le M  .\] 
+
+    $g$ - монотонна.
+    \[ \lim\limits_{x \to +\infty} g(x) = 0 .\]
+
+    Тогда, $\int\limits_{a}^{+\infty} fg $ сходится.
+    \begin{proof}
+        Доказательство для $g\in C^{1}[a, +\infty)$.
+        
+        Пусть $F(y) := \int\limits_{a}^{y} f $. Знаем, что $|F(y)| \le M$.
+
+        \begin{equation*}
+            \begin{split}
+                \int\limits_{a}^{c} fg 
+                &= \int\limits_{a}^{c} F'g\\
+                &= \left. Fg\right|_{a}^{c} - \int\limits_{a}^{c} Fg'   
+            \end{split}
+        \end{equation*}
+        Докажем сходимость:
+        \begin{equation*}
+            \begin{split}
+                \lim\limits_{c \to +\infty} \left. Fg\right|_{a}^{c} = \lim\limits_{c \to +\infty} F(c)g(c) - C \le \lim\limits_{c \to +\infty} Mg(c) - C = -C 
+            \end{split}
+        \end{equation*}
+        Докажем абсолютную сходимость:
+        \begin{equation*}
+            \begin{split}
+                \int\limits_{a}^{c} |F| |g'| 
+                &\le M\int\limits_{a}^{c} |g'|\quad \text{ $g$  монотонна, значит $g'$ знакопостоянна}\\
+                &= M\left|\int\limits_{a}^{c} g'\right|\\
+                &= M|g(c)-g(a)|\\
+                \lim\limits_{c \to +\infty} &M|g(c)-g(a)| \le  M|g(a)| 
+            \end{split}
+        \end{equation*}
+        Значит, сумма сходится, и начальный интеграл тоже сходится.
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Признак Абеля] \thmslashn
+
+    Пусть $f, g\in C[a, +\infty)$. При этом $\int\limits_{a}^{+\infty} f \text{ - сходится}$.
+
+    $g$ ограничена монотонна.
+
+    Тогда $\int\limits_{a}^{b} fg$ сходится.
+    \begin{proof}
+        Существует конечный предел $B := \lim\limits_{x \to +\infty} g(x)$, так-как $g$ ограничена и монотонна.
+
+        Пусть $\tilde{g}(x) = g(x) - B$. $\lim\limits_{x \to +\infty} \tilde{g}(x) = 0$.
+
+        Знаем, что существует конечный предел $\lim\limits_{c \to +\infty} \int\limits_{a}^{c} f $. Значит, этот интеграл ограничен.
+
+        По признаку Дирихле, интеграл $\int\limits_{a}^{+\infty} f \tilde{g} $ сходится.
+        \begin{equation*}
+            \begin{split}
+                \int\limits_{a}^{+\infty} fg 
+                &= \int\limits_{a}^{+\infty} f(\tilde{g} + B)\\ 
+                &= \int\limits_{a}^{+\infty} f\tilde{g} + B \int\limits_{a}^{+\infty} f  
+            \end{split}
+        \end{equation*} 
+        Мы знаем про сходимость обоих интегралов, значит сумма сходится.
+    \end{proof}
+\end{theorem}
+\begin{theorem} \thmslashn
+
+    Пусть $f, g\in C[a, +\infty)$, $g$ монотонная, а  $f$ переодическая с периодом $T$, $\lim\limits_{x \to +\infty} g(x) = 0$.
+
+    Тогда если $\int\limits_{a}^{+\infty} g $ сходится, то $\int\limits_{a}^{+\infty} fg $ сходится абсолютно.
+
+    Если $\int\limits_{a}^{+\infty} g $ разходится, то $\int\limits_{a}^{b} fg $ сходится $\iff \int\limits_{a}^{a+T} f = 0 $.
+    \begin{proof}
+        Заметим, что раз $f$ переодична, то $f$ ограничена. Пусть $|f| \le M$
+
+        С какого-то момента, $g$ знакопостоянна, назовём этот момент $b$.
+
+        Будем считать что $g$  положительна.
+
+        Тогда $\int\limits_{b}^{+\infty} g $ сходится.
+
+        Заметим, что $\int\limits_{b}^{+\infty} |fg| \le  M \int\limits_{b}^{+\infty} g $ - сходится.
+
+        Докажем второй пункт:
+
+        Достаточность:
+
+        Пусть $F(y) = \int\limits_{a}^{y} f $. $F$ - непрерывна и $T$-переодична (так-как интеграл по периоду $f$ равен нулю), а значит ограничена.
+
+        По признаку Дирихле, $\int\limits_{a}^{+\infty} fg $ сходится.
+
+        Необходиомсть:
+
+        От противного. Пусть $\int\limits_{a}^{a+T} f = C \neq 0 $. 
+
+        Пусть $\tilde{f} := f(x) - \frac{C}{T}$. Заметим, что $\int\limits_{a}^{a+T} \tilde{f} = \int\limits_{a}^{a+T} (f(x) - \frac{C}{T})dx = \int\limits_{a}^{a+T} f - C = 0  $.
+
+        Тогда $\int\limits_{a}^{+\infty} \tilde{f}g $ = сходится.
+
+        \begin{equation*}
+            \begin{split}
+                \int\limits_{a}^{+\infty} fg 
+                &= \int\limits_{a}^{+\infty} \tilde{f}g - \frac{C}{T}\int\limits_{a}^{+\infty} g  
+            \end{split}
+        \end{equation*}
+        Тогда $\int\limits_{a}^{+\infty} g$ сходится. Противоречие.
+    \end{proof}
+\end{theorem}
+\begin{example} \thmslashn
+
+    \[ \int\limits_{1}^{+\infty} \frac{\sin x}{x^{p}}dx  .\]
+
+    Проверим абсолютную сходимость:
+
+    Если $p > 1$, то $\left| \frac{\sin x}{x^{p}}\right| \le \frac{1}{x^{p}}$. Знаем, что $\int\limits_{1}^{+\infty} \frac{dx}{x^{p}} $ - сходится, значит оригинальный тоже.
+
+    Если $0 < p \le 1$: Знаем, что $\frac{1}{x^{p}}$ монотонна и стремится к нулю, а $|\sin x| $ - $\pi$-переодическая функция. Интеграл по периоду не $0$, $\int\limits_{1}^{+\infty} \frac{1}{x^{p}} $ расходится, значит $\int\limits_{1}^{+\infty} \left| \frac{\sin x}{x^{p}}\right| $.
+
+    Случай $p < 0$ отложим.
+
+    Обычная сходимось:
+
+    При $p > 1$ как следствие абсолютной.
+
+    При $0 < p \le 1$: $\frac{1}{x^{p}}$ - монотонная, стремится к нулю. $\sin x$ - $2\pi$-переодическая, и $\int\limits_{0}^{2\pi} \sin x = \cos(2\pi) - \cos(0) = 0 $. Значит, $\int\limits_{1}^{+\infty} \frac{\sin x}{x^{p}} $ сходится.
+
+    Если $p \le 0$: по следствию из Коши, если есть $A_{n}, B_{n} \to  \infty$, такие, что $\int\limits_{A_{n}}^{B_{n}} x^{-p}\sin x \not \to 0  $, то он расходится.
+
+    Пусть $A_{n} = \frac{\pi}{6} + 2\pi k$, $B_{n} = \frac{5\pi}{6} + 2\pi k$. На этих промежутках $\sin x \ge \frac{1}{2}$, заметим, что $\int\limits_{A_{n}}^{B_{n}} \frac{x^{p}}{2} \ge \frac{1}{2} $, значит не стремится к нулю, значит $\int\limits_{1}^{+\infty} \frac{\sin x}{x^{p}} $
+\end{example}
+\Subsection{7 Метрические и нормированные пространства}
+\Subsubsection{Метрические и нормированные простантсва}
+\begin{definition} \thmslashn 
+
+Метрическим пространством называется пара $\left<X, \rho\right>$ из множества точек и метрики.
+
+Метрика: $\rho : X^2 \mapsto \mathbb{R}$, удовлетворяющие следующим свойствам:
+\begin{enumerate}
+    \item $\rho(x, y) \ge 0$, $\rho(x, y) = 0 \iff x = y$
+    \item $\rho(x, y) = \rho(y, x)$
+    \item $\rho(x, z) \le \rho(x, y) + \rho(y, z)$
+\end{enumerate}
+\end{definition}
+\begin{example} \thmslashn
+
+    \[\left<\mathbb{R}, |x - y|\right>\]
+    \[ \left<\mathbb{R}^2 \sqrt{(a_{x}-b_{x})^2 + (a_{y} - b_{y})^2}\right> .\]
+    \[ \left<X, \rho(x, y) = \begin{cases}
+        0 & x = y\\
+        1 & x \neq y
+    \end{cases}\right> \text{ - дискретная метрика (метрика лентяя)}.\]
+    \[ \left<\mathbb{R}^2, |a_{x}-b_{x}| + |a_{y} - b_{y}|\right> \text{ - Манхэттенское расстояние} .\]
+    
+    Расстояние на сфере - длина дуги большого круга.
+
+    Французская железнодорожная метрика: Есть центральный объект $P$, от него идут <<ветки>> до разных объектов, если два объекта на одной ветке $\rho(A, B) = |AB|$, если на разных - $\rho(A, B) = |AP| + |PB|$.
+\end{example}
+\begin{definition} \thmslashn 
+
+Пусть $\left<X, \rho\right>$ - метрическое пространство.
+
+Открытым шар - $B_{r}(x)$, с радиусом $r > 0$ с центром в $x\in X$.
+
+\[ B_{r}(x) = \{y\in X \ssep \rho(x, y) < r\}  .\]
+
+Замкнутый шар - $\overline{B}_{r}(x) = \{y\in X\ssep \rho(x,y) \le r\} $.
+\end{definition}
+\begin{properties} \thmslashn
+
+    \begin{enumerate}
+        \item $B_{r_1}(x)\cap B_{r_2}(x) = B_{\min(r_1, r_2)}(x)$. (Верно и для $\overline{B}$) 
+        \item Если $x \neq y$, то $\exists{r > 0}\quad B_{r}(x)\cap B_{r}(y) = \emptyset$. (Верно и для $\overline{B}$).
+    \end{enumerate}
+\end{properties}
+\begin{definition} \thmslashn 
+
+Пусть $A \subset X$. $x\in A$ называется внутренний точкой, если 
+\[ \exists{r > 0}\quad B_{r}(x) \subset A .\] 
+\end{definition}
+\begin{definition} \thmslashn 
+
+Внутренностью множества $A \subset X$ называется $\Int A = \{x\in A \ssep x \text{ - внутренняя}\} $
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Множество $A$ называется открытым, если любая точка - внутренняя.
+\end{definition}
+\begin{theorem}[О свойствах открытых множеств] \thmslashn
+
+    Пусть $\left<X, \rho\right>$ - метрическое пространство.
+
+    \begin{enumerate}
+        \item $ \emptyset$, $X$ - открытые
+            \begin{proof}
+                Тривиально
+            \end{proof}
+        \item Объединение любого числа открытых множеств открытое
+            \begin{proof}
+                Пусть $G_{\alpha}$ - открытые множества, $\alpha\in I$.
+
+                Рассмотрим $x\in \bigcup_{\alpha \in  I} G_{\alpha}$, пусть $x\in G_{\alpha_0}$.
+
+                Значит, $\exists{r > 0}\quad B_{r}(x) \subset G_{\alpha_0} \subset \bigcup_{\alpha\in I} G_{\alpha}$
+            \end{proof}
+        \item Пересечение конечного числа открытых множеств открытое
+            \begin{proof}
+                $G_{k}$ - открытые множества.
+
+                Возьмём точку $x\in \bigcap_{k=1}^{n} G_{k} $, $x\in G_{k}$ для всех $k = 1, \ldots, n$.
+                \[ \exists{r_{k} > 0}\quad B_{r_k}(x) \subset G_{k}  .\]
+
+                Тогда $B_{\min(r_1, \ldots, r_n)} \subset \bigcap_{k=1}^{n} G_{k}$.
+
+                Если пересечение бесконечное, то минимум может стать $0$.
+            \end{proof}
+        \item Открытый шар - открытое множество
+            \begin{proof}
+                Возьмём $y\in B_{R}(x)$.
+
+                Возьмём $r = R - \rho(x,y)$.
+
+                Пусть $z\in B_{r}(y) \implies \rho(y, z) < r \implies \rho(x, z) \le  \rho(x, y) + \rho(y, z) \implies \rho(x, z) < R$
+            \end{proof}
+    \end{enumerate}
+\end{theorem}
+\begin{theorem}[О свойствах внутренности множества] \thmslashn
+
+    \begin{enumerate}
+        \item $\Int A \subset A$
+            \begin{proof}
+                Тривиально.
+            \end{proof}
+        \item $\Int A$ - объединение всех открытых подмножеств $A$.
+            \begin{proof}
+                
+                Пусть $U = \bigcup_{G \subset A} G $, где $G$ - открытое.
+
+                Надо доказать что $\Int A = U$.
+
+                Покажем $\Int A \subset U$:
+
+                $x\in \Int A \implies \exists{r > 0}\quad B_{r}(x) \subset A$. Это множество открытое, значит является частью $U$, значит $x\in U$
+
+                Покажем $U \subset \Int A$:
+
+                Пусть $x\in U$, тогда $\exists{G \subset A}\quad x\in G$, $G$ - открытое, тогда $\exists{r > 0}\quad B_{r}(x) \subset G \subset A \implies x\in \Int A$.
+            \end{proof}
+        \item $\Int A$ - открытое
+            \begin{proof}
+                Как объединение открытых.
+            \end{proof}
+        \item $\Int A = A \iff A$ - открытое
+            \begin{proof}
+                 Необходимость по свойству $3$, достаточность: Если $A$ открыто, то $\Int A = A \cup \ldots = A$ по свойству $2$.
+            \end{proof}
+        \item $A \subset B \implies \Int A \subset \Int B$
+            \begin{proof}
+                $x\in \Int A \implies \exists{B_{r}(x) \subset \Int A}\quad \implies B_{r}(x) \subset B \implies x\in \Int B$ 
+            \end{proof}
+        \item $\Int (A\cap B) = \Int A\cap \Int B$
+            \begin{proof}
+                \[x\in \Int (A\cap B) \iff \exists{B_{r}(x) \subset A\cap B}\quad \implies \begin{cases}
+                    B_{r}(x) \subset A\\
+                    B_{r}(x) \subset  B
+                \end{cases} \iff \begin{cases}
+                    x\in \Int A\\
+                    x\in \Int B
+                \end{cases} \iff x\in \Int A\cap \Int B.\]
+                
+                \TODO
+            \end{proof}
+        \item $\Int \Int A = \Int A$
+            \begin{proof} \thmslashn
+            
+                Свойства $3$ и $4$. $7 = 3 + 4$.
+            \end{proof}
+    \end{enumerate}
+    \begin{definition} \thmslashn 
+    
+        Множество $A$ называется замкнутым, если $\overline{A}$ - открытое.
+    \end{definition}
+    \begin{theorem}[О свойствах замкнутых множеств] \thmslashn
+    
+        \begin{enumerate}
+            \item $ \emptyset$, $X$ - замкнутые.
+                \begin{proof}
+                    $\overline{ \emptyset} = X$ 
+
+                    $\overline{X} = \emptyset$
+                \end{proof}
+            \item Пересечение любого количества замкнутых множеств замкнуто
+                \begin{proof}
+                    Пусть $F_{\alpha}$ - замкнутые множества, $\alpha\in I$.
+                    
+                    $X \setminus F_{\alpha}$ - открто, значит $\bigcup_{\alpha \in  I} \overline{F_{\alpha}} = \overline{\bigcap_{\alpha \in  I} F_{\alpha}}$ - открыто, значит $\bigcap_{\alpha\in I} F_{\alpha}$ замкнуто.
+                \end{proof}
+            \item Объединение конечного числа замкнутых множеств замкнуто
+                \begin{proof}
+                    $F_1, \ldots, F_{n}$ - замкнутые.
+
+                    $\bigcap_{i=1}^{n} \overline{F_i} = \overline{\bigcup_{i=1}^{n} F_{i}}$ - открыто, значит $\bigcup_{i=1}^{n} F_{i} $ - замкнуто.
+                \end{proof}
+            \item Замкнутый шар - замкнутое множество
+                \begin{proof}
+                    Пусть $y\in X \setminus \overline{B_{r}(x)}$, значит $\rho(x, y) > r$.
+
+                    Тогда $B_{\rho(x-y) - r}(y)\cap B_{r}(x) = \emptyset$, значит дополнение открыто, а шар замкнут.
+                \end{proof}
+        \end{enumerate}
+    \end{theorem}
+    \begin{definition}[Замыкание множества] \thmslashn 
+    
+        Замыканим множества $A$ называется $\Cl A = \bigcap_{A \subset F} F$ где $F$ - замкнутое. 
+    \end{definition}
+    \begin{theorem} \thmslashn
+    
+        \[\Cl(\overline{A}) = \overline{\Int A}. \]
+        \[ \Int(\overline{A}) = \overline{\Cl(A)} .\]
+        \begin{proof}
+            Заметим, что так-как $\Int A = \bigcup_{G \subset A} G$, $G$ - открытое, то $\overline{\Int A} = \overline{\bigcup_{G \subset A} G} = \bigcap_{G \subset A} \overline{G}$. 
+
+            Пусть $F := \overline{G}$.
+            Заметим, что $F$ замкнуто $\iff $ $G$ открыто, а и $\overline{A} \subset F \iff G \subset A$. Значит $\overline{\Int A} = \bigcap_{\overline{A} \subset F} = \Cl(\overline{A})$
+
+            Второе утверждение получается подстановкой $\overline{A}$ в первое.
+        \end{proof}
+    \end{theorem}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    \[ \Cl A = \overline{\Int \overline{A}} .\]
+    \[ \Int A = \overline{\Cl \overline{A}} .\] 
+\end{consequence}
+\begin{properties} \thmslashn
+
+    \begin{enumerate}
+        \item $A \subset \Cl(A)$ как пересечение содержащих $A$
+        \item $\Cl(A)$ - замкнуто, как пересечение замкнутых.
+        \item $\Cl(A) = A \iff A$ замкнуто.
+        \item $A \subset B \implies \Cl(A) \subset \Cl(B)$. ($\overline{B} \subset \overline{A} \implies \Int(\overline{B}) \subset \Int(\overline{A}$).
+        \item $\Cl(A \cup B) = \Cl(A) \cup \Cl(B)$.
+        \item $\Cl \Cl A = \Cl A$.
+    \end{enumerate}
+\end{properties}
+\begin{theorem} \thmslashn
+
+    \[ x\in \Cl A \iff \forall{r > 0}\quad B_{r}(x)\cap A \neq \emptyset .\]
+
+    \begin{proof} \thmslashn
+        
+        $x\in \Cl A \iff  x\in \overline{\Int(\overline{A})} \iff  x\not\in \Int \overline{A}$, значит $\forall{r > 0}\quad B_{r}(x) \not \subset \overline{A} \iff  B_{r}(x)\cap  A \neq  \emptyset$. 
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Пусть $U$ - открытое, $U\cap A = \emptyset \implies U\cap \Cl A = \emptyset$.
+    \begin{proof}
+        Пусть $x\in U\cap \Cl A$.
+
+        Тогда $\exists{r > 0}\quad B_{r}(x) \subset U \implies B_{r}(x)\cap A = \emptyset \implies x \not\in \Cl A$. Противоречие.
+    \end{proof}
+\end{consequence}
+\begin{definition}[Окрестность] \thmslashn 
+
+    Окрестность точки $x$ - $B_{r}(x)$.
+\end{definition}
+\begin{definition}[Проколотая окрестность] \thmslashn 
+
+    Проколотая окрестность $x$ - $B_{r}(x) \setminus \{x\} $.
+\end{definition}
+\begin{definition}[Предельная точка] \thmslashn 
+
+    $x$ называется предельной точкой $A$, если $\forall{r > 0}\quad (B_{r}(x) \setminus \{x\})\cap A \neq \emptyset $
+
+    Множество предельных точек $A$ обозначетсят $A'$.
+\end{definition}
