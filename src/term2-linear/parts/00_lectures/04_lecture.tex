@@ -1,0 +1,159 @@
+\SectionLecture{Лекция 4}{Игорь Энгель}
+\begin{definition} \thmslashn 
+
+    Поле рациональных функций: $K(x) = Q(K[x])$.
+\end{definition}
+\begin{statement} \thmslashn
+
+    $\frac{f}{g}\in K(x)$. $\exists!{u,v\in K[x]}$ т. ч:
+    \begin{enumerate}
+        \item $(u, v) = 1$
+        \item  старший коэффициент $v$ - 1
+        \item $\frac{f}{g} = \frac{u}{v}$
+    \end{enumerate}
+    \begin{proof}
+        Существование:
+
+        Пусть $d = (f,g)$. 
+
+        Пусть $\hat{u} = \frac{f}{d}$, $\hat{v} = \frac{g}{d}$.
+
+        Тогда $(\hat{u}, \hat{v}) = 1$ и $\frac{f}{g} = \frac{\hat{u}}{\hat{v}}$.
+
+        Пусть $c$ - старшний коэффицент $\hat{v}$.
+
+        Тогда $v = c^{-1}\hat{v}$, $u = c^{-1}\hat{u}$.
+
+        Единственность:
+        
+        Пусть $\frac{u_1}{v_1} = \frac{u_2}{v_2}$, при этом $(u_1, v_1) = 1$ и $(u_2, v_2) = 1$.
+
+        Тогда $v_2u_1 = u_2v_1$. Заметим, что $v_1\divby v_2$ и $v_2\divby v_1$.
+
+        Значит, $v_1 = cv_2$. 
+
+        Так-как старшие коэффициенты равны $1$, $c = 1$ и $v_1=v_2$, а значит и $u_1=u_2$.
+    \end{proof}
+\end{statement}
+\begin{lemma} \thmslashn
+
+    $\frac{r_1}{g_1}$, $\frac{r_2}{g_2}$ - правильные дробе ($\deg r < \deg g$).
+
+    Тогда $\frac{r_1}{g_1} + \frac{r_2}{g_2}$ - правильная дробь.
+    \begin{proof}
+        \[\frac{r_1g_2 + r_2g_1}{g_1g_2} = \frac{r_3}{g_3}.\]
+        \[ \deg r_3 \le \max(\deg r_1g_2, \deg r_2g_1) < \deg g_1g_2 = \deg g_3 .\] 
+    \end{proof}
+\end{lemma}
+\begin{statement} \thmslashn
+
+    $\forall{\frac{f}{g}\in K(x)}\quad \exists!{ h \in K[x], \frac{r}{g_1}\in K(x)}\quad \frac{f}{g} = h(x) + \frac{r}{g_1}, \deg r < \deg g_1$
+    \begin{proof}
+        Существование:
+        \[ f = gh + r .\]
+        \[ \frac{f}{g} = h + \frac{r}{g} .\] 
+        
+        Единственность:
+
+        Пусть $h_1 + \frac{r_1}{g_1} + h_2 + \frac{r_2}{g_2}$.
+
+        Тогда $h_1 - h_2 = \frac{r_2}{g_2} - \frac{r_1}{g_1}$. Значит, $h_1 - h_2$ - правильная дробь. Но единственная прваильная дробь из оригинального кольца многочленов - $0$.
+    \end{proof}.
+\end{statement}
+\begin{definition}[Простейшая дробь] \thmslashn 
+
+    Пусть $p\in K[x]$, $p$ - неприводимый.
+
+    Простейшей дробью называется $\frac{r}{p^{\alpha}}$, где $\deg r < \deg p$, $\alpha\in \mathbb{N}$.
+\end{definition}
+\begin{lemma}[О разложении по основанию] \thmslashn
+
+    Пусть $r, p\in K[x]$, $\deg p \ge 1$.
+
+    Тогда существует разложение $r(x) = a_0(x) + a_1(x)p + \ldots + a_{k}(x)p^{k}$, где $\deg a_{i} < \deg p$.
+    \begin{proof}
+        Заметим, что $r = g\cdot p + a_0$.
+        
+        Остальные коэффициенты можно получить разложив $g$:
+
+        \[ g = a_1 + a_2p + \ldots + a_{k}p^{k-1} .\]
+        \[ r = a_0 + a_1p + \ldots + a_{k}p^{k} .\qedhere\] 
+    \end{proof}
+\end{lemma}
+\begin{statement} \thmslashn
+
+    Пусть $\frac{f}{p^{\alpha}}$ - правильная дробь.
+
+    Тогда существует разложение $\frac{f}{p^{\alpha}} = \sum\limits_{j=1}^{k} \frac{r_{j}}{p^{j}}$, $\forall{j}\quad \deg r_{j} < \deg p$.
+    \begin{proof}
+        \[ \frac{f}{p^{\alpha}} = \frac{\sum\limits_{j=1}^{k} p^{k-j}r_{j}}{p^{k}} .\]
+
+        Существование:
+
+        Пусть $k=\alpha$.
+        
+        Тогда $r_j$ - коэффициенты из разложения $f$ по основанию $p$.
+    \end{proof}
+\end{statement}
+\begin{lemma} \thmslashn
+
+    $\frac{f}{g}$ - правильная дробь, $g = g_1g_2$, $(g_1, g_2) = 1$.
+
+    Тогда существует единственное разложение $\frac{f}{g} = \frac{h_1}{g_1} + \frac{h_2}{g_2}$ (все дроби правильные).
+    \begin{proof}
+       \[ f = h_1g_2 + h_2g_1 .\]
+
+       Такие уравнения решаются аналогично диофантовым в целых числах.
+
+       Пусть нашли какое-то решение $\tilde{h_1}, \tilde{h_2}$. Тогда можем найти другое решение $h_2$ как остаток от деления $\tilde{h_2}$ на $g$. Тогда $\deg h_2 < \deg g$. 
+
+       Найдём соответствующие $h_1$:
+       \[ h_1g_2 = h_2g_1 - f .\]
+       \[ \deg h_1 + \deg g_2 < \deg g_1 + \deg g_2 \implies \deg h_1 < \deg g_1 .\]
+
+       Все отсальные решения уравнения имеют слишком большую степень.
+    \end{proof}
+\end{lemma}
+\begin{theorem}[О разложении на простейшие] \thmslashn
+
+    Пусть $\frac{f}{g}\in K(x)$. Тогда $\exists!{h,p_1, \ldots, p_{k}, r_{ij}\in K[x]}\quad \exists!{\alpha_1, \ldots, \alpha_{n}}\quad 1 \le i \le k, 1 \le j \le \alpha_{i}, \frac{f}{g} = h(x) + \sum \frac{r_{ij}}{p_{i}^{j}}, \deg r_{ij} < \deg p_{i}, p_{i} \text{ - неприводимые}, \text{старший коэффицент $p_i$ - $1$}, r_{i \alpha_{i}} \neq 0,  $ 
+    \begin{proof}
+        \[ \frac{f}{g} = h(x) + \frac{r}{g} .\]
+        \[ g = p_1^{\alpha_1} \ldots p_{k}^{\alpha_{k}} .\]
+
+        Возьмём $g_1 = p^{\alpha}$
+
+        Предположим, что $g$ имеет старший коэффициент $1$, как и все $p_{i}$ (несложно сделать).
+
+        Тогда
+        \[ \frac{r}{g} = \frac{h_1}{p_1^{\alpha_1}} + \frac{h_2}{p_2^{\alpha_2} \ldots p_{k}^{\alpha_{k}}} .\]
+
+        По индукции, всё разложится на дроби.
+
+        Разложим дробь по основанию:
+        \[ \frac{r}{g} = \sum\limits_{j=1}^{\alpha_1'}\frac{r_{1j}}{p_1^{j}} + \frac{h_2}{p_2^{\alpha_2}\ldots p_{k}^{\alpha_{k}}} .\] 
+
+        Где $\alpha_1'$ - максимальное число, такое что $r_{1\alpha_1'} \neq 0$.
+        
+        Раскладывая по индукции, получим нужное разложение.
+
+        Единственность $h$ следует из правильности суммы.
+
+        Без ограничения общности, пусть $\frac{f}{g}$ - неприводимая дробь, и старший коэффицент $g$ - $1$.
+
+        Тогда $g = p_1^{\alpha'_1}\ldots p_{k}^{\alpha'_{k}}$.
+
+        \TODO{я запутался}
+    \end{proof}
+\end{theorem}
+\begin{example} \thmslashn
+
+    Простейшие дроби в $\mathbb{C}$ - $\frac{c}{(x-\lambda)^{\alpha}}$, $c,\lambda\in \mathbb{C}$
+
+    Простейшие дроби в $\mathbb{R}$ - $\frac{c}{x-\lambda}$, $c, \lambda\in \mathbb{R}$, $\frac{Ax+B}{(x^2+ax+b)}$, $A,B,a,b\in \mathbb{R}$, $b^2 < 4a$.
+
+    Разложим $\frac{1}{x^{n} - 1}$:
+
+    \[ 1 = \sum\limits_{i=1}^{n} \frac{x^{n}-1}{n\eps_{i}^{n-1}(x-\eps_{i})} .\]
+    \[ \frac{1}{x^{n}-1} = \sum\limits_{i=1}^{n} \frac{1}{n\eps^{n-1}(x-\eps_{i})} = \sum\limits_{i=1}^{n} \frac{\eps_{i}}{n(x-\eps_{i})} .\] 
+\end{example}
