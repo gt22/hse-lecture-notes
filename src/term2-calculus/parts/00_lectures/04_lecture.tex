@@ -1,0 +1,198 @@
+\SectionLecture{Лекция 4}{Игорь Энгель}
+\begin{properties} \thmslashn
+
+    \begin{enumerate}
+        \item $\Cl A = A \cup A'$
+        \begin{proof} \thmslashn
+        
+            Если $a\in \Cl A \setminus A \implies \forall{r>0}\quad (B_{r}(a) \setminus \{a\}) \cap A \neq \emptyset \implies A\in A'$.
+        \end{proof}
+    \item $A \subset B \implies A' \subset B'$.
+    \item $(A \cup B)' = A' \cup B'$
+        \begin{proof} \thmslashn
+        
+            Включение $\supset$ по предыдущему свойству.
+
+            Возьмём точку $a\in (A \cup B)' \setminus A' \implies \forall{r > 0}\quad (B_{r}(a) \setminus \{a\})\cap (A\cup B) \neq \emptyset $. $\exists{R > 0}\quad \forall{r \le R}\quad (B_{r}(a) \setminus \{a\})\cap A = \emptyset $. Значит, $\forall{r > 0}\quad (B_{r}(a) \setminus a)\cap B \neq \emptyset \implies a\in B'$.
+
+            \TODO{Нормально обозначить проколотые шары}
+        \end{proof}
+    \end{enumerate}
+    \item $\Cl A = A \iff A' \subset A$
+\end{properties}
+\begin{theorem} \thmslashn
+
+    $a$ - предельная точка множества $A$ тогда и только тогда когда $\forall{r > 0}\quad $ в $B_{r}(a)$ содержится бесконечно много точек из $A$.
+    \begin{proof} \thmslashn
+    
+        Необходиомсть:
+
+            Если есть бесконечно много точек, то $\exists{b\in B_{r}(a)\cap A}\quad b \neq a \implies (B_{r}(a) \setminus \{a\})\cap A \neq \emptyset $.
+
+        Достаточность:
+
+        Пусть $a\in A'$. Возьмём $x_1\in (B_{1}(a) \setminus \{a\})\cap A $.
+
+        Пусть $r_1 = \rho(x_1, a) > 0$. Рассмотрим $B_{r_1}(a)$.
+
+        Аналогичным образом возьмём $x_2\in (B_{r_1}(a) \setminus \{a\})\cap A $.
+
+        Повторяя этот процесс, можем получить бесконечно много точек.
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Конечное множество не имеет предельных точек.
+\end{consequence}
+\begin{definition} \thmslashn 
+
+    Пусть $\left<X, \rho\right>$ - метрическое пространство, и $Y \subset X$.
+
+    Тогда $\left<Y, \left.\rho\right|_{Y^2}\right>$ называется метрическим подпространством.
+\end{definition}
+\begin{theorem}[об открытых и замкнутых множествах в подпространствах] \thmslashn
+
+   Пусть $\left<X, \rho\right>$ - метрическое пространство, $\left<Y, \rho\right>$ - его подпространство.
+
+   Тогда: \TODO{Обозначения для замкнутых и откртых, чтоб не разбивать формулы}
+   \begin{enumerate}
+       \item $U \subset Y$ открыто в $\left<Y, \rho\right>$ $\iff \exists{G \subset X}\quad $, $G$ открыто в $\left<X, \rho\right>$, $U = G\cap Y$.
+           \begin{proof} \thmslashn
+           
+               Достаточность:
+
+               Пусть $U \subset Y$ открыто. Тогда $\forall{x\in U}\quad \exists{r_{x}}\quad B_{r_{x}}^{Y}(x) \subset U$.
+
+               Заметим, что $B_{r}^{Y}(x) = B_{r}^{X}(x)\cap Y$.
+
+               Тогда, определим $G$ как $\bigcup\limits_{x\in U} B_{r_{x}}^{X}(x)$. $G$ открыто в $X$ как объединение открытых.
+
+               Заметим, что $G\cap Y = \bigcup\limits_{x\in U} (B_{r_{x}}^{X}\cap Y) = \bigcup\limits_{x\in U} B_{r_{x}}^{Y}(x) $.
+
+               Так-как каждый шар - $ \subset U$, то $G\cap Y \subset U$.
+
+               $U \subset G\cap Y$, так-как каждый шар содержит свой центр.
+
+               Необходимость:
+
+               Пусть $G \subset X$ открыто. $x\in G\cap Y \implies x\in G \implies \exists{r_{x} > 0}\quad B_{r_{x}}^{X}(x) \subset G \implies B_{r_{x}}^{Y}(x) \subset G\cap Y \implies$ $G\cap Y$ - открыто.
+           \end{proof}
+        \item $A \subset Y$ замкнуто в $\left<Y, \rho\right>$ $\iff $ $\exists{F \subset X}\quad $, $F$ замкнуто в $\left<X, \rho\right>$, $A = F\cap Y$.
+            \begin{proof}
+                Необходимость:
+
+                Пусть $A \subset Y$ замкнуто. Тогда $Y \setminus A$ - открыто.
+
+                По пункту $1$: $\exists{G \subset X}\quad $, $G$ открыто в $X$, такое, что $G\cap Y = Y \setminus A$.
+
+                Тогда $(X\setminus G)\cap Y = A$.
+
+                Достаточность:
+
+                Пусть $F \subset X$ замкнуто в $X$. Тогда $X \setminus F$ открыто в $X$. $(X \setminus F)\cap Y$ - открыто в $Y$.
+
+                Тогда $F\cap Y$ - замкнутое.
+            \end{proof}
+   \end{enumerate}
+\end{theorem}
+\begin{definition} \thmslashn 
+
+    Векторным (линейным) пространством над $\mathbb{R}$ называется множество векторов $X$. на котором определены операции $+ : X^2 \mapsto X$ и $\cdot : \mathbb{R} \times X \mapsto X$ удовлетворяющие следующим условиям:
+
+    \begin{enumerate}
+        \item[A1] $x + y = y + x$
+        \item[A2] $(x + y) + z = x + (y + z)$
+        \item[A3]  $\exists{\vec{0}\in X}\quad x + \vec{0} = x$ 
+        \item[A4] $\exists{(-x)\in X}\quad  x + (-x) = \vec{0}$ 
+        \item[M1] $\alpha(\beta x) = (\alpha \beta) x$
+        \item[M2] $1\cdot x = x$
+        \item[AM1] $\alpha(x+y) = \alpha x + \alpha y$
+        \item[AM2] $(\alpha + \beta)x = \alpha x + \beta x$
+    \end{enumerate}
+\end{definition}
+\begin{example} \thmslashn
+
+    $\mathbb{C}$ - векторное пространство над $\mathbb{R}$.
+
+    $\mathbb{R}^{d}$ - векторное пространство над $\mathbb{R}$.
+\end{example}
+\begin{definition}[Норма] \thmslashn 
+
+    Пусть $X$ - векторное пространство.  $\|\cdot\| : X \mapsto \mathbb{R}$ - норма, если оно удовлетворяет следующим свойствам:
+    \begin{enumerate}
+        \item $\| x \| \ge 0$. $ \| x \| = 0 \iff x = \vec{0}$.
+        \item $ \| \alpha x \| = |\alpha| \cdot  \| x \| $
+        \item $ \| x + y  \| \le  \| x  \|  +  \| y  \| $
+    \end{enumerate}
+\end{definition}
+\begin{example} \thmslashn
+
+    $\mathbb{R}$ - векторное пространство над собой. $|x|$ - норма.
+
+    $\mathbb{R}^{d}$, $\| (x_1, x_2, \ldots, x_{n})\| := |x_1| + |x_2| + \ldots + |x_n|$ 
+
+    $\mathbb{R}^{d}$, $\|x\| = \max |x_{i}|$,
+
+    $C[0, 1]$ - векторное пространство, $\|f\| = \max\limits_{x\in [0, 1]} |f(x)|$
+
+    $\mathbb{R}^{d}$, $\| x \|_{p} = \left(\sum\limits_{k=1}^{d} |x_{k}|^{p}\right)^{\frac{1}{p}}$. Неравенство треугольнико верно по неравенству Минковского. Стандартная норма $\mathbb{R}^{d}$ - $\|x\|_{2}$.
+\end{example}
+\begin{definition}[Скалярное произведение] \thmslashn 
+
+    Пусть $X$ - векторное пространство.
+
+    $\left<\cdot , \cdot \right> : X^2 \mapsto \mathbb{R}$ - скалярное произведение, если оно удовлетворяет следующим свойствам:
+
+    \begin{enumerate}
+        \item $\left<x, x\right> \ge 0$ и $\left<x, x\right> = 0 \iff x = \vec{0}$
+        \item $\left<x+y, z\right> = \left<x, z\right> + \left<y, z\right>$ 
+        \item $\left<\alpha x, y\right> = \alpha\left<x, y\right>$
+        \item $\left<x, y\right> = \left<y, x\right>$
+    \end{enumerate}
+\end{definition}
+\begin{example} \thmslashn
+
+    $\mathbb{R}^{d}$, $\left<x, y\right> = x_1y_1 + x_2y_2 + \ldots x_{d}y_{d}$. Стандартное скалярное произведение $\mathbb{R}^{d}$.
+
+    Возьмём последовательность $w_1, w_2, \ldots, w_{d} > 0$. $\left<x, y\right> = w_1x_1y_1 + \ldots w_{d}x_{d}y_{d}$.
+
+    $C[0, 1]$,  $\left<f, g\right> = \int\limits_{0}^{1} fg $.
+\end{example}
+\begin{properties} \thmslashn
+
+    \begin{enumerate}
+        \item Неравенство Коши-Буняковского: $\left<x, y\right>^2 \le \left<x, x\right> \cdot \left<y, y\right>$
+            \begin{proof} \thmslashn
+
+                Пусть $f(t) = \left<x+ty, x+ty\right>$, $t\in \mathbb{R}$.
+                \[ f(t) = \left<x, x+ty\right> + t\left<y, x+ty\right> = \left<x, x\right> + 2t\left<x, y\right> + t^2\left<y, y\right> .\]
+                Это квадратный трёхчлен, всюду положительный и с положительным старшим коэффициентом. Значит, $D \le 0$, $D = (2\left<x, y\right>)^2 - 4\left<x, x\right>\left<y, y\right> = 4(\left<x,y\right>^2 - \left<x, x\right>\left<y, y\right>) \implies \left<x, y\right> \le \left<x, x\right>\left<y, y\right>$.
+            \end{proof}
+        \item $\|x\| = \sqrt{\left<x, x\right>} $ 
+            \begin{proof} \thmslashn
+
+                Первое свойство тривиально из первого свйоства произведениея
+
+                \[ \| \alpha x\| = \sqrt{\left<\alpha x, \alpha x\right>} = \sqrt{\alpha^2 \left<x, x\right>} = \alpha \sqrt{\left<x, x\right>} = \alpha \|x\|   .\]
+                \[ \left<x+y, x+y\right> \le \left<x, x\right> + \left<y, y\right> + 2\sqrt{\left<x, x\right>\left<y, y\right>}  .\]
+                \[ \left<x, y\right> \le \sqrt{\left<x, x\right>\left<y, y\right>}  .\]
+                \TODO{поправить неравенство треугольника}
+            \end{proof}
+        \item $\rho(x,y) = \|x-y\|$ - метрика.
+            \begin{proof}
+                Неотрицательность очевида, симметричность \TODO, неравенство $\triangle$ напрямую соответсвует версии из нормы.
+            \end{proof}
+        \item $|\|x\| - \|y\| | \le \|x-y\|$
+            \begin{proof}
+                \[ -\|x-y\| \le \|x\| - \|y\| \le \|x-y\| .\]
+                \[ \|x\| \le \|x-y\| + \|y| \iff \|(x-y)+y\| \le \|x-y\| + \|y| \impliedby \triangle .\]
+                \[ \|y\| \le \|x\| + \|x-y\| = \|x\| + \|y-x\| \iff \|x+(y-x)\| \le \|x\| + \|y-x\| \impliedby \triangle .\] 
+            \end{proof}
+    \end{enumerate}
+\end{properties}
+\begin{definition} \thmslashn 
+
+    Пусть $(X, \rho)$ - метрическое пространство, $x_1, x_2, \ldots\in X$.
+    \[ a = \lim_{n \to \infty} x_{n} \iff \forall{\eps > 0}\quad \exists{N}\quad \forall{n \ge N}\quad \rho(x_{n}, a) < \eps .\]
+    Альтернативно: $a = \lim\limits_{n \to \infty} x_{n}$ - если вне любого шара с центром в точке $a$ лежит конечное число членов последовательности.
+\end{definition}
