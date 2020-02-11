@@ -1,0 +1,289 @@
+\SectionLecture{Лекция 5}{Игорь Энгель}
+\begin{definition} \thmslashn 
+
+    Система линейных (алгебраичех) уравнений - сисетма условий вида
+\begin{equation*}
+    \begin{cases}
+        a_{11}x_1 + \ldots + a_{1n}x_{n} = b_1\\
+        a_{21}x_1 + \ldots + a_{2n}x_{n} = b_2\\
+        \vdots\\
+        a_{m1}x_1 + \ldots + a_{mn}x_{n} = b_{n}
+    \end{cases}
+\end{equation*}
+
+Где $a_{ij}, b_{i}\in R$, где $R$ - кольцо.
+
+$x_{i}$ называются переменными.
+
+Решение системы: $\{(x_1, \ldots, x_{n}) \ssep x_{i}\in R \text{ и выполнены все условия системы}\} $.
+\end{definition}
+
+Если у нас есть система, можем взять два любых уравнения $E_{i}, E_{j}$ из неё, взять два коэффициента $\lambda,  \mu\in R$, и получить новое уравнение $\lambda E_{i} + \mu E_{j}$. Каждый элемент из решения системы так-же удовлетворяет этому уравнению.
+
+\begin{definition} \thmslashn 
+
+    Две системы называются равносильными, если равны (как множества) их решения.
+\end{definition}
+
+\begin{lemma} \thmslashn 
+
+Пусть есть два уравнения из системы $E_{i}, E_{j}$, тогда если заменить $E_{j}$ на $E_{j} + \lambda E_{i}$, $\lambda\in R$, то новая система будет равносильна.
+\begin{proof}
+    Добавим в систему уравнение $E_{j} + \lambda E_{i}$. Любое решение $E_{i}, E_{j}$ является решением этого уравнения. Удалим уравнение $E_{j}$, могли появиться новые решениея. Но исчезунть не могли.
+
+    Повторим процесс в обратную сторону, заменив $E_{j} + \lambda E_{i}$ на $E_{j} + \lambda E_{i} -\lambda E_{i} = E_{j}$, так-как исчезнуть решения не могли, системы равносильны.
+\end{proof}
+\end{lemma}
+\begin{lemma} \thmslashn
+
+    Заменой строк местами можно получить равносильную систему
+\end{lemma}
+\begin{lemma} \thmslashn
+
+    Если уравнение $E_{i}$ домножить на $\lambda\in R^{*}$, получиться равносильная система.
+\end{lemma}
+\begin{definition} \thmslashn 
+
+    Матрицей с коэффициентами в $R$ размерности $m \times n$  называется таблица из $m \times n$ из элементов $R$. Их можество обозначается $M_{m \times n}(R)$.
+\end{definition}
+\begin{definition} \thmslashn 
+
+Матрица $m \times n$ 
+\begin{equation*}
+    \begin{bmatrix} 
+        a_{11}& a_{12}& \ldots& a_{1n}\\
+        a_{21}& a_{22}& \ldots& a_{2n}\\
+        \vdots& \vdots& \vdots& \vdots\\
+        a_{m1}& a_{m2}& \ldots, a_{mn}
+    \end{bmatrix} 
+\end{equation*}
+
+Называется матрицей системы
+\end{definition}
+\TODO{расширенная}
+
+\Subsection{Метод Гаусса}
+    Если $a_{11} \neq 0$ (в поле), прибавив первую строку системы к $i>1$-й с коэффициентом $- \frac{a_{i1}}{a_{11}}$ можно убрать вхождение $x_1$ в строку $i$.
+
+    Если $\exists{i}\quad a_{i1} \neq 0$, можно поменять её местами с первой строкой, и применить предыдущее преобразование.
+
+    Если $\forall{i}\quad a_{i1} = 0$, то можно <<забыть>> про первый столбец матрицы.
+
+\begin{definition} \thmslashn 
+
+Элемент $a_{ij}$ называется главным элементом строки $i$ матрицы $A$, если он первый ненулевой элемент в этой строке.
+\end{definition}
+\begin{definition} \thmslashn 
+
+Матрица $A$ имеет ступенчатый вид, если $\forall{i}\quad $ строка $i$ состоит из нулей, либо позиция главного элемента строки $i$ строго больше позиции главного элемента строки $i-1$.
+\end{definition}
+\begin{theorem} \thmslashn
+
+    Любую матрицу над полем $K$ можно при помощи элементарных преобразований привести к равносильной ей ступенчатой, такой, что главный коэффициент в каждой не нулевой строке равен $1$ а над каждым главным элементом стоят нули.
+\end{theorem}
+
+Рассмотрим расширеную матрицу системы $(A|b)$. Привдём её к равносильной ступенчатой методом Гаусса.
+
+Рассмотрим последнее ненулевое уравнение в такой системе. Пусть оно имеет вид $x_{s} + a_{s+1}x_{s+1} + \ldots + a_{m}x_{m} = b \implies x_{s} = b - \sum\limits_{i=s+1}^{m} a_{i}x_{i}$.
+
+Может быть ситуация, когда главный элемент является частью подматрицы $b$. Тогда у системы нет решений. В остальных случаях есть.
+
+\begin{definition} \thmslashn 
+
+Зависимые переменные - переменные, которые в приведённой матрице соответствуют главным элементам.
+
+Остальные переменные называются независимыми.
+\end{definition}
+\begin{lemma} \thmslashn
+
+    Зависимые переменные однозначно выражается через независимые.
+\end{lemma}
+\begin{example}[Задача интерполяции] \thmslashn
+
+    Хотим найти $f(x) = \lambda_0 + \ldots + \lambda_{n-1}x^{n-1}$, такой, что $f(x_{i}) = a_{i}$, $\lambda_{i}, x_{i}, a_{i}\in K$, $x_i \neq x_j$.
+    \begin{equation*}
+        \begin{split}
+            \lambda_0 + \lambda_1 x_1 + \lambda_2 x_1^2 + \ldots + \lambda_{n-1}x_1^{n-1} = a_1\\
+            \vdots
+        \end{split}
+    \end{equation*}
+
+    Её матрица:
+    \begin{equation*}
+        \begin{bmatrix} 
+            1 & x_1 & x_1^2 & \ldots & x_1^{n-1}\\
+            \vdots & \vdots & \vdots & \vdots& \vdots\\
+            1 & x_{n} & x_{n}^2 & \ldots & x_{n}^{n-1}
+        \end{bmatrix} 
+    \end{equation*}
+    Решение методом Гаусса - $\mathcal{O}(n^3)$, формулой интерполяции - $\mathcal{O}(n^2)$.
+\end{example}
+\begin{example}[Pagerank] \thmslashn
+
+    Пусть есть орграф $G$ символизирующий набор страниц ссылающихся друг на друга.
+
+    Хотим каждой вершине сопоставить $w_{i} = \sum\limits_{j \to i} \frac{1}{\odeg(j)}w_{j}$.
+
+    $\forall{i}\quad w_{i} = 0$ - точно решение. Есть-ли другие?
+\end{example}
+\Subsection{Операции над матрицами}
+\begin{definition} \thmslashn 
+
+    Пусть $A, B\in M_{m \times n}(R)$, то $\exists{C\in M_{m \times n}(R)}\quad C = A+B$. При этом, $C_{ij} = A_{ij} + B_{ij}$.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Пусть $A\in M_{m \times n}(R)$, $\lambda\in R$. Тогда $\exists{\lambda A\in M_{m \times n}(R)}\quad (\lambda A)_{ij} = \lambda A_{ij}$.
+\end{definition}
+\begin{properties} \thmslashn
+
+    \begin{enumerate}
+        \item $M_{m \times n}(R)$ - абелева группа по сложению
+        \item $A, B\in M_{m \times n}(R)$, $\lambda\in R$. $\lambda (A + B) = \lambda A + \lambda B$.
+        \item $A\in M_{m \times n}(R)$, $\lambda, \mu\in R$, $(\lambda + \mu)A = \lambda A + \mu A$.
+        \item  $A\in M_{m \times n}(R)$, $\lambda, \mu\in R$, $(\lambda\mu)A = \lambda(\mu A)$.
+        \item  $1A = A$.
+    \end{enumerate}
+\end{properties}
+\begin{remark} \thmslashn
+
+    \begin{equation*}
+        \begin{bmatrix} x_1\\ \vdots\\ x_{n} \end{bmatrix}\in R^{n} = M_{n \times 1}(R) 
+    \end{equation*}
+
+    \begin{equation*}
+        \left( a_1, \ldots, a_{n} \right)\in M_{1 \times n}(R) 
+    \end{equation*}
+
+\end{remark}
+\begin{definition} \thmslashn 
+
+\begin{equation*}
+    \left( a_1, \ldots, a_{n} \right) \begin{bmatrix} x_1\\ \vdots\\ x_{n} \end{bmatrix} = a_1x_1 + \ldots + a_{n}x_n  
+\end{equation*}
+\end{definition}
+\begin{definition} \thmslashn 
+
+\begin{equation*}
+    \begin{bmatrix} 
+        a_{11} & \ldots & a_{1m}\\
+        \vdots & \vdots & \vdots\\
+        a_{n1} & \ldots & a_{nm}
+    \end{bmatrix} 
+    \begin{bmatrix} x_1\\ \vdots\\ x_{n} \end{bmatrix}
+\end{equation*}
+\begin{equation*}
+    (Ax)_{i} = \sum\limits_{j=1}^{n} A_{ij}x_{j}
+\end{equation*}
+\end{definition}
+\begin{definition} \thmslashn
+
+    Произведение матриц: $\cdot : M_{m \times n}(R) \times M_{n \times k}(R) \mapsto M_{m \times k}(R)$
+    \[ (AB)_{ij} = \sum\limits_{s=1}^{k} A_{is}B_{sj} .\] 
+\end{definition}
+\begin{properties} \thmslashn
+
+    $A, B, C\in M_{* \times *}(R)$ (размеры любые, но такие, чтобы произведения были определены). $\lambda\in R$
+    \begin{enumerate}
+        \item $(AB)C = A(BC)$
+        \item  $\lambda (AB) = (\lambda A) = A(\lambda B)$
+        \item $C(A+B) = CA + CB$
+        \item  $0_{M} = \begin{bmatrix} 0 & \ldots & 0\\ \vdots & \vdots & \vdots\\ 0 & \ldots & 0 \end{bmatrix} $. $0_{M}A = A$.
+        \item $I = \begin{bmatrix} 1 & 0 & \ldots & 0\\ 0 & 1 & \ldots & 0\\ \vdots & \vdots & \vdots & \vdots\\ 0 & 0 & \ldots & 1 \end{bmatrix} $. $IA = AI = A$.
+    \end{enumerate}
+\end{properties}
+\begin{consequence} \thmslashn
+
+    $R^{n} \mapsto R^{m}$ заданное матрицей $A\in M_{m \times n}(R)$, такое, что $x \to Ax$ является гомоморфизмом групп.
+\end{consequence}
+\begin{definition} \thmslashn 
+
+$\Ker A = \{x\in R^{n}\ssep Ax = 0\} $.
+
+Ядро матрицы - множество решений однородной системы уравнений соответствующей этой матрице.
+\end{definition}
+\begin{consequence} \thmslashn
+
+    Если система уравнений $Ax = b$ имеет решение, то есть биекция между множеством её решений и $\Ker A$.
+    \begin{proof}
+        Возьмём такое $x_0$, что $Ax_0 = b$.
+
+        Пусть $x^{*}$ такое, что $Ax^{*} = b$, тогда $x^{*} - x_0\in \Ker A$.
+
+        Пусть $y\in \Ker A$, тогда $A(y + x_0) = b$.
+    \end{proof}
+\end{consequence}
+\begin{lemma} \thmslashn
+
+    Пусть $x\in \Ker A$, $\lambda\in R$. Тогда $\lambda x\in \Ker A$.
+\end{lemma}
+\begin{definition}[Векторное пространство] \thmslashn 
+
+    Векторным пространством называется четвёрка $\left<V, K, +, \cdot\right>$, где $V$ называется множеством векторов, $K$ - полем скаляров, $+ : V \times V \mapsto V$, $\cdot : K \times V \mapsto V$. При этом, операции удовлетворяют следующим свойствам:
+    \begin{enumerate}
+        \item $\left<V, +\right>$ - абелева группа
+        \item $\lambda(u+v) = \lambda u + \lambda v$
+        \item $\left( \lambda + \mu \right)u = \lambda u + \mu u $ 
+        \item $\lambda (\mu u) = (\lambda \mu) u$
+        \item  $1 u = u$
+    \end{enumerate}
+\end{definition}
+\begin{example} \thmslashn
+
+    \begin{enumerate}
+        \item[0] $\{0\} $ 
+        \item $\left<K, K, +, \cdot \right>$ 
+        \item $\left<K^{n}, K, +, \cdot \right>$, $\left<M_{m \times n}(K), K, +, \cdot \right>$ 
+        \item $X$ - множество. $K^{X}$ - множество функций из $X$ в $K$.
+        \item $\left<C\left[0, 1\right], \mathbb{R}, +, \cdot \right>$
+    \end{enumerate}
+\end{example}
+\begin{definition} \thmslashn 
+
+Векторным подпространством $U$ пространства $\left<V, K, +, \cdot \right>$, $U \subset V$.\\
+$u_1, u_2\in U$, $\lambda\in K$.
+\[ u_1 + u_2\in U .\]
+\[ \lambda u_1\in U .\]
+\[ 0\in U .\] 
+\end{definition}
+\begin{example} \thmslashn
+    
+    $\Ker A$ - подпространство в $K^{n}$ ($A\in M_{m \times n}(K)$).
+
+    $C^{1}[0, 1] \le C[0, 1]$ 
+
+$C[0, 1] \ge \{f\in C[0, 1]\ssep f(\frac{1}{2}) = 0\} $ 
+
+$K[x] \ge K_{\le n}[x] = \{f\in K[x] \ssep \deg f \le n\} $  
+\end{example}
+\begin{definition}[Линейная комбинация] \thmslashn 
+
+    Пусть $v_1, \ldots, v_{n}\in V$, $\lambda_1, \ldots, \lambda_{n}\in K$.
+
+    Их линейной комбинацией называется $\lambda_1v_1 + \ldots + \lambda_{n}v_{n}$
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Пусть $X \subset V$ (подмножество).
+
+    Пространством, порождённым $X$ (линейной оболочкой $X$) называется:
+    \begin{enumerate}
+        \item наименьшее по включению подпространство содержащие $X$
+        \item $\left<X\right> = \{\lambda_1x_1 + \ldots \lambda_{n}x_{n}\ssep x_{i}\in X\} $
+    \end{enumerate}
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Если $\left<X\right> = V$, то $X$ пораждает $V$. (элементы $X$ - образующие $V$)
+\end{definition}
+\begin{definition} \thmslashn 
+
+Пусть есть набор векторов $v_1, \ldots, v_{n}\in V$.
+
+Набор линейное зависим, если 
+\[ \exists{\lambda_1, \ldots, \lambda_{n} \text{ хотя-бы один из которых не $0$}}\quad \lambda_1v_1 + \ldots + \lambda_{n}v_{n} = 0 .\] 
+\end{definition}
+\begin{definition} \thmslashn 
+
+Набор векторов $v_1, \ldots, v_{n}\in V$ называется базисом $V$, если он образует $V$ и при этом линейно независим.
+\end{definition}
