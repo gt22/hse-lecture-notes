@@ -1,0 +1,175 @@
+\SectionLecture{Лекция 6}{Игорь Энгель}
+\begin{statement}[Эквивалентные переформулировки понятия базиса] \thmslashn
+
+    Пусть $V$ - векторное пространство над полем $K$, и набор векторов $e_1, \ldots, e_{n}$.
+    Следующие утвержддения эквивалентны:
+    \begin{enumerate}
+        \item $e_1, \ldots, e_{n}$ - базис
+        \item $e_1, \ldots, e_{n}$ - минимальная по включению порождающая система $V$
+        \item $\forall{v\in V}\quad \exists!{\lambda_1, \ldots, \lambda_{n}}\quad v = \lambda_1e_1 + \ldots + \lambda_{n}e_{n}$ 
+        \item $e_1, \ldots, e_{n}$ - максимальная по включению независимая система векторов
+    \end{enumerate}
+    \begin{proof} \thmslashn
+
+        $1 \implies 2$: Предположим что можно выкинуть вектор $e_{n}$. Значит, $V = \left<e_1, \ldots, e_{n-1}\right>$. Значит, $\exists{\mu_{i}}\quad \mu_1e_1 + \ldots + \mu_{n-1}e_{n-1} = e_n \implies \mu_1e_1 + \ldots + \mu_{n-1}e_{n-1} - e_{n} = 0$, значит, начальная система была линейно зависима.
+
+        $2 \implies 3$: $e_1, \ldots, e_{n}$ - порождающая система, значит такие $\lambda$ точно существуют. Пусть $\exists{v\in V}\quad \lambda_1e_1 + \ldots + \lambda_{n}e_{n} = v = \mu_1e_1 + \ldots + \mu_{n}e_{n}$. Пусть $\lambda_1 \neq \mu_1$. Тогда 
+        \[ 0 = (\lambda_1 - \mu_1)e_1 + \ldots + (\lambda_{n}-\mu_{n})e_{n} .\]
+        \[ e_{1} = \frac{1}{-(\lambda_1-\mu_{1})} \sum\limits_{i=2}^{n}(\lambda_{i}-\mu_{i})e_{i} .\]
+        Значит, $e_1$ можно выкинуть из системы. Противоречие с минимальностью.
+
+        $3 \implies 4$: Пусть $\lambda_{1}e_1 + \ldots + \lambda_{n}e_{n} = 0$. Так-как разложение вектора $0$ единственно, то $\lambda_1 = \ldots = \lambda_{n} = 0$. Возьмём вектор $v\in V$. Тогда $v = \mu_1e_1 + \ldots + \mu_{n}e_{n}$, значит $\mu_1e_1 + \ldots + \mu_{n}e_{n} - v = 0$, значит эта система максимальная.
+
+        $4 \implies 1$: Построим разложение вектора $v\in V \setminus \{0\} $.\\
+        Знаем, что система максимальна, значит $\lambda_1e_1 + \ldots \lambda_{n}e_{n} + \lambda_{v}v = 0$.\\
+        Если $\lambda_{v} \neq  0$, перенесём $v$ направо и разделим на $\lambda_{v}$.\\
+        Если $\lambda_{v} = 0$, то придём к противоречию с независимостью.
+    \end{proof}
+\end{statement}
+\begin{definition}[Координатная запись] \thmslashn 
+
+    Пусть $e = \{ e_1, \ldots, e_{n}\}$ - базис $V$, $v\in V$. Тогда координатной записью $v$ в базисе $e$ называется
+    \[ [v]_{e} = \begin{bmatrix} \lambda_1\\ \lambda_2\\ \vdots\\ \lambda_{n} \end{bmatrix}  .\] 
+    При том, что $v = \lambda_1e_1 + \lambda_2e_2 + \ldots + \lambda_{n}e_{n}$.
+\end{definition}
+\begin{definition} \thmslashn 
+
+Пространство $V$ называется конечномерным, если $\exists{v_1, \ldots, v_{n}}\quad \left<v_1, \ldots, v_{n}\right> = V$.
+\end{definition}
+Все последующие теоремы доказываются только для конечномерных пространств.
+\begin{theorem}[О существовании базиса] \thmslashn
+
+    Пусть $V$ - конечномерное пространство над $K$. И $v_1, \ldots, v_{m}$ - порождающая система.
+
+    Возьмём линейно независимый набыор $e_1, \ldots, e_{k}$. Тогда $e_1, \ldots, e_{k}$ можно дополнить до базиса, при помощи $v_1, \ldots, v_{n}$.
+    \begin{proof} \thmslashn
+       
+        Индукция по количеству векторов из набора $v_1, \ldots, v_{n}$, которые не лежат в $\left<e_1, \ldots, e_{k}\right>$:
+
+        Если $V = \left<e_1, \ldots, e_{k}\right>$, то утверждение тривиально.
+
+        Пусть $v_{i} \not\in \left<e_1, \ldots, e_{k}\right>$. Рассмотрим систему $e_1, \ldots, e_{k}, v_{i}$.
+
+        Проверим, что она независима: Пусть зависима, тогда
+        \[ \lambda_{1}e_1 + \ldots + \lambda_{k}e_{k} + \lambda_{v}v = 0 .\]
+
+        Тогда, либо $\lambda_{v} = 0$, и все $\lambda_{i} = 0$, либо 
+        \[ v = \frac{1}{\lambda_{v}}\left( \lambda_1e_1 + \ldots + \lambda_{n}e_{n} \right)  .\]
+
+        Что противоречит тому, как мы брали $v$.
+    \end{proof}
+\end{theorem}
+\begin{remark} \thmslashn
+
+    Теорема верна и для бесконечномерных пространств, но доказательство сложнее.
+\end{remark}
+\begin{consequence} \thmslashn
+
+    Пусть $V$ - конечномерное пространство. Тогда в нём существует базис.
+    \begin{proof}
+        Возьмём пустое множество как начало для предыдущей теоремы.
+    \end{proof}
+\end{consequence}
+\begin{lemma}[О линейной зависимости линейных комбинаций] \thmslashn
+
+   Пусть есть наборы векторов $v_1, \ldots, v_{m}$ и $e_1, \ldots, e_{n}$. При этом, $v_{i}\in \left<e_1, \ldots, e_{n}\right>$. Если $m > n$, то $v_{i}$ линейно зависимые.
+    \begin{proof} \thmslashn
+    
+        Выпишем разложения для $v_{i}$:
+        \[ v_{i} = \lambda_{i 1}e_1 + \ldots \lambda_{in}e_{n} .\]
+
+        Индукция по $n$:
+
+        База: $n=1$. $\left<e_{1}\right> = ke_1$. $k_1e_1 + k_2e_1 = 0 \iff k_1-k_2 = 0$.
+
+        Предположим, что $\lambda_{11} \neq 0$ (можно добиться перенумеровкой, и выкидыванием бесполезных $e_{i}$).
+        Тогда $u_{i} = v_{i} - \frac{\lambda_{i 1}}{\lambda_{11}}v_1$, $i\in \{2, \ldots, m\} $.
+
+        Тогда $u_{i}\in \left<e_2, \ldots, e_{n}\right>$.
+
+        По индукции, $u_{i}$ линейно зависимы.
+        \[ \mu_2u_2 + \ldots \mu_{m}u_{m} = 0 .\]
+        \[ Cv_1 + \mu_2v_2 + \ldots \mu_{m}v_{m} = 0 .\]
+
+        Значит, $v_{i}$ линейно зависимы.
+    \end{proof}
+\end{lemma}
+\begin{theorem}[О равномощности базиса] \thmslashn
+
+    Пусть $V$ - конечномерное пространство. И $e$, $f$ - базисы $V$. Тогда $|e| = |f|$.
+    \begin{proof}
+        Пусть $e$ конечно.
+
+        Предположим что $f$ - бесконечный или $|f| > |e|$. Тогда там есть хотя-бы $n+1$ линейно независимый элемент.
+
+        То $\forall{i}\quad f_{i}\in \left<e\right>$, значит любой набор из $n+1$ элементов $f$ линейно зависим. Противоречие.
+
+        Если $|e| > |f|$, то анологичным образом приходим к противоречию.
+    \end{proof}
+\end{theorem}
+\begin{remark} \thmslashn
+
+    Теорема верна для произвольного пространства.
+\end{remark}
+\begin{definition} \thmslashn 
+
+    Пусть $V$ - векторное пространство. Тогда размерность $\dim V = n$, если в $V$ есть базис мощности $n$, либо $\dim V = \infty$ если конечного базиса не существует.
+\end{definition}
+\begin{lemma} \thmslashn
+
+    Пусть $v_1, \ldots,  v_{k}$ линейно независимо в $V$, при этом, $\dim V =n$. Тогда $k \le n$, и если $k=n$, то $v_1, \ldots, v_{k}$ - базис.
+    \begin{proof}
+        Возьмём наш набор, и дополним до базиса векторами $v_{k+1}, \ldots, v_{n}$. Значит, изначально было $k\le n$, и если $k=n$, то ничего не добавилось, значит и так базис.
+    \end{proof}
+\end{lemma}
+\begin{lemma} \thmslashn
+
+    Пусть $v_1, \ldots, v_{k}$ - пораждающая система $V$, и $\dim V = n$. Тогда $k \ge n$, и если $k=n$, то $v_1, \ldots, v_{k}$ - базис.
+    \begin{proof}
+        Возьмём $ \emptyset$, дополним до базиса векторами $v_{i}$. Выбрали $n$ штук векторов. Значит, было хотя-бы $n$, и если было ровно $n$, то взяли все.
+    \end{proof}
+\end{lemma}
+\begin{consequence} \thmslashn
+
+    Если $U \le V$, и $\dim V = n$, то $\dim U \le n$ и если $\dim U = n$, то $U = V$.
+    \begin{proof}
+        Возьмём базис $U$: $e_1, \ldots, e_{k}$. Он линейно независим в $U$, значит линейно независим $V$. Значит, $\dim U = k \le n = \dim V $. Если $k=n$, то $e$ - базис $V$, и $U = \left<e\right> = V$.
+    \end{proof}
+\end{consequence}
+\begin{statement} \thmslashn
+
+    Пусть $U_1, U_2 \le V$. Тогда $U_1\cap U_2 \le V$. И $U_1 + U_2 = \{u_1 + u_2 \ssep u_1\in U_1, u_2\in U_2\} \le V$.
+    \begin{proof} \thmslashn
+
+        Пересечение: \TODO
+
+        Сумма: $(u_1 + u_2) + (u_1' + u_2') = (u_1 + u_1') + (u_2 + u_2')$. $\lambda(u_1 + u_2) = \lambda u_1 + \lambda u_2$. $0 = 0 + 0$.
+    \end{proof}
+\end{statement}
+\begin{statement} \thmslashn
+
+    Пусть $U_1, U_2 \le V$. $\dim U_1 = \ell$, $\dim U_2 = k$.
+
+    Тогда $\dim U_1 + \dim U_2 = \dim (U_1 + U_2) + \dim (U_1\cap U_2)$.
+    \begin{proof}
+       Выберем $e_1, \ldots, e_{k}$ - базис $U_1\cap U_2$.
+
+       Дополним до базиса в $U_1$ и $U_2$: $e_1, \ldots, e_{k}, f_1, \ldots, f_{n}$ - базис $U_1$, $e_1, \ldots, e_{n}, g_1, \ldots, g_{m}$ - базис $U_2$.
+
+       Тогда $e_1, \ldots, e_{k}, f_1. \ldots f_{n}, g_1, \ldots, g_{n}$ - порождает $U_1 + U_2$.
+
+       Покажем что оно базис:
+       \[ \lambda_1e_1 + \ldots \lambda_{k}e_{k} + \mu_1 f_1 + \ldots + \mu_{n}f_{n} = \eta g_1 + \ldots + \eta_{m}g_{m} .\]
+
+       Слева вектор из $U_1$, справа из $U_2$. Значит, он лежит в пересечении. Тогда
+       \[ \eta_1g_1 + \ldots \eta_{m}g_{m} + c_1e_1 + \ldots + c_{n}e_{n} = 0 .\]
+
+       А это базис $U_2$, противоречие.
+
+       Тогда $(k + n) + (k + m) = (k + n + m) + k$, что соответствует утверждениям о размерностях.
+    \end{proof}
+\end{statement}
+\begin{definition} \thmslashn 
+
+    $U \le V$, $\dim V = n$,  $\dim U = k$,   $\codim U = n - k$.
+\end{definition}
