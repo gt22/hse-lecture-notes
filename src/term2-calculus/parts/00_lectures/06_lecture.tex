@@ -1,0 +1,164 @@
+\SectionLecture{Лекция 6}{Игорь Энгель}
+\begin{theorem} \thmslashn
+
+    Пусть $f : (E \subset X) \mapsto Y$ и $\lim\limits_{x \to a} = b$, тогда
+    \[ \exists{B_{r}(a)}\quad f \text{ ограничена в} B_{r}(a) .\]
+    \begin{proof}
+        Возьмём $\eps = 1$, тогда 
+        \[ \exists{r > 0}\quad x\in B^{\circ}_{r}(a)\cap E \implies f(x)\in B_{1}(b) .\]
+        Тогда $R = \max \{1, \rho(b, f(a)\} \implies f(B_{r}(a)) \subset B_{R}(b) $.
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Ариф. действия с пределами] \thmslashn
+
+    Пусть $X$ - метрическое пространство, $Y$ - нормированное. $f, g : (E \subset X) \mapsto Y$. $a$ - предельная точка $E$. $\lim\limits_{x \to a} f(x) = b$, $\lim\limits_{x \to a} g(x) = c$.
+
+    Тогда:
+    \[ \lim\limits_{x \to a} \left( \alpha f(x) + \beta g(x) \right) = \alpha b + \beta c .\]
+    \[ \lim\limits_{x \to a}  \|f(x)\|  =  \|b\|  .\]
+    
+    Если в $Y$ есть скалярное произведение:
+    \[ \lim\limits_{x \to a} \left<f(x), g(x)\right> = \left<b, c\right> .\] 
+\end{theorem}
+\begin{theorem}[Критерий Коши] \thmslashn
+
+    Пусть $f : (E \subset X) \mapsto Y$, $X,Y$ - метрические, $Y$ - полное. $a$ - предельная точка $E$.
+
+    Тогда
+    \[ \exists{\lim\limits_{x \to a} f(x)}\quad \iff \forall{\eps > 0}\quad \exists{\delta > 0}\quad \forall{x, y\in E \setminus \{a\} }\quad \rho_{X}(x,a) < \delta \land \rho_{X}(y, a) \implies \rho_{Y}(f(x), f(y)) .\]
+    \begin{proof}
+        Необходимость:
+        
+        Если $\lim\limits_{x \to a} f(x) = b$, то 
+        \[ \forall{\eps > 0}\quad \exists{\delta > 0}\quad \forall{x\in E \setminus \{a\} }\quad \rho_{X}(x, a) < \delta \implies \rho_{Y}(f(x), b) < \frac{\eps}{2} .\]
+        \[ \forall{y\in E \setminus a}\quad \rho_{X}(y, a) < \delta \implies \rho(f(y), b) < \frac{\eps}{2} .\]
+        \[ \rho_{Y}(f(x), f(y)) \le \rho_{Y}(f(x), b) + \rho_{Y}(b, f(y)) < \eps .\]
+
+        Достаточность:
+
+        Проверим последовательности. Берём $x_{n}\in E \setminus \{a\} $, $x_{n} \to a$. Надо доказать что существует $\lim\limits_{n \to \infty} f(x_{n})$. $Y$ полное, значит достаточно фундаментальности.
+        \[ \forall{\eps > 0}\quad \exists{\delta > 0}\quad \forall{x, y\in E \setminus \{a\} }\quad \rho_{X}(x, a)\land \rho_{X}(y, a) < \delta \implies \rho_{Y}(f(x), f(y)) < \eps  .\]
+
+        По $\delta$ выберем $N$, такой, что $\rho_{X}(x_{n}, a) < \delta$ при $n > N$. 
+
+        Возьмём $x_{n}, x_{m}$, $m > n > N$. Тогда $\rho_{Y}(f(x_{n}), f(x_{m}) < \eps$. Значит, последовательность $f(x_{n})$ фундаментальна, значит она имеет предел, значит, $f(x)$ имеет предел.
+    \end{proof}
+\end{theorem}
+\begin{definition} \thmslashn 
+
+    Функция $f : (E \subset X) \mapsto Y$, $a$ - предельная точка $E$. $f$ называется непрерывной, если верно одно из следующих равносильных условий:
+    \begin{enumerate}
+        \item $\lim\limits_{x \to a} f(x) = f(a)$
+        \item $\forall{\eps > 0}\quad \exists{\delta > 0}\quad \forall{x\in E}\quad \rho_{X}(x, a) < \delta \implies \rho_{Y}(f(x), f(a)) < \eps$.
+        \item $\forall{B_{\eps}(f(a))}\quad \exists{B_{\delta}(a)}\quad f(B_{\delta}(a)\cap E) \subset B_{\eps}(f(a))$.
+        \item $\forall{x_{n}\in E}\quad \lim\limits_{n \to \infty} x_{n} = a \implies \lim\limits_{n \to \infty} f(x_{n}) = f(a)$.
+    \end{enumerate}
+\end{definition}
+\begin{theorem} \thmslashn
+
+    Пусть $f : (E \subset X) \mapsto (\tilde{E} \subset Y)$, $a$ - предельная точка $E$. $g : \left( \tilde{E} \subset Y \right) \mapsto Z$. $f$ непрерывна в $a$, $g$ непрерывна в $f(a)$. Тогда $g \circ f$ непрерывна в $a$.
+\end{theorem}
+\begin{theorem} \thmslashn
+
+    Пусть $f : X \mapsto Y$. $X, Y$ - метричиские, тогда, $f$ непрерывна всюду на $X$ равносильно тому, что $\forall$ открытых $U \subset Y$, $f^{-1}(U)$ открыто в $X$. ($f^{-1}(U) = \{x\in X\ssep f(x)\in U\} $).
+    \begin{proof}
+        Необходимость:
+
+        Пусть $U$ - открытое, рассмотрим $f^{-1}(U)$. Пустое множество открыто, предположим что $a\in f^{-1}(U)$.
+
+        Знаем, что $a\in f^{-1}(U) \implies f(a)\in U \implies \exists{\eps > 0}\quad B_{\eps}(f(a)) \subset U$. Тогда, по непрерывности, $\exists{\delta > 0}\quad f(B_{\delta}(a)) \subset B_{\eps}(f(a))$. Значит, $B_{\delta}(a) \subset f^{-1}(U)$, и $f^{-1}(U)$ отркыто.
+
+        Достаточность:
+
+        Рассмотрим $a\in X$. Возьмём $B_{\eps}(f(a))$, оно открыто в $Y$. Значит, $f^{-1}(B_{\eps}(f(a)))$ - открыто $\implies \exists{\delta > 0}\quad B_{\delta}(a) \subset f^{-1}(B_{\eps}(f(a))) \implies f(B_{\delta}(a)) \subset B_{\eps}(f(a))$. Получили определение непрерывности в $a$.
+    \end{proof}
+\end{theorem}
+\begin{theorem} \thmslashn
+
+    Пусть $f : K \mapsto Y$, $K$ - компакт, $f$ - непрерывна. Тогда $f(K)$ - компакт.
+    \begin{proof} \thmslashn
+        
+        Пусть $f(K) \subset \bigcup_{\alpha\in I} G_{\alpha}$.
+
+        Тогда $K \subset \bigcup_{\alpha\in I} f^{-1}(G_{\alpha})$. Прообраз открытого множества открыт. Выберем конечное покрытие $G_{i}$.
+
+        Тогда $f(K) \subset \bigcup_{i=1}^{n} f(G_{i})$.
+    \end{proof}
+\end{theorem}
+\begin{definition} \thmslashn 
+
+    Функция $f : (E \subset X) \mapsto Y$ называется ограниченной, если $f(E)$ ограниченно в $Y$.
+\end{definition}
+\begin{consequence} \thmslashn
+
+    Пусть $f : K \mapsto Y$, $K$ - компакт,  $f$ непрерывна. Тогда  $f$ ограничена,  $f(K)$ - замкнутое множество.
+    \begin{proof}
+        $f(K)$ - компакт, значит замкнуто и ограничено.
+    \end{proof}
+\end{consequence}
+\begin{consequence}[Теорема Вейерштрасса] \thmslashn
+
+    Пусть $f : K \mapsto \mathbb{R}$, $K$ - компакт, $f$ непрерывна. Тогда $\exists{a, b}\quad \forall{x\in K}\quad  f(a) \le f(x) \le f(b)$.
+    \begin{proof} \thmslashn
+    
+        Знаем, что $f(K)$ ограниченно в $\mathbb{R}$. Ограниченное множество в $ \mathbb{R}$ имеет супремум. $\sup f(K) = \sup\limits_{x\in K} f(x)$. Если $\exists{b\in K}\quad f(b) = \sup f(K)$ то всё хорошо.
+
+        Если не существует точки, то существует последовательность $x_{n}\in K$, такая, что $\lim\limits_{n \to \infty} f(x_{n}) = \sup f(K)$. $f(K)$ замкнуто в $\mathbb{R}$. Если у последовательности есть предел, то этот предел лежит в $f(K)$. Противоречие, значит точка существует.
+
+        Аналогично для инфинума.
+\end{proof}
+\end{consequence}
+\begin{theorem} \thmslashn
+
+    Пусть $f : K \mapsto Y$, $f$ непрерывна, $K$ компакт, $f$ - биекция.
+
+    Тогда есть обратная функция $f^{-1} : Y \mapsto K$. Тогда $f^{-1}$ непрерывная.
+    \begin{proof} \thmslashn
+    
+        Проверим, что для $f^{-1}$ прообраз открытого множества открыт $\iff$ для $f$ образ открытого множества открыт.
+
+        Возьмём $U \subset K$, $U$ открыто. Тогда $K \setminus U$ - замкнутое. Значит, $K \setminus U$ - компакт. $f(K \setminus U)$ - компакт, замкнутое. $f(K \setminus U) = f(K) \setminus f(U) = Y \setminus f(U)$. $Y \setminus f(U)$ замкнутое, значит $f(U)$ открытое.
+    \end{proof}
+\end{theorem}
+\begin{definition} \thmslashn 
+
+    Функция $f : (E \subset X) \mapsto Y$ называется равномерно непрерывной если
+    \[\forall{\eps > 0}\quad \exists{\delta > 0}\quad \forall{x, y\in E}\quad \rho_{X}(x,y) < \delta \implies \rho_{Y}(f(x), f(y)) < \eps\]
+\end{definition}
+\begin{theorem}[Теорема Кантора] \thmslashn
+
+    Пусть $f : K \mapsto Y$, $K$ компакт, $f$ непрерывна. Тогда $f$ равномерно непрерывна.
+
+    \begin{proof} \thmslashn
+    
+        Знаем, что $f(K)$ - компакт. Покроем его: $f(K) \subset \bigcup_{x\in f(K)} B_{\frac{\eps}{2}}(x) $
+
+        Тогда $K \subset \bigcup_{x\in K} f^{-1}(B_{\frac{\eps}{2}}(f(x))) $.
+
+        По лемме Лебега, $\exists{r > 0}\quad \forall{y\in K}\quad B_{r}(y) \text{ - содержится в покрытии}$.
+
+        Тогда $\delta = r$ подходит. 
+
+        Если $\rho_{X}(x,y) < r \implies y\in B_{r}(x) \subset f^{-1}\left( B_{\frac{\eps}{2}}(z) \right) \implies f(B_{r}(x)) \subset B_{\frac{\eps}{2}}(z) \implies f(x), f(y)\in f(B_{r}(x)) \subset B_{\frac{\eps}{2}}(z) \implies \rho_{Y}(f(x), f(y)) < \eps $.
+    \end{proof}
+\end{theorem}
+\begin{definition} \thmslashn 
+
+    Пусть $X$ - векторное просртанство в котором заданы нормы $\|\cdot \|_{A}$ и $\|\cdot \|_{B}$. Нормы эквивалентны, если $\exists{C_1, C_2 > 0}\quad C_1 \|x\|_{A} \le \|x\|_{B} \le C_2 \|x\|_{A}$ ($\|\cdot \|_{A} = \Theta\left( \|\cdot \|_{B} \right) $).
+\end{definition}
+\begin{theorem} \thmslashn
+
+    В пространстве $\mathbb{R}^{d}$ все нормы эквивалентны.
+
+    \begin{proof} \thmslashn
+    
+        Докажем эквивалентность стандартной норме $\|\cdot \| = \sqrt{x_{1}^2 + \ldots + x_{d}^2} $:
+        
+        Пусть $p$ - норма. Тогда $p(x-y) = p(\sum\limits_{i=1}^{d}(x_{i}-y_{i})e_{i})$, где $e_{i}$ - $i$-й вектор стандартного базиса.
+        \[ p(x-y) = p\left( \sum\limits_{i=1}^{d}(x_{i}-y_{i})e_{i} \right) \le \sum\limits_{i=1}^{d} |x_{i}-y_{i}| p(e_{i}) \le \sqrt{\sum\limits_{i=1}^{d} (x_{i}-y_{i})^2 } \sqrt{\sum\limits_{i=1}^{d} p(e_{i})^2}   .\]
+        
+        Оценили сверху. Получили ещё что $p$ непрерывна, так-как $|p(x)-p(y)| \le p(x-y) \le M \|x-y\|$. Значит, $p$ непрерывна на единичной сфере, значит $p$ ограничена на ней. Значит, $\exists{a\in S_{1}}\quad \forall{x\in S_{1}}\quad p(a) \ge p(x)$.
+
+        Тогда $p(y) = p\left(\|y\| \frac{y}{\|y\|}\right) = \|y\|p\left( \frac{y}{\|y\|} \right) \ge \|y\|p(a)$. Заметим, что $p(a) > 0 \impliedby 0 \not\in S_1$.
+    \end{proof}
+\end{theorem}
