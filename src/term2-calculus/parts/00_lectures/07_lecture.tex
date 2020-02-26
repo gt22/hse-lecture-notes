@@ -1,0 +1,190 @@
+\SectionLecture{Лекция 7}{Игорь Энгель}
+\Subsection{Линейные операторы}
+\begin{definition} \thmslashn 
+
+    Пусть $X, Y$ - векторные пространства над $\mathbb{R}$. Отображение $A : X \mapsto Y$ называется линейным оператором, если 
+    \[ \forall{a, b\in X}\quad \forall{\alpha, \beta\in \mathbb{R}}\quad A(\alpha a + \beta b) = \alpha A(a) + \beta A(b) .\] 
+\end{definition}
+\begin{example} \thmslashn
+
+    Пусть $X = \mathbb{R}^{m}$, $Y = \mathbb{R}^{n}$, $A\in M_{m \times n}(\mathbb{R})$.
+\end{example}
+\begin{properties} \thmslashn
+
+    \begin{enumerate}
+        \item $A 0_{X} = 0_{Y}$ 
+        \item $\forall{x_{k}\in X}\quad \forall{\alpha_{k}\in \mathbb{R}}\quad  A\left( \sum\limits_{i=1}^{n} \alpha_{k}x_{k} \right) = \sum\limits_{i=1}^{n} \alpha_{k} Ax_{k}$
+    \end{enumerate}
+\end{properties}
+\begin{definition} \thmslashn 
+
+    Пусть $A, B$ - линейные операторы, $\lambda\in \mathbb{R}$. Тогда
+    \[ (A+B)x = Ax + Bx .\]
+    \[ (\lambda A)x = \lambda A(x) .\] 
+\end{definition}
+\begin{consequence} \thmslashn
+
+    На множестве линейных операторов вида $X \mapsto Y$ можно ввести линейной пространство.
+\end{consequence}
+\begin{remark_author} \thmslashn
+
+    Это пространство изоморфно пространству матриц размерности $\dim X \times \dim Y$
+\end{remark_author}
+\begin{definition} \thmslashn 
+
+    Пусть $A : X \mapsto Y$, $B : Y \mapsto Z$ - линейные операторы, тогда их композиция (произведение) $BA : X \mapsto Z$ - линейный оператор.
+    \[ (BA)x = B(Ax) .\] 
+\end{definition}
+\begin{definition} \thmslashn 
+
+Тождественный линейный оператор $I$ - такой оператор, что $Ix = x$.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Пусть $A: X \mapsto Y$ - линейный оператор. Обратным к нему называется отображение $A^{-1} : Y \mapsto X$, такой, что $A^{-1}A = I_{X}$, $A A^{-1} = I_{Y}$. 
+\end{definition}
+\begin{consequence} \thmslashn
+
+    Обратный оператор существует $\iff$ $A$ - биекция.
+\end{consequence}
+\begin{properties} \thmslashn
+
+    \begin{enumerate}
+        \item Если обратный оператор существует, то он единственный.
+        \item Обратный оператор линеен: \TODO
+        \item $(\lambda A)^{-1} = \frac{1}{\lambda} A^{-1}$: $\left( \frac{1}{\lambda} A^{-1}\right)\left( \lambda A \right)x = \left( \frac{1}{\lambda} A^{-1}\right)(\lambda A(x)) = \frac{1}{\lambda} A^{-1}(\lambda A(x)) = A^{-1}(A(x)) = x   $, в другую сторону симметрично.
+        \item Если $X = Y$, то множество обратимых операторов образует группу по комопзиции.
+    \end{enumerate}
+\end{properties}
+\Subsubsection{Связь с матрицами}
+Пусть $x = \mathbb{R}^{m}$, $Y = \mathbb{R}^{n}$. Пусть $A : X \mapsto Y$ - линейный оператор.
+
+Возьмём канонические базисые $e_{k}\in \mathbb{R}^{m}$, $\eps_{k}\in \mathbb{R}^{n}$.
+
+Тогда
+\[ Ax = A\left(\sum\limits_{i=1}^{m} x_{k}e_{k} \right) = \sum\limits_{i=1}^{m} x_{k}A(e_{k})  .\]
+
+Пусть
+\[ A(e_{k}) = \begin{bmatrix} a_{1k}\\ a_{2k}\\ \vdots\\ a_{nk} \end{bmatrix}  .\]
+
+Тогда, применение оператора эквивалентно умножению вектора $x$ на матрицу
+\begin{equation*}
+    \begin{bmatrix} 
+        a_{11} & a_{12} & \ldots & a_{1m}\\
+        a_{21} & a_{22} & \ldots & a_{2m}\\
+        \vdots & \vdots & \vdots & \vdots\\
+        a_{n1} & a_{n2} & \ldots & a_{nm}
+        \end{bmatrix} = \begin{bmatrix} A(e_1), A(e_{2}), \ldots, A(e_{m}) \end{bmatrix} 
+\end{equation*}
+\begin{remark_author} \thmslashn
+
+    Выбор базиса в любом векторном пространстве задаёт изоморфизм в $\mathbb{R}^{\dim X}$, так-что любой оператор можно представить как матрицу, указав базис.
+\end{remark_author}
+\begin{definition} \thmslashn 
+
+Пусть $X$ и $Y$ - нормированные пространства. Тогда, норма оператора $A : X \mapsto Y$:
+\[ \|A \| := \sup\limits_{\|x\|_{X} \le 1} \|Ax\|_{Y} .\] 
+\end{definition}
+\begin{definition} \thmslashn 
+
+Оператор называется ограниченным, если его норма конечная.
+\end{definition}
+\begin{remark} \thmslashn
+
+    Ограниченный оператор $\neq $ ограниченная функция.
+
+    Если линейный оператор - ограниченная функция, то он тождественнен нулю. (Пусть $A(x) \neq 0$, тогда $A(\alpha x) = \alpha A(x)$, норма $\|\alpha Ax\| = |\alpha| \|Ax\|$, если $\alpha \to \infty$, то норма тоже стремиться к бесконечности.
+\end{remark}
+\begin{properties} \thmslashn
+
+    \begin{enumerate}
+        \item $\|A + B\| \le \|A\| + \|B\|$ 
+        \item $\|\lambda A\| = |\lambda| \|A\|$ 
+        \item $\|A\| = 0 \iff A = 0$
+        \item Норма оператора - норма на пространстве операторов.
+    \end{enumerate}
+    \begin{proof} \thmslashn
+
+        Заметим, что супремум сохраняет нестрогие неравенства, и $\sup (x + y) \le \sup x + \sup y$, поэтому достаточно доказать неравенство норм для всех векторов.
+        \[ \|(A+B)x\| = \|Ax + Bx\| \le \|Ax\| + \|Bx\|.\]
+
+        \[ \|(\lambda A)x\| = |\lambda| \|Ax\| .\]
+
+        Достаточность очевидна, необходимость: 
+        \[ \|A\| = 0 \implies \forall{x\in X}\quad \|x\| \le 1 \implies Ax = 0  .\]
+        \[ \forall{x\in X}\quad \|x\| A\left( \frac{x}{\|x\|} \right) = Ax \implies Ax = 0.\qedhere\] 
+    \end{proof}
+\end{properties}
+\begin{theorem}[Равносильные определения нормы оператора] \thmslashn
+
+    \[ \|A\| =_{1} \sup\limits_{\|x\| \le 1} \|Ax\| =_{2} \sup\limits_{\|x\| < 1} \|Ax\| =_{3} \sup\limits_{\|x\| = 1} \|Ax\| =_{4} \sup\limits_{x \neq 0} \frac{\|Ax\|}{\|x\|} =_{5} \inf \{C > 0 \ssep \|Ax\| \le C \|x\|\}   .\]
+    \begin{proof} \thmslashn
+
+        Пусть все равенства имеют вид $N_{i-1} =_{i} N_{i}$.
+
+        Знаем, что $N_0 = N_1$. $N_1 \ge N_2$ и $N_1 \ge N_3$.
+
+        Докажем $N_2 \ge N_1$:
+
+        Возьмём $x$, такой, что $\|x\| \le  1$, $\eps > 0$, тогда $\left\|\frac{x}{1+\eps}\right\| < 1$. 
+
+        Тогда $\left\|A\left( \frac{x}{1+\eps} \right) \right\| \le N_2$. (Так-как $N_2$ это супремум по таким выражениям).
+
+        \[ \left\|A\left( \frac{x}{1+\eps} \right) \right\| = \frac{1}{1+\eps} \|Ax\| \implies \|Ax\| \le (1+\eps)N^2 .\]
+
+        Устремим $\eps \to 0$, тогда $\|Ax\| \le N_2 \implies N_1 \le N_2$.
+
+        Докажем $N_3 \ge N_1$:
+
+        Возьмём $x \neq 0$, $\|x\| \le 1$. ($x=0$ не влияет на супремум $N_1$).
+
+        \[ \|Ax\| = \left\|A(\|x\| \frac{x}{\|x\|})\right\| = \|x\| \left\|A\left( \frac{x}{\|x\|} \right) \right\| \le \left\|A\left( \frac{x}{\|x\|} \right) \right\| \le N_{3}.\] 
+
+        Докажем $N_3 = N_4$: 
+        \[ \frac{\|Ax\|}{\|x\|} = \frac{1}{\|x\|} \|Ax\| = \left\|A\left( \frac{x}{\|x\|} \right) \right\| .\]
+
+        Докажем $N_4 = N_5$:
+
+        Замеитм, что для $0$ неравенство всегда выполнено, так-что его можно исключить из множества.
+
+        \[ N_5 = \inf \left\{C > 0 \ssep \frac{\|Ax\|}{\|x\|} \le C\right\} = \sup\limits_{x \neq 0} \frac{\|Ax\|}{\|x\|} = N_4  .\] 
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    \begin{enumerate}
+        \item $\|Ax\| \le \|A\| \|x\|$ 
+        \item $\|BA\| \le \|B\|\|A\|$
+    \end{enumerate}
+    \begin{proof} \thmslashn
+        
+        Первое очевидно по $N_4$. 
+        
+        Второе: $\|B(Ax)\| \le \|B\|\|Ax\| \le \|B\|\|A\|\|x\|$.
+        \[ \sup\limits_{\|x\| \le 1} \|BAx\| \le \sup\limits_{\|x\| \le 1} \|A\|\|B\|\|x\| \le \|A\|\|B\| .\] 
+    \end{proof}
+\end{consequence}
+\begin{theorem} \thmslashn
+
+    Пусть $A : X \mapsto Y$ - линейный оператор. Тогда следующие услвоия равносильны:
+    \begin{enumerate}
+        \item $A$ - ограниченный оператор
+        \item $A$ непрерывен в $0$
+        \item $A$ непрерывен всюду
+        \item $A$ равномерное непрерывен
+    \end{enumerate}
+    \begin{proof} \thmslashn
+
+        $4 \implies 3 \implies 2$ - очевидно.
+
+        $1 \implies 4$:
+
+        Рассмотрим $\|Ax - Ay\| = \|A(x-y)\| \le \|A\| \|x-y\|$, если $\|x - y\| \to 0$, то $\|A\|\|x-y\| \to 0$.
+
+        $2 \implies 1$:
+
+        Возьмём $\eps = 1$ и $\delta > 0$ по $\eps$. Тогда $\forall{x}\quad \|x\| < \delta \implies \|Ax\| < 1$
+
+        \[ \|Az\| = \frac{2\|z\|}{\delta} \left\|A\left( \frac{z}{\|z\|} \cdot \frac{\delta}{2} \right) \right\| \le \frac{2\|z\|}{\delta} \implies \|A\| \le \frac{2}{\delta}.\qedhere\] 
+    \end{proof}
+\end{theorem}
