@@ -1,0 +1,197 @@
+\SectionLecture{Лекция 7}{Игорь Энгель}
+\begin{definition} \thmslashn 
+
+    Пусть $U_1, U_2 \le V$, то $V$ раскладывается в прямую сумму ($V = U_1 \oplus U_2$), если 
+    \[ \forall{v\in V}\quad \exists!{u_1, u_2\in U_1, U_2}\quad v = u_1 + u_2 .\] 
+\end{definition}
+\begin{statement} \thmslashn
+
+    Пусть $U_1, U_2 \le V$. Тогда следующие утверждения эквивалентны:
+    \begin{enumerate}
+        \item $V = U_1 \oplus U_2$
+        \item $U_1\cap  U_2 = \{0\} $, $\dim U_1 + \dim U_2 = \dim V$
+        \item $\forall{e_1, \ldots, e_{k}}\in U_1\quad \forall{f_1, \ldots f_{\ell}\in U_2}\quad  $ (базисы), $e_1, \ldots, e_{k}, f_1, \ldots, f_{\ell}$ - базис $V$
+        \item $\forall{} \to \exists{}  $
+    \end{enumerate}
+    \begin{proof} \thmslashn
+    
+        $1 \implies 2$:
+
+        Пусть $v\in U_1\cap U_2$. Тогда $v = 0 + v = v + 0$. Если $v \neq 0$, то получили два разложения $v$. Значит, $U_1\cap U_2 = \{0\} $.
+
+        Имеем $V = U_1 + U_2$. По формуле Грассмана, $\dim V = \dim U_1 + \dim U_2 - \dim U_1\cap  U_2 = \dim U_1 + \dim U_2$.
+
+        $2 \implies 3$:
+
+        Взяли базисы $e_{i}$, $f_{i}$.
+
+        Покажем независимость в $V$: $\lambda_1e_1 + \ldots + \lambda_{k}e_{k} = -\left( \mu f_1 + \ldots \mu_{\ell}f_{\ell} \right) $. Это элемент из пересечения, но пересечение тривиально. Значит по обе стороны нули. Значит, все коэффициенты - $0$.
+
+        $k + \ell = \dim V$,  $e_{i}, f_{i}\in V$, значит, $\left<e, f\right> = V$.
+
+        $3 \implies 4$ тривиально.
+
+        $4 \implies 1$:
+
+        Взяли $v\in V$. Возьмём базисы $U_1, U_2$, которые дают базис $v$. Получили представление.
+
+        При этом, $v$ разложился по базису $V$. А такое разложение единственно.
+    \end{proof}
+\end{statement}
+\begin{definition}[Линейное отображение] \thmslashn 
+
+    Пусть $V_1, V_2$ - векторные пространства над $K$. Тогда $f : V_1 \mapsto V_2$ называется линейным отображением, если 
+    \begin{enumerate}
+        \item $\forall{v, u\in V_1}\quad f(v + u) = f(v) + f(u)$ 
+        \item $\forall{\lambda\in K}\quad \forall{v\in V_1}\quad f(\lambda v) = \lambda f(v)$.
+    \end{enumerate}
+\end{definition}
+\begin{remark} \thmslashn
+
+    Линейные отображения - гомоморфизмы групп
+\end{remark}
+\begin{example} \thmslashn
+
+   \begin{enumerate}
+       \item[1] $\id$ 
+       \item[1'] $v \to  \lambda v$.
+       \item[2] $V_1 = K^{n}$, $V_2 = K^{m}$. $A\in M_{m \times n}(K)$. $v \to  Av$.
+       \item[3] $V_1 = V_2 = K[x]$, $f \to f'$.
+       \item[4] $V_1 = C^{1}[a, b]$, $V_2 = C[a, b]$, $f \to f'$.
+       \item[5] $f \to \int\limits_{0}^{1} f(x)dx $ 
+       \item[6] $f \to  \int\limits_{0}^{x} f(x)dx $.
+       \item[7] $V_1 = K[x]$, $V_2 = K$. $\lambda\in K$. $f \to f(\lambda)$.
+       \item[8] $K[x] \mapsto  K[x]$, $f \to f(g(x))$.
+       \item[9] $f(x) \mapsto g(x)f(x)$
+   \end{enumerate} 
+\end{example}
+\begin{statement} \thmslashn
+
+    Пусть $f,g : V_1 \mapsto V_2$, $k, h : V_2 \mapsto V_3$ - линейные отображение.
+
+    Тогда
+    \begin{enumerate}
+        \item $\lambda_1 f + \lambda_2 g$ - линейное отображение.
+        \item $k \circ f: V_1 \mapsto V_3$ - линейное отображение
+        \item $\Hom_{K}(V_1, V_2)$ - множество всех линейных отображений $V_1 \mapsto V_2$. $\Hom_{K}(V_1, V_2)$ - векторное пространство относительно поточечного сложения и домножения на скалаяр.
+        \item $\left( k + h \right) \circ f = k\circ f + h\circ f$ 
+        \item $k \circ (f + g) = k\circ f + k\circ g$
+        \item $f$ - инъективно $\iff \Ker f = \{0\} $.
+    \end{enumerate}
+\end{statement}
+\begin{theorem} \thmslashn
+
+    Пусть $V_1, V_2$ - конечномерные векторные пространства. $e_1, \ldots, e_{n}$ - базис $V_1$. $u_1, \ldots, u_{n}$ - набор элементов (не обязательно базис) $V_2$.
+
+    Тогда $\exists!{f : V_1 \mapsto V_2}\quad f(e_{i}) = u_{i}$.
+    \begin{proof} \thmslashn
+    
+        Пусть $v\in V_1$. $v = \lambda_1e_1 + \ldots + \lambda_{n}e_{n}$.
+
+        Тогда $f(v) = f(\lambda_1e_1 + \ldots + \lambda_{n}e_{n}) = \lambda_1 f(e_1) + \ldots + \lambda_{n}f(e_{n}) = \lambda_1 u_1 + \ldots + \lambda_{n}u_{n}$.
+
+        Покажем линейность: $v_1, v_2$ раскладываются по $e$ с координатами $\lambda_{i}, \mu_{i}$.
+
+        Тогда $f(v_1 + v_2)$ раскладывается по $f(e)$ с координатами $(\lambda_{i} + \mu_{i})$. Аналогично $f(v_1) + f(v_2)$. Домножение на скаляр анологично.
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Возьмём $f : K^{n} \mapsto K^{m}$. Тогда $\exists!{A\in M_{m \times n}(K)}\quad f(x) = Ax$.
+    \begin{proof} \thmslashn
+    
+        Возьмём канонический базис $K^{n}$, назовём его $e_{i}$.
+
+        Возьмём $u_{i} = f(e_{i})$.
+
+        Тогда, подходящая матрица - 
+        \[ \begin{bmatrix} u_1 & \ldots & u_{n} \end{bmatrix} = 
+            \begin{bmatrix} 
+                u_{11} & \ldots & u_{m1}\\ 
+                u_{m2} & \ldots & u_{m2}\\
+                \vdots & \vdots & \vdots\\
+                u_{1n} & \ldots & u_{mn}
+            \end{bmatrix}   .\] 
+    \end{proof}
+\end{consequence}
+\begin{definition} \thmslashn 
+
+    Векторные пространства $V_1$ и $V_2$ называются изоморфными, если $\exists{f : V_1 \mapsto V_2}\quad $, такое, что $f$ - линейное и биекция. $f$ называется изоморфизмом.
+\end{definition}
+\begin{remark} \thmslashn
+
+    $f$ - изоморфизм $\iff f^{-1}$ - изоморфизм
+\end{remark}
+\begin{consequence} \thmslashn
+
+    Пусть $f : V_1 \mapsto V_2$ - линейное отображение. Следующие утверждения эквивалентны:
+    \begin{enumerate}
+        \item $L$ - изоморфзим
+        \item $\forall{e_1, \ldots, e_{n}}\quad $ - базис $V_1$, тогда $L(e)$ - базис $V_2$
+        \item $\forall{} \to \exists{}\quad  $
+    \end{enumerate}
+    \begin{proof} \thmslashn
+    
+        $1 \implies 2$:
+
+        Заметим, что $\Im f = \left<f(e)\right> = V_2$. Пусть $f(e)$ линейно зависима. Тогда существуеют два разложения $0$. Тогда есть два элемента, которые $f$ переводит в $0$, но $f$ биекция. Значит, $f(e)$ линейно независимо.
+
+        $2 \implies 3$ тривиально.
+
+        $3 \implies 1$:
+
+        Пусть $g$ - отображение, переводящие базис $f(e)$ в базис $e$. Тогда $(g\circ f)(e_{i}) = e_{i}$ $(f \circ g)(f(e_{i}) = f(e_{i})$. Построили обратное $\implies$ биекция.
+    \end{proof}
+\end{consequence}
+\begin{consequence} \thmslashn
+
+    Пусть $V, W$ - векторные пространства, и $\dim V = \dim W = n$.
+    \begin{proof} \thmslashn
+    
+        Возьмём базисы, построим по ним.
+    \end{proof}
+\end{consequence}
+\begin{consequence} \thmslashn
+
+    Пусть $V$ - векторное пространство. $\dim V = n$. Тогда выбор базиса в $V$ задаёт изоморфизм в $K^{n}$.
+\end{consequence}
+\begin{definition} \thmslashn 
+
+    Изоморфизм $V \mapsto K^{n}$ называется линейное системой координат. Каждая компонента называется координатной функцией.
+\end{definition}
+\begin{theorem}[О подходящем выборе базиса] \thmslashn
+
+    Пусть $f : V_1 \mapsto V_2$ - линейное отображение, $\dim V_1 = n$.
+
+    Тогда $\exists{\text{базис } e}\quad V_1$, такой, что $f(e_{i})$, $i \le k$ - базис $\Im f$, $e_{k+1}, \ldots, e_{n}$ - базис $\Ker f$.
+    \begin{proof} \thmslashn
+    
+        \TODO
+    \end{proof}
+\end{theorem}
+\begin{consequence}[Связь размерностей] \thmslashn
+
+    Пусть $f : V_1 \mapsto V_2$ - линейное.
+
+    $\dim V_1 = \dim \Im f + \dim \Ker f$.
+\end{consequence}
+\begin{consequence}[Принцип Дирихле] \thmslashn
+
+    Пусть $V, W$ - векторные пространства, такие, что $\dim V = \dim W$ - конечные.
+
+    Тогда, любое линейное отображение $f : V \mapsto W$ сюрьективно тогда и только тогда когда оно инъективно
+    \begin{proof} \thmslashn
+    
+        \[ \dim W = \dim V = \dim \Im f \iff \dim \Ker f = 0 .\qedhere\] 
+    \end{proof}
+\end{consequence}
+\begin{consequence} \thmslashn
+
+    Пусть $A\in M_{n \times n}(K)$. Тогда $\exists!{x\in K^{n}}\quad Ax = 0 \iff \forall{b\in K^{n}}\quad \exists{x\in K^{n}}\quad Ax = b$
+\end{consequence}
+\begin{consequence} \thmslashn
+
+    Пусть $A\in M_{m \times n}(K)$. Тогда
+
+    \[ \forall{b\in K^{m}}\quad \exists{x\in K^{n}}\quad Ax=b \iff \dim \{x\in K^{n}\ssep Ax = 0\} = n - m   .\] 
+\end{consequence}
