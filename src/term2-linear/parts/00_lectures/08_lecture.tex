@@ -1,0 +1,188 @@
+\SectionLecture{Лекция 8}{Игорь Энгель}
+\begin{statement} \thmslashn
+
+    Пусть $A\in M_{m \times n}(K)$ и ситема уравнений $Ax = b$.
+
+    Если у этой системы есть хоть одно решение, то все её решения описываются $\dim\Ker A$ независимыми переменными.
+    \begin{proof} \thmslashn
+    
+        Заметим, что приведение матрицы к ступенчатому виду не изменяет множество решений.
+
+        Множество решений системы - $\{x_0 + y \ssep Ay = 0\} = \{x_0 + y \ssep y\in \Ker A\} $
+
+        Заметим, что если взять матрицу системы $Ax = 0$, то получиться такое-же количество независимых переменных. Пусть $x_{i_1}, \ldots, x_{i_{s}}$ - независимых переменных. Тогда $x_k = \sum\limits_{j=1}^{s} C_{kj}x_{i_{j}}$.
+
+        Значит, матрица $C\in M_{n \times s}(K)$ переводит столбец независимых переменных переменных в столбец решений. Причём, это отображение - биекция. Значит, отображение, задаваемое $C$ - изоморфизм. Значит, размерности сохраняются.
+    \end{proof}
+\end{statement}
+\begin{definition} \thmslashn 
+
+    Пусть есть $L : V_1 \mapsto V_2$ - линейное отображение. $e_{i}$ - базис $V_1$, $f_{i}$ - базис $V_2$.
+
+    Тогда матрица линейного отображения $[L]_{e}^{f}$ - матрица, в которой $i$-й столбец равен $[L(e_{i})]_{f}$.
+\end{definition}
+\begin{example} \thmslashn
+
+    \begin{enumerate}
+        \item $V_1 = V_2 = K[x]_{\le n}$, $f(x) \to f(x+a)$. Базисы стандартные. Матрица отображения:
+            \begin{equation*}
+                \begin{bmatrix} 
+                    1 & a & \ldots & a^{n}\\
+                    0 & 1 & \ldots & na^{n-1} \\
+                    0 & 0 & \ldots & n(n-1)a^{n-2}\\
+                    \vdots & \vdots & \vdots & \binom{n}{i}a^{n-i}\\
+                    0 & 0 & \ldots & 1
+                \end{bmatrix} 
+            \end{equation*}
+        \item $V_1 = V_2 = K[x]_{\le n}$, $f(x) \to f(x+a)$. Базис $V_1$ - стандартный. Базис $V_2$ - $1, (x+a), (x+a)^2, \ldots, (x+a)^{n}$. Матрица отображения - $E_{n+1}$.
+    \end{enumerate}
+\end{example}
+\begin{statement} \thmslashn
+
+    Пусть $L : V_1 \mapsto V_2$ - линейное отображение, $e_{i}$ - базис $V_1$, $f_{i}$ - базис $V_2$.
+
+    Тогда $A = [L]_{e}^{f}$ - единственная матрица, такая, что $A[v]_{e} = [u]_{f} \iff L(v) = u$.
+\end{statement}
+\begin{statement} \thmslashn
+
+    Пусть $L_1, L_2 : V_1 \mapsto V_2$ - линейные отображения, $e_{i}$ - базис $V_1$, $f_{i}$ - базис $V_2$.
+
+    Тогда $[L_1 + L_2]_{e}^{f} = [L_1]_{e}^{f} + [L_{2}]_{e}^{f}$
+
+    Пусть $\lambda\in K$. Тогда $[\lambda L_1]_{e}^{f} = \lambda [L_1]_{e}^{f}$
+    \begin{proof} \thmslashn
+    
+        Без ограничения общности, докажем совпадение первого столбца.
+
+        Заметим, что $(L_1 + L_2)(e_1) = L_1(e_1) + L_2(e_1)$, значит, $\left[(L_1+L_2)(e_1)\right]_{f} = \left[L_1(e_1) + L_2(e_2)\right]_{f} = \left[L_1(e_1)\right]_{f} + \left[L_2(e_1)\right]_{f}$. Значит, столбец соответствующий $e_1$ совпадает.
+
+        Второе утверждение аналогично.
+    \end{proof}
+\end{statement}
+\begin{statement} \thmslashn
+
+    Пусть есть $L_1 : V_1 \mapsto V_2$, $L_2 : V_2 \mapsto V_3$, $e_{i}, f_{i}, g_{i}$ - базисы $V_1, V_2, V_3$ соответственно.
+
+    Тогда
+    \[ \left[L_2 \circ L_1\right]_{e}^{g} = \left[L_2\right]_{f}^{g}\left[L_1\right]_{e}^{f} .\]
+    \begin{proof} \thmslashn
+        
+        Обозначим $A = \left[L_1\right]_{e}^{f}$, $B = \left[L_2\right]_{f}^{g}$
+
+        Рассмотрим вектор $u\in V_1$. $x = [u]_{e}$.
+
+        Тогда $u \to L_1(u)$, $x \to Ax$.
+
+        Потом $L_1(u) \to L_2(L_1(u))$. $Ax \to B(Ax) = (BA)x$.
+
+        По теореме о единственности матрицы линейного отображения, получили что $\left[L_2 \circ L_1\right]_{e}^{g} = BA = [L_2]_{f}^{g}[L_1]_{e}^{f}$.
+    \end{proof}
+\end{statement}
+\begin{statement} \thmslashn
+
+    Пусть $L : V_1 \mapsto V_2$ - изоморфизм. $e, f$ - базисы $V_1, V_2$
+
+    Тогда $[L^{-1}]_{f}^{e}[L]_{e}^{f} = E_{n} = \left[L\right]_{e}^{f}\left[L^{-1}\right]_{f}^{e}$
+\end{statement}
+\begin{definition} \thmslashn 
+
+    Матрица $A\in M_{n}(K)$ назывется обратимой, если $\exists{A^{-1}\in M_{n}(K)}\quad A A^{-1} = E_{n} = A^{-1}A$.
+\end{definition}
+\begin{remark} \thmslashn
+
+    Пусть $A = [L]_{e}^{f}$. Тогда $\exists{L^{-1}}\iff \exists{A^{-1}} $
+\end{remark}
+\begin{statement} \thmslashn
+
+    Пусть $A, B\in M_{n}(K)$, и $AB = E_{n}$. Тогда $BA = E_{n}$.
+
+    \begin{proof} \thmslashn
+    
+        Перейдём к отображениям, задаваемым этими матрицами. Пусть $A$ задаёт $L_1$, $B$ задаёт $L_2$.
+
+        Знаем, что $L_1 \circ L_2 = \id$. Из этого следует, что $L_1$ сюръективна. Значит, оно инъективно по принципу Дирихле. Значит, матрица $A$ обратима. Домножим равенство  $AB = E_{n}$ а $A^{-1}$ слева, получим $B = A^{-1}$ 
+    \end{proof}
+\end{statement}
+\begin{definition} \thmslashn 
+
+    Пусть в $V$ выбраны два базиса: $e_{i}$, $e'_{i}$.
+
+    Матрица замены координат из базиса $e$ в базис $e'$ - такая матрица, которая переводит $[u]_{e}$ в $[u]_{e'}$.
+\end{definition}
+\begin{statement} \thmslashn
+
+    Матрица $[\id]_{e}^{e'}$ - матрица замины координат.
+\end{statement}
+\begin{statement} \thmslashn
+
+    Матрица замены координат - матрица состоящая из столбцов $\left[e_{i}\right]_{e'}$
+\end{statement}
+\begin{definition} \thmslashn 
+
+    Матрица перехода из базиса $e$ в базис $e'$ - такая матрица, что столбцы этой матрицы - $\left[e'_{i}\right]_{e}$.
+\end{definition}
+\begin{statement} \thmslashn
+
+    Матрица замены координат и матрица перехода взаимно обратны.
+    \begin{proof} \thmslashn
+    
+        Пусть $C$ - матрица замены координат, $D$ - матрица перехода.
+
+        Тогда
+        \[ D = \left[\id\right]_{e'}^{e} = \left( \left[\id\right]_{e}^{e'} \right)^{-1} = C^{-1}  .\] 
+    \end{proof}
+\end{statement}
+\begin{example} \thmslashn
+
+    Пусть есть пространство $K^{n}$. $e$ - стандартный базис, $e'$ - какой-то базис.
+
+    Тогда матрица перехода:
+    \[ \begin{bmatrix} e'_{1} & e'_{2} & \ldots & e'_{n} \end{bmatrix}  .\] 
+\end{example}
+\begin{remark} \thmslashn
+
+    Пусть $e, e'$ - базисы $V$. Тогда матрица перехода - $D_{e}^{e'}$.
+\end{remark}
+\begin{properties} \thmslashn
+
+    Пусть $e, f, g$ - базисы $V$.
+
+    Тогда
+    \[ D_{e}^{g} = D_{f}^{g}D_{e}^{f} .\]
+
+    \[ D_{f}^{e} = (D_{e}^{f})^{-1} .\]
+
+    \[ D_{e}^{e} = E_{n} .\] 
+\end{properties}
+\begin{theorem} \thmslashn
+
+    Пусть $L : V_1 \mapsto V_2$ - линейное отображение. $e, e'$ - базисы $V_1$, $f, f'$ - базисы $V_2$.
+
+    Тогда $[L]_{e}^{f} = D_{f}^{f'}\left[L\right]_{e}^{f}\left(D_{e}^{e'}\right)^{-1}$
+\end{theorem}
+\begin{definition} \thmslashn 
+
+Пусть $L : V_1 \mapsto V_2$. Тогда ранг $\rk L = \dim \Im L$
+\end{definition}
+\begin{theorem} \thmslashn
+
+    Пусть $L : V_1 \mapsto V_2$. Тогда $\exists{e \text{ -  базис $V_1$}}\quad \exists{f \text{ - базис $V_2$}}\quad $, такие, что
+    \begin{equation*}
+        [L]_{e}^{f} = \begin{bmatrix} 
+            E_{r} & 0\\
+            0 & 0
+        \end{bmatrix} 
+    \end{equation*}
+
+    Где $r = \rk L$.
+    \begin{proof} \thmslashn
+    
+        Выберем такой базис $e$, такой, что первые $r$ векторов - базис образа, остальные - базис ядра. Такой базис существует по теореме о выборе базиса.
+
+    Первые $r$ векторов $f$ - $L(e_{i})$. Остальные можно выбрать как угодно.
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Пусть выбрали такой базис. Тогда $L(e_{r + 1}) = \ldots = L(e_{n}) = 0$. $i \le r \implies L(e_{i}) = f_{i}$.
+\end{consequence}
