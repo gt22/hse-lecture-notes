@@ -1,0 +1,358 @@
+\SectionLecture{Лекция 8}{Игорь Энгель}
+\begin{theorem} \thmslashn
+
+    Если $A : \mathbb{R}^{n} \mapsto \mathbb{R}^{m}$ - линейный оператор, то $\|A\|^2 \le \sum\limits_{i=1}^{m}\sum\limits_{j=1}^{n}A_{ij}^2$ 
+    \begin{proof} \thmslashn
+
+    Возьмём $x\in \mathbb{R}^{n}$, $x = \sum\limits_{i=1}^{n}x_{i}e_{i}$, $\|x\| \le 1$.
+        \begin{equation*}
+            \begin{split}
+                \|Ax\|^2 
+                &= \left\|\sum\limits_{i=1}^{n}x_{i}A(e_{i})\right\|^2 = \sum\limits_{i=1}^{m}\left( \sum\limits_{j=1}^{n} A_{ij}x_{j} \right)^2 \le \sum\limits_{i=1}^{m}\left( \sum\limits_{j=1}^{n} a_{ij}^2 \cdot  \sum\limits_{j=1}^{n} x_{j}^2 \right)\\
+                &= \sum\limits_{i=1}^{n} \left( \sum\limits_{j=1}^{n} a_{ij}^2 \cdot  \|x\| \right) \le \sum\limits_{i=1}^{m}\sum\limits_{j=1}^{m} a_{ij}^2 \qedhere  
+            \end{split}
+        \end{equation*} 
+    \end{proof}
+\end{theorem}
+\Subsubsection{5. Длина кривой}
+\begin{definition}[Путь] \thmslashn 
+
+    Путь - $\gamma : [a, b] \mapsto X$, $X$ метрческое пространство, $\gamma$ - непрерывное.
+
+    $\gamma(a)$ - начало пути
+
+    $\gamma(b)$ - конец пути
+
+    Путь называется простым (несамопересекающимся), если $\forall{x, y\in [a, b)}\quad \gamma(x) \neq \gamma(y)$.
+
+    Путь называется замкнутым, если $\gamma(a) = \gamma(b)$.
+
+    Противоположный путь: $\gamma^{-1} : [a, b] \mapsto X$, $\gamma^{-1}(t) = \gamma(a+b-t)$.
+
+    Пути $\gamma_1 : [a, b] \mapsto X$, $\gamma_2: [c, d] \mapsto X$ называются эквивалентными, если $\exists{\tau : [a, b] \mapsto [c, d]}\quad \tau(a) = c, \tau(b) = d$, $\tau$ строго монотонно, такое, что $\gamma_1 = \gamma_2 \circ \tau$. Такие $\tau$ называются допустимыми преобразованиями параметра.
+
+    Носитель пути - $\Im \gamma$.
+\end{definition}
+\begin{definition}[Кривая] \thmslashn 
+
+    Кривая - класс эквивалентных путей.
+
+    Пути этого класса называются параметризациями кривой.
+
+    Носитель кривой - носитель пути из класса.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Путь $\gamma : [a, b] \mapsto \mathbb{R}^{n}$ назывется $C^{r}$-гладким, если его компоненты $\gamma_{i} : [a, b] \mapsto \mathbb{R}$ непрерывно дифференцируемы $r$ раз.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Путь называется кусочно гладким, если его можно разбить на конечное количество гладких путей.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Длиной пути $\gamma : [a, b] \mapsto X$ называется
+    \[ \ell(\gamma) = \sup\limits_{\xi} \sum\limits_{i=1}^{n} \rho(\gamma(\xi_{i-1}), \gamma(\xi_{i})) .\]
+    Где супремум берётся по всем возможным разбиенеиям отрезка $[a, b]$.
+\end{definition}
+\begin{properties} \thmslashn
+
+   \begin{enumerate}
+       \item Длины эквивалентных путей совпадают
+        \begin{proof} \thmslashn
+        
+            Пусть пути эквивалентны с преобразованием параметра $\tau$. Тогда, любое разбиенеие для одного можно перевести в разбиенеие для другого, не изменив значение суммы.
+        \end{proof}
+       \item Длины противоположных путей равны
+        \begin{proof} \thmslashn
+        
+            Рассмотрим разбиение полученное перечислением точек в обратном порядке.
+        \end{proof}
+        \item $\ell(\gamma) \ge \rho(\gamma(a), \gamma(b))$
+        \begin{proof} \thmslashn
+        
+            Как часть супрермума мы рассматриваем разбиенеие $\xi_{0} = a$, $\xi_{1} = b$
+        \end{proof}
+   \end{enumerate} 
+\end{properties}
+\begin{definition} \thmslashn 
+
+    Длина кривой - длина любого представителя класса (они все равны по свойству $1$).
+\end{definition}
+\begin{theorem} \thmslashn
+
+    Пусть $\gamma : [a, b] \mapsto X$, $c \in (a, b)$.
+
+    Тогда, $\ell(\gamma) = \ell\left(\left. \gamma\right|_{\left[a, c\right]}\right) + \ell\left(\left . \gamma\right|_{\left[c, b\right]}\right)$.
+    \begin{proof} \thmslashn
+    
+        Неравенство $\ge $:
+
+            Возьмём разбиенеия $a  = t_0 < t_1 < \ldots < t_{n} = c$, $c = u_0 < \ldots < u_{m} < b$.
+
+            Тогда, разбиенеие $t_0, t_1, \ldots, t_{n}, u_0, u_1, \ldots, u_m$ рассматривалась в супремуме $\ell(\gamma)$.
+
+            Можем перейти к суперемуму, так-как он $\le $ любой верхней границы.
+
+        Неравенство $\le $:
+
+            Рассмотрим рабиение $a = t_0 < t_1 < \ldots < t_{n} = b$.
+            
+            Пусть $t_{k} \le  c < t_{k+1}$.
+
+            Рассмотрим $a = t_0 < t_1 < \ldots < t_{k} \le c$ - разбиение $[a, c]$, и $c < t_{k+1} < t_{k+2} < \ldots < t_{n} = b$.
+
+            Тогда, 
+            \[ \sum\limits_{i=1}^{n} \rho\left( \gamma\left( t_{i-1}\right), \gamma(t_{i})  \right) \le \sum\limits_{i=1}^{k} \rho(\gamma(t_{i-1}), \gamma(t_{i})) + \rho(\gamma(t_{k}), \gamma(c)) + \rho(\gamma(c), \gamma(t_{k+1})) + \sum\limits_{k+2}^{n} \rho(\gamma(t_{i-1}), \gamma(t_{i})) .\]
+
+            А правая часть неравенства - сумма длин пути на $[a, c]$ и на $[c, b]$. Можем перейти к супремуму, и получить неравенство на длины пути.
+    \end{proof}
+\end{theorem}
+\begin{theorem} \thmslashn
+
+    Пусть $\gamma : [a, b] \mapsto \mathbb{R}^{d}$ - гладкий путь.
+
+    Тогда $\ell(\gamma) = \int\limits_{a}^{b} \|\gamma'(t)\|dt$, где производная берётся покоординатно.
+    \begin{proof} \thmslashn
+    
+        \begin{lemma} \thmslashn
+        
+            Для отрезка $\Delta \subset [a, b]$ завдём обозначения:
+
+            \[ m_{\Delta}^{(i)} := \min\limits_{t\in \Delta} |\gamma'_{i}(t)| .\] 
+            \[ M_{\Delta}^{(i)} := \max\limits_{t\in \Delta} |\gamma'_{i}(t)| .\]
+            \[ m_{\Delta}^2 := \sum\limits_{i=1}^{d} (m_{\Delta}^{(i)})^2 .\] 
+            \[ M_{\Delta}^2 := \sum\limits_{i=1}^{d} (M_{\Delta}^{(i)})^2 .\] 
+
+            Тогда
+            \[ \ell(\Delta)m_{\Delta} \le \ell\left(\left.\gamma\right|_{\Delta}\right) \le \ell(\Delta) M_{\delta}.\]
+                \begin{proof} \thmslashn
+                
+                    Пусть $\Delta = [\alpha, \beta]$. Тогда $\ell = \beta - \alpha$.
+
+                    Выберем $\alpha < t_0 < t_1 < \ldots < \beta$
+
+                    Тогда $\sum\limits_{j=1}^{n} \rho(\gamma(t_{j-1}), \gamma(t_{j})) = \sum\limits_{j=1}^{n}\sqrt{\sum\limits_{i=1}^{d}(\gamma_{i}(t_{j}) - \gamma_{i}(t_{j-1})^2}$
+
+                    Рассмотрим одно слагаемое: $\sum\limits_{i=1}^{d}\left( \gamma_{i}(t_{j}-\gamma_{i}(t_{j-1}) \right)^2 = \sum\limits_{i=1}^{d} \left( \gamma_{i}'(\xi_{ij})(t_{j}-t_{j-1}) \right)^2  \le \sum\limits_{i=1}^{d} \sum\limits_{i=1}^{d} (M_{\Delta}^{i}(t_{j}-t_{j-1}))^2 = M_{\Delta}^2(t_{j}-t_{j-1})$
+
+                    Берём корень, получаем что длина
+                    \[ \le \sum\limits_{j=1}^{n} M_{\Delta}(t_{j}-t_{j-1}) = (\beta-\alpha)M_{\Delta} .\] 
+                \end{proof}
+        \end{lemma}
+        \TODO 
+        Возьмём разбиение $[a, b]$, назовём его $t$.
+
+        Тогда $m_{k} := m_{[t_{k-1}, t_{k}]}(t_{k}-t_{k-1}) \le \ell\left( \left. \gamma\right|_{[t_{k-1}, t_{k}]} \right) \le M_{[t_{k-1}, t_{k}]}(t_{k}-t_{k-1}) =: M_{k}$
+
+        Просумиируем:
+        \[ \sum\limits_{k=1}^{n} m_{k}(t_{k}-t_{k-1}) \le \ell(\gamma) \le \sum\limits_{k=1}^{n} M_{k}(t_{k}-t_{k-1}) .\] 
+        
+        При этом,
+        \[ m_{k}(t_{k}-t_{k-1}) \le \int\limits_{t_{k-1}}^{t_{k}} \|\gamma'(t)\|dt \le M_{k}(t_{k}-t_{k-1})  .\]
+
+        Можем таким-же образом просуммировать:
+        \[ \sum\limits_{k=1}^{n} m_{k}(t_{k}-t_{k-1}) \le \int\limits_{a}^{b} \|\gamma'(t)\|dt  \le \sum\limits_{k=1}^{n} M_{k}(t_{k}-t_{k-1}) .\]
+
+        Осталось показать, что разность левой и правой части стремится к $0$:
+        \begin{equation*}
+            \begin{split}
+                \sum\limits_{k=1}^{n} (M_{k}-m_{k})(t_{k}-t_{k-1}) 
+                &= \sum\limits_{i=1}^{n} \sqrt{\sum\limits_{i=1}^{d} \left(M_{[t_{k-1}, t_{k}]}^{(i)}\right)^2} - \sqrt{\sum\limits_{i=1}^{d} \left(m_{[t_{k-1}, t_{k}]}^{(i)}\right)^2}\\
+                &\le \sqrt{\sum\limits_{i=1}^{d} \left( M_{[t_{k-1}, t_{k}}^{(i)} - m_{[t_{k-1}, t_{k}]}^{(i)} \right) }\\ 
+                &= \sqrt{\sum\limits_{i=1}^{d} (\gamma'_{i}(\xi_{ik}) - \gamma'(\eta_{ik}))^2}\\ 
+                &\le \sqrt{\sum\limits_{i=1}^{d} \left( \omega_{\gamma_{i}'}\left( \eps \right)  \right)^2 }
+            \end{split}
+        \end{equation*}
+        
+        Где $\eps = \max\limits_{k} t_{k} - t_{k-1}$.
+
+        При $\eps \to 0$ всё выражение стремиться к $0$.
+
+        Значит, 
+        \[ \ell(\gamma) = \int\limits_{a}^{b} \|\gamma'(t)\|dt  .\] 
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    \begin{enumerate}
+        \item Длина графика функции: $f: [a, b] \mapsto \mathbb{R}$ - $\int\limits_{a}^{b} \sqrt{1 + f'(x)^2}dx   \impliedby \gamma(t) = \begin{bmatrix} t \\ f(t) \end{bmatrix} $
+        \item Длина в полярных координатах: $r : [\alpha, \beta] \mapsto \mathbb{R}$ - $\int\limits_{\alpha}^{\beta} \sqrt{r^2(\phi) + r'^2(\phi)}d\phi \impliedby \gamma(t) = \begin{bmatrix} r(t)\cos t\\ r(t)\sin(t) \end{bmatrix}   $
+        \item $\ell(\gamma) \le (b-a)\max \|\gamma'\|$
+    \end{enumerate}
+\end{consequence}
+\begin{definition} \thmslashn 
+
+    Кривая называется спрямляемой, если её длина конечна.
+\end{definition}
+\begin{statement} \thmslashn
+
+    Можно рассмотреть $f(t) = \ell\left(\left. \gamma\right|_{[a, t]}\right)$.
+
+    $f$ непрерывна тогда и только тогда, когда кривая спрямляема.
+\end{statement}
+\begin{definition} \thmslashn 
+
+    Пусть $A \subset X$, где $X$ - метрическое пространство.
+
+    $A$ - связно, если при покрытии $A \subset U \cup V$, где $U, V$ - открытые множества, такие, что $U\cap V$, либо $A \subset U$, либо $A \subset V$.
+\end{definition}
+\begin{theorem} \thmslashn
+
+    Непрерывнай образ связного множества связен.
+    \begin{proof} \thmslashn
+    
+        Пусть $f : (E \subset X) \mapsto Y$, $E$ связно, $f$ непрерывно.
+
+        Покроем $f(E)$ открытыми в $Y$ непересекающимеся множествами $U$ и $V$.
+
+        Тогда $E \subset f^{-1}(U) \cup f^{-1}(V)$. Эти множества не пересекаются, и прообраз открытого множества открыт. Тогда, одно из множеств можно выкинуть. Пусть $E \subset f^{-1}(U)$. Тогда $f(E) \subset U$.
+    \end{proof}
+\end{theorem}
+\begin{consequence}[Теорема Больцано-Коши] \thmslashn
+
+    Пусть $f : E \mapsto \mathbb{R}$. $f$ непрерывно, $E$ связно. $a, b\in E$, такие, что $f(a) = A$, $f(b) = B$.
+
+    Тогда $\forall{A \le C \le B}\quad \exists{c\in E}\quad f(c) = C$.
+
+    \begin{proof} \thmslashn
+    
+        Пусть $\exists{A \le C \le B}\quad \forall{x\in E}\quad f(x) \neq C \implies f(E) \subset (-\infty, C) \cup (C, +\infty)$. При этом, $A\in (-\infty, C)$, $B\in (C, +\infty)$. Ни одно множество выкинуть нельзя. Противоречие.
+    \end{proof}
+\end{consequence}
+\begin{theorem} \thmslashn
+
+    $[a, b] \subset \mathbb{R}$ - связное множество.
+    \begin{proof} \thmslashn
+    
+        Предположим что не связан.
+
+        Пусть $[a, b] \subset U \cup V$, $U, V$ - открытые непересекающиеся.
+
+        Пусть $b\in V$. 
+
+        Рассмотрим $S := [a, b]\cap U$. По предположению, $S \neq \emptyset$.
+
+        Рассмотрим $s = \sup S$.
+
+        Пусть $s\in V$. Тогда, $\exists{\eps}\quad (s-\eps, s+\eps) \subset V$. Тогда $(s - \eps, s]\cap U = \emptyset$, значит, $s-\eps$ тоже верхняя граница $S$. Противоречие с тем, что $s$ - супремум.
+
+        Пусть $s\in U$, тогда $s \neq b$. Тогда, $\exists{\eps}\quad (s-\eps, s+\eps) \subset U \land s + \eps < b$. Тогда, $[s, s+\eps) \subset  S$. Противоречие с тем, что $s$ супремум.
+
+        Значит, предположение о несвязности отрезка неверно.
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Носитель любого пути связен.
+\end{consequence}
+\begin{definition} \thmslashn 
+
+    Множество $A \subset X$ называется линейно связным, если $\forall{x, y\in A}\quad \exists{\gamma : [a, b] \mapsto A}\quad \gamma(a) = x \land \gamma(b) = y$, $\gamma$ - путь.
+\end{definition}
+\begin{theorem} \thmslashn
+
+    Линейно связное множество связно.
+    \begin{proof} \thmslashn
+    
+       Пусть не так.
+
+       Пусть $A \subset U \cup V$, $U, V$ - открытые непересекающиеся.
+
+       Возьмём $x\in A\cap U$, $y\in A\cap V$.
+
+       Соеденим их путём $\gamma : [a, b] \mapsto A$.
+
+       Тогда, $\gamma([a, b]) \subset U\cap V$. При этом, $\gamma(a)\in U$, $\gamma(b)\in V$. Но носитель пути связен. Противоречие.
+    \end{proof}
+\end{theorem}
+\begin{definition} \thmslashn 
+
+    Область - открытое линейно связное множество.
+\end{definition}
+\begin{remark} \thmslashn
+
+    Если $U$ - открытое, то $U$ связно $\iff $ $U$ линейно связно.
+\end{remark}
+\Subsection{7 Ряды}
+\Subsubsection{1 Ряды в нормированных пространствах}
+\begin{definition} \thmslashn 
+
+    Пусть $X$ - нормированное пространство. $x_1, x_2, \ldots\in X$.
+
+    Ряд - $\sum\limits_{i=1}^{\infty} x_{i}$.
+
+    Частичная сумма ряда - $S_{n} = \sum\limits_{i=1}^{n} x_{i}$.
+
+    Если сущесвует $\lim\limits_{n \to \infty} S_{n}$, то он называется суммой ряда.
+
+    Ряд называется сходящимся если предел сущесвует.
+\end{definition}
+\begin{remark} \thmslashn
+
+    Если рассматриваем ряды в $\mathbb{R}$, то $\infty \not\in \mathbb{R}$, значит для обычных пределов <<сходится>> $\iff$ <<предел существует и конечен>>
+\end{remark}
+\begin{theorem}[Необходимое условие сходимости] \thmslashn
+
+    Если ряд $\sum\limits_{i=1}^{\infty} x_{i}$ сходится, то $\lim\limits_{n \to \infty} x_{n} = 0$.
+
+    \begin{proof} \thmslashn
+    
+        \[ x_{n} = S_{n} - S_{n-1} \implies \lim\limits_{n \to \infty} x_{n} = \lim\limits_{n \to \infty} S_{n} - \lim\limits_{n \to \infty} S_{n-1} = 0 .\] 
+    \end{proof}
+\end{theorem}
+\begin{properties} \thmslashn
+
+    
+\begin{theorem}[Линейность суммы] \thmslashn
+
+    Если $S_1 = \sum\limits_{i=1}^{\infty} x_{i}$, $S_2 = \sum\limits_{i=1}^{\infty} y_{i}$, то $\sum\limits_{i=1}^{\infty}(\alpha x_{i} + \beta y_{i}) = \alpha S_1 + \beta S_2$.
+\end{theorem}
+\begin{theorem}[Расстановка скобок] \thmslashn
+
+    В сходящемся ряду можно без изменения суммы расставить скобки.
+    \begin{proof} \thmslashn
+    
+        Расстановка скобок - выбор подпоследовательности из последовательности частичных сумм.
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Покоординатная сходимость в $\mathbb{R}^{d}$] \thmslashn
+
+    Пусть $x_1, x_2, \ldots\in \mathbb{R}^{d}$. $x_{i} = \begin{bmatrix} x_{i}^{(1)}\\ \vdots\\ x_{i}^{(d)} \end{bmatrix} $.
+
+    Тогда, ряд $\sum\limits_{i=1}^{\infty} x_{i}$ сходится тогда и только тогда, когда $\forall{1 \le i \le d}\quad $ сходится рад $\sum\limits_{k=1}^{\infty} x_{k}^{(i)}$.
+\end{theorem}
+\end{properties}
+\begin{theorem}[(Очередной) Критерий Коши] \thmslashn
+
+    Пусть $X$ - полное нормированное пространство.
+
+    Тогда ряд $\sum\limits_{i=1}^{\infty} x_{i}$ - сходится $\iff \forall{\eps > 0}\quad \exists{N}\quad \forall{m, n > N}\quad \left| \sum\limits_{i=m}^{n} x_{i}\right| < \eps$.
+    \begin{proof} \thmslashn
+    
+        Заметим, что $\sum\limits_{i=m}^{n}x_{i} = S_{m} - S_{n}$. Получили критерий для предела частичных сумм, сходимость которого и определяем сходимость ряда.
+    \end{proof}
+\end{theorem}
+\begin{definition} \thmslashn 
+
+    Абсолютная сходимость.
+
+    Ряд $\sum\limits_{i=1}^{\infty} x_{i}$ абсолютно сходится, если сходится $\sum\limits_{i=1}^{\infty} \|x_{i}\|$.
+\end{definition}
+\begin{theorem} \thmslashn
+
+    Пусть $X$ - полное нормированное пространство.
+
+    Если $\sum\limits_{i=1}^{\infty} x_{n}$ сходится абсолютно, то он сходится, и $\left\|\sum\limits_{i=1}^{\infty} x_{i}\right\| \le \sum\limits_{i=1}^{\infty} \left\|x_{n}\right\|$.
+    \begin{proof} \thmslashn
+    
+        Пусть $\sum\limits_{i=1}^{\infty} \|x_{i}i\| \implies \forall{\eps > 0}\quad \exists{N}\quad \forall{n,m > N}\quad \left\|\sum\limits_{i=n}^{m} x_{k}\right\| \le \sum\limits_{i=n}^{m} < \eps$
+
+        Значит, $\forall{\eps > 0}\exists{N}\quad \quad \forall{m,n > N}\quad \left\|\sum\limits_{i=m}^{n} x_{i}\right\| < \eps$.
+
+
+        При этом, знаем
+        \[ \left\|\sum\limits_{i=1}^{n}x_{i}\right\| \le \sum\limits_{i=1}^{n} \|x_{i}\| .\]
+        Прейдём к пределу, получим нужное утверждение.
+    \end{proof}
+\end{theorem}
