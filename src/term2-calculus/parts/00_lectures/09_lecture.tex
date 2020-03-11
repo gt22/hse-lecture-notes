@@ -1,0 +1,129 @@
+\SectionLecture{Лекция 9}{Игорь Энгель}
+\begin{theorem} \thmslashn
+
+    Если $\lim\limits_{n \to \infty} x_{n} = 0$ и кол-во слагаемых в каждой группе $\le M$, то если ряд после группировки сходится, то сходится и начальный ряд.
+    \begin{proof} \thmslashn
+    
+        Знаем, что есть подпоследовательность частичных сумм, соответствующая группировке. При этом $\lim\limits_{k \to \infty} S_{n_k} = S$
+
+        При этом, $S_{n_{k} + r}$ - произвольная частичная сумма, $0 \le r \le M$.
+
+        Рассмотрим $\lim\limits_{k \to \infty} S_{n_{k} + r} - S = \lim\limits_{k \to \infty} S_{n_{k}} - S + x_{n_k + 1} + \ldots + x_{n_k + r}$.
+
+        \[ \|S_{n_k} - S + x_{n_{k} + 1} + \ldots + x_{n_k + r}\| \le \|S_{n_k} - S\| + \|x_{n_k + 1}\| + \ldots + \|x_{n_k + r}\| \to 0 .\qedhere\] 
+    \end{proof}
+\end{theorem}
+\begin{theorem} \thmslashn
+
+    Для числовых рядов, если члены ряда в каждой группе одного знака, и ряд после группировки сходится, то сходится и начальный ряд.
+    \begin{proof} \thmslashn
+    
+        Если в группе от $x_{n_k + 1}$ до $x_{n_{k+1}}$ всё $\ge 0$, то $S_{n_k} \le S_{n_{k} + r} \le  S_{n_{k+1}}$. 
+
+        Если всё $\le 0$, то $S_{n_k} \ge S_{n_{k} + r} \ge S_{n_{k+1}}$.
+
+        В обоих случая, $S_{n_{k} + r}$ зажата между двумя стремящимися к $S$ последовательностями.
+    \end{proof}
+\end{theorem}
+\Subsection{2 Знакопостоянные ряды}
+\begin{theorem} \thmslashn
+
+    Если $a_{n} \ge 0$, то ряд $\sum\limits_{n=1}^{\infty} a_{n}$ сходится $\iff \exists{M}\quad \forall{n}\quad S_{n} \le M$
+    \begin{proof} \thmslashn
+    
+        Заметим, что $S_{n}$ монотонно возрастает. А значит, имеет предел тогда и только тогда, когда ограниченна.
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Признак сравнения] \thmslashn
+
+    Пусть $0 \le a_{n} \le b_{n}$.
+    
+    Тогда если $\sum\limits_{n=1}^{\infty} b_{n}$ сходится, то $\sum\limits_{n=1}^{\infty} a_{n}$ сходится.
+
+    Если $\sum\limits_{n=1}^{\infty} a_{n}$ расходится, то $\sum\limits_{n=1}^{\infty} b_{n}$ расходится.
+    \begin{proof} \thmslashn
+    
+        \[ A_{n} := \sum\limits_{k=1}^{n} a_{n} \le \sum\limits_{k=1}^{n} b_{k} =: B_{n} .\]
+
+        Если $\sum\limits_{n=1}^{\infty} b_{n}$ схоидтся, то $\exists{B}\quad \forall{n}\quad B_{n} \le B$, значит, $\forall{n}\quad a_{n} \le B$, значит, $\sum\limits_{n=1}^{\infty} a_{n}$ сходится.
+
+        Если $\sum\limits_{n=1}^{\infty} a_{n}$ расходится, а $\sum\limits_{n=1}^{\infty} b_{n}$ сходится, получаем противоречие.
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Пусть $a_{n}, b_{n} \ge 0$. Если $a_{n} = \mathcal{O}(b_{n})$, и $\sum\limits_{n=1}^{\infty} b_{n}$ сходится, то $\sum\limits_{n=1}^{\infty} a_{n}$ схоидтся.
+
+    Если $a_{n} \sim b_{n}$, то ряды ведут себя одинакого.
+    \begin{proof} \thmslashn
+    
+        Начиная с какого-то момента, $a_{n} < c b_{n}$.
+
+        Если они эквивалентны, то с какого-то момента, $\frac{b_{n}}{2} \le a_{n} \le 2b_{n}$.
+    \end{proof}
+\end{consequence}
+\begin{theorem}[Признак Коши] \thmslashn
+
+    Пусть $a_{n} \ge 0$. При этом
+    \begin{enumerate}
+        \item Если $\sqrt[n]{a_{n}} \ge 1$, то расходится.
+        \item Если $\sqrt[n]{a_{n}} \le q < 1 $, то ряд схоидтся.
+        \item Если $\varlimsup\limits_{n \to \infty} \sqrt[n]{a_{n}} > 1$, если $<1$, то сходится. При $=1$ ничего не известно.
+    \end{enumerate}
+    \begin{proof} \thmslashn
+    
+        Если $\sqrt[n]{a_{n}} \ge 1 $, то $a_{n} \ge 1 \implies a \not\to 0$.
+
+        Если $\sqrt[n]{a_{n}} < 1 \implies a_{n} \le q^{n} $. Геометрическая прогрессия сходится.
+
+        Пусть $\varlimsup\limits_{n \to \infty} \sqrt[n]{a_{n}} > 1$, тогда, $\exists{n_{k}}\quad \lim\limits_{k \to \infty} a_{n_{k}} = q > 1$. Тогда, при больших $k$ все $a_{n_{k}}\in (q-\eps, q+\eps) = (1, q+\eps)$. Тогда, $a_{n_{k}} \ge 1$, значит нет стремления к нулю, значит расходится.
+
+        Пусть $\varlimsup\limits_{n \to \infty} \sqrt[n]{a_{n}} < 1 \implies \lim\limits_{n \to \infty}  \sup\limits_{k \ge n} \sqrt[k]{a_{k}} = q < 1 $. Возьмём $\eps$, так, чтобы получилась окрестность с правым концом $\frac{1+q}{2}$, тогда, с какого-то $n$, $\sup\limits_{k \ge  n} \sqrt[k]{k} < \frac{q+1}{2}$. Тогда $\sqrt[k]{k} < \frac{q+1}{2} $. По пункту $2$ сходится.
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Признак Даламбера] \thmslashn
+
+    Пусть $a_{n} > 0$.
+
+    \begin{enumerate}
+        \item Если $\frac{a_{n+1}}{a_{n}} \ge 1$, ряд расходится
+        \item Если $\frac{a_{n+1}}{a_{n}} \le d < 1$, ряд сходится.
+        \item Если $\lim\limits_{n \to \infty} \frac{a_{n+1}}{a_{n}}$ существует и конечен. Если он $ >1$, то расходится, если $<1$ сходится. При $=1$ ничего не известно.
+    \end{enumerate}
+    \begin{proof} \thmslashn
+    
+        Члены ряда возрастают, значит не стремятся к нулю.
+
+        Ряд ограничен геометрической прогрессией со знаменателем $d$. $a_{k} = \mathcal{O}(d^{k})$.
+
+        Пусть $\lim\limits_{n \to \infty} \frac{a_{n+1}}{a_{n}} = d^{*}$. Начиная с некоторого номера, $\frac{a_{n+1}}{a_{n}}  \frac{\ge }{\le } 1$, по пункту 1/2 расходится/сходится.
+    \end{proof}
+\end{theorem}
+\begin{theorem} \thmslashn
+
+    Если $\lim\limits_{n \to \infty} \frac{a_{n+1}}{a_{n}}$ существует, то он равен $\lim\limits_{n \to \infty} \sqrt[n]{a_{n}} $
+    \begin{proof} \thmslashn
+    
+        Рассмотрим логарифмы.
+        \[ \lim\limits_{n \to \infty} \frac{\log a_{n}}{n} = \lim\limits_{n \to \infty} \frac{\log a_{n+1} - \log a_{n}}{(n+1) - n} = \lim\limits_{n \to \infty} \log a_{n+1} - \log a_{n} = \lim\limits_{n \to \infty} \log \frac{a_{n+1}}{a_{n}}\]
+    \end{proof}
+\end{theorem}
+\begin{theorem} \thmslashn
+
+    Пусть $f : [m, n] \mapsto \mathbb{R}$ - монотонная, $f \ge 0$.
+
+    Тогда, $\left|\sum\limits_{k=m}^{n} f(k) - \int\limits_{m}^{n} f(t)dt\right| \le\max \{|f(m)|, |f(n)|\} $.
+
+    \begin{proof} \thmslashn
+        Без ограничения общности, $f$ убывает.
+    
+        Заметим, что $\sum\limits_{k=m}^{n-1} f(k) \ge \int\limits_{m}^{n} f(t)dt \ge \sum\limits_{k=m+1}^{n}$.
+
+        \[ \sum\limits_{k=m+1}^{n} f(k) - \int\limits_{m}^{n} \le  0 \implies \sum\limits_{m=k}^{n} f(k) - \int\limits_{m}^{n} f \le f(m)   .\]
+        \[ \sum\limits_{k=m}^{n-1} f(k) - \int\limits_{m}^{n} f \ge 0 \implies \sum\limits_{k=m}^{n} f(k) - \int\limits_{m}^{n} f \ge f(n) \ge 0  .\qedhere\]
+    \end{proof}
+\end{theorem}
+\begin{remark} \thmslashn
+
+    Теорема верна и без ограничения $f \ge 0$.
+\end{remark}
