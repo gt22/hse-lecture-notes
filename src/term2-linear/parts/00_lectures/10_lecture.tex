@@ -1,0 +1,84 @@
+\SectionLecture{Лекция 10}{Игорь Энгель}
+\begin{definition} \thmslashn 
+
+    Объём парралелелепипида натянутого на вектора $v = v_1, \ldots, v_{n}$: функция $\Vol(v)\in \mathbb{R}$, удовлетворяющая следующим свойствам:
+    \begin{enumerate}
+        \item[0] $\Vol(e) = 1$, где  $e$ - стандартный базис  $\mathbb{R}^{n}$
+        \item $\Vol(v_1, \ldots, \lambda v_{i}, \ldots, v_{n}) = |\lambda|\Vol(v_1, \ldots, v_{n})$.
+        \item $\Vol(v_1, \ldots, v_i, \ldots, v_{i}, \ldots, v_{n}) = 0$.
+        \item $\Vol(v_1, \ldots, v_{i}, \ldots, v_{j}+\lambda v_{i}, \ldots, v_{n}) = \Vol(v_1, \ldots, v_{n})$.
+    \end{enumerate}
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Пусть задан набор пространств $U_1, \ldots, U_{n}$ и $W$, надо полем $K$.
+
+    Отображение $\omega : U_1 \times \ldots \times U_{n} \mapsto W$ называется полилинейным, если оно линейнок по каждому входному вектору.
+
+    Множество всех полилинейных отображение отображается $\Hom_{K}(U_1, \ldots, U_{n}; W)$.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Отображение $\omega\in \Hom_{K}(U_1, \ldots, U_{n}; K)$ называется полилинейной формой.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Отображение $\omega\in \Hom_{K}(\underbrace{V \times \ldots \times V}; K)$ называется полилинейной формой степени $\ell$ на $V$.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Полилинейная форма степени $\ell$ $\omega$ называется симметричной, если $\omega(v_1, \ldots, v_{\ell}) = \omega(v_{\sigma(1)}, \ldots, v_{\sigma(\ell)}$, $\sigma\in S_{\ell}$.
+
+    $\omega$ называется кососимметричной, если $\omega(v_1, \ldots, v_{i}, \ldots, v_{i}, \ldots, v_{\ell}) = 0$.
+\end{definition}
+\begin{statement} \thmslashn
+
+    Пусть $\omega : V^{\times \ell} \mapsto K$, $e$ - базис $V$.
+
+    Тогда 
+    \[ \omega(v_1, \ldots, v_{\ell}) = \sum\limits_{i_1, \ldots, i_{\ell}} \omega(e_{i_1}, \ldots, e_{i_{\ell}}) \prod\limits_{j=1}^{\ell} \lambda_{ji_{j}}   .\]
+    
+    Где $\lambda_{ji_{j}}$ - $i_{j}$-я координата $v_{j}$ в базисе $e$.
+    \begin{proof} \thmslashn
+
+        Разложим по базису, воспользуемся линейностью.
+    \end{proof}
+\end{statement}
+\begin{statement} \thmslashn
+
+    Пусть $\omega$ - полилинейная форма.
+    \begin{enumerate}
+        \item Если $\omega$ - кососимметричная, то $\omega(\ldots, v_{i}, \ldots, v_{j}, \ldots) = (-1) \omega(\ldots, v_{j}, \ldots, v_{i}, \ldots)$.
+        \item Если выполнено условие $1$ и  $\Char K \neq 2$, то $\omega$ кососимметричная.  
+        \item Если $\omega$ - кососимметричная, то $\omega(v_1, \ldots, v_{\ell}) = \sgn(\sigma)\omega(v_{\sigma(1)}, \ldots, v_{\sigma(\ell)})$.
+        \item Если $\omega$ - кососимметричная, то $\omega\left( v_1, \ldots, v_{\ell} \right) = \sum\limits_{i_1 < \ldots < i_{\ell}} w(e_{i_1}, \ldots e_{i_{\ell}}) \sum\limits_{\sigma\in S_{\ell}} \sgn(\sigma)\prod\limits_{j=1}^{\ell} \lambda_{j\sigma(i_{j})}  $
+        \begin{proof} \thmslashn
+        
+            \TODO{}
+        \end{proof}
+    \end{enumerate}
+\end{statement}
+\begin{definition} \thmslashn 
+
+    Пусть $V$ - векторное пространство размерности $n$, Тогда $\omega : V^{\times n} \mapsto K$ называется формой объёма, если она является кососимметричной полилинейной формы.
+\end{definition}
+\begin{remark} \thmslashn
+
+    $\omega$ называется невырожденной если $\omega \neq 0$.
+\end{remark}
+\begin{definition} \thmslashn 
+
+    Пусть $A\in M_{n}(K)$. тогда $\det A = \sum\limits_{\sigma\in S_{n}} \sgn(\sigma) \prod\limits_{j=1}^{n} A_{\sigma(j)j} $.
+\end{definition}
+\begin{theorem} \thmslashn
+
+    \begin{enumerate}
+        \item Определитель - форма объёма на пространстве столбцов.
+        \item $V$ - пространство размерности $n$, $e$ - базис $V$. Тогда  $\Vol_{e} : V^{\times n} \mapsto K$, $\Vol_{e}(v_1, \ldots, v_{n}) = \det \begin{bmatrix} [v_1]_{e}, \ldots, [v_{n}]_{e} \end{bmatrix} $ - форма объёма.        \item Форма объёма единственна с точностью до константы. Если $\omega$ - форма объёма, то  $\omega = \omega(e_1, \ldots, e_{n})\Vol_{e}$.
+        \item Для любой $\omega$  - невырожденной формы объёма $\omega(v_1, \ldots, v_{n}) \neq 0 \iff v_1, \ldots, v_{n}$ - линейно независимы.
+    \end{enumerate}
+    \begin{proof} \thmslashn
+    
+        \TODO{} 
+    \end{proof}
+\end{theorem}
