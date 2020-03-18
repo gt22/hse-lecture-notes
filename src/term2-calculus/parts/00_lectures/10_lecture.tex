@@ -1,0 +1,325 @@
+\SectionLecture{Лекция 10}{Игорь Энгель}
+\begin{theorem}[Интегральный признак сходимости] \thmslashn
+
+    Пусть $f : [1, \infty) \mapsto \mathbb{R}$, $f \ge 0$. $f$ монотонно убывает.
+
+    Тогда $\sum\limits_{k=1}^{\infty} f(k)$ и $\int\limits_{1}^{\infty} f(x)dx$ ведут себя одинакого.
+    \begin{proof} \thmslashn
+    
+        Сходимость ряда равносильная ограниченности частичных сумм $S_{n} = \sum\limits_{k=1}^{n}$.
+
+        Сходимость интеграла равносильна ограниченности первообразной $F(n) = \int\limits_{1}^{n} f(x)dx$.
+
+        По предыдущей теореме $\TODO{ref}$, $|S_{n} - F(n)| \le f(1)$. Значит, их ограниченности эквивалентны.
+    \end{proof}
+\end{theorem}
+\begin{example} \thmslashn
+
+    Рассмотрим ряд $\sum\limits_{n=1}^{\infty} \frac{1}{n^{p}}$.
+
+    Если $p\le 0$, то точно расходится.
+
+    Если $p>0$, то сходимость эквивалентна сходимости интеграла $\int\limits_{1}^{\infty} \frac{1}{x^{p}}dx$.
+
+    Про интеграл знаем, что сходится тогда и только тогда, когда $p > 1$.
+
+    Значит, ряд сходится тогда и только тогда, когда $p > 1$.
+\end{example}
+\begin{consequence} \thmslashn
+
+    Если $0 \le a_{n} \le \frac{c}{n^{p}}$, $p>1$, то ряд $\sum\limits_{k=1}^{\infty} a_{k}$ сходится.
+    \begin{proof} \thmslashn
+    
+        Признак сравнения + последний пример.
+    \end{proof}
+\end{consequence}
+\begin{example} \thmslashn
+
+    Рассмотрим ряд $\sum\limits_{n=2}^{\infty} \frac{1}{n\log n}$.
+
+    Рассмотрим интеграл $\int\limits_{2}^{\infty}  \frac{1}{x\log x}dx$. Его сходимость равносильная сходимости ряда.
+
+    \begin{equation*}
+        \int\limits_{2}^{b} \frac{dx}{x\log x} \overset{y=\log x}{=} \int\limits_{\log 2}^{\log b} \frac{dy}{y} = \left| \log y\right|_{\log 2}^{\log b} = \log \log b - \log\log 2 \to \infty
+    \end{equation*}
+
+    Интеграл расходится, значит ряд тоже.
+\end{example}
+\Subsection{3 Знакопеременные ряды}
+\begin{definition} \thmslashn 
+
+    Ряд $\sum\limits_{n=1}^{\infty} a_{n}$ сходится абсолютно, если сходится $\sum\limits_{n=1}^{\infty} |a_{n}|$.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Ряд $\sum\limits_{n=1}^{\infty} a_{n}$ сходится условно, если он сходится, но абсолютной сходимости нет.
+\end{definition}
+\begin{theorem}[Преобразование Абеля (дискретное интегрирование по частям)] \thmslashn
+
+    \begin{equation*}
+        A_{0} = 0
+        A_{k} := \sum\limits_{i=1}^{k} a_{i}
+    \end{equation*}
+   \begin{equation*}
+       \sum\limits_{k=1}^{n} a_{k}b_{k} = A_{n}b_{n} - \sum\limits_{k=1}^{n-1} A_{k}(b_{k+1}-b_{k})
+   \end{equation*}
+   \begin{proof} \thmslashn
+   
+       \begin{equation*}
+           \begin{split}
+               \sum\limits_{k=1}^{n} a_{k}b_{k} 
+               &= \sum\limits_{k=1}^{\infty} (A_{k}-A_{k-1})b_{k}\\
+               &= \sum\limits_{k=1}^{n} A_{k}b_{k} - \sum\limits_{j=2}^{n} A_{j-1}b_{j}\\
+               &= \sum\limits_{k=1}^{n} A_{k}b_{k} - \sum\limits_{k=1}^{n-1} A_{k}b_{k+1}\\
+               &= A_{n}b_{n} + \sum\limits_{k=1}^{n-1} A_{k}b_{k} - A_{k}b_{k+1}\\
+               &= A_{n}b_{n} - \sum\limits_{k=1}^{n} A_{k}(b_{k+1}-b_{k}) \qedhere
+           \end{split}
+       \end{equation*}
+   \end{proof}
+\end{theorem}
+\begin{theorem}[Признак Дирихле] \thmslashn
+
+    Если частичные суммы $A_{n} = \sum\limits_{k=1}^{n} a_{k}$ ограничены, $b_{k}$ монотонны, $\lim\limits_{n \to \infty} b_{n} = 0$.
+
+    Тогда ряд $\sum\limits_{n=1}^{\infty} a_{n}b_{n}$ - сходится.
+    \begin{proof} \thmslashn
+    
+        Рассмотрим $S_{n} = \sum\limits_{k=1}^{n} a_{k}b_{k} = A_{n}b_{n} + \sum\limits_{k=1}^{n-1} A_{k}(b_{k}-b_{k+1})$.
+
+        Заметим, что $A_{n}b_{n}$ - произведение ограниченного на бесконечно малое, значит стремится к нулю.
+
+        Рассмотрим $\sum\limits_{k=1}^{n-1} A_{k}(b_{k}-b_{k+1})$. Это частичная сумма какого-то ряда, надо показать что есть её предел. Докажем абсолютную сходимость ряда.
+
+        Пусть $|A_{n}| \le M$
+
+        \begin{equation*}
+            \begin{split}
+                \sum\limits_{k=1}^{n} \left|A_{k}(b_{k} - b_{k+1})\right| &\le M \sum\limits_{i=1}^{n} \left|b_{k} - b_{k+1}\right| = M\left|\sum\limits_{k=1}^{n} (b_{k}-b_{k+1})\right| = M(b_{1}-b_{n+1}) \to Mb_{1}
+            \end{split}
+        \end{equation*}
+
+        Замену суммы модулей на модуль суммы можно делать, так-как все $b_{n}$ с какого-то момента одного знака.
+
+        Значит, всё имеет предел.
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Признак Абеля] \thmslashn
+
+   Если $\sum\limits_{n=1}^{\infty} a_{n}$ - сходится, $b_{n}$ монотонны и ограничены.
+
+   Тогда $\sum\limits_{n=1}^{\infty} a_{n}b_{n}$ сходится.
+
+   \begin{proof} \thmslashn
+   
+      Знаем, что сущетсвует предел $b_{n}$. Пусть $B := \lim\limits_{n \to \infty} b_{n}$. Тогда $\tilde{b}_{n} = b_{n} - B$. $\tilde{b}_{n}$ монотонна и стремится к $0$.
+
+      Знаем, что у $A_{n} := \sum\limits_{k=1}^{n} a_{k}$. $A_{n}$ имеет предел, значит она ограниченна.
+
+      По признаку Дирихле, ряд $\sum\limits_{n=1}^{\infty} a_{n}\tilde{b}_{n}$ сходится.
+      \begin{equation*}
+          \sum\limits_{k=1}^{\infty} a_{n}\tilde{b}_{n} = \sum\limits_{k=1}^{\infty} a_{n}(b_{n}-B) = \sum\limits_{n=1}^{\infty} a_{n}b_{n} - B \sum\limits_{n=1}^{\infty} a_{n} \iff \sum\limits_{n=1}^{\infty} a_{n}b_{n} = \sum\limits_{n=1}^{\infty} a_{n}\tilde{b}_{n} + B \sum\limits_{n=1}^{\infty} a_{n}
+      \end{equation*}
+
+      Значит, нужный ряд - сумма двух сходящихся рядов.
+   \end{proof}
+\end{theorem}
+\begin{definition} \thmslashn 
+
+    Ряд называется знакочередующимся, если он имеет вид $\sum\limits_{n=1}^{\infty} (-1)^{n-1}a_{n}$, $a_{n} \ge 0$. (Либо, $(-1)^{n}$).
+\end{definition}
+\begin{theorem}[Признак Лейбница] \thmslashn
+
+    Если $a_{n}$ - монотонны и стремяется к $0$, то ряд $\sum\limits_{n=1}^{\infty} (-1)^{n-1}a_{n}$ сходится.
+
+    Более того, $S_{2n} \le S \le S_{2n+1}$.
+    \begin{proof} \thmslashn
+    
+       Заметим, что $S_{2n+2} = S_{2n} + a_{2n+1} - a_{2n+2}$. Так-как $a_{n}$ монотонны, $S_{2n+2} \ge  S_{2n}$ .
+
+       Аналогично, $S_{2n+1} = S_{2n-1} - a_{2n} + a_{2n+1}$. Значит, $S_{2n+1} \le S_{2n-1}$.
+
+       Значит, следующие отрезки вложенны:
+       \[ [0, S_1] \supset [S_2, S_3] \supset [S_{4}, S_{5}] \supset \ldots .\]
+
+       При этом, $S_{2n+1} - S_{2n} = a_{2n}$. По теореме о стягивающих отрезках, начала и концы имеют пределы, и они равны. $\lim\limits_{n \to \infty} S_{2n} = \lim\limits_{n \to \infty} S_{n+1} = S \implies \lim\limits_{n \to \infty} S_{n} = S$.
+    \end{proof}
+\end{theorem}
+\begin{example} \thmslashn
+
+    Рассмотрим ряд $\sum\limits_{n=1}^{\infty} \frac{(-1)^{n}}{n^{p}}$. Знаем, что при $p>1$ сходится абсолютно.
+
+    При $p\le 0$ члены ряда не стремятся к $0$, поэтому ряд расходится.
+
+    При $0 < p \le 1$, по признаку Лейбница, сходится условно.
+\end{example}
+\begin{example} \thmslashn
+
+    Рассмотрим ряд Лейбница - $\sum\limits_{n=1}^{\infty} \frac{(-1)^{n-1}}{n}$.
+
+    По признаку Лейбница сходится.
+
+    Найдём предел частичных сумм с чётными номерами:
+    \[ S_{2n} = 1 + \frac{1}{3} + \frac{1}{5} + \ldots + \frac{1}{2n-1} - (\frac{1}{2} + \frac{1}{4} + \ldots + \frac{1}{2n}) .\]
+    \[ S_{2n} = 1 + \frac{1}{2} + \frac{1}{3} + \ldots + \frac{1}{2n} - 2\left( \frac{1}{2} + \frac{1}{4} + \ldots + \frac{1}{2n} \right) = 1 + \frac{1}{2} + \ldots + \frac{1}{2n} - (1 + \frac{1}{2} + \frac{1}{3} + \ldots + \frac{1}{n}) = H_{2n} - H_{n} = \log (2n) + \gamma + o(1) - \log n - \gamma - o(1) = \log 2 + o(1) \to \log 2.\] 
+    \TODO
+\end{example}
+\begin{example} \thmslashn
+
+    Рассмотрим ряд $1 - \frac{1}{2} - \frac{1}{4} + \frac{1}{3} - \frac{1}{6} - \frac{1}{8} + \ldots + \frac{1}{2n-1} - \frac{1}{4n-2} - \frac{1}{4n} + \ldots$.
+
+    Обозначим сумму за $\tilde{S}$.
+
+    Рассмотрим $\tilde{S}_{3n}$ (группируем слагаемые по $3$).
+    \begin{equation*}
+        \begin{split}
+            \tilde{S}_{3n} 
+            &= 1 + \frac{1}{3} + \ldots + \frac{1}{2n-1} - \left( \frac{1}{2} + \frac{1}{4} + \ldots + \frac{1}{4n} \right)\\
+            &= 1 + \frac{1}{3} + \ldots + \frac{1}{2n-1} - \frac{1}{2}\left( 1 + \frac{1}{2} + \frac{1}{3} + \ldots + \frac{1}{2n} \right) \\
+            &= H_{2n} - \frac{1}{2}H_{n} - \frac{1}{2}H_{2n}\\
+            &= \frac{1}{2}\left( H_{2n} - H_{n} \right) = \frac{1}{2}S_{2n} = \frac{\log 2}{2}
+        \end{split}
+    \end{equation*}
+    
+    \textbf{От перестановки слагаемых в бесконечных рядах их сумма в общем случае меняется.}
+\end{example}
+\begin{definition}[Перестановка членов ряда] \thmslashn 
+
+    Рассмотрим $\phi : \N \mapsto \N$ - биекция. Тогда, перестановка членов ряда $\sum\limits_{n=1}^{\infty} a_{n}$ - ряд $\sum\limits_{n=1}^{\infty} a_{\phi(n)}$
+\end{definition}
+\begin{theorem} \thmslashn
+
+    Пусть $\sum\limits_{n=1}^{\infty} a_{n} = S$ сходится абсолютно.
+
+    Тогда, любая перестановка $\sum\limits_{n=1}^{\infty} a_{\phi(n)} = S$.
+    \begin{proof} \thmslashn
+    
+        Пусть $\tilde{S} = \sum\limits_{n=1}^{\infty} a_{\phi(n)}$
+
+        Случай $1$: $a_{n} \ge 0$. Тогда $\tilde{S}_{n} \le S$. Значит, частичные суммы ограничены, и $\tilde{S} \le S$. Так-как $\phi$ - биекция, можем сделать обратную перестановку, и получить $S \le \tilde{S}$. Значит, $S = \tilde{S}$.
+
+        Случай $2$: Рассмотрим $(a_{n})_{+} = \max \{a_{n}, 0\} $, $(a_{n})_{-} = \max \{-a_{n}, 0\} $. Тогда $(a_{n})_{+} - (a_{n})_{-} = a_{n}$. $(a_{n})_{+} + (a_{n})_{-} = |a|$.
+
+        Ряд сходится абсолютно, значит, $\sum\limits_{n=1}^{\infty} (a_{n})_{\pm} \le \sum\limits_{n=1}^{\infty} |a_{n}|$ сходится.
+
+        Значит, $\sum\limits_{n=1}^{\infty} (a_{n})_{\pm} = \sum\limits_{n=1}^{\infty} (a_{\phi(n)})_{\pm}$.
+
+        Вычтем ряды друг из друга, получим ту-же сумму.
+    \end{proof}
+\end{theorem}
+\begin{remark} \thmslashn
+
+    Если $a_{n} \ge 0$ и ряд расходится, то любая его перестановка даёт тот-же результат.
+
+    Если ряд сходится условно, то ряды $\sum\limits_{n=1}^{\infty} (a_{n})_{+}$ и $\sum\limits_{n=1}^{\infty} (a_{n})_{-}$ расходятся, так-как их разность сходится, а сумма расходится.
+\end{remark}
+\begin{theorem}[Теорема Римана о перестановке членов ряда] \thmslashn
+
+    Пусть $\sum\limits_{n=1}^{\infty} a_{n}$ сходится условно.
+
+    Тогда $\forall{s\in \overline{\mathbb{R}}}\quad \exists{\phi \text{ - перестановка}}\quad  \sum\limits_{n=1}^{\infty} a_{\phi(n)} = s$.
+
+    Так-же существует перестановка, для которой ряд вообще не будет иметь суммы.
+    \begin{proof} \thmslashn
+    
+        Пусть ряды $\sum\limits_{n=1}^{\infty} b_{n}$ и $\sum\limits_{n=1}^{\infty} c_{n}$. Положительные члены ряда находятся в $b$, отрицательные, домноженные на  $-1$, в  $c$. Нули где угодно.
+
+        Знаем что эти ряды расходяется, потому-что они эквивалентны рядам из $(a_{n})_{\pm}$. При этом, $\lim\limits_{n \to \infty} b_{n} = \lim\limits_{n \to \infty} c_{n} = 0$.
+
+        Пусть $s\in \mathbb{R}$.
+
+        Возьмём такое число $n_1$, что  $b_1 + b_2 + \ldots + b_{n_1-1} \le s < b_1 + \ldots + b_{n_1}$. Возьмём $n_1$  $b$-шек.
+
+        Дальше, возьмём число $m_1$, такое, что $b_1 + \ldots + b_{n} - c_1 - \ldots - c_{m_1} < s \le  b_1 + \ldots + b_{n_1} - c_1 - \ldots - c_{m_1-1}$. Возьмём $m_1$ $c$-шек.
+
+        Дальше сного берём $b$, потом снова $c$. Так-как и $b$ и $c$ стремятся к нулю, этот ряд будет стремится к $s$. При этом, мы всегда сможем набрать достаточную сумму, так-как $b, c \ge 0$ и расходятся.
+
+        Если $s = +\infty$.
+
+        На $i$-й итерации возьмём сколько-то $b$, пока сумма не станет $> i$, потом добавим одну $c$. С какого-то момента $c_{n} < 1$, так-что последоватльность будет строго возрастать на каждой итерации, значит ряд расходится в бесконечность. Симметрично для $-\infty$.
+
+        Если хотим получить отсутствее суммы, будем брать $b$ чтобы стало $>1$, а потом $c$, чтобы стало $< -1$. Тогда предела не будет.
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Теорема Коши о произведении рядов] \thmslashn
+
+    Пусть есть $\sum\limits_{n=1}^{\infty} a_{n} = A$, $\sum\limits_{n=1}^{\infty} b_{n} = B$ сходятся абсолютно, то ряд составленный из $a_{n}b_{k}$ в произвольном порядке будет абсолютно сходится. И его сумма - $AB$.
+    \begin{proof} \thmslashn
+    
+        Пусть $A^{*} := \sum\limits_{n=1}^{\infty} |a_{n}|$, $B^{*} := \sum\limits_{n=1}^{\infty} |b_{n}|$.
+
+        Рассмотрим $\sum\limits_{i, j} |a_{i}b_{j}| \le \sum\limits_{}^{\max i} |a_{i}| \sum\limits_{}^{\max j} |b_{j}|  \le A^{*}B^{*}$.
+
+        Значит, все суммы вида $\sum |a_{i}b_{j}|$ - ограничены. Значит, ряд абсолютно сходится.
+
+        Будем считать ряд в следующем порядке: $(a_1b_1) + (a_2b_1 + a_2b_2+a_1b_2) + \ldots$ (главные подквадраты квадратной таблицы).
+
+        Любая подпоследовательность частичных суммы сходится к тому-же пределу что вся последовательность. Будем рассматривать суммы с номерами вида $n^2$.
+        \begin{equation*}
+            S_{n^2} = \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n} a_{i}b_{j} = \sum\limits_{i=1}^{n} a_{i} \sum\limits_{i=1}^{n} b_{j} = A_{n}B_{n} \to AB \qedhere
+        \end{equation*}
+    \end{proof}
+\end{theorem}
+\begin{definition} \thmslashn 
+
+    Произведением рядов $\sum\limits_{n=1}^{\infty} a_{n}$, $\sum\limits_{n=1}^{\infty} b_{n}$ - ряд $\sum\limits_{n=1}^{\infty} c_{n}$, где $c_{n} = \sum\limits_{k=1}^{n} a_{k}b_{n-k+1}$ (диагонали квадратной таблицы).
+\end{definition}
+\begin{theorem}[Теорема Мертенса] \thmslashn
+
+    Если $\sum\limits_{n=1}^{\infty} a_{n} = A$, $\sum\limits_{n=1}^{\infty} b_{n} = B$ - сходятся, причём один из них абсолютно, то их произведение сходится к $AB$.
+\end{theorem}
+\begin{remark} \thmslashn
+
+    Здесь важен порядок
+
+    Просто сходимости недостаточно
+\end{remark}
+\begin{lemma} \thmslashn
+
+    Если $\lim\limits_{n \to \infty} x_{n} = x$, $\lim\limits_{n \to \infty} y_{n} = y$, тогда $\lim\limits_{n \to \infty}(S_{n} := \sum\limits_{k=1}^{n} x_{k}y_{n-k-1}) = xy$.
+    \begin{proof} \thmslashn
+    
+        Случай $y=0$. Тогда $|x_{n}| \le M$, $|y_{n}| \le M$. Выберем $N$, такое, что $\forall{n > N}\quad |y_{n}| < \eps$.
+
+        Тогда $\left| \sum\limits_{k=1}^{n} x_{k}y_{n-k+1} \right| \le \sum\limits_{k=1}^{n} |x_{k}y_{n-k+1}| < (n-N)M\eps + NM^2$.
+
+        Тогда $S_{n} < \frac{(n-N)M\eps + NM^2}{n} < M\eps + \frac{(N-1)M^2}{n} < M\eps + \eps$ при больших $n$.
+
+        Случай, если $y_{n}=y$.
+
+        Тогда $S_{n} = y \frac{x_1 + x_2 + \ldots}{n} = yx$ по теореме Штольца.
+
+        Произвольный случай: Пусть $y_{n} = y + \tilde{y}_{n}$. Тогда $\tilde{y}_{n} \to 0$.
+
+        Тогда $S_{n} \to xy + 0 = xy$.
+    \end{proof}
+\end{lemma}
+\begin{theorem}[Теорема Абеля] \thmslashn
+
+    Если $\sum\limits_{n=1}^{\infty} a_{n} = A$, $\sum\limits_{n=1}^{\infty} b_{n} = B$, $\sum\limits_{n=1}^{\infty} c_{n} = C$. Если все ряды сходятся, то $C = AB$.
+
+    По лемме знаем, что $\frac{A_1B_{n}+A_2B_{n-1} + \ldots + A_{n}B_{n}}{n} \to AB$.
+
+    \begin{equation*}
+        \begin{split}
+            \frac{1}{n}&\left( na_1b_1 + (n-1)(a_1b_2 + a_2b_1) + (n-2)(a_1b_3+a_2b_2+a_3b_1) + \ldots + (a_1b_{n}+a_2b_{n-1}+\ldots+a_{n}b_1 \right)\\ 
+                       &= \frac{1}{n}(nc_1+(n-1)c_2+(n-2)c_3 + \ldots + c_{n})\\
+                       &= \frac{C_{n} + C_{n-1} + \ldots + C_1}{n} \to C
+        \end{split}
+    \end{equation*}
+\end{theorem}
+\Subsection{4 Бесконечные произведения}
+\begin{definition} \thmslashn 
+
+    Значение бесконечного произведениея $\prod\limits_{n=1}^{\infty} p_{n} $ - предел $P_{n} := \prod\limits_{k=1}^{n} p_{k}  $, если он существует.
+
+Произведение называется сходящимся, если предел сущесвует, конечен, и \textbf{отличен от нуля}
+\end{definition}
+\begin{properties} \thmslashn
+
+    \begin{enumerate}
+        \item Конечное количество ненулевых множителей не влияет на сходимость.
+        \item Если $\prod\limits_{n=1}^{\infty} p_{n}$ - сходится, то $\lim\limits_{n \to \infty} p_{n} = 1$.
+        \item Если $\prod\limits_{n=1}^{\infty} p_{n}$ начиная с некоторого места все члены положительны.
+        \item Если $p_{n} > 0$, то для сходимости $\prod\limits_{n=1}^{\infty}  p_{n}$ необходима и достаточна сходимость ряда $\sum\limits_{n=1}^{\infty}\log p_{n}$. При этом, если $\sum\limits_{n=1}^{\infty} \log p_{n} = S$, то $\prod\limits_{n=1}^{\infty} p_{n} = e^{S}$.
+    \end{enumerate}
+\end{properties}
