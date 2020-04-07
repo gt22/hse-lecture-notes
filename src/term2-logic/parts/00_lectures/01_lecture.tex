@@ -1,0 +1,176 @@
+\SectionLecture{Лекция 1}{Игорь Энгель}
+\begin{definition} \thmslashn 
+
+    Множества $A$ и $B$ называются равномощными, если $\exists{\text{ биекция}}\quad f : A \to B $.
+\end{definition}
+\begin{remark} \thmslashn
+
+    Равномощность - отношение эквивалентности:
+    \begin{enumerate}
+        \item $A \sim A \impliedby f = \id$
+        \item $(A \sim B \implies B \sim A) \impliedby g = f^{-1}$.
+        \item $(A \sim B \land B \sim C \implies A \sim C) \impliedby h = g \circ f$.
+    \end{enumerate}
+\end{remark}
+\begin{definition} \thmslashn 
+
+    Множество называется счётным, если оно равномощно $\mathbb{N}$.
+\end{definition}
+\begin{example} \thmslashn
+
+    Примеры счётных множеств: $\mathbb{N}, \mathbb{Z}, \{x\in \mathbb{N}\ssep x \ge 2\} $.
+\end{example}
+\begin{lemma} \thmslashn
+
+    Если $A$ и $B$ счётны, то $A \cup B$ счётно.
+    \begin{proof} \thmslashn
+    
+        Пусть $A = \{a_1, a_2, \ldots\} $, $B = \{b_1, b_2, \ldots\} $.
+
+        Тогда, представим $A \cup B = \{a_1, b_1, a_2, b_2, \ldots\} $.
+
+        Тогда 
+        \[ f(x) = \begin{cases}
+            a_{i} & x = 2i+1\\
+            b_{i} & x = 2i
+        \end{cases} .\] 
+        Если $A\cap B$ не пустое, то некоторые элементы функции надо выкинуть.
+    \end{proof}
+\end{lemma}
+\begin{lemma} \thmslashn
+
+    Если $A$ счётно, то $\forall{B \subset A}\quad $, $B$ либо конечно либо счётно.
+    \begin{proof} \thmslashn
+    
+        Так-как $A$ счётно, возьмём биекцию $f : \mathbb{N} \mapsto A$.
+
+        Тогда, $g(i) = f(\min \{j \ge i \ssep f(j)\in B\} )$.
+    \end{proof}
+\end{lemma}
+\begin{lemma} \thmslashn
+
+    Любое бесконечное множество содержит счётное подмножество.
+    \begin{proof} \thmslashn
+    
+        Так-как $A$ бесконечно, в нём существует хотя-бы один элемент $a_1$, $A \setminus \{a_1\} $ тоже бесконечно, и можно взять $a_1$, $a_2$, $a_3$, $\ldots$. 
+    \end{proof}
+\end{lemma}
+\begin{lemma} \thmslashn
+
+    $\mathbb{Q}$ счётно.
+    \begin{proof} \thmslashn
+    
+        Докажем сначала для $\mathbb{Q}_{+}$.
+
+        Выпишем их следующим образом: \TODO
+        \begin{equation*}
+            \begin{bmatrix} 
+                \frac{0}{1} & \frac{1}{1} & \frac{2}{1} & \ldots\\
+                \frac{0}{2} & \frac{1}{2} & \frac{2}{2} & \ldots\\
+                \frac{0}{3} & \frac{1}{3} & \frac{2}{3} & \ldots\\
+                \vdots & \vdots & \vdots & \vdots
+            \end{bmatrix} 
+        \end{equation*}
+        Будем обходить эту таблицу диагоналями: $\frac{0}{1}, \frac{1}{1}, \frac{0}{2}, \frac{0}{3}, \frac{1}{2}, \frac{2}{1}, \frac{3}{1}, \frac{2}{2}, \ldots$.
+
+        Будем пропускать повторяющиеся числа.
+
+        Каждое число будет выписано, потому-что за $(n+m)^2$ шагов мы точно дойдём до строки $m$ столбца $n$ и получим число $\frac{n}{m}$.
+
+        Аналогичное доказательство подходит для $\mathbb{Q}_{-}$. $\mathbb{Q} = \mathbb{Q}_{+} \cup \mathbb{Q}_{-}$, значит, тоже счётно.
+    \end{proof}
+\end{lemma}
+\begin{lemma} \thmslashn
+
+    Объединение конечного или счётного числа счётных или конечных множеств счётно или конечно.
+    \begin{proof} \thmslashn
+    
+        Выпишем на $i$ строке в $j$ столбце $j$-й элемент $i$-го множества. Построив такую-же последовательность как для рациональных чисел, получим биекцию, либо кончатся элементы.
+    \end{proof}
+\end{lemma}
+\begin{theorem} \thmslashn
+
+    Если $A, B$ - счётные, то $A \times B$ счётно.
+    \begin{proof} \thmslashn
+    
+        Рассмотрим семество множеств  $A_{a} = \{\left( a, b \right) \ssep b\in B\}$. $\forall{a\in A}\quad A_{a} \text{ равномощно } B$, значит, $A_{a}$ счётно. При этом, различных $A_{a}$ - счётно, столько-же сколкьо элементов $A$.
+
+        Тогда
+        \[ A \times B = \bigcup_{a\in A} A_{a}  .\]
+        
+        счётно по предыдущей лемме.
+    \end{proof}
+\end{theorem}
+\begin{statement} \thmslashn
+
+    Множества $(0, 1]$ и $[1, +\infty)$ равномощны с биекцией $\frac{1}{x}$.
+
+    Множества $[0, 1]$ и $[0, 1)$ равномощны
+    \begin{proof} \thmslashn
+    
+        Пусть $B = [0, 1] \setminus \left\{\frac{1}{i} \ssep i \ge 1\right\} $
+        \[[0, 1] = \left\{\frac{1}{i} \ssep i \ge 1\right\} \cup B.\]
+        \[ [0, 1) = \left\{\frac{1}{i} \ssep i > 1\right\} \cup B  .\] 
+        Возьмём биекцию:
+        \begin{equation*}
+            f(x) = \begin{cases}
+                \frac{1}{i + 1} & x = \frac{1}{i}\\
+                x
+            \end{cases}
+        \end{equation*}
+    \end{proof}
+\end{statement}
+\begin{theorem} \thmslashn
+
+    Если $A$ бесконечно, $B$ конечно или счётно, то $A \cup B$ равномощно $A$.
+    \begin{proof} \thmslashn
+    
+        Рассмотрим случай $A\cap B = \emptyset$.
+
+        Возьмём cчётное $A_0 \subset A$.
+
+        Начнём строить биекцию: $\forall{x \in A \setminus A_0}\quad f(x) = x$.
+
+        Так-как $A_0 \cup B$ счётно, то между $A_0$ и $A_0 \cup B$ существует биекция, воспользуемся ей чтобы достроить $f$.
+    \end{proof}
+\end{theorem}
+\begin{theorem} \thmslashn
+
+    Отрезок $[0, 1]$ равномощен множеству бесконечных последовательностей из $\{0, 1\} $.
+    \begin{proof} \thmslashn
+   
+        Можно доказывать для $[0, 1)$, так-как они равномощны.
+
+        Каждому $x\in [0, 1)$ соответствует представление в двоичной системе счисления. (например, $\frac{1}{4} = 0.010000000$.
+
+        Заметим, что разные числа переходят в разные последовательности, но разные последовательности могут перейти в одно число. Для чисел вида $\frac{n}{2^{k}}$  $n, k \in \mathbb{N}$ существует две последовательности. 
+
+        Тогда, множество последовательностей $\sim [0, 1) \sqcup \{\frac{n}{2^{k}}\ssep n, k\in \mathbb{N}\}$. Заметим, что второе множество счётно, значит множество последовательностей равномощну интервалу, который равномощен отрезку.
+    \end{proof}
+\end{theorem}
+\begin{theorem} \thmslashn
+
+    Множества $[0, 1]$ равномощно множеству $[0, 1] \times [0, 1]$.
+
+    \begin{proof} \thmslashn
+    
+        Возьмём по предыдущей теореме последовательности $a_{i}$ и $b_{i}$ для $(a, b)\in [0, 1] \times [0, 1]$.
+
+        Сделаем из них последовательность $a_1, b_1, a_2, b_{2}, \ldots$. Между такими последовательностями есть биекция, при этом, между второй последовательностью и отрезком есть биекция.
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Теорема Кантора] \thmslashn
+
+    Множество бесконечных последовательностей из $\{0, 1\} $ несчётно.
+    \begin{proof} \thmslashn
+    
+        Предположим существование биекции $f$.
+
+        Построим последовательность $b$:
+        
+        Пусть $b_{1} = a_{11}$, тогда $b \neq f(1)$
+
+        Аналогично, $b_{i} \neq a_{ii}$. Тогда $\forall{i}\quad b \neq f(i)$. Противоречие.
+    \end{proof}
+\end{theorem}
+
