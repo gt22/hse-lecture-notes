@@ -1,0 +1,314 @@
+\SectionLecture{Лекция 11}{Игорь Энгель}
+\begin{definition}[Равномерная сходимость] \thmslashn 
+
+    Пусть есть последовательность функций $f_{n} : E \mapsto \mathbb{R}$ и функция $f : E \mapsto \mathbb{R}$.
+
+    Последовательность $f_{n}$ называется равномерно сходящейся к $f$, если
+    \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{n \ge N}\quad \forall{x\in E}\quad |f_{n}(x) - f(x)| < \eps  .\] 
+\end{definition}
+\begin{remark} \thmslashn
+
+    Отличие от поточечной сходимости - $N$ зависит только от $\eps$, но не от $x$.
+\end{remark}
+\begin{definition}[Равномерная сходимость рядов] \thmslashn 
+
+    Пусть есть ряд $\sum\limits_{n=1}^{\infty} u_{n}(x)$, $u_{n} : E \mapsto \mathbb{R}$.
+
+    Частичная сумма такого ряда: $S_{n}(x) := \sum\limits_{k=1}^{n} u_{k}(x)$.
+
+    Ряд сходится поточечно/равномерно если частичные суммы сходятся поточечно/равномерно.
+\end{definition}
+\begin{theorem}[Критерий Коши (опять)] \thmslashn
+
+    Ряд $\sum\limits_{n=1}^{\infty} u_{n}(x)$ равномерно сходится тогда и только тогда когда
+    \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{m > n \ge N}\quad \forall{x\in E}\quad \left|\sum\limits_{k=n}^{m} u_{k}(x)\right| < \eps  .\] 
+    \begin{proof} \thmslashn
+    
+        \TODO
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Признак сравнения] \thmslashn
+
+    Пусть $\forall{x\in E}\quad |u_{n}(x) \le v_{n}(x)$ и $\sum\limits_{n=1}^{\infty} v_{n}(x)$ равномерно сходится, тогда $\sum\limits_{n=1}^{\infty} u_{n}(x)$ равномерно сходится.
+    \begin{proof} \thmslashn
+    
+        По критерию Коши: 
+        \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{m > n \ge N}\quad \forall{x\in E}\quad \sum\limits_{k=n}^{m} v_{k}(x) < \eps .\]
+
+        При этом, $\left| \sum\limits_{k=n}^{m} u_{k}(x)\right| \le  \sum\limits_{k=n}^{m} |u_{k}(x)| \le \sum\limits_{k=n}^{m} v_{k}(x)$. Получили верность критерия Коши для $u_{k}$.
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Признак Вейерштрасса] \thmslashn
+
+    Пусть $\forall{x\in E}\quad |u_{n}(x)| \le a_{n}$ и $\sum\limits_{n=1}^{\infty} a_{n}$ сходится. Тогда $\sum\limits_{n=1}^{\infty} u_{n}(x)$ равномерно сходится.
+    \begin{proof} \thmslashn
+    
+        Подставляем в признак сравнения $v_{n}(x) = a_{n}$. Получаем равномерную сходимость, так-как не зависит от $x$.
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Если ряд $ \sum\limits_{n=1}^{\infty} |u_{n}(x)|$ равномерно сходится, то ряд $\sum\limits_{n=1}^{\infty} u_{n}(x)$ равномерно сходится.
+    \begin{proof} \thmslashn
+    
+        Признак сравнения с $v_{n}(x) = |u_{n}(x)|$.
+    \end{proof}
+\end{consequence}
+\begin{example} \thmslashn
+
+    Ряд $\sum\limits_{n=1}^{\infty} \frac{\sin(nx)}{n^2}$ равномерно сходится на $\mathbb{R}$.
+
+    Подставим в признак Вейерштрасса $a_{n} = \frac{1}{n^2}$.
+\end{example}
+\begin{remark} \thmslashn
+
+    Абсолютная сходимость независит от равномерной.
+\end{remark}
+\begin{example} \thmslashn
+
+    Абсолютно но не равномерно: $\sum\limits_{n=1}^{\infty} x^{n}$ на $(-1, 1)$. 
+    
+    $\sum\limits_{n=1}^{\infty} |x^{n}| = \sum\limits_{n=1}^{\infty} |x|^{n} = \frac{1}{1 - |x|}$. 
+    
+    При этом критерий Коши не проходит, например $\eps=\frac{1}{2}$, но $\sum\limits_{k=n}^{n} x^{n} = x^{n}$. При фиксированном $n$ если устремить $x$ к $1$, то $x^{n}$ стремится к $1$.
+\end{example}
+\begin{example} \thmslashn
+
+    Равномерно но не абсолютно: $\sum\limits_{n=1}^{\infty} \frac{(-1)^{n}}{n}$.
+
+    Это числовой ряд, он сходится, значит сходится рваномерно. Но если взять модуль, то получим расходящийся ряд.
+\end{example}
+\begin{example} \thmslashn
+
+    Абсолютно равномерно сходится, но ряд из модулей не сходится равномерно - тоже бывает.
+\end{example}
+\begin{theorem}[Признак Дирихле] \thmslashn
+
+    Если $a_{n}, b_{n} : E \mapsto \mathbb{R}$ и
+    \begin{enumerate}
+        \item $\exists{M}\quad \forall{n}\quad  \forall{x\in E}\quad |\sum\limits_{k=1}^{n} a_{k}(x)| \le M$.
+        \item $b_{n}$ равномерно стремится к $0$
+        \item $b_{n}(x)$ монотонно по $n$ при фиксированном $x$.
+    \end{enumerate}
+    То $\sum\limits_{n=1}^{\infty} a_{n}(x)b_{n}(x)$ равномерно сходится.
+    \begin{proof} \thmslashn
+    
+        Пусть $A_{n}(x) := \sum\limits_{k=1}^{n} a_{k}(x)$, $|A_{n}(x)| \le M$.
+
+        Тогда $\sum\limits_{k=1}^{n} a_{k}(x)b_{k}(x) = A_{n}(x)b_{n}(x) + \sum\limits_{k=1}^{n-1} A_{k}(x)(b_{k}(x)-b_{k+1}(x))$.
+
+        Поймём что $A_{n}(x)b_{n}(x)$ равномерно стремится к $0$: $A_{n}(x)b_{n}(x) \le Mb_{n}(x) \rightrightarrows 0$.
+
+        Заметим, что $|A_{k}(x)(b_{k}(x)-b_{k+1}(x))| \le M|b_{k}(x) - b_{k+1}(x)|$.
+
+        Покажем равномерную сходимость $\sum\limits_{n=1}^{\infty} |b_{n}(x) - b_{n+1}(x)|$:
+
+        Пусть $S_{n}(x) := \sum\limits_{k=1}^{n} |b_{k}(x) - b_{k+1}(x)|$. Зафиксируем $x$. $b_{k}$ монотонно по $k$, значит разность знакопостоянна, значит  $S_{n}(x) = \left| \sum\limits_{k=1}^{n} b_{k}(x) - b_{k+1}(x)\right| = \left|b_{1}(x) - b_{n}(x)\right|$.
+
+        Заметим, что $|b_1(x)-b_{n+1}(x)| - |b_1(x)| \le |b_1(x)-b_{n+1}(x)-b_1(x)| = |b_{n+1}(x)| \rightrightarrows 0 \implies |b_{1}(x) - b_{n+1}(x) \rightrightarrows 0$, значит сумма (второе слагаемое после преобразования) равномерно сходится, значит ряд равномерно сходится.
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Признак Абеля] \thmslashn
+
+    Пусть $a_{n}, b_{n} : E \mapsto \mathbb{R}$.
+    \begin{enumerate}
+        \item $\sum\limits_{n=1}^{\infty} a_{n}(x)$ - равномерно сходится
+        \item $\exists{M}\quad \forall{x\in E}\quad \forall{n}\quad |b_{n}(x)| \le M$ 
+        \item $b_{n}(x)$ монотонны по $n$.
+    \end{enumerate}
+
+    Тогда $\sum\limits_{n=1}^{\infty} a_{n}(x)b_{n}(x)$ равномерно сходится.
+    \begin{proof} \thmslashn
+    
+        Проверим критерий Коши:
+
+        Рассмотрим $\sum\limits_{k=n+1}^{n+p} a_{k}(x)b_{k}(x) = \sum\limits_{k=1}^{p} a_{n+k}(x)b_{n+k}(x) = (A_{n+p}(x) - A_{n}(x))b_{n+p}(x) + \sum\limits_{k=1}^{p-1} (A_{n+k}(x) - A_{n}(x))(b_{n+k}(x) - b_{n+k+1}(x))$.
+
+        Проверим слагаемы по отдельности:
+
+        \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{x\in E}\quad \forall{n \ge N}\quad |A_{n+p}(x) - A_{n}(x)| |b_{n+p}(x)| \le K|A_{n+p}(x)-A_{n}(x)| = K|\sum\limits_{k=n+1}^{n+p} a_{n}(x)| < \eps K .\] 
+    
+        (По критерию Коши для $a_{n}$)
+
+        \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{x\in E}\quad \forall{n > N}\quad  \left|\sum\limits_{k=1}^{p-1} (A_{n+k}(x)-A_{n}(x))(b_{n+k}-b_{n+k+1})\right| \le \sum\limits_{k=1}^{p-1} |A_{n+k}-A_{n}| |b_{n+k}-b_{n+k+1}| \le \eps \sum\limits_{k=1}^{p-1} |b_{n+k}-b_{n+k+1}| = \eps \left| \sum\limits_{k=1}^{p-1} (b_{n+k}-b_{n+k+1})\right| = \eps |b_{n+1} - b_{n+p}| \le 2M\eps .\] 
+        \TODO
+
+        Получили, что
+        \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{x\in E}\quad \forall{n \ge N}\quad \sum\limits_{k=1}^{n+p} a_{k}b_{k}(x) \le \eps M + 2 \eps M = 3\eps M .\] 
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Признак Лейбница] \thmslashn
+
+    Пусть $a_{n}, b_{n} : E \mapsto \mathbb{R}$, $b_{n}(x) \ge 0$, монотонно убывают по $n$, $b_{n} \rightrightarrows 0$.
+
+    Тогда $\sum\limits_{n=1}^{\infty} (-1)^{n-1}b_{n}(x)$ равномерно сходится.
+    \begin{proof} \thmslashn
+    
+        Берём $a_{n} = (-1)^{n-1}$ и подставляем в Дирихле.
+    \end{proof}
+\end{theorem}
+\begin{example} \thmslashn
+
+    Абсолютно и равномерно сходится, но ряд из модулей не сходится равномерно - $\sum\limits_{n=1}^{\infty} \frac{(-1)^{n}}{n}x^{n}$ на $(0, 1)$.
+
+    Равномерная сходимость: По признаку Лейбница с $b_{n}(x) = \frac{x^{n}}{n}$.
+
+    Абсолютная сходиомсть: $\sum\limits_{n=1}^{\infty} \frac{x^{n}}{n} \le \sum\limits_{n=1}^{\infty} x^{n} = \frac{1}{1-x}$.
+
+    Но $\sum\limits_{n=1}^{\infty} \frac{x^{n}}{n}$ не сходится равномерно:
+
+    Возьмём $\eps=\frac{1}{10}$
+    \[ \forall{n}\quad \exists{x  \in (0, 1)}\quad \sum\limits_{k=n}^{2n} \frac{x^{k}}{k} \ge n\left( \frac{x^{2n}}{2n} \right) = \frac{x^{2n}}{2} > \frac{1}{10}  .\] 
+\end{example}
+\begin{theorem}[Признак Дини] \thmslashn
+
+    Пусть $K$ - компакт, $u_{n}\in C(K)$, $u_{n} \ge 0$.
+
+    Обозначим $S(x) = \sum\limits_{n=1}^{\infty} u_{n}(x)$. Предположим, что $S(x)\in C(K)$.
+
+    Тогда $\sum\limits_{n=1}^{\infty} u_{n}(x)$ сходится равномерно.
+    \begin{proof} \thmslashn
+    
+        Пусть $r_{n}(x) := \sum\limits_{k=n+1}^{\infty} u_{n}(x) = S(x) - S_{n}(x)$. $r_{n}(x)$ монотонно убывает по $n$, и $r_{n}(x)\in C(K)$ как конечная сумма непрерывных функций.
+
+        Надо доказать, что $\forall{\eps > 0}\quad \exists{N}\quad \forall{x\in K}\quad r_{N}(x) \le  \eps $.
+
+        Предположим что $\exists{\eps > 0}\quad \forall{N}\quad \exists{x\in K}\quad r_{N}(x) > \eps$.
+
+        Тогда, получаем последовательность $x_{N}\in K$. Так-как $K$ - компакт, то всегда есть сходящаяся подпоследовательность $x_{N_{k}} \to x_0$.
+
+        Зафиксируем номер $M$, и рассмотрим $r_{M}$. Если $N_{k} \ge m$ то $\eps \le r_{n_{k}}(x_{n_{k}}) \le r_{m}(x_{n_{k}} \to r_{m}(x_0)$. Значит, $\forall{m}\quad r_{m}(x_0) \ge \eps$, значит ряд не сходится. Но так-как $S(x)$ непрерывна, то она конечна для всех $x$, противоречие.
+    \end{proof}
+\end{theorem}
+\Subsection{6 Свойства равномерно сходящихся рядов}
+\begin{theorem} \thmslashn
+
+    Пусть $f_{n}, f : E \mapsto \mathbb{R}$, $f_{n} \rightrightarrows f$, $a$ - предельная точка $E$.
+
+    Если существуют конечные пределы $\lim\limits_{x \to a} f_{n}(a) = b_{n}$, то существует предел $\lim\limits_{n \to \infty} b_{n} = b$, и существует предел $\lim\limits_{x \to a} f(x)$, причём они равны.
+    \begin{proof} \thmslashn
+    
+        Проверим фундаментальность $b_{n}$: 
+
+        Из равномерной сходимости знаем, что
+        \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{n, m \ge N}\quad \forall{x\in E}\quad |f_{n}(x) - f_{m}(x)| < \eps .\]
+
+        Устремив $x \to a$ получаем:
+        \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{n, m \ge N}\quad |b_{n} - b_{m}| < \eps .\] 
+    \end{proof}
+
+    Значит, $b = \lim\limits_{n \to \infty} b_{n}$ сщуествует и конечен.
+
+    Докажем что $\lim\limits_{x \to a} f(x) = b$:
+
+    \[ \forall{n}\quad |f(x) - b| \le |b_{n} - b| + |f_{n}(x) - b_{n}| + |f_{n}(x) - f(x)| .\] 
+
+    Возьмём такое $n$, что $|b_{n} - b| < \eps$, $|f_{n}(x) - f(x)| < \eps$. Такое точно найдётся.
+
+    \[ |f(x) - b| \le 2\eps + |f_{n}(x) - b_{n}| .\]
+    
+    Возьмём $\delta$, что $|x-a|< \delta \implies |f_{n}(x) - b_{n}| < \eps$.
+
+    Получилось
+    \[ |x-a| < \delta \implies |f(x) - b| \le 3\eps .\] 
+\end{theorem}
+\begin{theorem} \thmslashn
+
+    Пусть $u_{n} : E \mapsto \mathbb{R}$, $\sum\limits_{n=1}^{\infty} u_{n}(x)$ равномерно сходится и $\lim\limits_{x \to a} u_{n}(x) = b_{n}$.
+
+    Тогда $\lim\limits_{x \to a} \sum\limits_{n=1}^{\infty} u_{n}(x) = \sum\limits_{n=1}^{\infty} b_{n}$.
+    \begin{proof} \thmslashn
+    
+        Пусть $S_{n}(x) := \sum\limits_{k=1}^{n} u_{k}(x)$. Тогда $\lim\limits_{x \to a} S_{n}(x) = \sum\limits_{k=1}^{n} b_{k} =: B_{n}$. При этом, $S_{n} \rightrightarrows S$.
+
+        По предыдущей теореме, $\lim\limits_{n \to \infty} B_{n} = \lim\limits_{x \to a} S(x)$.
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Если $u_{n}$ непрерывны в точке $a$ и ряд $\sum\limits_{n=1}^{\infty} u_{n}(x)$ равномерно сходится, то сумма тоже непрерывна в $a$.
+    \begin{proof} \thmslashn
+    
+        \[ \lim\limits_{x \to a} u_{n}(x) = u_{n}(a) \implies \lim\limits_{x \to a} \sum\limits_{n=1}^{\infty} u_{n}(x) = \sum\limits_{n=1}^{\infty} u_{n}(a) .\]  
+    \end{proof}
+\end{consequence}
+\begin{theorem} \thmslashn
+
+    Пусть $f_{n}, f\in C[a, b]$, $f_{n} \rightrightarrows f$.
+
+    Тогда $\int\limits_{a}^{x} f_{n}(t)dt \rightrightarrows \int\limits_{a}^{x} f(t)dt $ (равномерно по $x$).
+    \begin{proof} \thmslashn
+    
+        \[ \left| \int\limits_{a}^{x} f_{n}(t)dt - \int\limits_{a}^{x} f(t)dt\right| = \left| \int\limits_{a}^{x} (f_{n}(t) - f(t))dt\right| \le \int\limits_{a}^{x} |f_{n}(t) - f(t)|dt \le (x-a)\max\limits_{t\in [a, b]} |f_{n}(t) - f(t)| \le (b-a)\max\limits_{t\in [a, b]} |f_{n}(t) - f(t)| \to 0     .\]
+        \TODO
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Если $u_{n}\in C[a, b]$, $\sum\limits_{n=1}^{\infty} u_{n}(x)$ равномерно сходится, то
+    \[ \int\limits_{a}^{x} \sum\limits_{n=1}^{\infty} u_{n}(t)dt = \sum\limits_{n=1}^{\infty} \int\limits_{a}^{x} u_{n}(t)dt   .\] 
+    \begin{proof} \thmslashn
+    
+        Так-как $S_{n} \rightrightarrows S \implies \int\limits_{a}^{x} S_{n} \rightrightarrows \int\limits_{a}^{x} S \iff  $ 
+        \TODO
+    \end{proof}
+\end{consequence}
+\begin{remark} \thmslashn
+
+    Поточечной сходимсоти недостаточно. $f_{n}(x) = nxe^{-nx^2}$.
+\end{remark}
+\begin{theorem} \thmslashn
+
+    Пусть $f_{n}\in C^{1}[a, b]$, $\exists{c}\quad f_{n}(c) \to A$ и $f_{n}' \rightrightarrows g$.
+
+    Тогда $f_{n} \rightrightarrows f$, $f\in C^{1}[a, b]$ и $f' = g$. В частности $\lim\limits_{n \to \infty} f_{n}'(x) = \left( \lim\limits_{n \to \infty} f_{n}(x) \right)'$.
+
+    \begin{proof} \thmslashn
+    
+        Рассмотрим $\int\limits_{c}^{a} g(t)dt = \lim\limits_{n \to \infty} \int\limits_{c}^{a} f_{n}'(t)dt = \lim\limits_{n \to \infty} f_{n}(x) - f_{n}(c) = \lim\limits_{n \to \infty} f_{n}(x) - A$.
+
+        Тогда, по предыдущей теореме, $f_{n}(x) \rightrightarrows A + \int\limits_{c}^{x} g(t)dt =: f(x)$.
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Пусть $u_{n}\in C^{1}[a, b]$, ряд $\sum\limits_{n=1}^{\infty} u_{n}'(x)$ равномерно сходится и $\sum\limits_{n=1}^{\infty} u_{n}(c)$ равномерно сходится.
+
+    Тогда $\sum\limits_{n=1}^{\infty} u_{n} \rightrightarrows S\in C^{1}[a, b]$ и $S' = \sum\limits_{n=1}^{\infty} u_{n}'$.
+    \begin{proof} \thmslashn
+    
+        \[ S_{n} = \sum\limits_{k=1}^{n} u_{k}(x) \implies S_{n}' = \sum\limits_{k=1}^{n} u_{k}' \rightrightarrows g .\]
+        \[ \lim\limits_{n \to \infty} S_{n}(c) = A .\]
+        \[ S_{n} \rightrightarrows S .\]
+        \[ S' = g .\] 
+    \end{proof}
+\end{consequence}
+\Subsection{7 Степенные ряды}
+\begin{definition}[Степенной ряд] \thmslashn 
+
+    Степенной ряд - $\sum\limits_{n=0}^{\infty} a_{n}(z - z_0)^{n}$, $a_{n}, z_0, z\in \mathbb{C}$.
+\end{definition}
+
+Во всех утверждениях можно считать, что $z_0 = 0$, так-как всегда можно сделать замену.
+
+\begin{theorem} \thmslashn
+
+    Если $\sum\limits_{n=0}^{\infty} a_{n}z^{n}$ сходится в точке $z=z_{c} \neq 0$, то он сходится абсолютно $\forall{z\in \mathbb{C}}\quad |z| < |z_{c}|$.
+    \begin{proof} \thmslashn
+    
+        Раз ряд схдоится, то $\lim\limits_{n \to \infty} a_{n}z_{c}^{n} = 0$. Значит, $\exists{M}\quad \forall{n}\quad |a_{n}z_{c}^{n}| \le M $. 
+
+        \[ |a_{n}z^{n}| = \left|a_{n}z_{c} \cdot \left( \frac{z}{z_c} \right)^{n}\right| \le M \cdot \left| \frac{z}{z_{c}}\right|^{n} .\]
+
+        Получили сходящуюся геометрическую прогрессию.
+    \end{proof}
+\end{theorem}
+
+\begin{consequence} \thmslashn
+
+    Если ряд $\sum\limits_{n=0}^{\infty} a_{n}z^{n}$ расходится при $z=z_{c}$, то он расходится $\forall{z}\quad |z| > |z_{c}|$
+    \begin{proof} \thmslashn
+    
+        Если есть такая точка $z$, то он сходился-бы в $z_{c}$.
+    \end{proof}
+\end{consequence}
