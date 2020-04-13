@@ -1,0 +1,312 @@
+\SectionLecture{Лекция 12}{Игорь Энгель}
+\begin{definition} \thmslashn 
+
+    Пусть $V$ - векторное пространство над $\mathbb{R}$. Базисы $e_{i}$ и $f_{i}$ называются одинаково ориентированными, если $\det C_{e\to f} > 0$.
+
+    Одинаковання ориентированность - отношение эквивалентности.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Ориентация пространства - задание класса эквивалентности базисов.
+\end{definition}
+\begin{example} \thmslashn
+
+    Пространство - $\mathbb{R}^{n}$, $e_1, \ldots, e_{n}$ - стандарнтный базис. Он задаёт стандартную ориентацию.\\
+
+    Нестандартная ориентация: $\mathbb{R}^2$, $\begin{bmatrix} -1\\ 0 \end{bmatrix}, \begin{bmatrix} 0\\ 1 \end{bmatrix}  $
+\end{example}
+\begin{statement} \thmslashn
+
+    Пусть $e, f$ - разноориентированные базисы $\mathbb{R}^{n}$, то
+    \[ \nexists\quad g : C[0, 1] \mapsto  GL_{n}(\mathbb{R})\quad \begin{cases}
+        g(0) = (e_1, \ldots, e_{n})\\
+        g(1) = (f_1, \ldots, f_{n})
+    \end{cases} .\] 
+
+    ($GL_{n}(\mathbb{R})$ - множество обратимых матриц $n \times n$)
+    \begin{proof} \thmslashn
+    
+        Предположим, что такое $g$ существует.
+
+        Заметим, что $\det : GL_{n}(\mathbb{R}) \mapsto \mathbb{R}$ непрерывен, как многочлен от компонентов.
+
+        Рассмотрим $\det \circ g : [0, 1] \mapsto \mathbb{R}$. Заметим, что $\det(g(0)) > 0$, $\det(g(0)) < 0$, значит, $\exists{t\in [0, 1]}\quad \det(g(t)) = 0 \implies g(t) \not\in GL_{n}(\mathbb{R})$. Противоречие.
+    \end{proof}
+\end{statement}
+\begin{definition} \thmslashn 
+
+    Пусть $V$ - векторное пространство над $K$. Тогда, линейный оператор (эндоморфизм) над $V$ - линейное отображение $L : V \mapsto V$.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Матрица линейного оператора в базисе $e$ - $[L]_{e} = [L]_{e}^{e} = \begin{bmatrix} L(e_1), L(e_2), \ldots, L(e_{n}) \end{bmatrix} $.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Определитель оператора $L$ - $\det L = \det [L]_{e}$ для произвольного базиса $e$.
+    \begin{proof} \thmslashn
+    
+        Корректность:
+
+        Пусть $e, f$ - базисы $v$.
+
+        Тогда
+        \[ \exists{C\in GL_{n}(K)}\quad [L]_{e} = C[L]_{f}C^{-1}  .\]
+        \[ \det [L]_{e} = \det C[L]_{f}C^{-1} = \det C \det [L]_{f} \det C^{-1} = \det C \det [L]_{f} (\det C)^{-1} = \det [L]_{f} .\qedhere\] 
+    \end{proof}
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Пусть $L$ - линейный оператор на $V$. Тогда $L$ сохраянет ориентацию, если $\det L > 0$, и меняет ориентацию, если $\det L < 0$. 
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Пусть $A\in M_{n}(K)$, $I, J \subset \{1, \ldots, n\} $. Тогда, $A_{IJ}$ - матрица составленная из элементов, которые стоят на позициях с номерами строк из $I$ и столбцов из $J$.
+\end{definition}
+\begin{remark} \thmslashn
+
+    Если $I \subset \{1, \ldots, n\} $, то $\overline{I} = \{x\in \{1, \ldots, n\}\ssep x \not\in I \} $
+\end{remark}
+\begin{definition} \thmslashn 
+
+    Пусть $A\in M_{n}(K)$, $|I| = |J| = k$, тогда $\det A_{IJ} = M_{IJ}$ - минор матрицы $A$ размера $k$.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Пусть $A\in M_{n}(K)$. Тогда алгебраическим дополнением элемента $a_{ij}$ называется $A^{ij} = (-1)^{i+j}M_{\overline{i}\overline{j}}$.
+\end{definition}
+\begin{lemma}[О разложении определителя по столцу] \thmslashn
+
+    Пусть $A\in M_{n}(K)$, задан $j$ столбец.
+
+    Тогда существуют такие коэффициенты $c_{i}$, такие, что
+    \[ \det A = \sum\limits_{i=1}^{n} c_{i}a_{ij} .\]
+    
+    При этом, $c_{i} = A^{ij}$.
+    \begin{proof} \thmslashn
+    
+        Существование коэффициентов следует из полилинейности определителя.
+
+        Рассмотрим матрицу $A'_{i}$, такую, что 
+        \[ a'_{i'j'} = \begin{cases}
+            a_{i'j'} & j' \neq j\\
+            0 & j' = j, i' \neq i\\
+            1 & j' = j, i' = i
+        \end{cases} .\]     
+    \end{proof}
+
+    Тогда $\det A'_{i} = c_{i}$.
+
+    Передвинем $j$-й столбец по циклу в начало, знак определителя изменится на $(-1)^{j-1}$.
+
+    Передвинем $i$-ю строку в начало, знак определителя изменится на $(-1)^{i-1}$, вместе с предыдущеим поменялся на $(-1)^{i-1+j-1} = (-1)^{i+j-2} = (-1)^{i+j}$.
+
+    Матрица получилась блочной, с блоками $1$ и $A_{\overline{i}\overline{j}}$, значит, $c_{i} = \det A'_{i} = (-1)^{i+j}\det A_{\overline{i}\overline{j}} = (-1)^{i+j}M_{ij} = A^{ij}$.
+\end{lemma}
+\begin{lemma}[О разложении по строке] \thmslashn
+
+    \[ \det A = \sum\limits_{j=1}^{n} a_{ij}A^{ij} .\] 
+\end{lemma}
+\begin{lemma}[Формула Крамера] \thmslashn
+
+    Если $A\in GL_{n}(K)$, то решение уравнения $Ax=b$ можно выписать в явном виде:
+    \[ x_{i} = \frac{\Delta_{i}}{\Delta} .\]
+    \[ \Delta = \det A .\]
+    $\Delta_{i}$ - определитель матрицы $A$ с $i$-м столбцом заменённым на $b$
+    \begin{proof} \thmslashn
+    
+        Пусть $v_{i}$ - $i$-й столбец $A$
+
+        Пусть $b = c_1v_1 + \ldots + _{n}v_{n}$.
+
+        Тогда $\Delta_{i} = \det (v_1, \ldots, v_{i-1}, b, v_{i+1}, v_{n})$.
+
+        По линейности, $\Delta_{i} = c_{i}\Delta$. \TODO ?
+    \end{proof}
+\end{lemma}
+\begin{example} \thmslashn
+
+    Найдём обратную матрицу через Крамера:
+
+    Для $j$-го столбца обратной мартицы верно $Ax_{j}=e_{j}$.
+
+    $i$-я координата такого вектора равна $x_{ij} = \frac{A^{ji}}{\Delta}$. (в $i$-м столбце единица на $j$-й позиции).
+\end{example}
+\begin{definition} \thmslashn 
+
+    Присоеденённой к $A$ матрицей называется матрица $\Adj A$, такая, что $(\Adj A)_{ij} = A^{ji}$
+\end{definition}
+\begin{theorem} \thmslashn
+
+    \[ A\in M_{n}(K) .\]
+    \[ \Adj A \cdot A = A \cdot \Adj A = \det A E_{n} .\]
+    \begin{proof} \thmslashn
+    
+        Если $A$ обратима, то знаем что $A^{-1} = \Adj A$, $A A^{-1} = A^{-1}A = E_{n} \implies \Adj A \cdot A = A \cdot \Adj A = \Delta E_{n}$.
+
+        Рассмотрим кольца $R$ и $S$, причём есть гомоморфизм $\phi : R \mapsto S$. 
+
+        Заметим, что если тождетсво верно для $A\in M_{n}(R)$, то верно для $\phi(A)\in M_{n}(S)$, так-как можно переписать тождество через многочлены.
+
+        Рассмотрим кольцо многочленов $\mathbb{Z}[a_{11}, a_{12}, \ldots, a_{nn}]$.
+
+        Тогда существует гомоморфизм в произвольное кольцо, такой, что $\phi(a_{ij}) = b_{ij}$: подстановка.
+
+        Тогда, любая матрица является образом матрицы с коэффициентами $a_{ij}$.
+
+        Построим поле частных $Q(\mathbb{Z}[a_{11}, a_{12}, \ldots, a_{nn}])$, вложим наше кольцо в него. 
+
+        Заметим, что в этом поле $\det A = \det A$ как многочлену, а он не $0$. Для обратимых матриц в поле знаем что верно, значит верно для всех.
+    \end{proof}
+\end{theorem}
+\begin{definition}[Алгебра] \thmslashn 
+
+    Алгеброй над полем $K$ называется набор $\left<A, K, +, \cdot, \times\right>$, удовлетворяющий следующим аксиомам:
+    \begin{enumerate}
+        \item $K$ - поле
+        \item $\left<A, +, \times\right>$ - кольцо (абсолютно произвольное).
+        \item $\left<A, K, +, \cdot\right>$ - векторное пространство
+        \item $\lambda(a \times b) = (\lambda a) \times b = a \times (\lambda b)$, $a, b\in A$, $\lambda\in K$.
+    \end{enumerate}
+\end{definition}
+\begin{example} \thmslashn
+
+    Поле $K$ - алгебра над собой.
+
+    Кольцо матриц $M_{n}(K)$ и кольцо эндоморфизмов векторных пространств $\End(V)$
+
+    Кольцо многочленов $K[x_1, \ldots, x_{n}]$.
+
+    Кольцо верхнетреугольных матриц $LT_{n}(K)$.
+
+    Если поле $K$ - подполе $L$, то $L$ - алгебра над $K$.
+\end{example}
+\begin{definition} \thmslashn 
+
+    Пусть $R, S$ - две $K$-алгебры, то $\phi : R \mapsto S$ называется гомоморфизм алгебр, если он является линейным гомоморфизмом колец:
+
+    \[ \phi(a + b) = \phi(a) + \phi(b) .\]
+    \[ \phi(\lambda a) = \lambda \phi(a) .\]
+    \[ \phi(a \times b) = \phi(a) \times \phi(b) .\] 
+\end{definition}
+
+С текущего момента, все кольца и алгебры ассоциативны и с единицей, но не обязательно коммутативны.
+
+\begin{example} \thmslashn
+
+    \[ M_{\dim V}(K) \cong \End_{K}(V) .\] 
+
+    Пусть $y\in A$, где $A$ - $K$-алгебра. Тогда можем посчитать выражение $a_0 + a_1 \cdot y + \ldots + a_{n} \cdot y^{n}$, $a_{i}\in K$. Назовём это многочленом от элемента алгебры.
+\end{example}
+\begin{statement} \thmslashn
+
+    Пусть $A$ - $K$-алгебра. Тогда
+    \[ \forall{y\in A}\quad \exists!{\phi : K[x] \mapsto A \text{ - гомоморфизм}}\quad \phi(x) = y .\]
+
+    Прчём, этот гомоморфизм имеет вид $\phi(p(x)) = p(y)$.
+\end{statement}
+\begin{consequence} \thmslashn
+
+    Если $A\in M_{n}(K)$, $p, q\in K[x]$, то $(pq)(A) = p(A)q(A)$.
+\end{consequence}
+\begin{theorem}[Теорема типа-Кэли] \thmslashn
+
+   Пусть $A$ - конечномерная алгебра над $K$, и $\dim_{K} A = n$.
+
+   Тогда $A$ вкладывается в $M_{n}(K)$.
+
+   \begin{proof} \thmslashn
+   
+       Будем доказывать что вкладывается в $\End_{K}(A)$.
+
+       Сопоставим каждому элементу $a\in A$ отображение $x \to a \times x$.
+
+       Покажем, что оно гомоморфизм:
+
+        \[ a \times b \to (x \to (a \times b) \times x) = (x \to a \times (b \times x)) .\]
+
+       Отображение будет эндоморфзимом, через дистрибутивность и спец. аксиому для алгебр.
+
+       Инъективность: $a \to (1 \to a \times 1) = a$.
+    \end{proof}
+\end{theorem}
+\begin{example} \thmslashn
+
+    Вложим алгебру $\mathbb{C}$ в $M_{2}(\mathbb{R})$:
+
+    Возьмём базис $e_1=1$, $e_2=i$.
+
+    Пусть $L_{z} = a+bi$. Тогда $L_{z}(1) = a+bi$, $L_{z}(i) = -b+ai$.
+
+    Тогда, матрица выглядит как $\begin{bmatrix} a & -b\\ b & a \end{bmatrix}$. 
+\end{example}
+\begin{lemma} \thmslashn
+
+    Пусть $A$ - конечномерная $K$-алгебра.
+
+    Тогда
+    \[ \forall{y\in A}\quad \exists{p\in K[x] \setminus \{0\} }\quad p(y) = 0 .\]
+    \begin{proof} \thmslashn
+    
+        Возьмём $1, y, \ldots, y^{n}$, $n = \dim A$. Получили $n+1$ элемент из $A$. 
+
+        Значит, они линейно зависимы, значит $\exists{a_{i}}\quad a_0 \cdot 1 + \ldots + a_{n} y^{n} = 0$, причём есть ненулевой $a_{i}$. Получился многочлен.
+    \end{proof}
+\end{lemma}
+\begin{definition} \thmslashn 
+
+    Пусть $y\in A$, тогда $\mu_{y}$ - многочлен минимальной степени, со старшим коэффициентом $1$, такой, что $\mu_{y}(y) = 0\in A$ называется минимальным многочленом элемента $y$.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Аннулятор $y\in A$, где $A$ - конечномерная алгебра - $\Ann_{y} = \{p(y) = 0 \ssep p\in K[x]\} $.
+\end{definition}
+\begin{property} \thmslashn
+
+    $\Ann_{y}$ - нетривиальный идеал в кольце многочленов.
+    \begin{proof} \thmslashn
+    
+        \[ (p+g)(y) = p(y)+g(y) = 0 + 0 = 0 .\]
+        \[ (pg)(y) = p(y)g(y) = 0 \cdot 0 = 0 .\]
+        \[ 0\in \Ann_{y} .\]
+
+        $\Ann_{y}$ нетривиальен, по предыдущей теореме.
+    \end{proof}
+\end{property}
+\begin{consequence} \thmslashn
+
+    Так-как любой идеал в $K[x]$ главный, то $\exists!{\mu_{y}}\quad \Ann_{y} = (\mu_{y})$.
+\end{consequence}
+\begin{lemma} \thmslashn
+
+    Пусть $y\in A$, $A$ - конечномерная алгебра над $K$.
+
+    Тогда либо $y$ - делитель нуля, либо $y$ обратим.
+
+    \begin{proof} \thmslashn
+    
+        Возьмём $\mu_{y}$,
+
+        \[ \mu_{y}(y) = 0 \implies a_{n}y^{n} + \ldots + a_0 = 0 .\]
+
+        Если $a_0 \neq 0$, то $y(a_{n}y^{n-1} + \ldots + a_1) = -a_0 \implies y^{-1} = \frac{a_{n}y^{n-1} + \ldots + a_1}{-a_0}$.
+
+        Если $a_0 = 0$, то $y(a_ny^{n-1} + \ldots + a_1) = 0$. Так-как $\mu_{y}$ - минимальный многочлен, то правый множитель не $0$, значит $y$ - делитель нуля.
+    \end{proof}
+\end{lemma}
+\begin{definition} \thmslashn 
+
+    Пусть $L\in \End_{K}(V)$. Тогда, собственным вектором оператора $L$ называется такой вектор $v \neq 0$, что $\exists{\lambda\in K}\quad L(v) = \lambda k$. Такое $\lambda$ называется собственным числом.
+\end{definition}
+\begin{lemma} \thmslashn
+
+    $\lambda$ является собственным чилслом $L$ тогда и только тогда, когда $\det(L - \lambda\id) = 0$.
+    \begin{proof} \thmslashn
+    
+        $v$ - собственный вектор $L$ тогда и только тогда $(L - \lambda\id)(v) = L(v) - \lambda v = 0$. Ненулевой вектор может перейти в $0$, тогда и только тогда ядро нетривиально, а ядро нетривиально тогда и только тогда, когда определитель $0$.
+    \end{proof}
+\end{lemma}
+\begin{definition} \thmslashn 
+
+    Характерестический многочлен оператора $L$ - $\chi_{L}(\lambda) = \det(L - \lambda\id)$.
+\end{definition}
