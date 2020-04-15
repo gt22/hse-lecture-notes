@@ -1,0 +1,187 @@
+\SectionLecture{Лекция 12}{Игорь Энгель}
+\begin{definition} \thmslashn 
+
+    Радиус сходимости степенного ряда $\sum\limits_{n=0}^{\infty} a_{n}z^{n}$ - такое $R\in [0, +\infty]$, что $\forall{z\in \mathbb{C}}\quad |z| < R$ ряд сходится, а $\forall{z\in \mathbb{C}}\quad |z| > R$ ряд расходится.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Круг сходиомсти ряда $\sum\limits_{n=0}^{\infty} a_{n}z^{n}$ - множество точек $|z| < R$, где $R$ - радиус сходимости.
+\end{definition}
+\begin{theorem}[Формула Коши-Адамара] \thmslashn
+
+   Всякий степенной ряд имеет радиус сходимости, причём верна формула
+   \[ R = \frac{1}{\varlimsup\limits_{n \to \infty} \sqrt[n]{ |a_{n}| } } .\]
+   \begin{proof} \thmslashn
+   
+       Применим признак Коши для абсолютной сходимости:
+
+       \[ K := \varlimsup\limits_{n\to \infty} \sqrt[n]{ |a_{n}z^{n}| } = \varlimsup\limits_{n \to \infty} \sqrt[n]{ |a_{n}| } \cdot |z| = \frac{ |z| }{R}  .\]
+
+       Ряд сходится абсолютно, если $K < 1 \iff |z| < R$.
+
+       Если $K > 1$, то члены ряда не стремятся к $0$, $K > 1 \iff |z| > R$.
+   \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Внутри круга сходимости, сходимость абсолютная.
+\end{consequence}
+\begin{example} \thmslashn
+
+    \begin{enumerate}
+        \item $\sum\limits_{n=0}^{\infty} n! z^{n}$. $R = 0$.
+        \item $\sum\limits_{n=0}^{\infty} \frac{z^{n}}{n!}$. $R = +\infty$.
+        \item $\sum\limits_{n=0}^{\infty} \frac{z^{n}}{k^{n}}$, $R = k$.
+    \end{enumerate}
+\end{example}
+\begin{theorem} \thmslashn
+
+    Пусть $R$ - радиус сходимости, и $0 < r < R$. Тогда в круге $|z| \le r$ ряд сходится равномерно.
+    \begin{proof} \thmslashn
+    
+        Рассмотрим ряд $\sum\limits_{n=0}^{\infty} a_{n}r^{n}$. Он сходится абсолютно, так-как находится в круге сходиомсти.
+
+        Признак Вейерштрасса: $|z| \le r \implies |a_{n}z^{n}| \le |a_{n}|r^{n}$. Ограничили рядом, независимым от переменной, значит сходится равномерно.
+    \end{proof}
+\end{theorem}
+\begin{remark} \thmslashn
+
+    Равномерной сходимости во всём круге сходимости НЕТ. $\sum\limits_{n=0}^{\infty} z^{n} = \frac{1}{1-z}$.
+
+    Хвост $\sum\limits_{k=n}^{\infty} z^{k} = \frac{z^{n}}{1-z}$ не будет равномерно стремится к нулю, так-как супремум при любом конкретном $n$ может быть бесконечно большим.
+\end{remark}
+\begin{consequence} \thmslashn
+
+    Сумма степенного ряда непрерывна в круге сходимости.
+    \begin{proof} \thmslashn
+    
+        Возьмём $w$ в круге. Выберем $|w| < r < R$. Знаем, что ряд равномерно сходится в $|z| < r$. Слагаемые степенного ряда - непрерывные функции. Значит, сумма непрерывна в $|z| < r$, в том чилсе в  $w$.
+    \end{proof}
+\end{consequence}
+\begin{theorem}[Теорема Абеля] \thmslashn
+
+    Пусть $R$ - радиус сходимости $\sum\limits_{n=0}^{\infty} a_{n}z^{n}$. и ряд сходится при $z=R$. Тогда на отрезке $[0, R]$ сходимость равномерна.
+    \begin{proof} \thmslashn
+    
+        Заметим, что $\sum\limits_{n=0}^{\infty} a_{n}x^{n} = \sum\limits_{n=0}^{\infty} a_{n}R^{n}\left( \frac{x}{R} \right)^{n}$.
+
+        Знаем, что $\sum\limits_{n=0}^{\infty} a_{n}R^{n}$ сходится, $\left( \frac{x}{R} \right)^{n}\in [0, 1]$, значит равномерно ограничено, $\left( \frac{x}{R} \right)^{n} $ монотонно убывает.
+
+        Применим признак Абеля, значит ряд равномерно сходится.
+    \end{proof}
+\end{theorem}
+\begin{remark} \thmslashn
+
+    Если $|z| = R$, то есть равномерная сходимость на отрезке от $z$ до нуля.
+    \begin{proof} \thmslashn
+    
+        Повернём систему координат.
+    \end{proof}
+\end{remark}
+\begin{consequence} \thmslashn
+
+    Функция $f(x) := \sum\limits_{n=0}^{\infty} a_{n}x^{n}$. В условиях теоремы, $f\in C[0, R]$. 
+
+    В частности, $\lim\limits_{x \to R-} \sum\limits_{n=0}^{\infty} a_{n}x^{n} = \sum\limits_{n=0}^{\infty} a_{n}R^{n}$.
+\end{consequence}
+\begin{lemma} \thmslashn
+
+    Пусть $x_{n}, y_{n}$ - последовательности из $\mathbb{R}$, $\lim\limits_{n \to \infty} x_{n}\in (0, +\infty)$.
+
+    Тогда, $\varlimsup\limits_{n \to \infty} x_{n}y_{n} = \lim x_{n} \cdot \varlimsup\limits_{n\to \infty} y_{n}$.
+    \begin{proof} \thmslashn
+    
+        Пусть $A := \lim\limits_{n \to \infty} x_{n}$, $B := \varlimsup\limits_{n\to \infty} y_{n}$, $C := \varlimsup\limits_{n \to \infty} x_{n}y_{n}$.
+
+        Есть поледовательность $n_{k}$, такая, что $x_{n_{k}}y_{n_{k}} \to C$. $\lim\limits_{k \to \infty} x_{n_{k}}y_{n_{k}} = \lim\limits_{k \to \infty} x_{n_{k}} \lim\limits_{k \to \infty} y_{n_{k}} \implies C = A \lim\limits_{k \to \infty} y_{n_{k}}$. Значит, $B \ge \lim\limits_{k \to \infty} y_{n_{k}} = \frac{C}{A}$.
+
+        Есть последовательность $m_{k}$, такая, что $y_{m_{k}} \to B$, $\lim\limits_{k \to \infty} x_{m_{k}}y_{m_{k}} = AB \implies AB \le C \implies B \le \frac{C}{A}$.
+
+        Значит, $B = \frac{C}{A}$.
+    \end{proof}
+\end{lemma}
+\begin{consequence} \thmslashn
+
+    Радиусы сходимости рядов $\sum\limits_{n=0}^{\infty} a_{n}z^{n}$, $\sum\limits_{n=0}^{\infty} a_{n} \frac{z^{n+1}}{n+1}$, $\sum\limits_{n=0}^{\infty} a_{n}n z^{n-1}$ совпадают.
+    \begin{proof} \thmslashn
+    
+        Заметим, что если все элементы ряда умножить на константу, то радиус сходимости не изментися. Можем переписать как $\sum\limits_{n=0}^{\infty} a_{n}z^{n}$, $\sum\limits_{n=0}^{\infty} a_{n} \frac{z^{n}}{n+1}$, $\sum\limits_{n=0}^{\infty} a_{n}nz^{n}$.
+
+        \[ R_1 = \frac{1}{\varlimsup\limits_{n\to \infty} \sqrt[n]{ |a_{n}| } } .\] 
+        \[ R_2 = \frac{1}{\varlimsup\limits_{n\to \infty} \frac{\sqrt[n]{ |a_{n}| }}{\sqrt[n]{n+1} }} .\] 
+        \[ R_3 = \frac{1}{\varlimsup\limits_{n\to \infty} \sqrt[n]{ |a_{n}|}\sqrt[n]{n} } .\]
+
+        Несовпадающие элементы стремятся к $1$, по лемме можем их вытащить.
+    \end{proof}
+\end{consequence}
+\begin{theorem}[Почленное интегрирование степенного ряда] \thmslashn
+
+    Пусть $R$ - радиус сходимости $f(x) = \sum\limits_{n=0}^{\infty} a_{n}(x-x_0)^{n}$.
+
+    Тогда, если $|x-x_0| < R$:
+    \[  \int\limits_{x_0}^{x} f(t)dt = \sum\limits_{n=0}^{\infty} a_{n} \frac{(x-x_0)^{n+1}}{n+1}  .\]
+
+    Причём, радиус сходимости совпадает с $R$.
+    \begin{proof} \thmslashn
+    
+        Знаем, что на $[x_0, x]$ ряд сходится равномерно, значит $f$ на нём непрерывна, а также можно интегрировать почленно.
+        \[ \int\limits_{x_0}^{x} \sum\limits_{n=0}^{\infty} a_{n}(t-x_0)^{n}dt = \sum\limits_{n=0}^{\infty} a_{n}\int\limits_{x_0}^{x} (t-x_0)^{n}dt = \sum\limits_{n=0}^{\infty} a_{n}\frac{(x-x_0)^{n+1}}{n+1}   .\]
+
+        По предыдущей теореме радиус совпадает.
+    \end{proof}
+\end{theorem}
+\begin{definition} \thmslashn 
+
+    Пусть $f : E \mapsto \mathbb{C}$, $E \subset \mathbb{C}$, $z_0\in \Int E$. Если $\exists{k\in \mathbb{C}}\quad f(z) = f(z_0) + k(z-z_0) + o(z-z_0)$ при $z \to z_0$, то $f$ комплексно-дифференцируема в $z_0$, а $k$ - производная  $f$ в  $z_0$.
+\end{definition}
+\begin{remark} \thmslashn
+
+    \[ k = \lim\limits_{z \to z_0} \frac{f(z) - f(z_0)}{z-z_0} =: f'(z_0) .\]
+
+    Существование производной по этой формуле равносильно дифференцируемости.
+\end{remark}
+\begin{theorem} \thmslashn
+
+    Пусть $R$ - радиус сходимости $\sum\limits_{n=0}^{\infty} a_{n}(z-z_0)^{n}$. Тогда $f$ бесконечно комплексно-дифферецируема в круге $|z-z_0| < R$ и $f^{(m)}(z) = \sum\limits_{n=m}^{\infty} (n)_{m} a_{n} (z-z_0)^{n-m}$.
+    \begin{proof} \thmslashn
+    
+        Индукция по $m$: производная получилась степенным рядом с тем-же радиусом сходимости, значит переход есть.
+
+        Доказываем для $m=1$.
+
+        Без ограничения общности, $z_0=0$.
+
+        Считаем производную в точке $z$, $|z| < R$. Выберем $|z| < r < R$.
+
+        Возьмём точку $w$, $|w| < r$.
+
+        \[ f'(z) = \lim\limits_{w \to z} \frac{f(w) - f(z)}{w-z} = \lim\limits_{w \to z} \sum\limits_{n=0}^{\infty} \frac{a_{n}\left( w^{n}-z^{n} \right) }{w-z} = \lim\limits_{w \to z} \sum\limits_{n=1}^{\infty} a_{n}(w^{n-1}+w^{n-2}z + \ldots + z^{n-1}) .\]
+
+        Надо проверить равномерную сходимость по $w$:
+
+        Признак Вейерштрасса: $|w| < r \land |z| < r \implies |a_{n}(w^{n-1} + \ldots z^{n-1})| \le |a_{n}|(|w|^{n-1} + \ldots + |z|^{n-1}) \le |a_{n}|nr^{n-1}$. При этом, радиус сходимости $\sum\limits_{n=0}^{\infty} a_{n} n r^{n-1}$ радиус сходимости совпадает с $R$, значит он сходится абсолютно, значит начальный ряд сходится равномерно. Можем переставить сумму и предел.
+
+        \[ \sum\limits_{n=1}^{\infty} \lim\limits_{w \to z} a_{n}(w^{n-1} + \ldots + z^{n-1}) = \sum\limits_{n=1}^{\infty} na_{n}z^{n-1} .\] 
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Единственность разложения функции в степенной ряд] \thmslashn
+
+    Пусть $f(z) = \sum\limits_{n=0}^{\infty} a_{n}(z-z_0)^{n}$ при $|z-z_0| < R$.
+
+    Тогда $a_{n} = \frac{f^{(n)}(z_0)}{n!}$.
+    \begin{proof} \thmslashn
+    
+       Тогда $f^{(m)}(z) = \sum\limits_{n=m}^{\infty} (n)_{m}a_{n}(z-z_0)^{n-m}$.
+
+       Подставим $z=z_0$: Все слагаемые кроме $n=m$ занулятся, значит $f^{(m)}(z_0) = (n)_{m}a_{m} = m!a_{m}$.
+    \end{proof}
+\end{theorem}
+\begin{definition} \thmslashn 
+
+    Ряд тейлора для функции $f$ в точке $z_0$:
+    \[ \sum\limits_{n=0}^{\infty} \frac{f^{(n)}(z_0)}{n!}(z-z_0)^{n} .\] 
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Функция называется аналитической в $z_0$, если она совпдает с суммой ряда Тейлора для точки $z_0$ в окрестности $z_0$.
+\end{definition}
