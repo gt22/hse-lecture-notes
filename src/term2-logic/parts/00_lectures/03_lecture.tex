@@ -1,0 +1,167 @@
+\SectionLecture{Лекция 3}{Игорь Энгель}
+\begin{definition} \thmslashn 
+
+    $\le$ называется отношением частичного порядка если
+    \begin{enumerate}
+        \item $\forall{a}\quad a \le a$
+        \item $\forall{a, b}\quad \begin{cases}
+            a \le b\\
+            b \le a
+        \end{cases} \implies a = b$
+        \item $\forall{a, b, c}\quad \begin{cases}
+            a \le b\\
+            b \le c
+        \end{cases} \implies a \le c$ 
+    \end{enumerate}
+
+    Если $\forall{a, b}\quad a \le b \lor b \le a$, то $\le$ также называется отношение линейного порядка. 
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Пара $\left<X, \le \right>$ из множества и отношения частичного порядка называется частично упорядоченным множеством.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    $<$ называется отношением строгого частичного порядка если
+    \begin{enumerate}
+        \item $\nexists{a}\quad a < a$
+        \item $\forall{a, b, c}\quad \begin{cases}
+            a < b\\
+            b < c
+        \end{cases} \implies a < c$ 
+    \end{enumerate}
+\end{definition}
+\begin{lemma} \thmslashn
+
+    Если $\le$ - отношение частичного гопорядка, то $(\le \land x \neq y)$ - отношение строгого частичного порядка.
+
+    Если $<$ - отношение строгого порядка, то $\left(< \lor x = y \right) $ - отношение частичного порядка.
+\end{lemma}
+
+\begin{lemma} \thmslashn
+
+    Если $X$ - ЧУМ, то $Y \subset X$ - ЧУМ, с отношением порядка полученным ограничением отношения из $X$ на $Y$.
+
+    Если $X, Y$ - ЧУМ, то $X \sqcup Y$ - ЧУМ.
+
+    Если $X, Y$ - ЧУМ, то $X + Y$ - ЧУМ, такой, что $\forall{x\in X, y\in Y}\quad x \le  y$.
+
+    Если $X, Y$ - ЧУМ, то $X \times Y$ - ЧУМ.
+
+    Покоординатный порядок: $(x_1, y_1) \le (x_2, y_2) \iff x_1 \le x_2 \land y_1 \le y_2$.
+
+    Лексикографический порядок: $(x_1, y_1) \le (x_2, y_2) \iff x_1 \le x_2 \lor (x_1 = x_2 \land y_1 \le y_2)$.
+\end{lemma}
+\begin{definition} \thmslashn 
+
+    Элемент $x\in X$ называется наибольшим, если $\forall{y\in X}\quad y \le x$.
+
+    Аналогично наименьший.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Элемент $x\in X$ называется максимальным, если $\forall{y\in X}\quad x \le y \implies x = y$.
+
+    Аналогично минимальный.
+\end{definition}
+\begin{statement} \thmslashn
+
+    Наибольший элемент максимален.
+\end{statement}
+\begin{statement} \thmslashn
+
+    Обратное в общем случае неверно.
+    \begin{proof} \thmslashn
+    
+        \[ X = \{(1, 0), (0, 1)\}  .\]
+
+        В покоординатном порядке эти пары не сравнимы, значит, они обе максимальны, но среди нех нет наибольшей.
+    \end{proof}
+\end{statement}
+\begin{definition} \thmslashn 
+
+    Пусть $\left<X, \le_{X}\right>$, $\left<Y, \le_{Y}\right>$ - ЧУМ.
+
+    $X$ и $Y$ называются изоформными, если $\exists{f : X \mapsto Y}$, $f$ - биекция, $\forall{a, b\in X}\quad a \le_{X} b \iff f(a) \le_{Y} f(b)$.
+\end{definition}
+\begin{theorem} \thmslashn
+
+    Конечные линейно-упорядоченные множества равной мощности изоморфны.
+
+    \begin{proof} \thmslashn
+    
+        Индукция по мощности. Для $\emptyset$ тривиально.
+
+        Возьмём $x_1\in X$. Либо $x_1$ наименьший, либо можем взять элемент меньше него.
+
+        Будем выбирать $x_{i+1} < x_{i}$.
+
+        Так-как порядок линейный, а множество конечно, то когда-нибудь придём к наименьшему элементу.
+
+        Пусть $x_{i}$ - наименьший элемент $X$, $y_{j}$ - наименьший элемент $Y$.
+
+        Тогда, переводим $x_{i} \to y_{i}$, дальше по индукции.
+    \end{proof}
+\end{theorem}
+\begin{statement} \thmslashn
+
+    Отрезок $[0, 1]$ и $\mathbb{R}$ не изоформны.
+    \begin{proof} \thmslashn
+    
+        $1$ - наибольший элемент $[0, 1]$, а в $\mathbb{R}$ нет. Но если изоморфны, то должно быть $\forall{x\in \mathbb{R}}\quad x \le f(1)$.
+    \end{proof}
+\end{statement}
+\begin{statement} \thmslashn
+
+    $\mathbb{Q}$ и $\mathbb{Z}$ не изоморфны.
+    \begin{proof} \thmslashn
+    
+        Рассмотрим $f^{-1}(1)$ и $f^{-1}(2)$. В $\mathbb{Q}$ между ними есть некое $z$. Но тогда $1 < f(z) < 2$. А такого в $\mathbb{Z}$ нет.
+    \end{proof}
+\end{statement}
+\begin{definition} \thmslashn 
+
+    $x$ и $y$ называются соседними элементами, если $\nexists{z}\quad x < z < y$.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Порядок называется плотным, если не существует соседних элементов.
+\end{definition}
+\begin{theorem} \thmslashn
+
+    \TODO
+\end{theorem}
+\begin{definition} \thmslashn 
+
+    Антицепь - подмножество ЧУМ элементов, где каждая пара различных элементов несравнима.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Цепь - подмножество ЧУМ элементов, где каждая пара элементов сравнима.
+\end{definition}
+\begin{theorem}[Теорема Дилуорса] \thmslashn
+
+    Если $\left<X, \le \right>$ - конечное ЧУМ, то размер наибольшей антицепи равен наименьшему количеству цепей, покрывающих $X$.
+    \begin{proof} \thmslashn
+    
+       Кол-во цепей $\ge $ макс антицепь - любые элементы в антицепи нсравнимы, значит не могут лежать в одной цепи.
+
+       Кол-во цепей $\le $ макс антицепь:
+
+       Индукция по $|X|$: для $|X| = 0$ и $|X| =1$ очевидно.
+
+       Выберем $m$ - минимальный элемент в $X$.
+
+       Рассмотрим $X \setminus \{m\} $. Пусть в $X$ есть антицепь размера $S$. Если мы можем покрыть $X \setminus m$ $S - 1$ цепью, то утверждение доказано. 
+
+       Мы знаем, что $X \setminus m$ покрывается $S$ цепями, по предположению индукции.
+
+       Рассмотрим множество антицепей размера $S$. Каждая антицепь имеет по одному элементу с каждой цепи.
+
+       Выберем $x_{i}$ - наименьший элемент с $i$-й цепи, который входит в хотя-бы одну антицепь размера $S$.
+
+       Тогда $\{x_{i}\} $ образует антицепь. Если $x_1 < x_2$, рассмотрим антицепь $A$, в которую входит $x_1$. В $A$ существует $y$, находящийся в то-же цепи что $x_2$. Тогда $y > x_2 > x_1 \implies y > x_1$, что невозможно в $A$.
+
+        Добавим $m$.  У нас всё ещё нет антицепей размера $S + 1$. Значит,  $m$ сравним с одним из  $x_{i}$. Так-как $m$ - минимальный элемент  $X$, то  $m < x_1$. Построим цепь, состоящую из куска цепи где был $x_1$, и $m$. Остался <<хвост>> цепи, на котором нет ни одного элемента входящего в антицепь размера  $S$. Тогда, у множества без новой цепи нет цепей размера  $S$, можем покрыть его  $S-1$ цепью, значит можем покрыть  $X$  $S$ цепями. 
+   \end{proof}
+\end{theorem}

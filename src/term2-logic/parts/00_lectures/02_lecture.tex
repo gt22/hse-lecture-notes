@@ -1,0 +1,108 @@
+\SectionLecture{Лекция 2}{Игорь Энгель}
+\begin{theorem}[Теорема Кантора 2] \thmslashn
+
+    $[0, 1]$ несчётно.
+
+    \begin{proof} \thmslashn
+    
+        Предположим что $[0, 1]$ счётно. Тогда существует последовательность $a_1, a_2, \ldots$, $a_{i}\in [0, 1]$, $\forall{x\in [0, 1]}\quad \exists{i}\quad a_{i} = x$.
+
+        Разбьём отрезок на три части, первая точка попала не более чем в два подотрезка, выберем один из тех, в который не попало. Повторя, получим последовательность отрезков $I_1, I_2, \ldots$, $a_{i} \not\in I_{i}$, $I_{i+1} \subset I_{i}$. По теореме о вложенных отрезках, $\bigcap_{i=1}^{n} I_{i} \neq \emptyset$, значит, есть число, которого нет в последовательности. Противоречие.
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Теорема Кантора-Бернштейна] \thmslashn
+
+    Если $f_{A} : A \to B$, $f_{B} : B \to A$ - инъекции, то $A$ равномощно $B$.
+    \begin{proof} \thmslashn
+    
+        Рассмотрим случай $A\cap B = \emptyset$.
+
+        Тогда, если построить двудольный граф где рёбра соответствуют отношениям, то $\forall{x\in A \sqcup B }\quad $ есть ровно одно исходящее ребро и не более одного входящего ребра. Значит, максимальная степень графа - $2$.
+
+        Графы с максимальной степени $2$ являются объеденением графов следующих видов: конечный путь, бесконечный в одну сторону путь, бесконечный в обе стороны путь, цикл. Так-как граф двудольный, то цикл может быть только чётный, а конечных путей быть не может, так-как из каждой вершины есть изходящее ребро.
+
+        Рассмотрим цикл: выберем вершину $x_1$, назовём получаемую из неё по ребру вершниу $y_{1}$, биекция будет $x_{i} \to y_{i}$, тоесть, если вершина лежит на цикле, то для неё как биекция подходит $f_{A}$.
+
+        Рассмотрим бесконечный в одну сторону. Их два вида - начинающиеся в $A$ и начинающиеся в $B$. Если вершина на пути начинающимся в $A$, то ей подойдёт $f_{A}$ как биекция. Если путь начинается в $y$, то подойдёт $f_{B}^{-1}$.
+
+        Рассмотрим бесконечный в обе стороны путь: Назовём множество точек на нём $X = A_{x} \sqcup$, нужна функция отображающая $A_{x} \mapsto B_{x}$, $f_{A}$ подойдёт.
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Теорема Кантора (обобщённая)] \thmslashn
+
+    Никакое множество $X$ не равномощно $2^{X}$ (множество всех подмножеств $X$).
+    \begin{proof} \thmslashn
+    
+        Пусть существует $f : X \mapsto 2^{X}$ - биекция.
+
+        Рассмотрим $Y = \{x\in X \ssep x \not\in f(x)\} $. $Y\in 2^{X} \implies \exists{y\in X}\quad f(y) = Y$.
+
+        Тогда $y\in Y \iff  y\in f(y) \iff  y \not\in Y$ - противоречие.
+    \end{proof}
+\end{theorem}
+\Subsection{Операции над мощностями}
+
+Если мощность конечна, то можем скалдывать, умножать, возводить в степень, и тд.
+
+Обощим для бесконечных - 
+
+\begin{definition} \thmslashn 
+
+    Пусть $A, B$ - множества. Тогда сумма мощностей $|A| + |B| = |A \sqcup B| $, где $A \sqcup B = (\{1\} \times A) \cup (\{2\} \times B)$.
+\end{definition}
+
+\begin{definition} \thmslashn 
+
+    Пусть $A, B$ - множества. Тогда произведение мощностей $|A| \cdot |B| = |A \times B|$
+\end{definition}
+
+\begin{definition} \thmslashn 
+
+     Пусть $A, B$ - множества. Тогда, возведение мощностей в степень $|A|^{ |B| }$ - мощность множества всех функций $f : B \mapsto A$.
+\end{definition}
+\begin{remark} \thmslashn
+
+    Симметричные операции можно задать на самих множествах.
+\end{remark}
+\begin{properties} \thmslashn
+
+    \begin{enumerate}
+        \item $|A|^{ |B|+|C| } = |A|^{ |B| } \times |A|^{ |C| }$ 
+            \begin{proof} \thmslashn
+            
+                $|A|^{ |B| + |C| }$ - мощность множества функций $f : B \sqcup C \mapsto A$. Каждую функцию можно рассмотреть как пару фукнций $g : B \mapsto A$ и $h : C \mapsto A$.
+            \end{proof}
+        \item $(|A| |B|)^{ |C| } = |A|^{ |C| } \cdot |B|^{ |C| }$ 
+            \begin{proof} \thmslashn
+            
+                Функцию $f : C \mapsto A \times B$ можно представить как пару фукнций $g : C \mapsto A$ и $h : C \mapsto B$.
+            \end{proof}
+        \item $|A|^{ |B| \cdot |C|} = \left(|A|^{ |B| }\right)^{ |C| }$ 
+            \begin{proof} \thmslashn
+            
+                Пусть $f : B \times C \mapsto A$. Можно представить это как отображение элементов $C$ в функции $f_{c} : B \mapsto A$. Получили функцию $g : C \mapsto (B \mapsto A)$.
+            \end{proof}
+    \end{enumerate}
+\end{properties}
+\begin{definition} \thmslashn 
+
+    Обозначим:
+    
+    $\aleph_{0} = |\mathbb{N}|$
+
+    $\cont = |\mathbb{R}|$ 
+
+\end{definition}
+\begin{properties} \thmslashn
+
+    \[ \aleph_{0} + n = \aleph_{0} .\]
+    \[ \aleph_{0} + \aleph_{0} = \aleph_{0} .\]
+    \[ \aleph_{0} \times \aleph_{0} = \aleph_{0} .\]
+    \[ \cont \times  \cont = 2^{\aleph_{0}} \times 2^{\aleph_{0}} = 2^{\aleph_{0} + \aleph_{0}} = 2^{\aleph_{0}} = \cont .\]
+    \[ \cont^{\aleph_{0}} = (2^{\aleph_{0}})^{\aleph_{0}} = 2^{\aleph_{0} \times \aleph_{0}} = 2^{\aleph_{0}} = \cont .\]
+    \[ \cont = 2^{\aleph_{0}} \le \aleph_{0}^{\aleph_{0}} \le \cont^{\aleph_{0}} = \cont .\] 
+\end{properties}
+\begin{statement} \thmslashn
+
+    Утверждение $\exists{A}\quad \aleph_{0} < |A| < \cont$ нельзя ни доказать ни опровергнуть в ZFC.
+\end{statement}
