@@ -1,1 +1,218 @@
-\Section{Исчисление высказываний}{Автор}
+\Section{Исчисление высказываний}{Игорь Энгель}
+
+\Subsection{Билет 29: <<Вывод. Доказательство. Исчисление высказываний>>}
+
+Исчисление высказываний - формальная система, состоящия из $11$ схем аксиом и одного правила вывода.
+
+Формулы исчисления высказываний (<<утверждения>>) состоят из формальных переменных а так-же связок $\land$ (И), $\lor$ (ИЛИ), $\neg$ (НЕ) и $\to$ (импликация, <<следует>>).
+
+\begin{definition}[Аксиомы исчисления выссказываний] \thmslashn 
+    \begin{enumerate}
+        \item $A \to (B \to A)$
+        \item $(A \to (B \to C)) \to ((A \to B) \to (A \to C))$
+        \item $(A \land B) \to A$
+        \item $(A \land B) \to B$
+        \item $A \to (B \to (A \land B))$
+        \item $A \to (A \lor B)$
+        \item $B \to (A \lor B)$
+        \item $(A \to C) \to ((B \to C) \to ((A \lor B) \to C))$
+        \item $\neg A \to (A \to B)$
+        \item $(A \to B) \to ((A \to \neg B) \to \neg A)$
+        \item $A \lor \neg A$
+    \end{enumerate}
+\end{definition}
+
+Это так называемые <<схемы аксиом>> - на месте $A, B, C$ могут стоять любые формулы исчисления высказываний. Аксиома всегда является теоремой.
+
+\begin{definition}[Modus ponens (MP)] \thmslashn 
+
+    Если $A$ и $A \to B$ - теоремы исчисления высказываний, то $B$ - теорема исчисления высказываний.
+\end{definition}
+
+
+\begin{definition}[Вывод] \thmslashn 
+
+Выводом называется конечная последовательность формул, в которой каждая либо является аксиомой, либо следует из предыдущих по MP.
+
+\end{definition}
+
+\begin{definition}[Вывод из множества формул] \thmslashn 
+
+    Пусть $\Gamma$ - множество из формул утверждения высказываний.
+
+    Выводом из $\Gamma$ называется конечная последовательность формул, в которой каждая либо является аксиомой, либо принадлежит $\Gamma$, либо следует из предыдущих по MP.
+
+\end{definition}
+
+\begin{definition}[Доказательство] \thmslashn 
+
+    Доказательство формулы $A$ - вывод, в котором $A$ является последней формулой.
+\end{definition}
+\Subsection{Билет 30: <<Теорема о корректности исчисления высказываний>>}
+\begin{theorem} \thmslashn
+
+    Любая теорема исчисления выссказываний - тавтология.
+    \begin{proof} \thmslashn
+    
+        Не сложно проверить, что все аксиомы - тавтологии.
+
+        Докажем корректность MP от противного:
+
+        Знаем, что $A$ и $A \to B$ - тавтологии, предположим что $B$ - нет. Возьмём означивание на котором $B$ неверно. Тогда, $A$ верно а $B$ неверно, значит $A \to B$ неверно. Но $A \to B$ - тавтология, значчит оно верно. Противориче. Значит, $B$ - тавтология.
+
+        Таким образом, все начальные утверждения - тавтологии, MP сохраняет свойство тавтологии, значит, все теоремы - тавтологии.
+    \end{proof}
+\end{theorem}
+\Subsection{Билет 31: <<Теорема о полноте исчисления высказываний>>}
+
+Докажем сначала несколько вспомогательных лемм:
+
+\begin{lemma} \thmslashn
+
+    Для любой формулы $D$, $D \to D$ - ТИВ (теорема исчисления высказываний).
+    
+    \begin{proof} \thmslashn
+    
+        \begin{enumerate}
+            \item Аксиома 2 ($A \to (B \to C) \to ((A \to B) \to (A \to C))$):\\ $\underbrace{D}_{A} \to (\underbrace{(D \to D)}_B \to \underbrace{D}_C) \to ((\underbrace{D}_A \to \underbrace{(D \to D)}_B) \to (\underbrace{D}_A \to \underbrace{D}_C))$
+            \item Аксиома 1 ($A \to (B \to A)$):\\
+                $\underbrace{D}_A \to (\underbrace{(D \to D)}_B \to \underbrace{D}_A)$
+            \item MP от $1$ и $2$: $(D \to (D \to D)) \to (D \to D)$
+            \item Аксиома 1: $A \to (B \to A)$:\\
+                $\underbrace{D}_{A} \to (\underbrace{D}_{B} \to \underbrace{D}_{A} )$
+            \item MP от $3$ и $4$: $D \to D$ \qedhere
+        \end{enumerate}
+    \end{proof}
+\end{lemma}
+
+\begin{lemma}[О дедукции (DT)] \thmslashn
+
+    Пусть $\Gamma \vdash A$ означает <<существует вывод формулы $A$ из множества $\Gamma$>>
+
+    Тогда $\Gamma \vdash (A \to B) \iff \Gamma \cup \{A\} \vdash B $.
+    \begin{proof} \thmslashn
+    
+        Необходимость ($\implies$):
+
+        Если $\Gamma \vdash (A \to B)$, то и $\Gamma \cup \{A\} \vdash (A \to B) $. Тогда, возьмём вывод формулы $A \to B$ из $\Gamma$, добавим к нему утверждение $A$ (можем добавить, так-как входит в множество из котрого выводим), применим MP к последним двум утвержденям, получим $B$. Значит, существует вывод $B$.
+
+        Достаточность ($\impliedby$):
+
+        Возьмём вывод формулы $B$ из множества $\Gamma \cup \{A\}$, назовём его $C_{i}$, заметим, что $C_{n} = B$.
+
+        Тогда, выводом формулы $A \to B$ из $\Gamma$ будет $B_1, (A \to C_1), B_2 (A \to  C_2), \ldots, B_{n}, (A \to C_{n})$. Тогда, последняя формула - $(A \to B)$.
+
+        $B_{n}$ - такие последовательности, которые позволяют добавлять формулы $(A \to C_{n})$ в вывод. Разберём случаи:
+
+        \begin{enumerate}
+            \item $C_{i} = A$ : формула $A \to A$ выводима по предыдущей лемме, тогда $B_{i}$ - её вывод из аксиом (кроме последнего формулы, место котрой займёт сама формула $A \to A$).
+            \item $C_{i}\in \Gamma$, либо $C_{i}$ - аксиома: через аксиому 1: $B_{i} = C_{i}, C_{i} \to (A \to C_{i})$. Тогда, $A \to C_{i}$ получается через MP.
+            \item $C_{i}$ выводится из предыдущих по MP: тогда, в оригинальном выводе были формулы $C_{j}$, $C_{j} \to C_{i}$. Значит, в новом выводе будут формулы $A \to C_{j}$, $A \to (C_{j} \to C_{i})$. выведем из них $A \to C_{i}$:
+                \begin{enumerate}
+                    \item посылка 1: $A \to C_{j}$
+                    \item посылка 2: $A \to (C_{i} \to C_{j})$
+                    \item аксиома 2 ($(A \to (B \to C)) \to ((A \to B) \to (A \to C)$):\\
+                        $(\underbrace{A}_{A} \to (\underbrace{C_{j}}_{B} \to \underbrace{C_{i}}_{C}) \to ((\underbrace{A}_{A} \to \underbrace{C_{j}}_{B}) \to (\underbrace{A}_{A} \to \underbrace{C_{i}}_{C}))$
+                    \item MP от b и c: $(A \to C_{j}) \to (A \to C_{i})$
+                    \item MP от a и d: $A \to C_{i}$.
+                \end{enumerate}
+
+                Тогда $B_{i} = a,b,c,d$.
+        \end{enumerate}
+
+        Получили вывод формулы $A \to B$ из множества $\Gamma$.
+    \end{proof}
+\end{lemma}
+\begin{lemma} \thmslashn
+
+    Следующие утверждения - ТИВ для любых формул $P, Q$:
+
+    \begin{enumerate}
+        \item
+            \begin{enumerate}
+                \item $P, Q \vdash (P \land Q)$
+                \item $\neg P, Q \vdash \neg (P \land Q)$
+                \item $P, \neg Q \vdash \neg (P \land Q)$
+                \item $\neg P, \neg Q \vdash \neg (P \land Q)$
+            \end{enumerate}
+        \item
+            \begin{enumerate}
+                \item $P, Q \vdash (P \lor Q)$
+                \item $\neg P, Q \vdash (P \lor Q)$
+                \item $P, \neg Q \vdash (P \lor Q)$
+                \item $\neg P, \neg Q \vdash \neg (P \lor Q)$
+            \end{enumerate}
+        \item
+            \begin{enumerate}
+                \item $P, Q \vdash (P \to  Q)$
+                \item $\neg P, Q \vdash (P \to  Q)$
+                \item $P, \neg Q \vdash \neg (P \to Q)$
+                \item $\neg P, \neg Q \vdash (P \to Q)$
+            \end{enumerate}
+        \item
+            \begin{enumerate}
+                \item $P \vdash \neg(\neg P)$
+                \item  $\neg P \vdash \neg P$
+            \end{enumerate}
+    \end{enumerate}
+    \begin{proof} \thmslashn
+    
+        \TODO{Надеюсь его не надо\ldots Тут просто куча тупых выводов.}
+    \end{proof}
+\end{lemma}
+\begin{lemma} \thmslashn
+
+    Если формула $A$ интерпретированная как булева формула принимает истинное значение при истинности литералов $\ell_1, \ldots, \ell_{n}$ (если $x$ - формальная переменная, то литерал это либо $x$ либо $\neg x$), то верно что $\ell_1, \ldots, \ell_{n} \vdash A$, если-же она принимает ложное значение, то верно что $\ell_1, \ldots, \ell_{n} \vdash \neg A$
+    \begin{proof} \thmslashn
+    
+       Доказательство по индукции. Пусть $\Gamma = \{\ell_1, \ldots, \ell_{n}\} $.
+
+       Будем предпалогать что $A$ принимает истинное значение, для ложного доказательство симметрично (\TODO{или надо?}).
+
+       Если $A$ состоит из одной формальной переменной $x_{i}$, то раз $A$ истинно, то $x_{i}$ истинно и присутствует в множестве формул. По лемме мы знаем, что $x_{i} \to x_{i}$, и, соответственно $x_{i} \vdash x_{i} \implies \Gamma \vdash x_{i}$.
+
+       Если $A = \neg B$, то раз $A$ истинно, то $B$ ложно, значит верно $\Gamma \vdash \neg B$, но $\neg B = A$.
+
+       Если $A = B \land C$, то раз $A$ истинно, то $B$ и $C$ истинны, значит $\Gamma \vdash B$ и  $\Gamma \vdash C$. 
+       \begin{enumerate}
+           \item Вывод 1: $B$
+           \item Вывод 2: $C$
+           \item Аксиома 5: $B \to C \to (B \land C)$
+           \item MP 1 и 3: $C \to (B \land C)$
+           \item MP 2 и 4: $B \land C$
+       \end{enumerate}
+
+        Если $A = B \lor C$, то раз $A$ истинно то либо $\Gamma \vdash B$ либо $\Gamma \vdash C$. В зависимости от случая, берём либо аксиому 6 либо аксиому 7 и применяем MP.
+    \end{proof}
+\end{lemma}
+\begin{lemma} \thmslashn
+
+    Для любых формул $A$ и $B$, если $\Gamma \cup \{A\} \vdash B$ и $\Gamma \cup \{\neg A\} \vdash B $, то $\Gamma \vdash B$.
+    \begin{proof} \thmslashn
+
+        Можем переформулировать теорему с помощью DT как $\{(A \to B), (\neg A \to B)\} \vdash B $ 
+        \begin{enumerate}
+            \item посылка 1: $A\to B$
+            \item посылка 2: $\neg A \to B$
+            \item аксиома 8 ($(A \to C) \to ((B \to C) \to ((A \lor B) \to C)$): \\
+                $(\underbrace{A}_{A} \to \underbrace{B}_{C}) \to ((\underbrace{\neg A}_{B} \to \underbrace{B}_{C}) \to ((\underbrace{A}_{A} \lor \underbrace{\neg A}_{B} ) \to \underbrace{B}_{C} ) $
+            \item MP от 1 и 3: $(\neg A \to B) \to ((A \lor \neg A) \to B)$
+            \item MP от 2 и 4: $(A \lor \neg A) \to B$
+            \item Аксиома 11: $A \lor \neg A$
+            \item MP от 5 и 6: $B$
+        \end{enumerate}
+    \end{proof}
+\end{lemma}
+\begin{theorem} \thmslashn
+
+    Любая тавтология - теорема исчисления высказываний.
+    \begin{proof} \thmslashn
+
+        Пусть $A$ - тавтология. Тогда она верна на всех наборах литералов.
+
+        Возьмём наборы $x_1, \ldots, x_{n-1}, x_{n}$ и $x_1, \ldots, x_{n-1}, \neg x_{n}$. На обоих наборах формула истинна, а значит выводится из них. 
+
+        Но раз она выводится из них, то она выводится из $x_1, \ldots, x_{n-1}$. Аналлогично, она выводится из $x_1, \ldots, \neg x_{n-1}$. Можем повторить $n$ раз, и получить $ \emptyset \vdash A$, значит $A$ - ТИВ.
+
+    \end{proof}
+\end{theorem}
