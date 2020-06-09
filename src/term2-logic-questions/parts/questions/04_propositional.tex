@@ -42,12 +42,15 @@
 
     Выводом из $\Gamma$ называется конечная последовательность формул, в которой каждая либо является аксиомой, либо принадлежит $\Gamma$, либо следует из предыдущих по MP.
 
+    Формула $A$ называется выводимой из $\Gamma$ (обозначается $\Gamma \vdash A$) если существует вывод заканчивающийся формулой $A$.
+
 \end{definition}
 
 \begin{definition}[Доказательство] \thmslashn 
 
     Доказательство формулы $A$ - вывод, в котором $A$ является последней формулой.
 \end{definition}
+
 \Subsection{Билет 30: <<Теорема о корректности исчисления высказываний>>}
 \begin{theorem} \thmslashn
 
@@ -126,17 +129,17 @@
 
         Тогда, выводом формулы $A \to B$ из $\Gamma$ будет $B_1, (A \to C_1), B_2 (A \to  C_2), \ldots, B_{n}, (A \to C_{n})$. Тогда, последняя формула - $(A \to B)$.
 
-        $B_{n}$ - такие последовательности, которые позволяют добавлять формулы $(A \to C_{n})$ в вывод. Разберём случаи:
+        $B_{i}$ - такие последовательности, которые позволяют добавлять формулы $(A \to C_{i})$ в вывод. Разберём случаи:
 
         \begin{enumerate}
-            \item $C_{i} = A$ : формула $A \to A$ выводима по предыдущей лемме, тогда $B_{i}$ - её вывод из аксиом (кроме последнего формулы, место котрой займёт сама формула $A \to A$).
+            \item $C_{i} = A$ : формула $A \to A$ выводима по предыдущей лемме, тогда $B_{i}$ - её вывод из аксиом (кроме последней формулы, место котрой займёт сама формула $A \to A$).
             \item $C_{i}\in \Gamma$, либо $C_{i}$ - аксиома: через аксиому 1: $B_{i} = C_{i}, C_{i} \to (A \to C_{i})$. Тогда, $A \to C_{i}$ получается через MP.
             \item $C_{i}$ выводится из предыдущих по MP: тогда, в оригинальном выводе были формулы $C_{j}$, $C_{j} \to C_{i}$. Значит, в новом выводе будут формулы $A \to C_{j}$, $A \to (C_{j} \to C_{i})$. выведем из них $A \to C_{i}$:
                 \begin{enumerate}
                     \item посылка 1: $A \to C_{j}$
-                    \item посылка 2: $A \to (C_{i} \to C_{j})$
+                    \item посылка 2: $A \to (C_{j} \to C_{i})$
                     \item аксиома 2 ($(A \to (B \to C)) \to ((A \to B) \to (A \to C)$):\\
-                        $(\underbrace{A}_{A} \to (\underbrace{C_{j}}_{B} \to \underbrace{C_{i}}_{C}) \to ((\underbrace{A}_{A} \to \underbrace{C_{j}}_{B}) \to (\underbrace{A}_{A} \to \underbrace{C_{i}}_{C}))$
+                        $(\underbrace{A}_{A} \to (\underbrace{C_{j}}_{B} \to \underbrace{C_{i}}_{C})) \to ((\underbrace{A}_{A} \to \underbrace{C_{j}}_{B}) \to (\underbrace{A}_{A} \to \underbrace{C_{i}}_{C}))$
                     \item MP от b и c: $(A \to C_{j}) \to (A \to C_{i})$
                     \item MP от a и d: $A \to C_{i}$.
                 \end{enumerate}
@@ -218,8 +221,8 @@
         \begin{enumerate}
             \item посылка 1: $A\to B$
             \item посылка 2: $\neg A \to B$
-            \item аксиома 8 ($(A \to C) \to ((B \to C) \to ((A \lor B) \to C)$): \\
-                $(\underbrace{A}_{A} \to \underbrace{B}_{C}) \to ((\underbrace{\neg A}_{B} \to \underbrace{B}_{C}) \to ((\underbrace{A}_{A} \lor \underbrace{\neg A}_{B} ) \to \underbrace{B}_{C} ) $
+            \item аксиома 8 ($(A \to C) \to ((B \to C) \to ((A \lor B) \to C))$): \\
+                $(\underbrace{A}_{A} \to \underbrace{B}_{C}) \to ((\underbrace{\neg A}_{B} \to \underbrace{B}_{C}) \to ((\underbrace{A}_{A} \lor \underbrace{\neg A}_{B} ) \to \underbrace{B}_{C} )) $
             \item MP от 1 и 3: $(\neg A \to B) \to ((A \lor \neg A) \to B)$
             \item MP от 2 и 4: $(A \lor \neg A) \to B$
             \item Аксиома 11: $A \lor \neg A$
@@ -390,7 +393,7 @@
 
         Достаточность:
 
-        Сопоставим каждой вершине графа формальную переменную. Каждому ребру $i \to j$ сопоставим утверждение $(\neg x_{i} \lor x_{j}) \land (x_{i} \lor \neg x_{j})$. 
+        Сопоставим каждой вершине графа формальную переменную. Каждому ребру $i \to j$ сопоставим утверждение $(\neg x_{i} \land x_{j}) \lor (x_{i} \land \neg x_{j})$. 
 
         Множество таких утверждений совместно, если граф двудолен. По теореме о компактности, достаточно проверить только для конечных множеств формул.
 
