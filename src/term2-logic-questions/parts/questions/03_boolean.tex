@@ -35,9 +35,44 @@
 
 \end{definition}
 
+\begin{definition} $a \leftrightarrow b = (a \to b) \land (b \to  a)$ \end{definition}
+
 \begin{example}[Примеры тавтологий] \thmslashn
 
-    \TODO{Надо.}
+    \begin{enumerate}
+        \item $(p \land q) \leftrightarrow (q \land p)$
+        \item $(p \lor q) \leftrightarrow (q \lor p)$
+        \item $((p \land q) \land r) \leftrightarrow (p \land (q \land r))$
+        \item $((p \lor q) \lor r) \leftrightarrow (p \lor (q \lor r))$
+        \item $(p \land (q \lor r)) \leftrightarrow ((p \land q) \lor (p \land r))$
+        \item $(p \lor (q \land r)) \leftrightarrow ((p \lor q) \land (p \lor r))$
+        \item $\neg(p \land q) \leftrightarrow (\neg p \lor \neg q)$
+        \item $\neg(p\lor q) \leftrightarrow (\neg p \land \neg q)$
+        \item $(p \lor (p \land q)) \leftrightarrow p$
+        \item $(p \land (p \lor q)) \leftrightarrow p$
+        \item $(p \to q) \leftrightarrow (\neg q \to \neg p)$
+        \item $p \leftrightarrow \neg\neg p$
+    \end{enumerate}
+\end{example}
+
+\begin{example}[Тоже самое в другой нотации] \thmslashn
+
+    А то об те убиться можно\ldots
+
+    \begin{enumerate}
+        \item $pq = qp$
+        \item $p+q = q+p$
+        \item $(pq)r = p(qr)$
+        \item $(p+q)+r = p+(q+r)$
+        \item $p(q+r) = pq+pr$
+        \item $p+qr = (p+q)(p+r)$
+        \item $\overline{pq} = \overline{p} + \overline{q}$ 
+        \item $\overline{p + q} = \overline{p}\overline{q}$ 
+        \item $p + pq = p$
+        \item $p(p+q) = p$
+        \item $p \to q = \overline{q} \to \overline{p}$ 
+        \item $p = \overline{\overline{p}}$
+    \end{enumerate}
 \end{example}
 
 \Subsection{Билет 19: <<Выразимость любой формулы в КНФ и ДНФ>>}
