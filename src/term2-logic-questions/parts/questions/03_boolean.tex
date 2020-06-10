@@ -2,7 +2,7 @@
 \Subsection{Билет 18: <<Высказывания и операции. Тавтологии.>>}
 \begin{definition} \thmslashn 
 
-    Определим множество <<пропозициональных формул>> (высказывинй) следующим обарзом:
+    Определим множество <<пропозициональных формул>> (высказывинй) следующим образом:
 
     \begin{itemize}
         \item <<пропозициональная переменная>> является высказыванием
@@ -14,7 +14,7 @@
 
     Пусть высказывание $A$ содержит пропозиональные переменные $x_1, \ldots, x_{n}$.
 
-    Соответствующий высказыванию булевой функцией называется функция $\phi_{A} : \mathbb{B}^{n} \mapsto \mathbb{B}$, где $\mathbb{B} = \{0, 1\} = \mathbb{Z}/2$, заданная индуктивно следуюзим образом:
+    Соответствующий высказыванию булевой функцией называется функция $\phi_{A} : \mathbb{B}^{n} \mapsto \mathbb{B}$, где $\mathbb{B} = \{0, 1\} = \mathbb{Z}/2$, заданная индуктивно следующим образом:
 
     \begin{equation*}
         \begin{array}{|c|c|c|c|c|c|} \hline
@@ -31,7 +31,7 @@
 
 \begin{definition} \thmslashn 
     
-    Тавтологией называется высказывание, соответветсвующия которому формула принимает значение $1$ на всех возможных входах. 
+    Тавтологией называется высказывание, соответветсвующия которому функция принимает значение $1$ на всех возможных входах. 
 
 \end{definition}
 
@@ -66,8 +66,8 @@
         \item $(p+q)+r = p+(q+r)$
         \item $p(q+r) = pq+pr$
         \item $p+qr = (p+q)(p+r)$
-        \item $\overline{pq} = \overline{p} + \overline{q}$ 
-        \item $\overline{p + q} = \overline{p}\overline{q}$ 
+        \item $\overline{p \cdot q} = \overline{p} + \overline{q}$ 
+        \item $\overline{p + q} = \overline{p} \cdot  \overline{q}$ 
         \item $p + pq = p$
         \item $p(p+q) = p$
         \item $p \to q = \overline{q} \to \overline{p}$ 
@@ -170,7 +170,7 @@
 
 \begin{theorem} \thmslashn
 
-    Любую булеву функцию можно однозначно записать полиномом жегалкина.
+    Любую булеву функцию можно однозначно записать полиномом Жегалкина.
 
     \begin{proof} \thmslashn
     
@@ -225,7 +225,7 @@
 \begin{definition} \thmslashn 
 
     Булева функция $f$ называется монотонной, если
-    \[ f(x_1, \ldots, 0, \ldots, x_{n}) = 1 \implies f(x_1, \ldots, 1, \ldots, x_{n}) .\]
+    \[ f(x_1, \ldots, 0, \ldots, x_{n}) = 1 \implies f(x_1, \ldots, 1, \ldots, x_{n})  = 1.\]
 
     (замена $0$ на $1$ не может изменить результат с $1$ на $0$).
 
@@ -256,14 +256,18 @@
     \begin{equation*}
         \begin{split}
             \exists{f\in B}\quad& f \not\in T_0\\
-            \exists{g\in B}\quad& h \not\in T_1\\
+            \exists{g\in B}\quad& g \not\in T_1\\
             \exists{h\in B}\quad& h \not\in S\\
             \exists{k\in B}\quad& k \not\in M\\
             \exists{r\in B}\quad& r \not\in L
         \end{split}
     \end{equation*}
     \begin{proof} \thmslashn
+        
+        Необходимость: Если набор содержится в одном из классов, то и все композиции также не выходят за пределы этого класса (легко проверить для каждого из классов в отдельности) и поэтому набор не является полным.
     
+        Достаточность:
+
         Рассмотрим функцию $f$. Если $f\in T_1$, то $f(x, \ldots, x) = 1$, иначе $f(x, \ldots, x) = \neg x$.
 
         Рассмотрим функцию $g$. Если $g\in T_0$, то $g(x, \ldots, x) = 0$, инчае $g(x, \ldots, x) = \neg x$.
@@ -281,7 +285,7 @@
 
         Получим $\neg$ из $\{0, 1\} $:
 
-        Возьмём функцию $k$. Существует такой набор уходов $\eps_{i}$, что
+        Возьмём функцию $k$. Существует такой набор входов $\eps_{i}$, что
         \[ k(\eps_1, \ldots, \eps_{i-1}, 0, \eps_{i+1}, \ldots, \eps_{n}) = 1 .\] 
         \[ k(\eps_1, \ldots, \eps_{i-1}, 1, \eps_{i+1}, \ldots, \eps_{n}) = 0 .\]
 
