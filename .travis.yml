@@ -1,12 +1,17 @@
+os: linux
+dist: xenial
+language: python
+
 before_install:
-    - sudo apt-get -y install texlive texlive-lang-cyrillic texlive-xetex texlive-generic-extra texlive-fonts-extra texlive-science fonts-cmu fonts-lmodern 
+    - sudo apt-get -y install texlive texlive-lang-cyrillic texlive-xetex texlive-generic-extra texlive-fonts-extra texlive-science fonts-cmu fonts-lmodern texlive-plain-generic 
 script:
 - pyenv global 3.7
 - python3 ./build.py
 deploy:
     provider: pages
-    github_token: $GITHUB_TOKEN
-    skip_cleanup: true
+    strategy: git
+    token: $GITHUB_TOKEN
+    cleanup: false
     repo: gt22/hse-lecture-notes-pages
     target_branch: new_conspect
     local_dir: pdf
