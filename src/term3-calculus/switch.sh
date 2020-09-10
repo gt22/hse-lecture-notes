@@ -1,0 +1,1 @@
+../term0-template/switch.sh

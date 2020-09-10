@@ -4,18 +4,18 @@
 \input{core}
 \usepackage{import}
 
-%\enablecode % Включает поддержку кода.
+\enablecode % Включает поддержку кода.
 %\lstset {
 %  style=supercpp% uncomment to use c++ everywhere.
 %}
-%\lstset {
-%  texcl=true %Включить, если хотите писать русские комментарии в коде.
-%}
+\lstset {
+  texcl=true %Включить, если хотите писать русские комментарии в коде.
+}
 \enablemath % добавляет новые определения, например: \N, \divby
 
 \begin{document}
 % \newcommand\CustomTitle{Здесь можно создать кастомные заголовки в шапке}
-\gdef\CourseName{Математический анализ} % Обязательно
+\gdef\CourseName{Математический Анализ} % Обязательно
 \author{Игорь Энгель} % Обязательно
 \gdef\ShortCourseName{Матан} % Для другого название в шапке, не обязательно
 % \gdef\LaconicFooter{YES} % Минималистичный футер, только номера страниц.
@@ -26,8 +26,9 @@
 % Если конспект очень большой, то осмысленно разбить его на куски.
 % Можно сохранить отдельную часть в отдельный .tex,
 % а затем написать \input{part}, просто подставить в данное место part.tex
-\newcommand\load[1]{\import{parts/#1/}{00_main}}
-\load{01_integral_sums}
-\setcounter{section}{6}
-\load{07_series}
+\newcommand\load[1]{\import{parts/#1/}{00_main_lectures}}
+\setcounter{section}{-1}
+\Section{Конкспект по лекциям}{Игорь Энгель}
+Это конспект сгруппированный по лекциям, потому-что так его удобнее писать. \textbf{Ошибки в этой версии конспекта не исправляются}. Этот конспект может обновляться чуть раньше основного.
+\load{00_lectures}
 \end{document}

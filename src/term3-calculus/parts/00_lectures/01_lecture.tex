@@ -1,0 +1,297 @@
+\Section{Лекция 1}{Игорь Энгель}
+\Subsection{Напоминания}
+
+\begin{definition}[Алгебра множеств] \thmslashn 
+
+    Пусть $X$ - множество. $\mathcal{A} \subset 2^{X}$ называется алгеброй, если
+    
+    \[ \emptyset\in \mathcal{A} .\] 
+    \[ A\in \mathcal{A} \implies X \setminus A\in \mathcal{A} .\] 
+    \[ A, B\in \mathcal{A} \implies A\cap B \in \mathcal{A}, A \cup B\in \mathcal{A} .\] 
+
+
+    И называется $\sigma$-алгеброй, если ещё
+    \[ A_{n}\in \mathcal{A} \implies \bigcap\limits_{n=1}^{\infty} A_{n}\in \mathcal{A_n}.\] 
+    \[ A_{n}\in \mathcal{A} \implies \bigcup\limits_{n=1}^{\infty} A_{n}\in \mathcal{A_n}.\] 
+\end{definition}
+\begin{definition}[Кольцо] \thmslashn 
+
+    $\mathcal{R} \subset 2^{X}$ называется кольцом, если
+    \[ A, B\in \mathcal{R} \implies A\cap B, A \cup B, A \setminus B\in \mathcal{R} .\] 
+\end{definition}
+\begin{lemma} \thmslashn
+
+    Если $\mathcal{R}$ - кольцо, то $\mathcal{R} \cup \{X\} $ - алгебра
+\end{lemma}
+\begin{definition}[Полукольцо] \thmslashn 
+
+    $\mathcal{P} \subset 2^{X}$ называется полукольцом, если
+    \[ \emptyset\in \mathcal{P} .\]
+    \[ A, B\in \mathcal{P} \implies A\cap B \in \mathcal{P}, \exists{Q_{n}\in \mathcal{P}}\quad A \ B = \bigsqcup\limits_{k=1}^{n} Q_{k}    .\] 
+\end{definition}
+\begin{definition}[Ячейка] \thmslashn 
+
+    Ячейка на векторах $a, b\in \R^{n}$ $[a, b) := [a_1, b_1) \times [a_2, b_2) \times \ldots \times [a_{n}, b_{n})$
+\end{definition}
+\begin{theorem} \thmslashn
+
+    Если $G \subset \R^{m}$ - непустое открытое множество, ето 
+
+    \[ \exists{a_{k}, b_{k}\in \Q^{m} \subset \R^{m}}\quad G = \bigsqcup\limits_{k=1}^{n} [a_{k}, b_{k})    .\] 
+\end{theorem}
+\Subsection{Объём и мера}
+\begin{definition} \thmslashn 
+
+    Пусть $\mathcal{P} \subset 2^{X}$ - полукольцо.
+
+    $\mu : \mathcal{P} \to [0, \infty]$ называется объёмом, если (при условии, что все эти множества лежат в $\mathcal{P}$)
+
+    \[ \mu \emptyset = 0 \iff \mu \not \equiv +\infty.\]
+    \[ \mu\left( \bigsqcup\limits_{k=1}^{n} A_{k} \right) = \sum\limits_{k=1}^{n} \mu A_{k}  .\] 
+
+    и называется мерой, если ещё
+    
+    \[ \mu\left( \bigsqcup\limits_{k=1}^{\infty} A_{k} \right) = \sum\limits_{k=1}^{\infty} \mu A_{k}  .\] 
+\end{definition}
+\begin{example}[объёма] \thmslashn
+
+    \begin{enumerate}
+        \item Длина на ячейках в $\R$
+        \item $g : \R \to \R$ - неубывающая функция. $\mu_{g}([a, b)) = g(b) - g(a)$
+        \item $\lambda_{m}$ - объём на ячейках в $\R^{m}$
+        \item $x_0\in X$, $\mu A := \begin{cases}
+                a & x_0\in A\\
+                0 & x_0 \not\in A
+        \end{cases}$
+    \item $\mathcal{A}$ - алгебра ограниченных множеств и их дополнений в  $\R^{m}$, $A\in \mathcal{A}$. $\mu A := \begin{cases}
+            0 & A  \text{ ограничено}\\
+            1 & A \text{ неограниченное}
+    \end{cases}$. $\mu$ - объём, но не мера.
+    \end{enumerate}
+\end{example}
+\begin{properties} \thmslashn
+
+    Пуcть $\mu$ - объём на полукольце $\mathcal{P}$. Тогда
+
+    \begin{enumerate}
+        \item $P' \subset P \implies \mu P' \le \mu P$
+        \item $\bigsqcup\limits_{k=1}^{n} P_{k} \subset P \implies \sum\limits_{k=1}^{n} \mu P_{k} \le \mu P$
+            \begin{proof} \thmslashn
+            
+                Рассмотрим $P \setminus \bigsqcup\limits_{k=1}^{n} = \bigsqcup\limits_{k=1}^{m} Q_{k} $ (теорема из прошлого семестра).
+
+                Тогда $P = \bigsqcup\limits_{k=1}^{n} P_{k}\sqcup \bigsqcup\limits_{k=1}^{m} Q_{k} \implies \mu P = \sum\limits_{k=1}^{n} \mu P_{k} + \sum\limits_{k=1}^{m} \mu Q_{k} \ge \sum\limits_{k=1}^{n} P_{k}  $
+            \end{proof}
+        \item[2'] $\bigsqcup\limits_{k=1}^{\infty} P_{k} \subset P \implies \sum\limits_{k=1}^{\infty} \mu P_{k} \le \mu P$
+            \begin{proof} \thmslashn
+            
+                Рассмотрим частичные объединеиня, получим что 
+                \[ \sum\limits_{k=1}^{n} \mu P_{k} \le \mu P .\] 
+
+                Устремим $n \to \infty$, получим неравенство.
+            \end{proof}
+        \item $P \subset \bigcup\limits_{k=1}^{n} P_{k} \implies \mu P \le \sum\limits_{k=1}^{n} \mu P_{k}$
+            \begin{proof} \thmslashn
+            
+                Пусть $P_{k}' = P\cap P_{k}$. 
+                
+                \[P_{k}'\in \mathcal{P} \implies P = \bigcup\limits_{k=1}^{n} P_{k}' \implies P = \bigsqcup\limits_{k=1}^{n} \bigsqcup\limits_{j=1}^{m_{k}} Q_{kj} \implies \mu P = \sum\limits_{k=1}^{n}\sum\limits_{j=1}^{m_{k}} \mu Q_{kj}\]
+
+                При этом, $Q_{kj} \subset P_{k}' \implies \bigsqcup\limits_{j=1}^{m_{k}} Q_{kj} \subset P_{k}'$.
+
+                Тогда $\mu P \le \sum\limits_{k=1}^{n} \mu P_{k}' \le \sum\limits_{k=1}^{n} \mu P_{k}$
+            \end{proof}
+    \end{enumerate}
+\end{properties}
+\begin{remark} \thmslashn
+
+    Если $\mathcal{P}$ - алгебра, $A, B\in \mathcal{P}$, $B \subset A$, $\mu B < +\infty$, то $\mu (A \setminus B) = \mu A - \mu B$. 
+\end{remark}
+\begin{remark} \thmslashn
+
+    Объём с полукольца можно продолжить на кольцо.
+
+    Построим кольцо из всех возможных $\bigsqcup$ полукольца. На них можем однозначно задать объём как сумму.
+\end{remark}
+\begin{theorem} \thmslashn
+
+    Пусть $\mathcal{P}$ и $\mathcal{Q}$ - полукольца на $X$ и $Y$, $\mu, \nu$ - объёмы на них.
+
+    Тогда $\lambda$ - объём на $\mathcal{P} \times \mathcal{Q}$:
+    \[ \lambda(P \times Q) := \mu P \cdot \nu Q \text{ (считая $+\infty \cdot 0 = 0$ )}.\]
+
+    \begin{proof} \thmslashn
+    
+       Махнём руками:
+
+       Если $P = \bigsqcup\limits_{k=1}^{n} P_{k}$, а $Q = \bigsqcup\limits_{j=1}^{m} Q_{j}$, то $P \times Q = \bigsqcup_{k=1}^{n} \bigsqcup_{j=1}^{m} P_{k} \times Q_{j}$.
+
+       \[ \lambda(P \times Q) = \mu P \cdot \nu Q = \left(\sum\limits_{k=1}^{n} P_{k}\right) \cdot \left( \sum\limits_{j=1}^{m} Q_{j} \right) = \sum\limits_{k=1}^{n} \sum\limits_{j=1}^{m} \lambda(P_{k} \cdot Q_{j}).\]
+
+       Может сулчиться, что таких разбиений не найдётся, тогда разделим всё на мелкие кусочки, тогда получим разбиение для множеств, а на кусочках посчитаем рекурсивно. Утверждается, что когда-то сойдётся.
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    \[ \lambda_{m} [a, b) = (b_1 - a_1)(b_2 - a_2) \ldots (b_{m} - a_{m}) .\]
+
+    $\lambda_{m}$ - действительно объём на ячейках в $\R^{m}$
+\end{consequence}
+\begin{example}[меры] \thmslashn
+
+    \begin{enumerate}
+        \item $\lambda_{m}$ (классический объём) на ячейках
+        \item $g : \R \mapsto \R$ непрерывная слева неубывающая функция. $\mu_{g}([a, b)) = g(b) - g(a)$.
+        \item $x_0\in X$, $\mu A := \begin{cases}
+                a & x_0\in A\\
+                0 & x_0 \not\in A
+        \end{cases}$
+    \item Считающая мера - $\mu A = |A|$
+    \item $T = \{t_1, t_2, \ldots\} \subset X $ - не более чем счётное, сопоставим им $\{w_1, w_2, \ldots\} \subset N_{\ge 0}$.\\
+        $\mu A := \sum\limits_{t_{i}\in A\cap T} w_{i}$
+        \begin{proof} \thmslashn
+        
+            Пусть $A = \bigsqcup\limits_{n=1}^{\infty} A_{n}$.
+
+            $\mu A_{n} = \sum\limits_{k=1}^{\infty} a_{nk}$ (обозначим так те числа, что надо сложить).
+
+            \[ \mu A = \sum\limits_{n=1}^{\infty} \sum\limits_{k=1}^{\infty} a_{nk} .\]
+
+            Если $\exists{n}\quad t_{i}\in A_{n}$, то $\exists!{n, k}\quad t_{i} = a_{nk}$, и при этом $t_{i}\in A$. Точно также, $\forall{k}\quad a_{nk}\in A_{n} \subset A$, значит равенство верно. (тут рукамахательство с уникальностью, но вроде понятно почему работает)
+        \end{proof}
+    \end{enumerate}
+\end{example}
+\begin{theorem} \thmslashn
+
+    Пусть $\mu$ - объём на полукольце $\mathcal{P}$.
+
+    $\mu$ - мера $\iff$ $P, P_{n}\in \mathcal{P}$, $P \subset \bigcup\limits_{n=1}^{\infty} P_{n}$, то $\mu P \le \sum\limits_{n=1}^{\infty} \mu P_{n}$
+    \begin{proof} \thmslashn
+    
+        $\impliedby$:
+
+        Если $P = \bigsqcup\limits_{k=1}^{\infty} P_{k}$, то это условие даёт $\le $, а $\ge $ верно всегда (свойства объёма)
+
+        $\implies$:
+
+        $P_{n}' := P\cap P_{n}$. Тогда $P = \bigcup\limits_{k=1}^{\infty} P_{n}' \implies P = \bigsqcup\limits_{k=1}^{\infty} \bigsqcup\limits_{j=1}^{m_{k}} Q_{kj}$, $Q_{kj} \subset P_{k}'$.
+
+        Тогда $\sum\limits_{j=1}^{m_{k}} \mu Q_{kj} \le \mu P_{k}' $.
+
+        Так-как $\mu$ - мера, то $\mu P = \sum\limits_{k=1}^{\infty} \sum\limits_{j=1}^{m_k} \mu Q_{kj} \le \sum\limits_{k=1}^{\infty} \mu P_{k}'$
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Если $\mu$ - мера на $\sigma$-алгебре, то счётное объединение множеств нулевой меры имеет нулевую меру.
+\end{consequence}
+\begin{theorem}[Непрерывность снизу] \thmslashn
+
+    Пусть $\mu$ - объём на $\sigma$-алгебре.
+
+    $\mu$ - мера $\iff$ $A_1 \subset A_2 \subset \ldots \implies \mu A_{k} \to \mu\left( \bigcup\limits_{k=1}^{\infty}  A_{k}\right)$
+    \begin{proof} \thmslashn
+    
+        $\implies$
+
+
+        $A_0 := \emptyset$, $B_{k} := A_{k} \setminus A_{k-1}$. Тогда, $A := \bigcup\limits_{k=1}^{\infty} A_{k} = \bigsqcup\limits_{k=1}^{\infty} B_{k}$.
+
+        $\mu A = \sum\limits_{k=1}^{\infty} \mu B_{k} = \lim\limits_{n \to \infty} \sum\limits_{k=1}^{m} \mu B_{k} = \lim\limits_{k \to \infty}  \mu \left( \bigsqcup\limits_{k=1}^{n} B_{k} \right) = \lim\limits_{k \to n} \mu A_{n}$ 
+
+        $\impliedby$
+
+        Пусть $A = \bigsqcup\limits_{k=1}^{\infty} C_{k}$. Возьмём $A_{n} := \bigsqcup\limits_{k=1}^{n} C_{k}$.
+
+        Имеем $\mu A = \lim\limits_{n \to \infty} \mu A_{n} = \lim\limits_{n \to \infty} \mu \left( \bigsqcup\limits_{k=1}^{n} C_{k} \right) = \lim\limits_{n \to \infty} \sum\limits_{k=1}^{n} \mu C_{k}$. \TODO
+    \end{proof}
+\end{theorem}
+\begin{theorem} \thmslashn
+
+    Пусть $\mu$ - объём на $\sigma$-алгебре, и $\mu X < +\infty$.
+
+    Тогда следующие условия равносильны:
+    \begin{enumerate}
+        \item $\mu$ - мера
+        \item $A_1 \supset A_2 \supset \ldots$, $A = \bigcap\limits_{k=1}^{\infty} A_{k} \implies \mu A_{k} \to \mu A $
+        \item $A_1 \supset A_2 \supset \ldots$, $\bigcap\limits_{k=1}^{\infty} A_{k} = \emptyset \implies \mu A_{k} \to 0 $.
+    \end{enumerate}
+    \begin{proof} \thmslashn
+    
+        $1 \implies 2$:
+
+        $B := A_1 \setminus A$, $B_{k} := A_1 \setminus A_{k}$.
+
+        Тогда $B_1 \subset B_2 \subset \ldots$, и применима предыдущая теорема - $\mu A_1 - \mu A_{k} = \mu(A_1 \setminus A_{k}) = \mu B_{k} \to \mu B = \mu( A_1 \setminus A) = \mu A_1 - \mu A \implies \mu A_{k} \to  \mu A$.
+
+        $2 \implies 3$ тривиально.
+
+        $3 \implies 1$:
+
+        $A = \bigsqcup\limits_{k=1}^{\infty} C_{k}$, $A_{n} := \bigsqcup\limits_{k=n+1}^{\infty} C_{k} $ 
+
+        Имеем что $\mu A_{k} \to 0$
+
+        $\mu A = \mu \left( \bigsqcup\limits_{k=1}^{n} C_{k} \sqcup A_{n} \right) = \sum\limits_{k=1}^{n} \mu C_{k} + \mu A_{n} \to \sum\limits_{k=1}^{\infty} C_{k} + 0 $
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Достаточно чтобы $\mu A_{m} < +\infty$ при некотором $m$, тогда есть $2$, $3$
+\end{consequence}
+\Subsection{Продолжение меры}
+\begin{definition} \thmslashn 
+
+    $\nu : 2^{X} \mapsto [0, +\infty]$ - субмера если
+    \[ \nu \emptyset = 0 .\]
+    \[ A \subset B \implies \nu A \le \nu B .\]
+    \[ \nu\left( \bigcup_{n=1}^{\infty} A_{n}  \right) \le \sum\limits_{n=1}^{\infty} \nu A_{n}  .\] 
+\end{definition}
+\begin{remark} \thmslashn
+
+    $3 + 1 = 2$
+\end{remark}
+\begin{definition} \thmslashn 
+
+    $\mu : \mathcal{A} \mapsto [0, +\infty]$ - полная мера, если $B\in \mathcal{A}$, $A \subset B$ и $\mu B$ то $A\in \mathcal{A}$
+\end{definition}
+\begin{definition} \thmslashn 
+
+    $\nu$ - субмера, $E$ - измеримое относительно $\nu$ множество, если $\forall{A}\quad \nu A = \nu(A\cap E) + \nu(A \setminus E)$.
+\end{definition}
+\begin{remark} \thmslashn
+
+    Субмера гарантирует $\le $, важно толко $\ge $.
+\end{remark}
+\begin{theorem}[Каратеодори] \thmslashn
+
+   $\nu$-измеримые мноэества образуют $\sigma$-алгебру и сужение $\nu$ на эту $\sigma$-алгебру - полная мера
+   \begin{proof} \thmslashn
+   
+       Если $\nu E = 0$, то $E\in \mathcal{A}$:
+    
+       \[ \nu A \le \nu(A\cap E) + \nu(A \setminus E) \le \nu E + \nu A = \nu A \implies \nu(A\cap E) + \nu(A \setminus E) = \nu A .\] 
+
+       $E\in \mathcal{A} \implies E' := X \setminus E\in \mathcal{A}$:
+
+       \[ A\cap E = A \setminus E' .\]
+       \[ A \setminus E = A\cap E' .\]
+       \[ \nu A = \nu (A\cap E) + \nu (A \setminus E) = \nu (A \setminus E') + \nu (A\cap E') .\]
+
+       $E, F\in \mathcal{A} \to  E \cup F\in \mathcal{A}$:
+
+       \[ \nu A = \nu(A\cap E) + \nu(A \setminus E) = \nu(A\cap E) + \nu((A \setminus E)\cap F) + \nu((A \setminus E) \setminus F) .\] 
+       \[ \ge \nu(A\cap (E \cup F)) + \nu(A \setminus (E \cup F).\]
+
+       Так-как $A\cap (E \cup F) = (A\cap E) \cup ((A \setminus E)\cap F)$
+
+       Из неравенства можем получить равенство по свойству субмеры. Получили алегбру.
+
+       \[ \nu A = \nu \left( A\cap \bigsqcup\limits_{k=1}^{n} E_{k} \right) + \nu\left(A \setminus \bigsqcup\limits_{k=1}^{n} E_{k}\right) = \sum\limits_{k=1}^{n} \nu(A\cap E_{k}) + \nu\left(A \setminus \bigsqcup\limits_{k=1}^{n} E_{k}\right) \ge \sum\limits_{k=1}^{n} \nu(A\cap E_{k}) + \nu (A \setminus E) .\]
+       \[ \nu A \ge \sum\limits_{k=1}^{\infty} \nu(A\cap E_{k}) + \nu(A \setminus E) \ge \nu \left( \bigcup_{k=1}^{\infty} (A\cap E_{k}) \right) + \nu(A \setminus E) = \nu(A\cap E) + \nu(A \setminus E)  .\]
+
+       Для произвольного объёденения можем представить как дизъюнктное по теореме из полуколец.
+
+       \TODO{дописать почему мера}
+   \end{proof}
+\end{theorem}

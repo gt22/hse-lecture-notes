@@ -1,0 +1,124 @@
+\SectionLecture{Лекция 13}{Игорь Энгель}
+\begin{statement} \thmslashn
+
+    Пусть $L : V \mapsto V$, то $\forall{e, f \text{ - базисы}}\quad \exists{C}\quad [L]_{f}^{f}  = C[L]_{e}^{e}C^{-1}$.
+
+    Наоборот, если $B = C[L]_{e}^{e}C^{-1}$, то существует базис $f$, что $B = [L]_{f}^{f}$.
+\end{statement}
+
+
+\begin{definition} \thmslashn 
+
+    Матрицы $A, B\in M_{n}(K)$ подобны, если $\exists{C\in GL_{n}(K)}\quad A = CBC^{-1}$.
+\end{definition}
+\begin{statement} \thmslashn
+
+    Характерестический многочлен может представить как $\chi_{L}(\lambda) = \det(A - \lambda E_{n})$, где $A$ - матрица $L$ в произвольном базисе.
+    \begin{proof} \thmslashn
+    
+        Пусть $A$ - матрица в базисе $e$, $A'$ - в базисе $f$. $\exists{C}\quad A' = CAC^{-1}$.
+
+        Пусть $\chi_{A}(\lambda) = \det(A - \lambda E_{n})$, $\chi_{A'}(\lambda) = \det(A' - \lambda E_{n})$.
+
+        Рассмотрим их как элементы $K(t)$ (дробно-рациональные функции). Это поле, и все теоремы работают:
+        \[ \det(A' - tE) = \det(CAC^{-1} - tCC^{-1}) = \det(C(A-tE)C^{-1}) = \det(C)\det(A-tE)\det (C^{-1}) = \det(A-tE) .\]
+
+        Эти выражения равны как элементы $K(t)$, то они равны как элементы $K[t]$.
+    \end{proof}
+\end{statement}
+\begin{statement} \thmslashn
+
+    Старший коэффициент в $\chi_{L}(\lambda)$ - $(-1)^{n}\lambda^{n}$.
+
+    Младший - $\chi_{L}(0) = \det L$.
+\end{statement}
+\begin{definition} \thmslashn 
+
+    Пусть $A\in M_{n}(K)$. Тогда след $A$:
+    \[ \Tr A = \sum\limits_{i=1}^{n} a_{ii} .\]
+
+    След оператора $L$ - след его матрицы в произвольном базисе. Корректность скоро докажем.
+\end{definition}
+\begin{statement} \thmslashn
+
+    $(-1)^{n-1}\Tr L$ - коэффициент при $n-1$-й степени $\chi_{L}$.
+    \begin{proof} \thmslashn
+    
+        \TODO{(есть на видео)}
+    \end{proof}
+\end{statement}
+\begin{properties} \thmslashn
+
+    \begin{enumerate}
+        \item $\Tr(CAC^{-1}) = \Tr A$ - так-как след - коэффициент хар-многочлена.
+        \item $\Tr AB = \Tr BA$
+        \item След равен сумме собственных чисел с учётом кратности, как корней хар-многочлена (если хар-многочлен разложился на линейный множители).
+        \item $\Tr A = \Tr A^{T}$.
+        \item $\Tr(A+\lambda B) = \Tr A + \lambda \Tr B$.
+    \end{enumerate}
+\end{properties}
+\begin{remark} \thmslashn
+
+    Определитель - произведение собственных числе как корней хар-многочлена с учётом кратнсоти.
+\end{remark}
+\begin{remark} \thmslashn
+
+    Для матриц $2 \times 2$: $\chi_{A}(\lambda) = \lambda^2 - \lambda\Tr A + \det A$.
+\end{remark}
+
+Чтобы закодировать оператор матрицей, нам нужно как минимум закодировать хар-многочлен. Его степень $n$, старший коэффициент фиксирован, значит надо закодировать $n$ коэффициентов.
+
+Заметим, что в диагональной матрице ровно $n$ коэффициентов\ldots
+
+\begin{definition} \thmslashn 
+
+    Оператор называется диагонализуемым, если $\exists{e \text{ - базис}}\quad [L]_{e}^{e}$ - диагональна.
+
+    Матрица $A$ называется диагонализуемой, если диагонализуем её оператор. Эквивалетно: $\exists{C}\quad CAC^{-1}$ - диагональна.
+\end{definition}
+\begin{remark} \thmslashn
+
+    Если $B$ - <<матрица $A$ в базисе $f$>>, то $B$ - матрица оператора $x \to Ax$ в базисе $f$.
+\end{remark}
+\begin{lemma} \thmslashn
+
+    Матрица оператора $L$ в базисе $v$ диагональна тогда и только тогда, когда все $v_{i}$ - собственные вектора $L$. Тогда, на диагонали стоят собственные числа.
+    \begin{proof} \thmslashn
+    
+        $i$-й столбец - результат применения $L$ к $v_{i}$. Чтобы матрица получилось диагональной, то $Lv_{i}$ должен былть $\lambda_{i}v_{i}$.
+    \end{proof}
+\end{lemma}
+\begin{theorem} \thmslashn
+
+    Пусть $v_1, \ldots, v_{n}$ - собственные вектора $L$ с собственными числами $\lambda_1, \ldots, \lambda_{n}$. Если $\lambda_{i}$ попарно различны, то $v_{i}$ линейно независимые.
+    \begin{proof} \thmslashn
+    
+        Пусть есть нетривиальная линейная комбинация
+        \[ \sum\limits_{i=1}^{k} c_{i}v_{i} = 0 .\]
+        из минимального кол-ва векторов (пусть перенумеровали от $1$ до $k$).
+
+        Так-как комбинация минимальна, все $c_{i} \neq 0$. Тогда
+        \[ 0 = L(0) = L\left( \sum\limits_{i=1}^{k} c_{i}v_{i} \right) = \sum\limits_{i=1}^{k} c_{i}\lambda_{i}v_{i}  .\]
+
+        Домножим начальную комбинацию на $\lambda_1$ и вычтем новую из старой:
+        \[ 0 = \sum\limits_{i=2}^{k} c_{i}(\lambda_1 - \lambda_{i})v_{i} .\]
+
+        Так-как $\lambda_{i}$ различны, все слагаемые не $0$, но тут меньше слагаемых чем в начальной, а начальная была минимальной. Противоречение.
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Если поле $K$ содержит все корни $\chi_{L}$, и $\chi_{L}$ не имеет кратных корней, то $L$ диагонализуем.
+    \begin{proof} \thmslashn
+    
+        Есть $\lambda_1, \ldots, \lambda_{n}$ - корни $\chi_{L}$, они все различны, $n = \dim V$, каждой соответствует вектор. Получили $\dim V$ ЛНЗ векторов. Базис.
+    \end{proof}
+\end{consequence}
+\begin{lemma} \thmslashn
+
+    Пусть $A\in M_{k}(\mathbb{C})$ - диагонализуемо, $v$ - базис из собственных векторов с собственными числами $\lambda_{i}$. Пусть $\forall{i \ge 3}\quad |\lambda_1| > |\lambda_2| \ge |\lambda_{i}|$. Если вектор $x = c_1v_1 + \ldots + c_{k}v_{k}$, то $A^{n}x = c_1\lambda_1^{n}v_1 + O(|\lambda_2|^{n})$.
+    \begin{proof} \thmslashn
+    
+        \[ A^{n}x = c_1\lambda_1^{n}v_1 + \ldots + c_{k}\lambda_{k}^{n}v_{k} = c_1\lambda_1^{n}v_1 + O(|\lambda_2|^{n}) .\qedhere\]  
+    \end{proof}
+\end{lemma}

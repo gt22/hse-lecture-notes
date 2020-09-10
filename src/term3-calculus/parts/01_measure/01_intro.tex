@@ -1,0 +1,114 @@
+\Subsection{Напоминания (из прошлого семестра)}
+\def\questionsurl{https://github.com/gt22/hse-questions-calculus/blob/pdf/term2-calculus-questions.pdf}
+
+\begin{definition}[Алгебра множеств] \thmslashn 
+
+    Пусть $X$ - множество. $\mathcal{A} \subset 2^{X}$ называется алгеброй, если
+    
+    \[ \emptyset\in \mathcal{A} .\] 
+    \[ A\in \mathcal{A} \implies X \setminus A\in \mathcal{A} .\] 
+
+    \begin{equation*}
+        A, B\in \mathcal{A} \implies
+        \begin{cases}
+            A\cap B\in \mathcal{A}\\
+            A \cup B\in \mathcal{A}
+        \end{cases}
+    \end{equation*}
+
+    И называется $\sigma$-алгеброй, если ещё
+    \begin{equation*}
+        A_{n}\in \mathcal{A} \implies
+        \begin{cases}
+            \bigcap\limits_{n=1}^{\infty} A_{n}\in \mathcal{A}\\
+            \bigcup\limits_{n=1}^{\infty} A_{n}\in \mathcal{A}
+        \end{cases}
+    \end{equation*}
+\end{definition}
+\begin{definition}[Кольцо] \thmslashn 
+
+    $\mathcal{R} \subset 2^{X}$ называется кольцом, если
+    \begin{equation*}
+        A, B\in \mathcal{R} \implies
+        \begin{cases}
+            A\cap B\in \mathcal{R}\\
+            A \cup B\in \mathcal{R}\\
+            A \setminus B\in \mathcal{R}
+        \end{cases}
+    \end{equation*}
+\end{definition}
+\begin{lemma} \thmslashn
+
+    \begin{equation*}
+        \begin{cases}
+            \mathcal{R} \text{ - кольцо над $X$}\\
+            X\in \mathcal{R}
+        \end{cases} \implies \mathcal{R} \text{ - алгебра над $X$}
+    \end{equation*}
+    \begin{proof} \thmslashn
+    
+        \[ X\in \mathcal{R} \implies X \setminus X = \emptyset\in \mathcal{R} .\]
+        \[ X, A\in \mathcal{R} \implies X \setminus A\in \mathcal{R} .\]
+        \begin{equation*}
+            A, B\in \mathcal{R} \implies
+            \begin{cases}
+                A\cap B\in \mathcal{R}\\
+                A \cup B\in \mathcal{R}
+            \end{cases} \qedhere
+        \end{equation*}
+    \end{proof}
+\end{lemma}
+\begin{definition}[Полукольцо] \thmslashn 
+
+    $\mathcal{P} \subset 2^{X}$ называется полукольцом, если
+    \[ \emptyset\in \mathcal{P} .\]
+    \begin{equation*}
+        A, B\in \mathcal{P} \implies
+        \begin{cases}
+            A\cap B\in \mathcal{P}\\
+            \exists{Q_{n}\in \mathcal{P}}\quad A \setminus B = \bigsqcup\limits_{k=1}^{n} Q_{k}
+        \end{cases}
+    \end{equation*}
+\end{definition}
+\begin{theorem}[Разность и объединение нескольких множеств в полукольце]\label{thm:semi_ops} \thmslashn
+
+    \[ P_{n}, P\in \mathcal{P} \implies \exists{Q_{m}\in \mathcal{P}}\quad P \setminus \bigcup\limits_{k=1}^{n} P_{k} = \bigsqcup\limits_{k=1}^{m} Q_{k}  .\]
+
+    \begin{equation*}
+        P_{k} \in \mathcal{P} \implies \exists{Q_{jk}\in \mathcal{P}}\quad
+        \begin{cases}
+            Q_{jk} \subset P_{k}\\
+            \bigcup\limits_{k=1}^{n} P_{k} = \bigsqcup\limits_{j=1}^{n} \bigsqcup\limits_{k=1}^{m_{j}} Q_{jk} 
+        \end{cases}
+    \end{equation*}
+
+    \begin{equation*}
+        P_{n}\in \mathcal{P} \implies \exists{Q_{nk}\in \mathcal{P}}\quad
+        \begin{cases}
+            Q_{nk} \subset P_{n}\\
+            \bigsqcup\limits_{n=1}^{\infty} \bigsqcup\limits_{k=1}^{m_{n}} Q_{nk} 
+        \end{cases}
+    \end{equation*}
+    \begin{proof} \thmslashn
+    
+        \href{\questionsurl}{В билете 100}
+    \end{proof}
+\end{theorem}
+\begin{definition}[Ячейка] \thmslashn 
+
+    Ячейка на векторах $a, b\in \R^{n}$ $[a, b) := [a_1, b_1) \times [a_2, b_2) \times \ldots \times [a_{n}, b_{n})$
+\end{definition}
+\begin{theorem} \thmslashn
+
+    Если $G \subset \R^{m}$ - непустое открытое множество, ето 
+
+    \[ \exists{a_{k}, b_{k}\in \Q^{m} \subset \R^{m}}\quad G = \bigsqcup\limits_{k=1}^{n} [a_{k}, b_{k})    .\] 
+    \begin{proof} \thmslashn
+    
+        \href{\questionsurl}{В билете 102}
+    \end{proof}
+\end{theorem}
+
+
+
+\undef\questionsurl

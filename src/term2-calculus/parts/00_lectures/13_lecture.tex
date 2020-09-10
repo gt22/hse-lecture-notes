@@ -1,0 +1,255 @@
+\SectionLecture{Лекция 13}{Игорь Энгель}
+\begin{example} \thmslashn
+
+    $f(x) = \begin{cases}
+        e^{-\frac{1}{x^2}} & x \neq 0\\
+        0 & x = 0
+    \end{cases}$ 
+
+    \[ f^{(n)}(x \neq 0) = \frac{p_{n}(x)}{x^{3n}}e^{-\frac{1}{x^2}} .\] 
+
+    (можно по индукции)
+
+    \[ f^{(n)}(0) = \lim\limits_{x \to 0} \frac{f^{(n-1)}(x) - f^{(n-1)}(0)}{x} = 0.\]
+
+    (тоже по индукции и предыдущему свойству)
+
+    Её ряд тейлора нулевой, но сама функция не нулевая. Значит, бесконечная дифференцируемость не является достаточным условием аналитичности.
+\end{example}
+\begin{theorem}[Разложение элементарных функций в ряд Тейлора] \thmslashn
+
+    \begin{enumerate}
+        \item $e^{x} = \sum\limits_{n=0}^{\infty} \frac{x^{n}}{n!}$
+        \item $\cos(x) = \sum\limits_{n=0}^{\infty} (-1)^{n} \frac{x^{2n}}{(2n)!}$
+        \item $\sin(x) = \sum\limits_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{(2n+1)!}$
+        \item $\log(1+x) = \sum\limits_{n=1}^{\infty} (-1)^{n-1} \frac{x^{n}}{n} \impliedby x\in (-1, 1)$.
+        \item $\arctan(x) = \sum\limits_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{2n+1} \impliedby x\in [-1, 1]$
+        \item \[ (1+x)^{p} = 1 + \sum\limits_{n=0}^{\infty} \frac{p(p-1) \ldots (p-n+1)}{n!} x^{n} \impliedby x\in (-1, 1) .\] 
+    \end{enumerate}
+
+    Ряды $1$-$3$ сходятся во всей плоскости.
+
+    Их можно использовать, чтобы доопределить эти функции на всём $\mathbb{C}$.
+    \begin{proof} \thmslashn
+    
+        \[ \log'(1+x) = \frac{1}{1+x} = \sum\limits_{n=0}^{\infty} (-1)^{n}x^{n} \impliedby x \in (-1, 1) .\]
+        \[ \log(1+x) = \int\limits_{0}^{x} \frac{dt}{1+t} = \int\limits_{0}^{x} \sum\limits_{n=0}^{\infty} (-1)t^{n}dt = \sum\limits_{n=0}^{\infty} (-1)^{n} \int\limits_{0}^{x} t^ndt = \sum\limits_{n=0}^{\infty} (-1)^{n} \frac{x^{n+1}}{n+1} = \sum\limits_{n=1}^{\infty} (-1)^{n-1} \frac{x^{n}}{n}     .\]
+
+        \[ \arctan'(x) = \frac{1}{1+x^2} = \sum\limits_{n=0}^{\infty} (-1)x^{2n} \impliedby x\in (-1, 1) .\]
+        \[ \arctan(x) = \int\limits_{0}^{x} \frac{1}{1+t^2}dt = \sum\limits_{n=0}^{\infty} (-1)^{n} \int\limits_{0}^{x} t^{2n}dt = \sum\limits_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{2n+1}   .\]
+
+        Докажем что разложение арктангенса подходит для $x=1$:
+
+        По признаку Лейбница, ряд сходится.
+
+        По теореме Абеля:
+        \[ \sum\limits_{n=0}^{\infty} (-1)^{n} \frac{1}{2n+1} = \lim\limits_{x \to 1-} \sum\limits_{n=0}^{\infty} (-1)^{n} \frac{x^{2n+1}}{2n+1} = \lim\limits_{x \to 1-} \arctan(x) = \arctan(1) .\]
+
+        \[ (1+x)^{p} = T_{n}(x) + \frac{1}{n!}\int\limits_{0}^{x} (x-t)^{n} (p(p-1)\ldots (p-n))(1+t)^{p-n-1}dt =: T_{n}(x) + R_{n}(x)  .\]
+
+        Покажем что $x\in (-1, 1) \implies \lim\limits_{n \to \infty} R_{n}(x) = 0$.
+
+        \[ \left| \frac{R_{n+1}(x)}{R_{n}(x)}\right| = \frac{ |p-n-1| }{n+1} \left| \frac{\int\limits_{0}^{x} (x-t)^{n+1}(1+t)^{p-n-2}dt }{\int\limits_{0}^{x} (x-t)^{n}(1+t)^{p-n-1} }\right|  .\]
+        \[ \frac{ |p-n-1| }{n+1} \left| \frac{\int\limits_{0}^{x} (x-t)^{n}(1+t)^{p-n-1} \frac{x-t}{1+t}dt }{\int\limits_{0}^{x} (x-t)^{n}(1+t)^{p-n-1}dt }\right| .\]
+
+        Заметим, что оба интеграла знакопостоянны. Также, заметим, что $\left|\frac{x-t}{1+t}\right| \le |x|$.
+
+    \[ \left| \frac{R_{n+1}(x)}{R_{n}(x)}\right| \le \frac{ |p-n-1| |x| }{n+1} .\]
+    \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{n > N}\quad \left| \frac{R_{n+1}(x)}{R_{n}(x)}\right| \le (1+\eps)|x| .\]
+
+    Так-как $|x| < 1$ фиксированно, всегда можем подобрать $\eps$ что $(1+\eps)|x| < 1$, значит, $R_{n}(x) \to_{n} 0$. 
+    \end{proof}
+\end{theorem}
+\begin{consequence}[Формула Эйлера] \thmslashn
+
+    \[ e^{iz} = \cos z + i\sin z .\]
+    \begin{proof} \thmslashn
+    
+        \[ \sum\limits_{n=0}^{\infty} \frac{i^{n}z^{n}}{n!} = \sum\limits_{n=0}^{\infty} (-1)^{n}\frac{z^{2n}}{(2n)!} + i \sum\limits_{n=0}^{\infty} (-1)^{n} \frac{z^{2n+1}}{(2n+1)!} .\] 
+    \end{proof}
+\end{consequence}
+\begin{consequence} \thmslashn
+
+    \[ \frac{1}{\sqrt{1+x} } = (1+x)^{-\frac{1}{2}} = 1 + \sum\limits_{n=1}^{\infty} \frac{\left( -\frac{1}{2} \right)\left( -\frac{1}{2} - 1 \right)\ldots\left( -\frac{1}{2}-n+1 \right)}{n!}x^{n} = 1 + \sum\limits_{n=0}^{\infty} \frac{(-1)^{n}(2n-1)!!}{(2n)!!}x^{n}  .\]
+    \[ \frac{1}{\sqrt{1+x} } = \sum\limits_{n=0}^{\infty} (-1)^{n}\binom{2n}{n} \frac{x^{n}}{4^{n}} .\] 
+\end{consequence}
+\begin{lemma} \thmslashn
+
+    \[ \arcsin x = \sum\limits_{n=0}^{\infty} (-1)^{n}\binom{2n}{n}\frac{x^{2n+1}}{2n+1} .\] 
+    \begin{proof} \thmslashn
+    
+        Аналогично логорифму и арктангенсу, выводится из $\arcsin' x = \frac{1}{\sqrt{1-x^2} }$.
+    \end{proof}
+\end{lemma}
+\Subsection{8 Функции многих переменных}
+\Subsubsection{Дифференцируемые отображения}
+\begin{definition} \thmslashn 
+
+    Пусть $f : (E \subset \mathbb{R}^{n}) \mapsto \mathbb{R}^{m}$, $a\in \Int E$, $f$ называется дифференцируемой в точке $a$, если 
+    \[ \exists{T\in M_{n \times m}}\quad f(a+h) = f(a) + T(h) + \alpha(h) .\]
+    \[ \lim\limits_{n \to \vec{0}} \frac{\alpha(h)}{\|h\|} \to 0  .\]
+
+    $T$ называется дифференциалом $f$ в точке $a$ и обозначается $d_{a}f$.
+\end{definition}
+\begin{remark} \thmslashn
+
+    Если $T$ существует, то оно определено однозначно.
+    \begin{proof} \thmslashn
+    
+        Зафиксируем $h\in \mathbb{R}^{n}$, такое, что $\|h\| = 1$. 
+
+        \[ f(a+th) = f(a) + T(th) + \alpha(th) = f(a) + tT(h) + \alpha(th) \implies T(h) = \frac{f(a+th)-f(a)}{t} \cdot \frac{\alpha(th)}{t} .\]
+        \[ \lim\limits_{t \to 0} \frac{f(a+th)-f(a)}{t} = T(h) .\]
+
+        Это определяет значения $T$ на всех векторах с нормой $1$. Так-как $T$ линейно, этого достаточно:
+        \[ T(v) = \|v\|T\left( \frac{v}{\|v\|} \right)  .\] 
+    \end{proof}
+\end{remark}
+\begin{definition} \thmslashn 
+
+    Матрица $T$ называется матрицей Якоби (Якобианом) функции $f$ в точке $a$, и обозначается $f'(a)$.
+\end{definition}
+\begin{remark} \thmslashn
+
+    Если $f$ дифференцируема в $a$, то $f$ непрерывна в  $a$.
+
+    \begin{proof} \thmslashn
+    
+        \[ \lim\limits_{h \to 0} f(a+h) = \lim\limits_{h \to 0} f(a) + T(h) + \alpha(h) = f(a) + T(0) + 0 = f(a) .\] 
+    \end{proof}
+\end{remark}
+\begin{remark} \thmslashn
+
+    Если $m=1$, формула принимает следующий вид:
+    \[ f(a+h) = f(a) + \left<v, h\right> + \alpha(h)  .\]
+
+    ($\left<a, b\right>$ - скалярное произведение $a$ на $b$).
+
+    Вектор $v$ называется градиентом и обозначается $\grad f$ или $\nabla f$.
+\end{remark}
+\begin{theorem} \thmslashn
+
+    Дифференцируемость функции в точке равносильна дифференцируемости всех её координатных фукнций в этой точке.
+    \begin{proof} \thmslashn
+
+        Пусть $f : \mathbb{R}^{n} \mapsto \mathbb{R}^{m}$ $f_{i}(x)$ - $i$-я координата $f(x)$.
+
+        Необходиомость:
+
+        \[ f(a+h) = f(a) + T(h) + \alpha(h) .\]
+        \[ f_{i}(a+h) = f_{i}(a) + T_{i}(h) + \alpha_{i}(h) .\]
+
+        $i$-й столбец матрицы $T$ будет градиентом $i$-й координатной функции.
+        
+        Достаточность:
+
+        Знаем, что 
+        \[ f_{i}(a+h) = f_{k}(a) + T_{i}(h) + \alpha_{i}(h) .\]
+
+        Соберём это всё в вектор. Линейность $T$ не пострадает, $\alpha$ будет покоординатно сходиться к нулю, значит будет сходиться по норме.
+    \end{proof}
+\end{theorem}
+\begin{definition}[Производная по направлению] \thmslashn 
+
+    Пусть есть $h\in \mathbb{R}^{n}$, $\|h\| = 1$, $f : (E \subset \mathbb{R}^{n}) \mapsto \mathbb{R}$, $a\in \Int E$.
+
+    Тогда производная $f$ в точке $a$ по направлению $h$:
+    \[ \frac{\partial f}{\partial h}(a) := \lim\limits_{t \to 0} \frac{f(a+th)-f(a)}{t} .\]
+
+    (Проивзодная в нуле функции $g : \mathbb{R} \mapsto \mathbb{R}$, $g(t) = f(a+th)$)
+\end{definition}
+\begin{theorem} \thmslashn
+
+    Пусть $f : E \mapsto \mathbb{R}$, $a\in \Int E$, $f$ дифференцируема в $a$.
+
+    Тогда $\frac{\partial f}{\partial h}(a) = \left<\nabla f, h\right> = d_{a}f(h)$.
+
+    \begin{proof} \thmslashn
+    
+        \[ f(a+th) = f(a) + tT(h) + \alpha(th) \implies \frac{\partial f}{\partial h} (a) = \lim\limits_{t \to 0} T(h) + \frac{\alpha(th)}{t} = T(h) .\] 
+    \end{proof}
+\end{theorem}
+\begin{consequence}[Экстремальное свойство градиента] \thmslashn
+
+    Пусть $f : E \mapsto \mathbb{R}$, $a\in \Int E$, $f$ дифференцируема в $a$, $\nabla f(a) \neq 0$.
+
+    Тогда, $\forall{h\in \mathbb{R}^{n}}\quad \|h\| = 1 \implies - \|\nabla f(a)\| \le \frac{\partial f}{\partial h}(a) \le \|\nabla f(a)\|$, причём, равенство достигается только в $h = \pm \frac{\nabla f(a)}{\|\nabla f(a)\|}$.
+    \begin{proof} \thmslashn
+    
+        \[ \left| \frac{\partial f}{\partial h} \right| = \left| \left<\nabla f(a), h\right>\right| \le \|\nabla f(a)\| \|h\| = \|\nabla f(a)\| .\]
+
+        По неравенству Коши-Буняковского. При этом, равенство доистгается если вектора коллинеарны, что вместе с ограничением на норму $h$ даёт только два возможных вектора.
+    \end{proof}
+\end{consequence}
+\begin{definition}[Частная производная] \thmslashn 
+
+    Пусть $f : E \mapsto \mathbb{R}$, $a\in \Int E$.
+
+    Пусть $e_{i}$ - стандартный базис $\mathbb{R}^{n}$.
+
+    Тогда, частная производная по $i$-му аргументу: $\frac{\partial f}{\partial x_{i}}  := f'_{x_{i}} := D_{k}f := \partial_{k}f := \frac{\partial f}{\partial e_{i}} $ 
+\end{definition}
+\begin{consequence} \thmslashn
+
+    \[ \frac{\partial f}{\partial x_{k}}(a) = \left<\nabla f(a), e_{k}\right> = (\nabla f(a))_{k} \iff \nabla f(a) = \begin{bmatrix} \frac{\partial f}{\partial x_1}(a), \ldots, \frac{\partial f}{\partial x_{n}}(a)   \end{bmatrix}   .\] 
+\end{consequence}
+\begin{consequence} \thmslashn
+
+    \begin{equation*}
+        f' = 
+        \begin{bmatrix} 
+            \frac{\partial f_1}{\partial x_1} & \ldots & \frac{\partial f_1}{\partial x_{n}}\\
+            \ldots & \ldots & \ldots\\
+            \frac{\partial f_{m}}{\partial x_{1}} & \ldots & \frac{\partial f_{m}}{\partial x_{n}}  
+        \end{bmatrix} 
+    \end{equation*}
+\end{consequence}
+\begin{theorem}[Линейность дифференциала] \thmslashn
+
+    Пусть $f, g : (E \subset \mathbb{R}^{n}) \mapsto \mathbb{R}^{m}$, $f, g$ дифференцируемы в $a\in \Int E$.
+
+    Тогда $f+g$ и $\lambda f$ дифференцируемы в $a$, причём, $d_{a}(f+g) = d_{a}f + d_{a} g$, $d_{a}(\lambda f) = \lambda d_{a}(f)$.
+    \begin{proof} \thmslashn
+    
+        \[ f(a+h) = f(a) + d_{a}f(h) + \alpha(h) .\]
+        \[ g(a+h) = g(a) + d_{a}g(h) + \beta(h) .\]
+        \[ (f+g)(a+h) = f(a) + g(a) + (d_{a}f + d_{a}g)(h) + (\alpha + \beta)(h) .\]
+        
+        Аналогично для домножения.
+    \end{proof}
+\end{theorem}
+\begin{theorem} \thmslashn
+
+    Пусть $f : (D \subset  \mathbb{R}^{n}) \mapsto (E \subset \mathbb{R}^{m})$, $g : E \mapsto \mathbb{R}^{\ell}$, $f$ дифференцируема в $a$, $g$ дифференцируема в  $f(a)$, тогда  $g \circ f$ дифференцируема в  $a$, причём, $d_{a}(g \circ f) = d_{f(a)}g \cdot d_{a}f$.
+    \begin{proof} \thmslashn
+    
+        \[ f(a+h) = f(a) + d_{a}f(h) + \alpha(h)\|h\| .\]
+        \[ g(b+k) = g(k) + d_{b}g(k) + \beta(k)\|k\| .\] 
+        \[ g(f(a+h)) = g(f(a) + d_{a}f(h) + \alpha(h)\|h\|) = g(f(a)) + d_{f(a)}(d_{a}f(h) + \alpha(h)\|h\|) + \beta(k)\|k\| .\]
+        \[ g(f(a+h)) = g(f(a)) + d_{f(a)}d_{a}f(h) + \gamma(h).\]
+        \[ \gamma(h) = d_{b}(\alpha(h))\|h\| + \beta(k)\|k\|.\]
+
+        Рассмотрим пределы $\gamma(h)$ по слагаемым:
+
+        \[ \lim\limits_{h \to 0} \frac{d_{b}\alpha(h) \|h\|}{\|h\|} \le \|d_{b}\|\|\alpha(h)\| \to 0 .\]
+
+        \[ k = d_{a}f(h) + \alpha(h)\|h\| .\]
+        \[ \|k\| \le \|d_{a}f\|\|h\| + \|\alpha(h)\|\|h\| \le C \|h\| \implies \frac{\|\beta(k)\| \|k\|}{\|h\|} \le C \|\beta(k)\| \to 0.\]
+    \end{proof}
+\end{theorem}
+\begin{theorem}[О дифференцировании произведения векторной функции на скалярную] \thmslashn
+
+    Пусть $E \subset \mathbb{R}^{n}$, $a\in \Int E$, $\lambda : E \mapsto \mathbb{R}$, $f : E \mapsto \mathbb{R}^{m}$, $\lambda, f$ дифференцируемы в $a$. Тогда, $\lambda f$ дифференцируема в точке $a$ и  $d_{a}(\lambda f)(h) = d_{a}\lambda(h)f(a) + \lambda(a)d_{a}f(h)$
+    \begin{proof} \thmslashn
+    
+        \begin{equation*}
+            \begin{split}
+                (\lambda f)(a+h) - (\lambda f)(a) 
+                &= (\lambda(a+h) - \lambda(a))f(a+h) + \lambda(a)(f(a+h)-f(a))\\ 
+                &= (d_{a}\lambda(h) + o(\|h\|))(f(a) + o(\|h\|)) + \lambda(a)(d_{a}f(h) + o(\|h\|))\\
+                &= d_{a}\lambda(h)f(a) + d_{a}\lambda(h)o(\|h\|) + f(a)o(\|h\|) + o(\|h\|^2) + \lambda(a)d_{a}f(h) + \lambda(a)o(\|h\|)\\
+                &\to d_{a}\lambda(h)f(a) + \lambda(a)d_{a}f(h) + o(\|h\|)
+            \end{split}
+        \end{equation*}
+    \end{proof}
+\end{theorem}

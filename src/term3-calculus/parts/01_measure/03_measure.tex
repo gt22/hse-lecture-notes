@@ -1,0 +1,75 @@
+\Subsection{Продолжение меры}
+\begin{definition} \thmslashn 
+
+    $\nu : 2^{X} \mapsto [0, +\infty]$ - субмера если
+    \[ \nu \emptyset = 0 .\]
+    \[ A \subset B \implies \nu A \le \nu B .\]
+    \[ \nu\left( \bigcup_{n=1}^{\infty} A_{n}  \right) \le \sum\limits_{n=1}^{\infty} \nu A_{n}  .\] 
+\end{definition}
+\begin{remark} \thmslashn
+
+    $3 + 1 = 2$
+\end{remark}
+\begin{definition} \thmslashn 
+
+    $\mu : \mathcal{A} \mapsto [0, +\infty]$ - полная мера, если $\mu$ - мера и 
+    \begin{equation*}
+        \begin{cases}
+            B\in \mathcal{A}\\
+            A \subset B\\
+            \mu B = 0
+        \end{cases} \implies
+        A\in \mathcal{A}
+    \end{equation*}
+\end{definition}
+\begin{definition} \thmslashn 
+
+    $\nu$ - субмера, $E$ - измеримое относительно $\nu$ множество, если $\forall{A}\quad \nu A = \nu(A\cap E) + \nu(A \setminus E)$.
+\end{definition}
+\begin{remark} \thmslashn
+
+    Субмера гарантирует $\le $, важно толко $\ge $.
+\end{remark}
+\begin{theorem}[Каратеодори] \thmslashn
+
+   $\nu$-измеримые мноэества образуют $\sigma$-алгебру и сужение $\nu$ на эту $\sigma$-алгебру - полная мера
+   \begin{proof} \thmslashn
+       
+       Пусть $\mathcal{A}$ - все $\nu$-измеримые множества.
+
+       Если $\nu E = 0$, то $E\in \mathcal{A}$:
+    
+       \[ \nu A \le \nu(A\cap E) + \nu(A \setminus E) \le \nu E + \nu A = \nu A \implies \nu(A\cap E) + \nu(A \setminus E) = \nu A .\] 
+
+       $E\in \mathcal{A} \implies E' := X \setminus E\in \mathcal{A}$:
+
+       \[ A\cap E = A \setminus E' .\]
+       \[ A \setminus E = A\cap E' .\]
+       \[ \nu A = \nu (A\cap E) + \nu (A \setminus E) = \nu (A \setminus E') + \nu (A\cap E') .\]
+
+       $E, F\in \mathcal{A} \to  E \cup F\in \mathcal{A}$:
+
+       \[ \nu A = \nu(A\cap E) + \nu(A \setminus E) = \nu(A\cap E) + \nu((A \setminus E)\cap F) + \nu((A \setminus E) \setminus F) .\] 
+       \[ \ge \nu(A\cap (E \cup F)) + \nu(A \setminus (E \cup F).\]
+
+       Так-как $A\cap (E \cup F) = (A\cap E) \cup ((A \setminus E)\cap F)$
+
+       Из неравенства можем получить равенство по свойству субмеры. Получили алегбру.
+
+       \[ \nu A = \nu \left( A\cap \bigsqcup\limits_{k=1}^{n} E_{k} \right) + \nu\left(A \setminus \bigsqcup\limits_{k=1}^{n} E_{k}\right) = \sum\limits_{k=1}^{n} \nu(A\cap E_{k}) + \nu\left(A \setminus \bigsqcup\limits_{k=1}^{n} E_{k}\right) \ge \sum\limits_{k=1}^{n} \nu(A\cap E_{k}) + \nu (A \setminus E) .\]
+       \[ \nu A \ge \sum\limits_{k=1}^{\infty} \nu(A\cap E_{k}) + \nu(A \setminus E) \ge \nu \left( \bigcup_{k=1}^{\infty} (A\cap E_{k}) \right) + \nu(A \setminus E) = \nu(A\cap E) + \nu(A \setminus E)  .\]
+
+       Произвольное объединение можем представить как дизъюнктное по \autoref{thm:semi_ops}.
+        
+        Заметим, что 
+        \begin{equation*}
+            \begin{cases}
+                A \subset B\\
+                \nu B = 0
+            \end{cases} \implies
+            \nu A = 0 \implies A\in \mathcal{A}
+       \end{equation*}
+
+       Значит, $\nu$ на $\mathcal{A}$ - полная мера.
+   \end{proof}
+\end{theorem}

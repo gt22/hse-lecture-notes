@@ -1,0 +1,41 @@
+\Subsection{Знакопостоянные ряды}
+\TODO
+\begin{theorem} \thmslashn
+
+    Пусть $f : [m, n] \mapsto \mathbb{R}$, $f$ монотонна, тогда
+    \[ \left| \sum\limits_{k=m}^{n} f(k) - \int\limits_{m}^{n} f(x)dx\right| \le \max \{|f(m)|, |f(n)|\}    .\]
+    \begin{proof} \thmslashn
+    
+        \TODO
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Интегральный признак сходимости] \thmslashn
+
+    Пусть $f : [1, +\infty) \to \mathbb{R}$, $f \ge 0$, $f$ монотонно убывает. Тогда $\sum\limits_{k=1}^{\infty} f(k)$ и $\int\limits_{1}^{\infty}  f(x)dx$ ведут себя одинакого.
+    \begin{proof} \thmslashn
+    
+        Ряд сходится тогда и только тогда его частичные суммы $S_{n}$ ограниченны.
+
+        Интеграл сходится тогда и только тогда, когда ограничена $F(n) := \int\limits_{1}^{n} f(x)dx$.
+
+        По теореме, $\left| S_{n} - F(n)\right| \le f(1)$, значит их ограниченность эквивалентна, значит сходимость эквивалентна.
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Если $0 \le \frac{c}{n^{p}}$ при $p > 1$, то ряд $\sum\limits_{n=1}^{\infty} a_{n}$ сходится.
+    \begin{proof} \thmslashn
+    
+        \TODO
+    \end{proof}
+\end{consequence}
+\begin{example} \thmslashn
+
+    \[ \sum\limits_{n=2}^{\infty} \frac{1}{n\ln n} .\]
+
+    По интегральному признаку, его сходимость равносильна сходимости
+    \[ \int\limits_{2}^{n} \frac{1}{x\ln x}dx   .\]
+    \[ \int\limits_{2}^{b} \frac{1}{x\ln x}dx = \int\limits_{\ln 2}^{\ln b} \frac{dy}{y} = \left. \ln y\right|_{\ln \ln b}^{\ln \ln 2} = \ln\ln b - \ln\ln 2     .\]
+
+    Значение интеграла стремится к бесконечности, значит он расходится, значит ряд расходится.
+\end{example}

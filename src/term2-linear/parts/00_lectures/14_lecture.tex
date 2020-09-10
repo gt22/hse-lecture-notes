@@ -1,0 +1,172 @@
+\SectionLecture{Лекция 14}{Игорь Энгель}
+\begin{definition} \thmslashn 
+
+    Пусть $L$ - оператор на пространстве $V$. Подпространство $U \le V$ называется инвариантным, если $L(U) \le U$.
+\end{definition}
+\begin{remark} \thmslashn
+
+    Если инвариантное подпространство существует, на него можно ограничить оператор.
+\end{remark}
+\begin{lemma} \thmslashn
+
+    Если $p\in K[x]$, $L$ - оператор, то $\Ker p(L)$ - инвариантное подпространство $L$.
+    \begin{proof} \thmslashn
+    
+        \[ p(L)(Lv) = L(p(L)v) = L 0 = 0 \implies Lv\in \Ker p(L) .\] 
+    \end{proof}
+\end{lemma}
+\begin{lemma} \thmslashn
+
+    Пусть $U \le V$ - подпространство, $L : V \mapsto V$ - линейный оператор. Тогда, $U$ инвариантно относительно $L$ тогда и только тогда, когда в бизсе $e_1, \ldots, e_{k}, e_{k+1}, \ldots, e_{n}$, где $e_1, \ldots, e_{k}$ - базис $U$, матрица оператора имеет блочно-верхне-треугольный вид.
+    \begin{equation*}
+        \begin{bmatrix} 
+            A & B\\
+            0 & C
+        \end{bmatrix} 
+    \end{equation*}
+    \begin{proof} \thmslashn
+    
+        Необходимость: Знаем что $U$ инвариантно, значит, $\forall{i \le k}\quad L(e_{i})\in U$, и коэффициенты при $e_{k+1}, \ldots, e_{n}$ будут $0$.
+
+        Достаточность: первые $k$ векторов после применения опреатора раскалдываются сами по себе, значит, образуют инвариантное подпространство.
+    \end{proof}
+\end{lemma}
+\begin{remark} \thmslashn
+
+    \begin{equation*}
+        \begin{split}
+            A &= \begin{bmatrix} A_{11} & A_{12}\\ A_{21} & A_{22} \end{bmatrix}\\
+            B &= \begin{bmatrix} B_{11} & B_{12}\\ B_{21} & B_{22} \end{bmatrix}\\
+            AB &= \begin{bmatrix} A_{11}B_{11} + A_{12}B_{21} & A_{11}B_{12} + A_{12}B_{22}\\ A_{21}B_{11} + A_{22}B_{21} & A_{21}B_{12} + A_{22}B_{22} \end{bmatrix} 
+        \end{split}
+    \end{equation*}
+    \begin{equation*}
+        \begin{split}
+            A &= \begin{bmatrix} A_{11} & A_{12}\\ 0 & A_{22} \end{bmatrix}\\
+            B &= \begin{bmatrix} B_{11} & B_{12}\\ 0 & B_{22} \end{bmatrix}\\
+            AB &= \begin{bmatrix} A_{11}B_{11} & A_{11}B_{12} + A_{12}B_{22}\\ 0 & A_{22}B_{22} \end{bmatrix} 
+        \end{split}
+    \end{equation*}
+    \begin{equation*}
+        p\left( \begin{bmatrix} A & B\\ 0 & C \end{bmatrix}  \right) = \begin{bmatrix} p_1(A) & p_2(A, B, C)\\ 0 & p_3(B) \end{bmatrix}  
+    \end{equation*}
+\end{remark}
+\begin{definition} \thmslashn 
+
+    Пусть $V$ - векторное пространство над $K$. Пусть $U$ - подпространство $V$, то на фактрое $V / U$ можно задать векторное прострво над $K$ - сложение берём из факторгруппы, а $\lambda \overline{v} = \overline{\lambda v}$.
+    \begin{proof} \thmslashn
+    
+        Корректность: \TODO
+    \end{proof}
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Пусть $V$ - пространство с оператором $L$, $U$ - инвариантное подпространство $L$. Тогда, определим $\overline{L} : V / U \mapsto V / U$: 
+    \[ \overline{L}(\overline{v}) = \overline{L(v)} .\]
+    \begin{proof} \thmslashn
+    
+        Корректность: \TODO
+    \end{proof}
+\end{definition}
+\begin{remark} \thmslashn
+
+    \[ p(\overline{L})\overline{v} = \overline{p(L)v} .\] 
+\end{remark}
+\begin{remark} \thmslashn
+
+    Пусть $U$ - инвариантное подпространство $L$. Выберем базис, чтобы матрица $L$ выглядела как
+    \begin{equation*}
+        \begin{bmatrix} A & B\\ 0 & C \end{bmatrix} 
+    \end{equation*}
+
+    Тогда $A$ - матрица $\left. L\right|_{U}$ в том-же базисе, а $C$ - матрица $\overline{L}$ в базисе $\overline{e_{k+1}}, \ldots, \overline{e_{n}}$. $\overline{L}(\overline{e_{k+m}}) = \overline{L(e_{k+m})}$, для взятия класса выкинем первыме $k$ кординат. Получим ровно матрицу $C$.
+\end{remark}
+\begin{consequence} \thmslashn
+
+    \[ \chi_{L}(t) = \chi_{\left. L\right|_{U}}(t) \cdot \chi_{\overline{L}}(t) .\] 
+\end{consequence}
+\begin{theorem}[Теорема Гамильтона-Кэли] \thmslashn
+
+    Пусть $L$ - оператор на $V$. Пусть многчлен $\chi_{L}(L)$ раскладывается в $K$ на линейные множестители. Тогда $\chi_{L}(L) = 0$.
+    \begin{proof} \thmslashn
+    
+        Индукция. Для $\dim V = 1$, то $L = \lambda$, причём,  $\lambda$ - собственное значение.
+
+        Так-как $K$ алгебраически замкнуто, возьмём корень $\chi_{L}$, назовём его $\lambda_1$. Возьмём соответствующий ему собственный вектор $e_1$. Для фактора $V / \left<e_1\right>$ работает предположение индукции  Заметим, что $\chi_{L}(t) = -(t - \lambda_1) \cdot \chi_{\overline{L}}(t)$.
+
+        Пусть $v\in V$, тодга $\chi_{\overline{L}}(L)v = ce_1 + \chi_{\overline{L}}(\overline{L})v = ce_{1} + 0 = ce_{1}$.
+
+        Тогда:
+        \[ \chi_{L}(L)v = -(L-\lambda_1E)(\chi_{\overline{L}}(L)v) = -(L-\lambda_1E)ce_1 = 0 .\] 
+    \end{proof}
+\end{theorem}
+\begin{theorem} \thmslashn
+
+    Пусть $L$ - оператор на $V$, а многолен $g(t) = p(t)q(t)$ аннулирует $L$, причём $(p(t), q(t)) = 1$. Тогда подпространство $V$ раскладывается в прямую сумму инвариантных подпространств:
+    \[ V = \Ker p(L) \oplus \Ker q(L) .\]
+    \begin{proof} \thmslashn
+    
+        Рассмотрим $1 = a(t)p(t) + b(t)q(t)$. Тогда
+        \[ \forall{v\in V}\quad v = a(L)p(L)v + b(L)q(L)v .\]
+
+        Тогда $q(L)a(L)p(L)v = a(L)g(L)v = 0 = b(L)g(L) = p(L)b(L)q(L)v$. Значит, $V = \Ker p(L) + \Ker q(L)$. Пусть $v\in \Ker p(L)\cap \Ker q(L)$. Тогда $v = a(L)p(L)v + b(L)q(L)v = 0 + 0 = 0$. Значит, пересечение тривиально, и $V = \Ker p(L) \oplus \Ker q(L)$.
+    \end{proof}
+\end{theorem}
+\begin{statement} \thmslashn
+
+    Пусть $L$ - оператор на $V$, $V$ - сумма двух инвариантных. Тогда, в соответсвующих бащисах, матрица $L$ имеет вид.
+    \begin{equation*}
+        \begin{bmatrix} 
+            A & 0\\
+            0 & B
+        \end{bmatrix} 
+    \end{equation*}
+\end{statement}
+\begin{definition} \thmslashn 
+
+    Жордановой клеткой размера $k$ с собственным числом $\lambda$ назыкается матрица $k \times k$:
+    \begin{equation*}
+        J_{k}(\lambda) =
+        \begin{bmatrix}
+            \lambda & 1 & & &\\
+              & \lambda & 1 & &\\
+              &   & \ddots & \ddots &\\
+              &   &   & \lambda & 1\\
+              &   &   &   & \lambda
+        \end{bmatrix} 
+    \end{equation*}
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Алгебраическая кратнсоть собственного числа $\lambda$ оператора $L$ - его кратность как корня $\chi_{L}$.
+
+    Геометрической кратнсотью $\lambda$ называется $\dim \Ker (L - \lambda E)$. 
+\end{definition}
+\begin{lemma} \thmslashn
+
+    Матрица оператора $L$ в базисе $e_1, \ldots, e_{n}$ является Жордановой клеткой необходимо и достаточно, чтобы $\forall{ i \ge 2}\quad (L - \lambda E)e_{i} = e_{i-1}$. $(L - \lambda E)e_1 = 0$. В частности, $L - \lambda E$ - нильпотент.
+\end{lemma}
+\begin{theorem} \thmslashn
+
+    Пусть $L : V \mapsto V$ - оператор на конечномерном пространстве над алгебраически замкнутым полем $K$. Тогда, существует базис $e_{n}$, в котором матрица оператора имеет вид:
+    \begin{equation*}
+        \begin{bmatrix} 
+            J_{k_1}(\lambda_1) & &\\
+                               & J_{k_2}(\lambda_2) &\\
+                               & & \ddots &\\
+                               & & & J_{k_{n}}(\lambda_{n})
+        \end{bmatrix} 
+    \end{equation*}
+
+    Причём, такая матрица единственна с точностью до перестановки блоков. Эта матрица называется матрицей в Жорданвой форме, базис $e_{n}$ называется жордановым базисом.
+    \begin{proof} \thmslashn
+    
+       Докажем единственность:
+
+       Пусть нам известна жорданова матрица. Так-как она верхнетреугольная, можем найти хар-многочлен: $\prod\limits_{i=1}^{n} (t-\lambda_{i}) $. Значит, $\lambda_{i}$ - собственное число, причём его алгебраическая кратность - сумма размеров клеток с этим числом.
+
+       Геометрическая кратность $\lambda_{i}$ - количество клеток с этим числом (если вычесть $\lambda E$, то занулится первый столбик каждой клетки с этим числом).
+
+       \TODO{$\dim \Ker (L - \lambda E)^{s}$}
+    \end{proof}
+\end{theorem}

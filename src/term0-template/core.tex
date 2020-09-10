@@ -65,6 +65,8 @@
 \usepackage{microtype}
 \usepackage[super]{cite}
 \usepackage{fancyhdr}
+\usepackage[normalem]{ulem}
+\usepackage{soul}
 \pagestyle{fancy}
 
 % Основано на коде С. Копелиовича.
@@ -161,6 +163,17 @@
   \else
   \fi
 }
+
+\def\abs#1{\left|#1\right|}
+\def\norm#1{\left\|#1\right\|}
+
+\catcode`@=11
+\def\caseswithdelim#1#2{\left#1\,\vcenter{\normalbaselines\m@th
+  \ialign{\strut$##\hfil$&\quad##\hfil\crcr#2\crcr}}\right.}% you might like it without the \strut
+\catcode`@=12
+%
+\def\bcases#1{\caseswithdelim[{#1}}
+\def\vcases#1{\caseswithdelim|{#1}}
 
 % Использовать как \skipsection или \skipsection[2]
 

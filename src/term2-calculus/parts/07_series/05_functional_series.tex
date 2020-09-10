@@ -1,0 +1,328 @@
+\Subsection{Функциональные последовательнсоти и ряды}
+\begin{definition} \thmslashn 
+    
+    Последовательность $f_{n} : E \mapsto \mathbb{R}$ поточечно сходится к $f : E \mapsto \mathbb{R}$, на $E$ если $\forall{x\in E}\quad \lim\limits_{n \to \infty} f_{n}(x) = f(x)$
+
+\[ \forall{\eps > 0}\quad \forall{x\in E}\quad \exists{N}\quad \forall{n > N}\quad |f_{n}(x) - f(x)| < \eps .\] 
+    
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Последовательность $f_{n} : E \mapsto \mathbb{R}$ равномерно сходится к $f : E \mapsto \mathbb{R}$ (обозначается $f_{n} \uniconv  f$) на $E$, если
+    \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{x\in E}\quad \forall{n > N}\quad |f_{n}(x) - f(x)| < \eps .\] 
+\end{definition}
+\begin{remark} \thmslashn
+
+    Если $f_{n} \uniconv f$, то $f_{n}$ сходится поточечно к $f$.
+\end{remark}
+\begin{theorem} \thmslashn
+
+    Пусть $f_{n}, f : E \mapsto \mathbb{R}$, тогда
+
+    \[ f_{n} \uniconv f \iff \lim\limits_{n \to \infty} \sup\limits_{x\in E} |f_{n}(x) - f(x)| = 0 .\]
+    \begin{proof} \thmslashn
+    
+        Достаточность:
+        \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{n > N}\quad \sup\limits_{x\in E} |f_{n}(x) - f(x)| < \eps  .\]  
+
+        Необходимость:
+        \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{n \ge N}\quad \forall{x\in E}\quad |f_{n}(x) - f(x)| < \eps .\]
+
+        Значит, $\eps$ - верхняя гранится для $|f_{n}(x) - f(x)|$, значит супремум не больше этой верхней границы. Значит, стремится к нулю.
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Если $\forall{x\in E}\quad |f_{n}(x) - f(x)| \le a_{n}$ и $a_{n} \to 0$, то $f_{n} \uniconv f$.
+
+    Если $\exists{x_{n}\in E}\quad f_{n}(x_{n}) \uniconv f(x_{n}) \not\to 0$, то $f_{n} \not\uniconv f$.
+    \begin{proof} \thmslashn
+    
+        \[ \sup\limits_{x\in E} |f_{n}(x) - f(x)| \le a_{n} \to 0 .\]
+
+        \[ \sup\limits_{x\in E} |f_{n}(x) - f(x)| \ge |f_{n}(x_{n}) - f(x_{n})| \not\to 0 .\qedhere\] 
+    \end{proof}
+\end{consequence}
+\begin{definition} \thmslashn 
+
+    $f_{n}(x) : E \mapsto \mathbb{R}$ называется равномерно ограниченной, если
+    \[ \exists{M}\quad \forall{n}\quad \forall{x\in E}\quad |f_{n}(x)| \le M .\] 
+\end{definition}
+\begin{theorem} \thmslashn
+
+    Пусть $f_{n}, g_{n} : E \mapsto \mathbb{R}$. Если $f_{n}$ равномерно ограничена, а $g_{n} \uniconv 0$, то $f_{n}g_{n} \uniconv 0$
+
+    \begin{proof} \thmslashn
+    
+        \[ |f_{n}(x)g_{n}(x)| \le M|g_{n}(x)| \implies \sup\limits_{x\in E} |f_{n}(x)g_n(x)| \le M\sup\limits_{x\in E} |g_{n}(x)| \to 0 .\qedhere\]  
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Критерий Коши] \thmslashn
+
+    Пусть $f_{n} : E \mapsto \mathbb{R}$. Тогда $f_{n}$ равномерно сходится к некоторой функции тогда и только тогда
+
+    \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{n, m > N}\quad \forall{x\in E}\quad |f_{n}(x) - f_{m}(x)| < \eps .\] 
+    \begin{proof} \thmslashn
+    
+        Необходимость:
+        
+        Знаем, что $f_{n} \uniconv f$. Возьмём $N$ для $\frac{\eps}{2}$, тогда
+        \[ |f_{n}(x) - f_{m}(x)| = |f_{n}(x) - f(x) - (f_{m}(x) - f(x))| \le |f_{n}(x) - f(x)| + |f_{m}(x) - f(x)| < \frac{\eps}{2} + \frac{\eps}{2} = \eps .\]
+
+        Достаточность:
+
+        Зафиксируем $x\in E$ и рассмотрим числовую последовательность $f_{n}(x)$. Она фундаментальная, значит есть предел. Пусть $f(x) := \lim\limits_{n \to \infty} f_{n}(x)$.
+
+        Возьмём неравенство $|f_{n}(x) - f_{m}(x)| < \eps$, устремим $m$ к бесконечности, получим $|f_{n}(x) - f(x)| \le \eps$.
+    \end{proof}
+\end{theorem}
+\begin{definition}[Пространство $\ell^{\infty}(E)$] \thmslashn 
+
+    \[ \ell^{\infty}(E) := \{f : E \mapsto \mathbb{R} \ssep \sup\limits_{x\in E}|f(x)| < +\infty\}  .\]
+
+    с нормой $\|f\|_{\ell^{\infty}(E)} := \sup\limits_{x\in E} |f(X)|$.
+\end{definition}
+\begin{remark}[Неравенство треугольника] \thmslashn
+
+    \begin{equation*}
+        \begin{split}
+            \|f + g\| 
+            &= \sup\limits_{x\in E} |f(x) + g(x)|\\
+            &\le \sup\limits_{x\in E}(|f(x)| + |g(x)|)\\
+            &\le \sup\limits_{x\in E} |f(x)| + \sup\limits_{x\in E}|g(x)|\\
+            &= \|f\| + \|g\| 
+        \end{split}
+    \end{equation*}
+\end{remark}
+\begin{theorem} \thmslashn
+
+    \[ f_{n} \uniconv f \iff f_{n} \to_{\ell^{\infty}(E)} f  .\]
+    \begin{proof} \thmslashn
+    
+        \[ f_{n} \uniconv f \iff \lim\limits_{n \to \infty} \sup\limits_{x\in E} |f_{n}(x) - f(x)| = 0 \iff \lim\limits_{n \to \infty} \|f_{n} - f\| = 0  .\] 
+    \end{proof}
+\end{theorem}
+\begin{theorem} \thmslashn
+
+    $\ell^{\infty}(E)$ - полное нормированное просранство.
+    \begin{proof} \thmslashn
+    
+        Пусть $f_{n}$ - фундаментальная последовательность. Тогда
+        \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{n,m > N}\quad \|f_{n} - f_{m}\| < \eps .\]
+
+        Но $\forall{x\in E}\quad \|f_{n} - f_{m}\| \ge |f_{n}(x) - f_{m}(x)|$. По критерию Коши, $\exists{f}\quad f_{n} \uniconv f$. Возьмём $N$ для $\eps=1$. Тогда $\forall{n \ge N}\quad \forall{x\in E}\quad  |f_{n}(x) - f(x)| < 1$.
+        \[ |f(x)| \le |f_{n}(x)| + |f(x) - f_{n}(x)| < |f_{n}(x)| + 1 \le \|f_{n}\| + 1 .\qedhere\] 
+
+        Значит, $\sup\limits_{x\in E} |f(x)| \le \|f_{n}\| + 1 \implies f\in \ell^{\infty}(E)$.
+    \end{proof}
+\end{theorem}
+\begin{theorem} \thmslashn
+
+    Пусть $f_{n}, f : E \mapsto \mathbb{R}$, $f_{n}$ непрерывны в $a\in \Int E$, и $f_{n} \uniconv f$. Тогда $f$ непрерывна в $a$.
+    \begin{proof} \thmslashn
+    
+        Проверим, что $\lim\limits_{x \to a} f(x) = f(a)$:
+
+        \[ \forall{\eps > 0}\quad \exists{\delta > 0}\quad \forall{x\in E}\quad |x-a|< \delta \implies |f(x)-f(a)| < \eps .\]
+
+        Фиксируем $\eps > 0$, возьмём из равномерной сходимости $N$, такое, что
+        \[ \forall{n \ge N}\quad \forall{x\in E}\quad |f_{n}(x)-f(x)| < \frac{\eps}{3}  .\]
+
+        Функция $f_{N}$ непрерывна в $a$, поэтому $\exists{\delta > 0}\quad \forall{x\in E}\quad |x-a| < \delta \implies |f_{n}(x) - f_{n}(a) < \frac{\eps}{3}$.
+
+        Тогда, если $|x-a| < \delta$ и $x\in E$, то
+        \[ |f(x) - f(a)| \le |f(x) - f_{N}(x)| + |f_{N}(x)-f_{N}(a)| + |f_{N}(a) - f(a)| < \frac{\eps}{3} + \frac{\eps}{3} + \frac{\eps}{3} =  3 .\qedhere\] 
+    \end{proof}
+\end{theorem}
+\begin{consequence}[Стокса-Зайделя] \thmslashn
+
+    Если $f_{n}\in C(E)$ и $f_{n} \uniconv f$, то $f\in C(E)$. 
+\end{consequence}
+\begin{definition} \thmslashn 
+
+    Пусть $K$ - компакт в метрическом пространстве. Тогда
+
+    \[ C(K) := \{f : K \mapsto \mathbb{R} \ssep f \text{ непрерывна на $K$}\}  .\]
+
+    с нормой $\|f\|_{C(K)} := \max\limits_{x\in K} |f(x)|$.
+\end{definition}
+\begin{lemma} \thmslashn
+
+    $C(K)$ - замкнутое подпространство $\ell^{\infty}(K)$.
+    \begin{proof} \thmslashn
+    
+        Пусть $\|f_{n} - f\|_{C(K)} \to 0$. Тогда $\|f_{n} - f\|_{\ell^{\infty}(K)} \to 0$, значит $f_{n} \uniconv f$, значит $f\in C(K)$.
+    \end{proof}
+\end{lemma}
+\begin{theorem} \thmslashn
+
+        Замкнутое подпространство полного пространства - полное.
+        \begin{proof} \thmslashn
+        
+            Пусть $Y \subset X$ и $Y$ замкнуто в $X$. Если $y_{n}\in Y$ - фундаментальна в $Y$, то она фундаментальна в  $X$. Следовательно, найдётся  $x\in X$, для которого $y_{n} \to x$. Но по замкнутости, $x\in Y$.  
+        \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    $C(K)$ - полное нормированное пространство.
+\end{consequence}
+\begin{definition} \thmslashn 
+
+    Пусть $u_{n} : E \mapsto \mathbb{R}$.
+    $\sum\limits_{n=1}^{\infty} u_{n}(x)$ - функциональный ряд, $S_{n}(x) := \sum\limits_{k=1}^{n} u_{k}(x)$ - частичная сумма.
+
+    Если $S_{n}$ поточечно сходится к $S$, то ряд поточечно сходится, если $S_{n} \uniconv S$, то ряд равномерно сходится.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Пусть ряд $\sum\limits_{n=1}^{\infty} u_{n}(x)$ сходится поточечно.
+
+    $r_{n}(x) := \sum\limits_{k=n+1}^{\infty} u_{k}(x) = S(x) - S_{n}(x)$ - остаток функционального ряда.
+\end{definition}
+\begin{theorem} \thmslashn
+
+    $\sum\limits_{n=1}^{\infty} u_{n}(x)$ равномерно сходится $\iff S_{n} \uniconv S \iff r_{n} \to 0$.
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Если ряд $\sum\limits_{n=1}^{\infty} u_{n}(x)$ равномерно сходится, то $u_{n} \uniconv 0$.
+    \begin{proof} \thmslashn
+    
+        \[ u_{n} = r_{n} - r_{n+1} \uniconv 0.\qedhere\] 
+    \end{proof}
+\end{consequence}
+\begin{remark} \thmslashn
+
+    Если существуют $x_{n}\in E$, для которых $u_{n}(x_{n}) \not\to 0$, то $\sum\limits_{n=1}^{\infty} u_{n}(x)$ не сходится равномерно.
+
+    Из того, что ряд $\sum\limits_{n=1}^{\infty} u_{n}(x_{n})$ расходится - ничего не следует.
+\end{remark}
+\begin{theorem}[Критерий Коши] \thmslashn
+
+    \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{n \ge N}\quad \forall{p\in \mathbb{N}}\quad \forall{x\in E}\quad \left| \sum\limits_{k=n+1}^{n+p} u_{k}(x)\right| < \eps .\]
+    \begin{proof} \thmslashn
+    
+        $\sum\limits_{n=1}^{\infty} u_{n}(x)$ равномерно сходится $\iff S_{n} \uniconv S \iff $ 
+        \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{n, m \ge N}\quad \forall{x\in E}\quad |S_{m}(x) - S_{n}(x) < \eps .\]
+
+        Пусть $n < m$, $m = n + p$ 
+        \[ |S_{m}(x) - S_{n}(x)| = |S_{n+p}(x)-S_{n}(x)| = \left| \sum\limits_{k=n+1}^{n+p} u_{k}(x)\right| .\qedhere\] 
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Признак сравнения] \thmslashn
+
+    Пусть $\forall{x\in E}\quad |u_{n}(x)| \le v_{n}(x)$ и ряд $\sum\limits_{n=1}^{\infty} v_{n}(x)$ равномерно сходится. Тогда ряд $\sum\limits_{n=1}^{\infty} u_{n}(x)$ равномерно сходится.
+    \begin{proof} \thmslashn
+    
+        \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{n \ge N} \forall{p\in \mathbb{N}}\quad \forall{x\in E}\quad \sum\limits_{k=n}^{n+p} v_{k}(x) < \eps  .\]
+        \[ \left| \sum\limits_{k=n}^{n+p} u_{n}(x)\right| \le \sum\limits_{k=n}^{n+p} |u_{n}(x)| \le \sum\limits_{k=n}^{n+p} v_{k}(x) < \eps.\qedhere\] 
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Признак Вейерштрасса] \thmslashn
+
+    Пусть $\forall{x\in E}\quad |u_{n}(x)| \le a_{n}$ и ряд $\sum\limits_{n=1}^{\infty} a_{n}$ сходится.
+
+    Тогда $\sum\limits_{n=1}^{\infty} u_{n}(x)$ сходится равномерно.
+    \begin{proof} \thmslashn
+    
+        Подставим $v_{n}(x) = a_{n}$ в признак сравнения.
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    Пусть ряд $\sum\limits_{n=1}^{\infty} |u_{n}(x)|$ равномерно сходится. Тогда $\sum\limits_{n=1}^{\infty} u_{n}(x)$ равномерно сходится.
+    \begin{proof} \thmslashn
+    
+        \[v_{n}(x) = |u_{n}(x)|.\qedhere\]
+    \end{proof}
+\end{consequence}
+\begin{theorem}[Признак Дирехле] \thmslashn
+
+    Если
+    \begin{enumerate}
+        \item $\forall{n}\quad \forall{x\in E}\quad \left|\sum\limits_{k=1}^{n} a_{k}(x)\right| \le K$ 
+        \item $b_{n} \uniconv 0$ 
+        \item $b_{n}(x)$ монотонны по $n$
+    \end{enumerate}
+    
+    То ряд $\sum\limits_{n=1}^{\infty} a_{n}(x)b_{n}(x)$ равномерно сходится.
+    \begin{proof} \thmslashn
+    
+        \[ A_{n}(x) := \sum\limits_{k=1}^{n} a_{n}(x) .\]
+        \[ \sum\limits_{k=1}^{n} a_{k}(x)b_{k}(x) = A_{n}(x)b_{n}(x) + \sum\limits_{k=1}^{n-1} A_{k}(x)(b_{k}(x)-b_{k+1}(x)) .\]
+
+        Покажем равномерную сходимость слагаемых по отдельности.
+
+        $A_{n}(x)b_{n}(x) \uniconv 0$ - так-как $A_{n}(x)$ равномерно ограничена, а $b_{n}(x) \uniconv 0$.
+
+        Покажем что сходится равномерно сходится ряд $\sum\limits_{k=1}^{\infty} A_{n}(x)(b_{k}(x) - b_{k+1}(x))$:
+        \[ |A_{k}(x)(b_{k}(x)-b_{k+1}(x))| \le K|b_{k}(x)-b_{k+1}(x)| .\]
+
+        Надо показать что сходится ряд $\sum\limits_{k=1}^{\infty} |b_{k}(x) - b_{k+1}(x)|$. 
+        \[ S_{n}(x) := \sum\limits_{k=1}^{n} |b_{k}(x) - b_{k+1}(x)| = \left|\sum\limits_{k=1}^{n} b_{k}(x)-b_{k+1}(x)\right| = \left| b_1(x) - b_{n+1}(x)\right| \uniconv |b_1(x)|.\qedhere\] 
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Признак Абеля] \thmslashn
+
+    Если
+    \begin{enumerate}
+        \item $\sum\limits_{n=1}^{\infty} a_{n}(x)$ равномерно сходится
+        \item $\forall{n}\quad \forall{x\in E}\quad |b_{n}(x)| \le K$ 
+        \item $b_{n}(x)$ монотонны по $n$
+    \end{enumerate}
+    То ряд $\sum\limits_{n=1}^{\infty} a_{n}(x)b_{n}(x)$ равномерно сходится.
+    \begin{proof} \thmslashn
+    
+       Провреим критерий Коши:
+       \[ \forall{\eps > 0}\quad \exists{N}\quad \forall{n \ge N}\quad \forall{p\in \mathbb{N}}\quad  \forall{x\in E}\quad \left| \sum\limits_{k=n}^{n+p} a_{k}(x)b_{k}(x)\right| < \eps .\]
+       \[ \sum\limits_{k=n}^{n+p} a_{k}(x)b_{k}(x) = \sum\limits_{k=1}^{p} a_{n+k}(x)b_{n+k}(x) = (A_{n+p}(x) - A_{n}(x))b_{n+p}(x) + \sum\limits_{k=1}^{p-1} (A_{n+k}(x)-A_{n}(x))(b_{n+k}(x) - b_{n+k+1}(x)) .\]
+       Надо проверить что при достаточно больших $n$, модуль этого $< \eps$.
+
+       \[ |(A_{n+p}(x)-A_{n}(x))b_{n+p}(x)| \le K|A_{n+p}(x)-A_{n}(x)| < \eps \text{ по критерую Коши для $a_{n}$}.\] 
+
+       \begin{equation*}
+           \begin{split}
+               \left|\sum\limits_{k=1}^{p-1} (A_{n+k}(x)-A_{n}(x))(b_{n+k}(x)-b_{n+k+1}(x))\right|
+               &\le \sum\limits_{k=1}^{p-1} |A_{n+k}(x) - A_{n}(x)| |b_{n+k}(x) - b_{n+k+1}(x)|\\
+               &\le \eps \sum\limits_{k=1}^{p-1} |b_{n+k}(x) - b_{n+k+1}(x)| = \eps \left| \sum\limits_{k=1}^{p-1} b_{n+k}(x)-b_{n+k+1}(x)\right|\\
+               &\le \eps|b_{n+1}-b_{n+p}| \le 2K\eps
+           \end{split}
+       \end{equation*}
+       \[ \sum\limits_{k=n}^{n+p} a_{k}(x)b_{k}(x) \le K\eps + 2K\eps = 3K\eps .\] 
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Признак лейбница] \thmslashn
+
+    Пусть $b_{n}(x) \ge 0$ и монотонно убывают по $n$, при этом $b_{n} \uniconv 0$.
+
+    Тогда $\sum\limits_{n=1}^{\infty} (-1)^{n-1}b_{n}(x)$ равномерно сходится.
+    \begin{proof} \thmslashn
+    
+        Дирихле: $a_{n} = (-1)^{n-1}$, $|A_{n}(x)| \le 1$. Значит, ряд равномерно сходится.
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Признак Дини] \thmslashn
+
+    Пусть $K$ - компакт, $u_{n}\in C(K)$, $u_{n}(x) \ge 0$. $S(x) := \sum\limits_{n=1}^{\infty} u_{n}(x)$, при этом $S(x)\in C(K)$.
+
+    Тогда ряд $\sum\limits_{n=1}^{\infty} u_{n}(x)$ сходится равномерно.
+    \begin{proof} \thmslashn
+    
+        \[ r_{n}(x) = \sum\limits_{k=n+1}^{\infty} u_{k}(x) = S(x) - S_{n}(x) .\]
+
+        Отстатки монотонно убывают по $n$, при этом они непрерывны как разность непрерывных.
+
+        Надо доказать что $r_{n}(x) \uniconv 0$. Так-как $r_{n}$ монтонна по $n$, достаточно показать что
+        \[ \exists{N}\quad \forall{x\in K}\quad r_{N}(x) < \eps .\]
+
+        Предположим что такого $N$ не существует.
+
+        \[ \exists{\eps > 0}\quad \forall{N}\quad \exists{x\in K}\quad r_{N}(x) \ge  \eps .\] 
+
+        Тогда есть последовательность точек $x_{n}\in K$. У такой последовательности всегда есть сходящеяся подпоследовательность $x_{n_{k}} \to x_0$.
+
+        Рассмотрим $r_{m}$: Если $n_{k} \ge m$, то $\eps \le r_{n_{k}}(x_{n_{k}}) \le r_{m}(x_{n_{k}}) \to r_{m}(x_0)$ по непрерывности.
+
+        Тогда, $\forall{m}\quad r_{m}(x_0) \ge \eps$, но так-как $r_{m} \to 0$, это невозможно.
+    \end{proof}
+\end{theorem}

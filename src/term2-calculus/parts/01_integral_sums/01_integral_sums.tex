@@ -232,3 +232,27 @@
     А последнее выражение верно по лемме.
     \end{proof}
 \end{theorem}
+\begin{definition}[Интеграл Римана] \thmslashn 
+
+    Пусть $f : [a, b] \mapsto \mathbb{R}$ ограничена.
+
+    Если $\exists{I\in \mathbb{R}}\quad$, такой, что
+    \[ \forall{\eps > 0}\quad \exists{\delta > 0}\quad \forall{\left<\tau, \zeta\right>}\quad |\tau| < \delta \implies |S(f, \tau, \zeta) - I| < \eps .\]
+
+    То $\int\limits_{a}^{b} f := I $ - интеграл Римана функции $f$.
+\end{definition}
+\begin{properties} \thmslashn
+
+    Сохраняются:
+    \begin{itemize}
+        \item Линейность
+        \item Аддитивность
+        \item Монотонность по функции
+        \item Интегрирование по частям
+        \item Замена переменной
+    \end{itemize}
+    Теряются:
+    \begin{itemize}
+        \item Всё связанное с первообразной
+    \end{itemize}
+\end{properties}

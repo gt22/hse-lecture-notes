@@ -1,0 +1,92 @@
+\SectionLecture{Лекция 14}{Игорь Энгель}
+\begin{theorem}[Дифференцирование скалярного произведения] \thmslashn
+
+    Пусть $f, g : (E \subset \mathbb{R}^{n}) \mapsto \mathbb{R}^{m}$, $f,g$ дифференцируемы в $a\in \Int E$. Тогда $\left<f, g\right>$ дифферецируема в $a$, причём $d_{a}\left<f, g\right>(h) = \left<d_{a}f(h), g(a)\right> + \left<f(a), d_{a}g(h)\right>$.
+    \begin{proof} \thmslashn
+    
+        \[ \left<f, g\right>(x) = \sum\limits_{k=1}^{m} f_{k}(x)g_{k}(x) .\]
+
+        \[ d_{a}\left<f, g\right>(h) = \sum\limits_{k=1}^{m} d_{a}(f_{k}g_{k})(h) = \sum\limits_{k=1}^{\infty} d_{a}f_{k}(h)g_{k}(a) + f_{k}(a)d_{a}g_{k}(h) = \left<d_{a}f(h), g(a)\right> + \left<f(a), d_{a}g(h)\right>. \qedhere\] 
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Теорема Лагранжа для векторозначных функций] \thmslashn
+
+    Пусть $f : [a, b] \mapsto \mathbb{R}^{m}$, $f$ непрерывна на $[a, b]$ и дифференцируема на $(a, b)$. Тогда $\exists{c\in (a, b)}\quad \|f(b) - f(a)\| \le \|f'(c)\|(b-a)$.
+    \begin{proof} \thmslashn
+    
+        Пусть $\phi(x) = \left<f(x), f(b) - f(a)\right>$, $\phi : [a, b] \mapsto \mathbb{R}$.
+
+        $\phi$ удовлетворяет условиям обычной теоремы Лагранжа.
+
+        Тогда $\exists{c\in [a, b]}\quad \phi(b) - \phi(a) = \phi'(c)(b-a)$.
+
+        \[ \left<f(b), f(b) - f(a)\right> - \left<f(a), f(b)-f(a)\right> = \left<f(b)-f(a), f(b)-f(a)\right> = \|f(b)-f(a)\|^2 .\]
+        \[ \left<f'(c), f(b)-f(a)\right> + \left<f(c), (f(b) - f(a))'\right> = \left<f'(c), f(b)-f(a)\right> + \left<f(c), 0\right> = \left<f'(c), f(b)-f(a)\right>.\] 
+        \[ \|f(b)-f(a)\|^2 = \left<f'(c), f(b)-f(a)\right>(b-a) \le \|f'(c)\| \|f(b)-f(a)\|(b-a).\] 
+    \end{proof}
+\end{theorem}
+\begin{remark} \thmslashn
+
+    Равенство может никогда не достигаться.
+
+    \[ f(x) = \begin{bmatrix} \cos x\\ \sin x \end{bmatrix}  .\] 
+    \[ f(2\pi) - f(0) = 0 .\]
+    \[ f'(x) = \begin{bmatrix} -\sin x\\ \cos x \end{bmatrix}  .\] 
+    \[ \forall{x\in [0, 2\pi]}\quad \|f'(x)\| = 1 .\]
+    \[ 0 < 1(2\pi-0) = 2\pi .\] 
+\end{remark}
+\Subsubsection{Непрерывная дифференцируемость}
+\begin{theorem} \thmslashn
+
+    Пусть $f : (E \subset \mathbb{R}^{n}) \mapsto \mathbb{R}$, $a\in \Int E$, в окрестности $a$ существуют все частные производные, причём они непрерывны в $a$.
+
+    Тогда $f$ дифференцируема в $a$.
+    \begin{proof} \thmslashn
+    
+        \[ R(h) = f(a+h) - f(a) - \sum\limits_{k=1}^{n} f'_{x_{k}}(a)h_{k} .\]
+
+        Хотим доказать, что $\lim\limits_{h \to 0} \frac{R(h)}{\|h\|} \to 0$.
+
+        Пусть $b_{k}^{T} = \begin{bmatrix} a_1+h_1 & \ldots & a_{k}+h_{k} & a_{k+1} & \ldots a_{n}\end{bmatrix}$, следовательно $b_0 = a$, $b_{n} = a+h$.
+
+
+        \[ F_{k}(h) := f(b_{k-1} + th_{k}e_{k}) .\] 
+
+        Применим обычную теорему лагранжа для $F_{k}$: $\exists{\theta_{k}\in (0, 1)}\quad F_{k}(1) - F_{k}(0) = F_{k}'(\theta_{k})$.
+
+        Пусть $c_{k} = b_{k-1} + \theta_{k}h_{k}e_{k}$.
+
+        \[ f(b_{k}) - f(b_{k-1}) = h_{k}f'_{x_{k}}(c_{k}) .\]
+        \begin{equation*}
+            \begin{split}
+                f(a+h) - f(a)
+                &= f(b_{n}) - f(b_0)\\
+                &= \sum\limits_{k=1}^{n} f(b_{k}) - f(b_{k-1})\\
+                &= \sum\limits_{k=1}^{n} h_{k}f_{x_{k}}'(c_{k})\\
+                &= \sum\limits_{k=1}^{n} h_{k}f_{x_{k}}'(a) + \sum\limits_{k=1}^{n} h_{k}(f_{x_{k}}'(c_{k}) - f'_{x_{k}}(a))\\
+                &\implies R(h) = \sum\limits_{k=1}^{n} h_{k}(f_{x_{k}}'(c_{k}) - f'_{x_{k}}(a))\\
+                &= R(h) = \|\left<h, f'(c) - f'(a)\right>\|\\
+                &\implies \|R(h)\| \le \|h\|\|f'(c) - f'(a)\|\\
+                &\implies \frac{\|R(h)\|}{\|h\|} \le  \sqrt{\sum\limits_{k=1}^{n} (f'_{x_{k}}(c_{k})-f'_{x_{k}}(a))^2} 
+            \end{split}
+        \end{equation*}
+        \begin{equation*}
+            \begin{split}
+                    0 \le \lim\limits_{h \to 0} \frac{\|R(h)\|}{\|h\|} 
+                    &\le \lim\limits_{h \to 0} \sum\limits_{k=1}^{n} (f'_{x_{k}}(c_{k}) - f'_{x_{k}}(a))^2\\ 
+                    &= \sum\limits_{k=1}^{n} \lim\limits_{h \to 0} (f'_{x_{k}}(c_{k}) - f'_{x_{k}}(a))^2\\
+                    &= \sum\limits_{k=1}^{n} \left(\lim\limits_{h \to 0} f'_{x_{k}}(c_{k}) - f'_{x_{k}}(a)  \right)^2\\
+                    &= \sum\limits_{k=1}^{n} (f'_{x_{k}}(a) - f'_{x_{k}}(a)) = 0 \qedhere
+            \end{split}
+        \end{equation*}
+    \end{proof}
+\end{theorem}
+
+\begin{remark} \thmslashn
+
+    Можно не требовать непрерывности ровно одной частной производной.
+\end{remark}
+\begin{remark} \thmslashn
+
+    Дифференцируемость в точке не даёт сузествования частных производных в окрестности и тем более их непрерывность.
+\end{remark}

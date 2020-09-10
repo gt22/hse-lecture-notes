@@ -1,0 +1,115 @@
+\SectionLecture{Лекция 15}{Игорь Энгель}
+\begin{definition} \thmslashn 
+
+    Функция $f : (E \subset \mathbb{R}^{n}) \mapsto \mathbb{R}^{m}$, $a\in \Int E$, $f$ - непрерывно дифференцируема в точке $a$, если $f$ дифференцируема в окрестности $a$ и $\lim\limits_{x \to a} \|d_{x}f - d_{a}f\| = 0$
+\end{definition}
+\begin{theorem} \thmslashn
+
+    $f$ непрерывна дифференцируема в $a$ тогда и только тогда, когда она дифференцируема в окрестности, и все её частные производные непрерывны в $a$.
+    \begin{proof} \thmslashn
+    
+
+        Необходимость:
+        \begin{equation*}
+            \begin{split}
+                \left| \frac{\partial f_{k}}{\partial x_{j}}(x) - \frac{\partial f_{k}}{\partial x_{j}}(a)  \right|
+                &\le \left| \left<d_{x}f(e_{k}), e_{j}\right> - \left<d_{a}f(e_{k}), e_{j}\right>\right|\\
+                &= \left|\left<d_{x}f(e_{k}) - d_{a}f(e_{k}), e_{j}\right>\right|\\
+                &\le \|d_{x}f(e_{j})-d_{a}f(e_{j})\|\\
+                &\le \|d_{x}f - d_{a}f\| \to 0
+            \end{split}
+        \end{equation*}
+
+        Достаточность:
+        \begin{equation*}
+            \begin{split}
+                \|d_{x}f-d_{a}f\|^2 \le \sum\limits_{k=1}^{m}\sum\limits_{j=1}^{n} \left| \frac{\partial f_{k}}{\partial x_{j}}(x) - \frac{\partial f_{k}}{\partial x_{j}}(a)  \right|^2 \to 0\qedhere
+            \end{split}
+        \end{equation*}
+    \end{proof}
+\end{theorem}
+\begin{consequence} \thmslashn
+
+    $f : (E \subset \mathbb{R}^{n}) \mapsto \mathbb{R}$, $f$ непрерывно дифференцируема на $E$ тогда и только тогда, когда во всех точках существуют частные производные и они непрерывны.
+\end{consequence}
+\begin{theorem} \thmslashn
+
+    Непрерывная дифференцируемость сохраняется при взятии линейной комбинации, композиции, скалярного произведения и.т.д.
+
+    \begin{proof} \thmslashn
+    
+        Все эти операции сохраняют существование частных производных. Можно так-же прямо показать, что они сохраняют непрерывность частных производных.
+    \end{proof}
+\end{theorem}
+\Subsubsection{Частные производные высших порядков}
+\begin{definition} \thmslashn 
+
+    Пусть $f(x_1, x_2, \ldots, x_3)$, тогда вторая частная производная сначала по $x_{i}$ потом по $x_{j}$ обозначается
+    \[ \frac{\partial^2 f}{\partial x_{j}x_{i}} := f''_{x_{i}x_{j}} := \frac{\partial}{\partial x_{j}} \frac{\partial f}{\partial x_{i}} := (f'_{x_{i}})'_{x_{j}}    .\]
+
+    Аналогично для высших порядков.
+\end{definition}
+\begin{remark} \thmslashn
+
+    Всего различных частных производных порядка $r$: $n^{r}$.
+\end{remark}
+\begin{theorem} \thmslashn
+
+    Пусть $f : (E \subset \mathbb{R}^2) \mapsto \mathbb{R}$, $(x_0, y_0)\in \Int E$. Частные производные $f'_{x}, f'_{y}$ и $f''_{xy}$ существуют в окрестности $(x_0, y_0)$ и $f''_{xy}$ непрерывна в $(x_0, y_0)$. Тогда существует $f''_{yx}$ в $(x_0, y_0)$, причём $f''_{yx}=f''_{xy}$.
+    \begin{proof} \thmslashn
+    
+        Пусть $\phi(s) := f(s, y_0+k)-f(s, y_0)$.
+
+        Функция $\phi$ дифференцируема в окретнсности $x_0$.
+
+    \begin{equation*}
+        \begin{split}
+            \phi(x_0+h)-\phi(x_0)
+            &\underset{\theta_1\in (0, 1)}{=} h\phi'(x_0+\theta_1h)\\
+            &= h(f'_{x}(x_0+\theta_1h, y_0+k)-f'_{x}(x_0+\theta_1h, y_0)\\
+            &\underset{\theta_2\in (0, 1)}{=} hkf''_{xy}(x_0+\theta_1h, y_0+\theta_2k)\\
+            &\underset{\alpha(h, k) \to  0}= hk(f''_{xy}(x_0, y_0) + \alpha(h, k))
+        \end{split}
+    \end{equation*}
+    \begin{equation*}
+        \begin{split}
+            \frac{\phi(x_0)}{k} 
+            &= \frac{f(x_0, y_0+k)-f(x_0, y_0)}{k} \to f'_{y}(x_0, y_0)\\
+            \frac{\phi(x_0+h)}{k} 
+            &\to f'_{y}(x_0+h, y_0)
+        \end{split}
+    \end{equation*}
+    \begin{equation*}
+        \begin{split}
+            \left|\frac{\phi(x_0+h)-\phi(x_0)}{h} \cdot \frac{1}{k} - f''_{xy}(x_0, y_0)\right| 
+            &= |\alpha(h, k)| < \eps\\
+            \implies \left|\frac{f'_{y}(x_0+h,y_0) - f'_{y}(x_0,y_0)}{h} - f''_{xy}(x_0, y_0)\right| 
+            &< \eps\\
+            \implies f''_{yx}(x_0, y_0) - f''_{xy}(x_0, y_0)
+        \end{split}
+    \end{equation*}
+    \end{proof}
+\end{theorem}
+\begin{definition} \thmslashn 
+
+    Пусть $f : (D \subset \mathbb{R}^{n}) \mapsto \mathbb{R}$, $D$ - открытое, $f$ называется $r$-непрерывно дифференцируемой ($r$-гладкой) если все частные производные до $r$-того порядка включительно существуют и непрерывны. Обозначается $f\in C^{r}(D)$.
+\end{definition}
+\begin{theorem} \thmslashn
+
+    Пусть $f\in C^{r}(D)$, есть набор индексов $(i_1, i_2, \ldots, i_{r})$ - перестановка $(j_1, j_2, \ldots, j_{r})$, тогда 
+    \[ \frac{\partial^{r} f}{\partial x_{i_1}x_{i_2}\ldots x_{i_{r}}} = \frac{\partial^{r} f}{\partial x_{j_1}x_{j_2}\ldots x_{j_{r}}}   .\]
+    \begin{proof} \thmslashn
+    
+        Любая перестановка порождается транспозициями вида $(i, i+1)$, докажем для них: 
+
+        Пусть переставили $j_{k}$ и $j_{k+1}$.
+
+        Достаточно показать что
+        \[ \frac{\partial^{k+1} f}{\partial x_{j_1}\ldots x_{j_{k}}x_{j_{k+1}}} = \frac{\partial^{k+1} f}{\partial x_{j_1}\ldots x_{j_{k+1}j_{k}}}   .\]
+
+        Можем представить их как производные второго порядка фукнции
+        \[ \frac{\partial^{k-1} f}{\partial x_{j_1}\ldots x_{j_{k-1}}}  .\]
+
+        По предыдущей теореме они совпадают.
+    \end{proof}
+\end{theorem}

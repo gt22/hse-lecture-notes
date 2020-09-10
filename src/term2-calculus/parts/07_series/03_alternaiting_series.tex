@@ -1,0 +1,259 @@
+\Subsection{Знакопеременные ряды}
+\begin{definition} \thmslashn 
+
+    Ряд $\sum\limits_{n=1}^{\infty} a_{n}$ сходится абсолютно, если сходится $\sum\limits_{n=1}^{\infty} |a_{n}|$.
+\end{definition}
+\begin{definition} \thmslashn 
+
+    Ряд $\sum\limits_{n=1}^{\infty} a_{n}$ сходится условно, если он сходится, а абсолютной сходимости нет.
+\end{definition}
+\begin{theorem}[Преобразование Абеля] \thmslashn
+
+    \[ A_0 = 0 .\]
+    \[ A_{k} = \sum\limits_{i=1}^{k} a_{i} .\] 
+    \[ \sum\limits_{k=1}^{n} a_{k}b_{k} = A_{n}b_{n} + \sum\limits_{k=1}^{n-1} A_{k}(b_{k}-b_{k+1}) .\] 
+    \begin{proof} \thmslashn
+    
+        \[ a_{k} = A_{k} - A_{k-1} .\]
+        \begin{equation*}
+            \begin{split}
+                \sum\limits_{k=1}^{n} a_{k}b_{k} 
+                &= \sum\limits_{k=1}^{n} (A_{k} - A_{k-1})b_{k}\\
+                &= \sum\limits_{k=1}^{n} A_{k}b_{k} - \sum\limits_{j=1}^{n} A_{j-1}b_{j}\\
+                &= \sum\limits_{k=1}^{n} A_{k}b_{k} - \sum\limits_{j=2}^{n} A_{j-1}b_{j}\\
+                &= \sum\limits_{k=1}^{n} A_{k}b_{k} - \sum\limits_{k=1}^{n-1} A_{k}b_{k+1}\\
+                &= A_{n}b_{n} + \sum\limits_{k=1}^{n-1} (A_{k}b_{k} - A_{k}b_{k+1})\\
+                &= A_{n}b_{n} + \sum\limits_{k=1}^{\infty} A_{k}(b_{k} - b_{k+1})
+            \end{split}
+        \end{equation*}
+    \end{proof}
+\end{theorem}
+\begin{consequence}[Дискретное интегрирование по частям] \thmslashn
+
+    \[ \sum\limits_{k=1}^{n} (A_{k} - A_{k-1})b_{k} = A_{n}b_{n} - \sum\limits_{k=1}^{n} A_{k}(b_{k+1}-b_{k}) .\]   
+\end{consequence}
+\begin{theorem} \thmslashn
+
+    Если
+    \begin{enumerate}
+        \item $A_{n} = \sum\limits_{k=1}^{n} a_{n}$ - ограничены ($A_{n} \le M$)
+        \item $b_{n}$ монтонны
+        \item $\lim\limits_{n \to \infty} b_{n} = 0$
+    \end{enumerate}
+
+    Тогда ряд $\sum\limits_{n=1}^{\infty} a_{n}b_{n}$ - сходится.
+    \begin{proof} \thmslashn
+    
+        Рассмотрим $S_{n} := \sum\limits_{k=1}^{n} a_{k}b_{k} = A_{n}b_{n} + \sum\limits_{k=1}^{n-1} A_{k}(b_{k} - b_{k+1})$.
+
+        \[ A_{n}b_{n} \le M b_{n} \to 0 .\]
+        
+        $\sum\limits_{k=1}^{n-1} A_{k}(b_{k}-b_{k+1}$ - частичная сумма $\sum\limits_{n=1}^{\infty} A_{n}(b_{n} - b_{n+1})$.
+
+        Покажем абсолютную сходимость этого ряда:
+        \begin{equation*}
+            \begin{split}
+                \sum\limits_{k=1}^{n} |A_{k}(b_{k}-b_{k+1})|
+                &\le M \sum\limits_{k=1}^{n} |(b_{k} - b_{k+1})|\\
+                &= M \left|\sum\limits_{k=1}^{n} b_{k} - b_{k+1}\right| = M(b_1 - b_{n+1}) \to Mb_1 
+            \end{split}
+        \end{equation*}
+    \end{proof}
+
+    Ряд сходится абсолютно, значит он сходится, значит частичные суммы ограничены, значит, имеют предел, значит ряд $\sum\limits_{k=1}^{n} a_{k}b_{k}$ имеет предел, значит их ряд сходится.
+\end{theorem}
+\begin{theorem}[Признак Абеля] \thmslashn
+
+    Если
+    \begin{enumerate}
+        \item $\sum\limits_{n=1}^{\infty} a_{n}$ - сходится
+        \item $b_{n}$ - монотонны
+        \item $b_{n} \le M$.
+    \end{enumerate}
+
+    Тогда $\sum\limits_{n=1}^{\infty} a_{n}b_{n}$ - сходится.
+    \begin{proof} \thmslashn
+    
+        $b_{n}$ монтонны и ограниченны, значит сущесвует предел $b := \lim\limits_{n \to \infty} b_{n}$.
+
+        Пусть $\tilde{b}_{n} := b_{n} - b$.
+
+        $A_{n} := \sum\limits_{k=1}^{n} a_{k}$ - сходится, значит она ограничена.
+
+        По признаку Дирехле, ряд $\sum\limits_{n=1}^{\infty} a_{n}\tilde{b}_{n}$ - сходится.
+
+        \begin{equation*}
+            \begin{split}
+                \sum\limits_{n=1}^{\infty} a_{n}b_{n} 
+                &= \sum\limits_{n=1}^{\infty} a_{n}(\tilde{b}_{n} + b)\\
+                &= \sum\limits_{n=1}^{\infty} a_{n}\tilde{b}_{n} + b\sum\limits_{n=1}^{\infty} a_{n}
+            \end{split}
+        \end{equation*}
+
+        Эти ряды сходятся, значит нужный ряд тоже сходится.
+    \end{proof}
+\end{theorem}
+\begin{definition}[Знакочередующиеся ряды] \thmslashn 
+
+    Ряд называется знакочередующимся если он имеет вид $\sum\limits_{n=1}^{\infty} (-1)^{n-1}a_{n}$, $a_{n} \ge 0$.
+\end{definition}
+\begin{theorem}[Признак Лейбница] \thmslashn
+
+    Если $a_{n} > 0$ монтонны и стремятся к нулю, то ряд $\sum\limits_{n=1}^{\infty} (-1)^{n-1}a_{n}$ сходится.
+
+
+    Более того, $S_{2n} \le S \le S_{2n+1}$.
+
+    \begin{proof} \thmslashn
+    
+       \[ S_{2n+2} = S_{2n} + a_{2n+1} - a_{2n+2} \ge S_{2n} \impliedby a_{2n+2} \le a_{2n+1} .\]
+       \[ S_{2n+1} = S_{2n-1} - a_{2n} + a_{2n+1} \le S_{2n-1} \impliedby a_{2n+1} \le a_{2n} .\]
+       \[ [0, S_1] \supset [S_2, S_3] \supset \ldots \supset [S_{2n}, S_{2n+1}] \supset \ldots .\]
+
+       При этом, $S_{2n+1}-S_{2n} = a_{2n+1} \to 0$, значит, по теореме о стягивающихся отрезках, есть единственная общая точка, причём $S = \lim\limits_{n \to \infty} S_{2n} = \lim\limits_{n \to \infty} S_{2n+1}$.
+    \end{proof}
+\end{theorem}
+\begin{definition}[Перестановка членов ряда] \thmslashn 
+
+    Пусть $\phi : \mathbb{N} \mapsto \mathbb{N}$ - биекция.
+
+    Тогда перестановка ряда $\sum\limits_{n=1}^{\infty} a_{n}$ это $\sum\limits_{n=1}^{\infty} a_{\phi(n)}$.
+\end{definition}
+\begin{theorem} \thmslashn
+
+    Пусть ряд $S = \sum\limits_{n=1}^{\infty} a_{n}$ - сходится абсолютно.
+
+    Тогда любая перестановка имеет ту-же сумму.
+
+    \begin{proof} \thmslashn
+    
+        Если $a_{n} \ge 0$: 
+
+        Пусть $S_{n} = \sum\limits_{k=1}^{n} a_{n}$, $\tilde{S}_{n} = \sum\limits_{k=1}^{\infty} a_{\phi(n)}$.
+
+        Знаем, что $\tilde{S}_{n} \le S$, так-как в $S$ есть ещё какие-то слагаемые.
+
+        Значит, что $\tilde{S}_{n}$ ограниченны, значит сходятся, причём $\lim\limits_{n \to \infty} \tilde{S}_{n} =: \tilde{S} \le S$.
+
+        Так-как $\phi$ - биекция, можем применить в обратную сторону и получить $S \le \tilde{S}$. Значит, $S = \tilde{S}$.
+
+        Общий случай:
+
+        Ряд сходится абсолютно, значит можем разбить на два ряда:
+
+        \[ \sum\limits_{n=1}^{\infty} a_{n} = \sum\limits_{n=1}^{\infty} (a_{n})_{+} - \sum\limits_{n=1}^{\infty} (a_{n})_{-} .\]
+
+        Для каждого по отдельности применим перестановку, их сумма не изменится, значит сумма ряда не изменится.
+    \end{proof}
+\end{theorem}
+
+\begin{theorem}[Теорема Римана о перестановке членов ряда] \thmslashn
+
+    Пусть $\sum\limits_{n=1}^{\infty} a_{n}$ сходится условно.
+
+    Тогда, $\forall{s}\in \overline{\mathbb{R}}\quad \exists{\phi\in S_{\mathbb{N}}}\quad \sum\limits_{n=1}^{\infty} a_{n} = s$.
+
+    Также, существует перестановка, для которой ряд не имеет суммы.
+    \begin{proof} \thmslashn
+    
+        Разобьём $a_{n}$ на две последовательности: в последовательности $b_{n}$ находятся неотрицательные члены, в $c_{n}$ - модуль отрицательных.
+
+        Знаем, что ряды $\sum\limits_{n=1}^{\infty} b_{n}$ и $\sum\limits_{n=1}^{\infty} c_{n}$ расходятся (иначе ряд из $a_{n}$ сходился-бы абсолютно). Так-как их члены положительны, расходится они могут только к $+\infty$.
+
+        Будем набирать слагаемые в перестановку. 
+        
+        Случай $s = +\infty$:
+
+        На $k$-м шаге будем брать $b$-шки, пока частичная сумма не превысмт $k$ (точно сможем набрать, так-как ряд из $b$ расходится к бесконечнсоти), потом возьмём одну $c$-шку. При этом, $b, c \to 0$, значит с какого-то момента $c < 1$, и частичные суммы будут $> k-1 \to \infty$.
+
+        Аналогично, если $s = -\infty$, только берём в основном $c$-шки.
+
+        Отсутствие суммы: на чётных шагах делаем алгоритм для $+\infty$, на нечётных - для $-\infty$.
+
+        Случай $s\in \mathbb{R}$:
+
+        Набираем $b$-шки пока частичная сумма $ <s $, потом $c$-шки пока она $ >s $. Так-как $b, c \to 0$, частичные суммы будут стремится к $s$.
+    \end{proof}
+\end{theorem}
+\begin{theorem}[Теорема Коши о произведении рядов] \thmslashn
+
+    Пусть $A = \sum\limits_{n=1}^{\infty} a_{n}$, $B = \sum\limits_{n=1}^{\infty} b_{n}$ - сходятся абсолютно.
+
+    Тогда, ряд составленный из слагаемых $a_{i}b_{j}$, в проивзольном порядке, сходится абсолютно, с суммой $AB$.
+    \begin{proof} \thmslashn
+    
+        Пусть $A^{*} := \sum\limits_{n=1}^{\infty} |a_{n}|$, $B^{*} := \sum\limits_{n=1}^{\infty} |b_{n}|$.
+
+    \[ \sum\limits_{i,j} |a_{i}b_{j}| = \sum\limits_{i,j} |a_{i}| |b_{j}| \le \sum^{\max i} |a_{i}| \sum^{\max j} |b_{j}| \le A^{*}B^{*}.\]
+
+    Все суммы вида $\sum\limits_{i, j} |a_{i}b_{j}|$ ограничены. Значит, ряд сходится абсолютно. Значит, можно применять любую перестановку.
+
+    Будем складывать в следующем порядке: 
+    \[ (a_{1}b_{1}) + (a_2b_1 + a_2b_2 + a_1b_2) + \ldots.\]
+
+    (главные подквадраты квадратной таблицы)
+
+    Рассмотрим подпоследовательность частичных сумм $S_{n^2}$:
+    \[ S_{n^2} = \sum\limits_{i=1}^{n}\sum\limits_{j=1}^{n} a_{i}b_{j} = \sum\limits_{i=1}^{n} a_{i} \sum\limits_{i=1}^{n} b_{i} = A_{n}B_{n} \to AB .\] 
+    \end{proof}
+\end{theorem}
+\begin{definition} \thmslashn 
+
+    Произведение рядов $\sum\limits_{n=1}^{\infty} a_{n}$ и $\sum\limits_{n=1}^{\infty} b_{n}$ - ряд $\sum\limits_{n=1}^{\infty} \sum\limits_{k=1}^{n} a_{k}b_{n-k+1}$ (каждое слагаемое - диагональ квадратной таблицы).
+\end{definition}
+
+
+\begin{theorem}[Теорема Мертенса] \thmslashn
+
+    Если $A = \sum\limits_{n=1}^{\infty} a_{n}$, $B = \sum\limits_{n=1}^{\infty} b_{n}$ - сходятся, причём один из них абсолютно, по их произведение (в нужном порядке!) сходится к $AB$.
+
+    Без доказательства.
+\end{theorem}
+\begin{lemma} \thmslashn
+
+    Пусть $\lim\limits_{n \to \infty} x_{n} = x$, $\lim\limits_{n \to \infty} y_{n} = y$.
+
+    Тогда
+    \[ \lim\limits_{n \to \infty} \frac{1}{n} \sum\limits_{k=1}^{n} x_{k}y_{n-k+1} = xy .\]
+    \begin{proof} \thmslashn
+    
+        Заметим, что $|x_{n}| \le M$, $|y_{n}| \le M$.
+
+        Случай $1$: $y = 0$. Выберем такое $N$, что $|y_{n}| < \eps$ при $n > N$.
+
+        Тогда 
+        \begin{equation*}
+            \begin{split}
+                \left| \sum\limits_{k=1}^{n} x_{k}y_{n-k+1}\right|
+                &\le |x_1y_{n}| + |x_2y_{n-1}| + \ldots + |x_{n-N+1}y_{N}| + |x_{n-N+2}y_{N-1}| + \ldots + |x_{n}y_1|\\
+                &< M\eps(n-N+1) + (N-1)M^2
+            \end{split}
+        \end{equation*}
+        \[ S_{n} < \frac{M\eps(n-N+1) + (N-1)M^2}{n} < M\eps + \frac{(N-1)M^2}{n} < M \eps + \eps \impliedby n > N'.\]
+
+        Случай $y_{n}=y$:
+
+        \[ S_{n} = y \frac{x_1+\ldots + x_{n}}{n} \to xy .\]
+
+        Общий случай: $y_{n} = y + \tilde{y}_{n}$. Тогда $\tilde{y}_{n} \to 0$.
+
+        Используем прошлые случаи, $S_{n} = xy + 0 = xy$.
+    \end{proof}
+\end{lemma}
+\begin{theorem}[Теорема Абеля] \thmslashn
+
+    Пусть $A := \sum\limits_{n=1}^{\infty} a_{n}$, $B := \sum\limits_{n=1}^{\infty} b_{n}$, и их произведение сходится. Тогда произведение сходится к $AB$.
+
+    \begin{proof} \thmslashn
+    
+       По лемме, 
+       \[ \frac{1}{n} \sum\limits_{k=1}^{n} A_{k}B_{n-k+1} \to AB .\] 
+       \begin{equation*}
+           \begin{split}
+               \frac{1}{n} \sum\limits_{k=1}^{n} A_{k}B_{n-k+1}
+               &= \frac{1}{n}(nc_1 + (n-1)c_2+(n-2)c_3 + \ldots + c_{n})\TODO \\ 
+               &= \frac{C_{n} + C_{n-1} + \ldots + C_1}{n} \to C
+           \end{split}
+       \end{equation*}
+    \end{proof}
+\end{theorem}
