@@ -1,9 +1,9 @@
 os: linux
 dist: focal
 language: python
-
+python: "3.7"
 before_install:
-    - sudo apt-get -y install texlive texlive-lang-cyrillic texlive-xetex texlive-generic-extra texlive-fonts-extra texlive-science fonts-cmu fonts-lmodern texlive-plain-generic 
+    - sudo apt-get -y install texlive texlive-lang-cyrillic texlive-xetex texlive-extra texlive-fonts-extra texlive-science fonts-cmu fonts-lmodern texlive-plain-generic 
 script:
 - pyenv global 3.7
 - python3 ./build.py
