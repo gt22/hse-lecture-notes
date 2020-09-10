@@ -231,8 +231,8 @@ def build_target(target, config, util, hashes_new):
                         with open(os.path.join(tmpdir, conf_main + ".log"), "r", errors="replace") as flog:
                             for line in flog:
                                 log.append(line)
-                            if len(log) > 20:
-                                log = log[-20:]
+                            if len(log) > 40:
+                                log = log[-40:]
                             for elem in log:
                                 PRINT += colored('> ', "red") + elem.rstrip() + '\n'
                     except:
